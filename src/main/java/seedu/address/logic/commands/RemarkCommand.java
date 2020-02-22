@@ -1,23 +1,24 @@
 package seedu.address.logic.commands;
 
-import seedu.address.MainApp;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
-import java.util.List;
-import java.util.logging.Logger;
-
+/**
+ * Edits the details of an existing person in the address book to include a remark.
+ */
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
@@ -31,10 +32,10 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Index index;
     private final Remark remark;
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
@@ -79,11 +80,11 @@ public class RemarkCommand extends Command {
             return true;
         }
 
-        if (!(obj instanceof RemarkCommand)){
+        if (!(obj instanceof RemarkCommand)) {
             return false;
         }
 
-        RemarkCommand e = (RemarkCommand)obj;
+        RemarkCommand e = (RemarkCommand) obj;
         return index.equals(e.index)
                 && remark.equals(e.remark);
     }
