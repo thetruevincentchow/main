@@ -1,0 +1,166 @@
+' TODO: how to distinguish between modules offered and modules taken and the obtained grade?
+'
+@startuml
+' !include ../style.puml
+' skinparam arrowThickness 1.1
+' skinparam arrowColor MODEL_COLOR
+' skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+
+package Time {
+    enum Semester <<enumeration>> {
+        ONE,
+        TWO,
+        SPECIAL_ONE,
+        SPECIAL_TWO
+    }
+
+    class SemesterYear {
+        +sem : Semester
+        +academicYear : int
+    }
+
+    class StudentSemester {
+        +semYear : SemesterYear
+        +degreeYear : int
+    }
+}
+
+package Module {
+    class ModuleTime {
+        -startTime : LocalTime
+        -endTime : LocalTime
+        -dayOfWeek : DayOfWeek
+    }
+
+    Interface Lesson <<interface>> {
+        -time : ModuleTime
+        +getTime() : ModuleTime
+    }
+
+    class Lecture extends Lesson {
+    }
+
+    class Tutorial extends Lesson {
+    }
+
+    class Credit {
+        -moduleCredits : int
+        +getCredits() : int
+    }
+
+    class ModuleOffering {
+        -code : int
+        -description : String
+        -credit : Credit
+        -sem : Semester
+        -isGraded : boolean
+        -lessons : List<Lesson>
+
+        +getCode() : int
+        +getDescription() : String
+        +getCredits() : int
+        +getSem() : int
+        +getLessons() : List<Lesson>
+    }
+}
+
+class Module{
+    +mod : ModuleOffering
+    +grade : Optional<Grade>
+}
+
+package Grades {
+    enum LetterGrade <<enumeration>> {
+        A_PLUS
+        A
+        A_MINUS
+        B_PLUS
+        B
+        B_MINUS
+        C_PLUS
+        C
+        D_PLUS
+        D
+        F
+        CS
+        CU
+        W
+    }
+
+    class Grade {
+        -credit : Credit
+        -letterGrade : LetterGrade
+        -isSu : boolean
+        +getGradePoints() : float
+    }
+
+    class CumulativeGrade {
+        -numSU : int
+        +declareSu() : void
+        +getGpa() : Optional<Float>
+    }
+}
+
+class TimeTable {
+    -modules : List<Module>
+}
+
+class Student {
+    +studentNumber : String
+    +studentName : String
+    +graduationDate : LocalDate
+    +type : DegreeProgramme
+    +grade : CumulativeGrade
+    +degrees : List<Degree>
+}
+
+class User {
+    +student : Student
+    +timeTables : Map<StudentSemester, TimeTable>
+}
+
+Interface Degree {
+    +isMinor : boolean
+    +isMajor : boolean
+}
+
+class Minor extends Degree {
+    +declareMinor() : void
+}
+
+class Major extends Degree {
+    +declareMajor() : void
+}
+
+'
+' class UnrestrictedElective {
+'     +isUE : boolean
+'     +declareUE() : void
+' }
+
+
+' NOTE: consider renaming `DegreeProgramme`
+enum DegreeProgramme <<enumeration>> {
+    ResidentCollege
+    NUSOverseasCollege
+    UniversityScholarsProgramme
+    NoProgramme
+}
+
+LetterGrade --> Grade
+Grade -->"1" Credit 
+Module -->"1" Grade 
+ModuleOffering -->"1" Module
+Module *-->"1" ModuleTime
+Module *-->"1" Semester
+Lesson "*"<-- Module
+User -->"*" TimeTable
+StudentSemester -->"1" SemesterYear 
+User -->"*" StudentSemester
+User -->"1" CumulativeGrade
+Student --> DegreeProgramme
+Student -->"*" Degree
+TimeTable -->"*" Module 
+
+@enduml
