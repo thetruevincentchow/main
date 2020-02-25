@@ -1,18 +1,19 @@
 package seedu.address.model.module;
 
-import seedu.address.model.time.Semester;
-
 import java.util.ArrayList;
+
+import seedu.address.model.time.Semester;
 
 public class ModuleOffering {
     private final ModuleCode code;
     private final Description description;
     private final Credit credit;
-    protected Semester sem;
     protected boolean isGraded;
     protected ArrayList<Lesson> lessons;
+    protected Semester sem;
 
-    public ModuleOffering(ModuleCode code, Description description, Credit credit, Semester sem, boolean isGraded, ArrayList<Lesson> lessons) {
+    public ModuleOffering(ModuleCode code, Description description, Credit credit, Semester sem, boolean isGraded,
+                          ArrayList<Lesson> lessons) {
         this.code = code;
         this.description = description;
         this.credit = credit;

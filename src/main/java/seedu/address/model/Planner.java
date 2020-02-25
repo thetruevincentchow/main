@@ -1,23 +1,25 @@
-package seedu.address.model.planner;
+package seedu.address.model;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Planner {
+/**
+ * Wraps all data at the planner level
+ * Duplicates are not allowed (by .isSameStudent comparison)
+ */
+public class Planner implements ReadOnlyPlanner {
 
     protected Student student;
-    protected List<Student> students;
+    protected UniqueStudentList students;
 
+    /**
+     * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}
+     */
     public Planner() {
-        students = new ArrayList<>();
+        students = new UniqueStudentList();
     }
 
-    public boolean setStudent(Student student) {
-        this.student = student;
-        return true;
-    }
 
     public boolean addStudent(Student student) {
         students.add(student);
@@ -30,5 +32,9 @@ public class Planner {
 
     public boolean hasStudent(Student student) {
         return false;
+    }
+
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 }

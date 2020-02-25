@@ -1,4 +1,6 @@
-package seedu.address.model.Graduation;
+package seedu.address.model.graduation;
+
+import seedu.address.model.module.ModuleCode;
 
 public class SingleGraduationRequirement extends GraduationRequirement {
 

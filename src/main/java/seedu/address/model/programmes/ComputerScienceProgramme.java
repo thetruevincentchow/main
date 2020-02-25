@@ -1,10 +1,12 @@
 package seedu.address.model.programmes;
 
-import seedu.address.model.Graduation.CompoundGraduationRequirement;
-import seedu.address.model.Graduation.SingleGraduationRequirement;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import seedu.address.model.graduation.CompoundGraduationRequirement;
+import seedu.address.model.graduation.SingleGraduationRequirement;
+import seedu.address.model.module.ModuleCode;
+
 
 public class ComputerScienceProgramme extends DegreeProgramme {
 
@@ -17,8 +19,8 @@ public class ComputerScienceProgramme extends DegreeProgramme {
             new SingleGraduationRequirement(new ModuleCode("GEQ1000")),
             new SingleGraduationRequirement(new ModuleCode("GER1000"))
         ))));
-        graduationRequirementList.add(new CompoundGraduationRequirement("Programme Requirements", 36, new ArrayList<>(Arrays.asList(
-            new CompoundGraduationRequirement("Computer Science Foundation", new ArrayList<>(Arrays.asList(
+        graduationRequirementList.add(new CompoundGraduationRequirement("Programme Requirements", 108, new ArrayList<>(Arrays.asList(
+            new CompoundGraduationRequirement("Computer Science Foundation", 36, new ArrayList<>(Arrays.asList(
                 new SingleGraduationRequirement(new ModuleCode("CS1101S")),
                 new SingleGraduationRequirement(new ModuleCode("CS1231S")),
                 new SingleGraduationRequirement(new ModuleCode("CS2030")),

@@ -1,8 +1,8 @@
-package seedu.address.model.Graduation;
+package seedu.address.model.graduation;
+
+import static seedu.address.model.graduation.AggregationType.ALL;
 
 import java.util.List;
-
-import static seedu.address.model.Graduation.AggregationType.ALL;
 
 public class CompoundGraduationRequirement extends GraduationRequirement {
 
@@ -19,7 +19,8 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
 
     }
 
-    public CompoundGraduationRequirement(String name, int minMCs, List<GraduationRequirement> requirements, AggregationType aggregationType) {
+    public CompoundGraduationRequirement(String name, int minMCs, List<GraduationRequirement> requirements,
+                                         AggregationType aggregationType) {
         this.name = name;
         this.minMCs = minMCs;
         this.graduationRequirementList = requirements;

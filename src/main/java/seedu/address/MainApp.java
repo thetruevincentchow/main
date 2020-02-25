@@ -18,13 +18,17 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Planner;
+import seedu.address.model.PlannerModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPlannerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PlannerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -57,11 +61,14 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PlannerStorage plannerStorage = new JsonPlannerStorage(userPrefs.getPlannerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, plannerStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        // model = initModelManager(storage, userPrefs);
+        model = initPlannerModelManager(storage, userPrefs);
+
 
         logic = new LogicManager(model, storage);
 
@@ -93,6 +100,32 @@ public class MainApp extends Application {
         return new ModelManager(initialData, userPrefs);
     }
 
+
+    /**
+     * Returns a {@code ModelManager} with the data from {@code storage}'s planner and {@code userPrefs}. <br>
+     * The data from the sample planner will be used instead if {@code storage}'s planner is not found,
+     * or an empty planner will be used instead if errors occur when reading {@code storage}'s planner.
+     */
+    private Model initPlannerModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<Planner> plannerOptional;
+        Planner initialData;
+        try {
+            plannerOptional = storage.readPlanner();
+            if (!plannerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Planner");
+            }
+            initialData = plannerOptional.orElseGet(SampleDataUtil::getSamplePlanner);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Planner");
+            initialData = new Planner();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Planner");
+            initialData = new Planner();
+        }
+
+        return new PlannerModelManager(initialData);
+    }
+
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
@@ -120,7 +153,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +181,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
