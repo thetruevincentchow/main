@@ -17,6 +17,8 @@ public class Student {
     private final Name name;
 
     private Degrees degrees;
+
+    private Major major;
     /**
      * Every field must be present and not null.
      */
@@ -26,8 +28,17 @@ public class Student {
         this.degrees = new Degrees();
     }
 
+    public Student(Name name, Major major) {
+        this(name);
+        this.major = major;
+    }
+
     public Name getName() {
         return name;
+    }
+
+    public Major getMajor() {
+        return major;
     }
 
     public Degrees getDegrees() {
@@ -55,7 +66,7 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName());
+        return otherStudent.getName().equals(getName()) && otherStudent.getMajor().equals(getMajor());
     }
 
     @Override
@@ -69,6 +80,10 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
         return builder.toString();
+    }
+
+    public boolean isSameStudent(Student student) {
+        return this.equals(student);
     }
 
 }

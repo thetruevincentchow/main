@@ -1,4 +1,4 @@
-package seedu.address.model.Graduation;
+package seedu.address.model.graduation;
 
 public enum AggregationType {
     ALL,

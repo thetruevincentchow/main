@@ -1,6 +1,6 @@
 package seedu.address.model.programmes;
 
-import seedu.address.model.Graduation.GraduationRequirement;
+import seedu.address.model.graduation.GraduationRequirement;
 
 import java.util.List;
 

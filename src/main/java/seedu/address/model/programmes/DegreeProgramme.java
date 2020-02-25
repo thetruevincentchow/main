@@ -1,10 +1,10 @@
 package seedu.address.model.programmes;
 
-import seedu.address.model.Graduation.GraduationRequirement;
+import seedu.address.model.graduation.GraduationRequirement;
 
 public abstract class DegreeProgramme extends Programme {
 
-    public DegreeType degreeType;
+    private DegreeType degreeType;
 
     public boolean isFulfilled() {
         for (GraduationRequirement requirement : this.graduationRequirementList) {

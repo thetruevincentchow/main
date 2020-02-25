@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's Graduation Year in the application.
+ * Represents a Student's graduation Year in the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidGraduationYear(int)}
  */
 public class GraduationYear {
