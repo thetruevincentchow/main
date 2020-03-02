@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.Student;
 
 /**
@@ -20,6 +21,8 @@ public interface ReadOnlyPlanner {
     ObservableList<Student> getStudentList();
 
     ObservableList<Module> getModuleList();
+
+    UniqueModuleList getModules();
 
     ObservableList<ModuleCode> getEnrolledModulesList();
 }

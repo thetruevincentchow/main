@@ -3,9 +3,13 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleDataImporter;
 import seedu.address.model.module.UniqueModuleCodeList;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Wraps all data at the planner level
@@ -38,11 +42,25 @@ public class Planner implements ReadOnlyPlanner {
      */
     public Planner() {
         activeStudent = null; //new Student(new Name("Placeholder Name"), new Degrees(), new Major("Placeholder Major"));
-
         students = new UniqueStudentList();
         //students.add(activeStudent);
         modules = new UniqueModuleList();
         enrolledModules = new UniqueModuleCodeList();
+        loadModules();
+    }
+
+
+    private void loadModules() {
+        List<Module> modulesToImport = ModuleDataImporter.run();
+        if (modulesToImport == null) {
+
+        } else {
+            modulesToImport.forEach(x -> modules.add(x));
+        }
+    }
+
+    public UniqueModuleList getModules() {
+        return modules;
     }
 
     /**

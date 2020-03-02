@@ -3,6 +3,8 @@ package seedu.address.model.module;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,16 +24,19 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class UniqueModuleList implements Iterable<Module> {
 
-    private final ObservableList<Module> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Module> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final HashMap<ModuleCode, Module> internalList = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
      */
+    public boolean contains(ModuleCode toCheck) {
+        requireNonNull(toCheck);
+        return internalList.containsKey(toCheck);
+    }
+
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameModule);
+        return internalList.containsKey(toCheck.moduleCode);
     }
 
     /**
@@ -43,27 +48,11 @@ public class UniqueModuleList implements Iterable<Module> {
         if (contains(toAdd)) {
             // throw new DuplicateModuleException(); TODO
         }
-        internalList.add(toAdd);
+        internalList.put(toAdd.moduleCode, toAdd);
     }
 
-    /**
-     * Replaces the module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the list.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the list.
-     */
-    public void setModule(Module target, Module editedModule) {
-        requireAllNonNull(target, editedModule);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            // throw new ModuleNotFoundException(); TODO
-        }
-
-        if (!target.isSameModule(editedModule) && contains(editedModule)) {
-            // throw new DuplicateModuleException(); TODO
-        }
-
-        internalList.set(index, editedModule);
+    public Module getModule(ModuleCode moduleCode) {
+        return internalList.get(moduleCode);
     }
 
     /**
@@ -72,39 +61,22 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            // throw new ModuleNotFoundException(); TODO
-        }
-    }
-
-    public void setModules(UniqueModuleList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code modules}.
-     * {@code modules} must not contain duplicate modules.
-     */
-    public void setModules(List<Module> modules) {
-        requireAllNonNull(modules);
-        if (!modulesAreUnique(modules)) {
-            // throw new DuplicateModuleException(); TODO
-        }
-
-        internalList.setAll(modules);
+        internalList.remove(toRemove.moduleCode);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return null;
+//         ArrayList<Module> modules = new ArrayList<>();
+//         internalList.forEach(module -> modules.add(module));
+//         return FXCollections.unmodifiableObservableList(modules);
     }
 
     @Override
     public Iterator<Module> iterator() {
-        return internalList.iterator();
+        return internalList.values().iterator();
     }
 
     @Override

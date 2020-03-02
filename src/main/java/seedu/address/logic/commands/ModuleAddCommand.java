@@ -21,14 +21,24 @@ public class ModuleAddCommand extends ModuleCommand {
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
+    public static final String MESSAGE_ADD_MODULE_DOES_NOT_EXISTS = "Module does not exist: %1$s";
+
+
 
     private final ModuleCode moduleCode;
 
     public ModuleAddCommand(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
-
         this.moduleCode = moduleCode;
     }
+    /**
+     * Generates a command execution success message based on whether the remark is added to or removed from
+     * {@code personToEdit}.
+     */
+    private String generateModuleDoesNotExists(ModuleCode moduleCode) {
+        return String.format(MESSAGE_ADD_MODULE_DOES_NOT_EXISTS, moduleCode.value);
+    }
+
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
@@ -55,16 +65,11 @@ public class ModuleAddCommand extends ModuleCommand {
         if (model.hasEnrollment(moduleCode)) {
             throw new CommandException(generateDuplicateMessage(moduleCode));
         }
+        if (!model.getPlanner().getModules().contains(moduleCode)) {
+            throw new CommandException(generateModuleDoesNotExists(moduleCode));
+        }
 
         model.addEnrollment(moduleCode);
-
-        /*
-        Student editedStudent = new Student(student.getName(), student.getDegrees(), major);
-        assert(model instanceof PlannerModelManager);
-        model.setActiveStudent(editedStudent);
-        */
-
-        //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

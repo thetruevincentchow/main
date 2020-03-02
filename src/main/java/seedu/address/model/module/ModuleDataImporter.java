@@ -14,30 +14,46 @@ import java.util.Optional;
 
 public class ModuleDataImporter {
 
-    private static final String DOWNLOAD_URL = "https://api.nusmods.com/2019-2020/1/bulletinModulesRaw.json";
-    private static Path moduleDataRawPath = Paths.get("data", "bulletinModulesRaw.json");
+    private static final String DOWNLOAD_URL = "https://api.nusmods.com/v2/{0}/moduleInfo.json";
+    private static final String[] acadYears = new String[] {
+        "2019-2020",
+        "2018-2019"
+    };
     private static List<Module> modules = new ArrayList<>();
 
-    public static void run() {
-        try {
-            if (!Files.exists(moduleDataRawPath)) {
-                try (InputStream in = new URL(DOWNLOAD_URL).openStream()) {
-                    Files.copy(in, moduleDataRawPath);
-                }
-            }
-            Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(moduleDataRawPath, JsonSerializableModule[].class);
-            if (optionalModules.isPresent()) {
-                JsonSerializableModule[] moduleArray = optionalModules.get();
-                for (JsonSerializableModule m : moduleArray) {
-                    try {
-                        modules.add(m.toModelType());
-                    } catch (IllegalValueException ex) {
-                        System.err.println(ex);
+    public static List<Module> run() {
+        String url;
+        Path path;
+        Module module;
+        for (String acadYear : acadYears) {
+            try {
+                url = DOWNLOAD_URL.replace("{0}", acadYear);
+                path = Paths.get("data", "moduleInfo_{0}.json".replace("{0}", acadYear));
+                if (!Files.exists(path)) {
+                    try (InputStream in = new URL(url).openStream()) {
+                        Files.copy(in, path);
                     }
                 }
+                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(path, JsonSerializableModule[].class);
+                if (optionalModules.isPresent()) {
+                    JsonSerializableModule[] moduleArray = optionalModules.get();
+                    for (JsonSerializableModule m : moduleArray) {
+                        try {
+                            module = m.toModelType();
+                            if (modules.contains(module)) {
+                                int a = 1;
+                            } else {
+                                modules.add(module);
+                            }
+                        } catch (IllegalValueException ex) {
+                            System.err.println(ex);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
             }
-        } catch (Exception e) {
-            System.out.println(e);
         }
+        return modules;
     }
 }
