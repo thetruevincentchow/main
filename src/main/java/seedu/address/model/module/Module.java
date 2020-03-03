@@ -52,4 +52,17 @@ public class Module {
         return false; // TODO
     }
 
+    public ModuleCode getModuleCode() {
+        return ModuleCode;
+    }
+
+    public String getModuleTitle() {
+        return ModuleTitle;
+    }
+
+    public Semester getSemesterName() {
+        return SemesterName;
+    }
+
+
 }
