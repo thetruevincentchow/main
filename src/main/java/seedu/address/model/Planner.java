@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -12,6 +14,7 @@ public class Planner implements ReadOnlyPlanner {
 
     protected Student student;
     protected UniqueStudentList students;
+    protected UniqueModuleList modules;
 
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}
@@ -34,7 +37,21 @@ public class Planner implements ReadOnlyPlanner {
         return false;
     }
 
+    public boolean hasModule(Module module) {
+        // TODO
+        return false;
+    }
+
+
+    public boolean addModule(Module module) {
+        // TODO
+        return true;
+    }
+
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 }

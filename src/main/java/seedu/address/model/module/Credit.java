@@ -7,6 +7,11 @@ public class Credit {
 
     public final int value;
 
+
+    public Credit(String credit) {
+        this(Integer.parseInt(credit));
+    }
+
     public Credit(int credit) {
         requireNonNull(credit);
         value = credit;
