@@ -1,5 +1,7 @@
 package seedu.address.model.module;
 
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 
 public class ModuleCode {
@@ -15,5 +17,19 @@ public class ModuleCode {
     @Override
     public String toString() {
         return value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof ModuleCode)) {
+            return false;
+        } else {
+            return value.equals(((ModuleCode)other).value);
+        }
     }
 }

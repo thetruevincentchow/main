@@ -3,6 +3,8 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.student.Major;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -20,7 +22,9 @@ public class Planner implements ReadOnlyPlanner {
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}
      */
     public Planner() {
+        student = new Student(new Name("Placeholder Name"), new Major("Placeholder Major"));
         students = new UniqueStudentList();
+        modules = new UniqueModuleList();
     }
 
 

@@ -79,6 +79,7 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
+        builder.append("major/").append(getName());
         return builder.toString();
     }
 

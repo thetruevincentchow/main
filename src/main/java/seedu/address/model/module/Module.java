@@ -48,7 +48,7 @@ public class Module {
         this.Corequisite = Corequisite;
     }
 
-    public boolean isSameModuleOffering(Module module) {
+    public boolean isSameModule(Module module) {
         return false; // TODO
     }
 
