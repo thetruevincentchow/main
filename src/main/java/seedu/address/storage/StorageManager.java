@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.Planner;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -18,13 +20,15 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private PlannerStorage plannerStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, PlannerStorage plannerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.plannerStorage = plannerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -72,6 +76,31 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+
+    // ================ Planner methods ==============================
+
+    public Path getPlannerFilePath() {
+        return plannerStorage.getPlannerFilePath();
+    }
+
+    public Optional<Planner> readPlanner() throws DataConversionException, IOException {
+        return readPlanner(plannerStorage.getPlannerFilePath());
+    }
+
+    public Optional<Planner> readPlanner(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return plannerStorage.readPlanner(filePath);
+    }
+
+    public void savePlanner(ReadOnlyPlanner planner) throws IOException {
+        savePlanner(planner, plannerStorage.getPlannerFilePath());
+    }
+
+    public void savePlanner(ReadOnlyPlanner planner, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        plannerStorage.savePlanner(planner, filePath);
     }
 
 }

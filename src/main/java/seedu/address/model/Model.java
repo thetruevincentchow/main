@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * The API of the Model component.
@@ -52,6 +53,10 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+
+    /** Returns the Planner */
+    ReadOnlyPlanner getPlanner();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -78,6 +83,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
