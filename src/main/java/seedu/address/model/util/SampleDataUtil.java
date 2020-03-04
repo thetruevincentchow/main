@@ -11,6 +11,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.Planner;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +48,15 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static Planner getSamplePlanner() {
+        Planner samplePlanner = new Planner();
+        Student student = new Student(new seedu.address.model.student.Name("Dummy Name"));
+        // TODO
+        samplePlanner.addStudent(student);
+
+        return samplePlanner;
     }
 
     /**
