@@ -45,6 +45,18 @@ public class Planner implements ReadOnlyPlanner {
         enrolledModules = new UniqueModuleCodeList();
     }
 
+    /**
+     * Returns a valid planner state.
+     * @return Sample planner
+     */
+    public static Planner samplePlanner() {
+        Planner planner = new Planner();
+        Student student = new Student(new Name("Placeholder name"), new Major("Placeholder major"));
+        planner.students.add(student);
+        planner.activeStudent = student;
+        return planner;
+    }
+
 
     public boolean addStudent(Student student) {
         students.add(student);
