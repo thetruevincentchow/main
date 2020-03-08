@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * The API of the Model component.
@@ -52,6 +55,10 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+
+    /** Returns the Planner */
+    ReadOnlyPlanner getPlanner();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -79,9 +86,32 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Student> getStudentList();
+
+    boolean hasStudent(Student student);
+
+    Student getActiveStudent();
+
+    void setActiveStudent(Student editedStudent);
+
+    void activateStudent(Student student);
+
+    void addStudent(Student student);
+
+    void removeStudent(Student student);
+
+    ObservableList<ModuleCode> getEnrolledModulesList();
+
+    boolean hasEnrollment(ModuleCode moduleCode);
+
+    void addEnrollment(ModuleCode moduleCode);
+
+    void removeEnrollment(ModuleCode moduleCode);
 }

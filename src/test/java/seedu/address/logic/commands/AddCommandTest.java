@@ -18,9 +18,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -145,6 +147,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Planner getPlanner() {
+            return null;
+        }
+
+        @Override
+        public Student getActiveStudent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setActiveStudent(Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
     }
