@@ -45,11 +45,15 @@ public class PlannerModelManager extends ModelManager {
         return planner;
     }
 
-    public void addStudent(Student student) {
-        requireAllNonNull(student);
-        planner.addStudent(student);
+    @Override
+    public ObservableList<Student> getStudentList() {
+        return planner.getStudentList();
     }
 
+    @Override
+    public boolean hasStudent(Student student) {
+        return planner.hasStudent(student);
+    }
 
     @Override
     public Student getActiveStudent() {
@@ -61,6 +65,22 @@ public class PlannerModelManager extends ModelManager {
         planner.setActiveStudent(editedStudent);
     }
 
+    @Override
+    public void activateStudent(Student student) {
+        planner.activateStudent(student);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        requireAllNonNull(student);
+        planner.addStudent(student);
+    }
+
+    @Override
+    public void removeStudent(Student student) {
+        requireAllNonNull(student);
+        planner.removeStudent(student);
+    }
     @Override
     public ObservableList<ModuleCode> getEnrolledModulesList() {
         return planner.getEnrolledModulesList();

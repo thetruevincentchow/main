@@ -6,6 +6,8 @@ import seedu.address.model.programmes.DegreeProgramme;
 import java.util.Objects;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Represents a Student in the address book.
@@ -88,8 +90,8 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        builder.append("major/").append(getName());
+        builder.append(PREFIX_NAME).append(getName()).append(" ")
+                .append(PREFIX_MAJOR).append(getName());
         return builder.toString();
     }
 

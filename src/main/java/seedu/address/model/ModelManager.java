@@ -153,13 +153,31 @@ public class ModelManager implements Model {
 
     // TODO: place implementation of methods in PlannerModelManager into ModelManager
     //       and remove PlannerModelManager
-    @Override
+    public ObservableList<Student> getStudentList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public boolean hasStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
     public Student getActiveStudent() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    @Override
     public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void activateStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeStudent(Student student) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

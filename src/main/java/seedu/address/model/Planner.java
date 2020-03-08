@@ -92,9 +92,11 @@ public class Planner implements ReadOnlyPlanner {
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
+
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
     }
+
     public ObservableList<ModuleCode> getEnrolledModulesList() {
         return enrolledModules.asUnmodifiableObservableList();
     }
@@ -102,16 +104,35 @@ public class Planner implements ReadOnlyPlanner {
     public Student getActiveStudent() {
         if (activeStudent == null) {
             //TODO: handle `activeStudents` being null (e.g. if data file is missing)
+            //TODO: handle all students being removed
             activeStudent = students.iterator().next();
         }
         return activeStudent;
     }
 
+    /**
+     * Replaces the currently active student with the student given by (@code editedStudent).
+     * @params editedStudent Student to copy for replacement
+     */
     public void setActiveStudent(Student editedStudent) {
-        //TODO: mutate `students`
         if (activeStudent != null) {
             students.setStudent(activeStudent, editedStudent);
         }
         activeStudent = editedStudent;
+    }
+
+    public void activateStudent(Student student) {
+        if (!students.contains(student)) {
+            throw new IllegalArgumentException("Student does not exist in student list");
+        }
+        activeStudent = student;
+    }
+
+    public void removeStudent(Student toRemove) {
+        //TODO: handle all students being removed
+        if (toRemove == activeStudent) {
+            activeStudent = null;
+        }
+        students.remove(toRemove);
     }
 }

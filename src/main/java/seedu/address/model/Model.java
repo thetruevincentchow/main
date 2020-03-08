@@ -93,9 +93,19 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ObservableList<Student> getStudentList();
+
+    boolean hasStudent(Student student);
+
     Student getActiveStudent();
 
     void setActiveStudent(Student editedStudent);
+
+    void activateStudent(Student student);
+
+    void addStudent(Student student);
+
+    void removeStudent(Student student);
 
     ObservableList<ModuleCode> getEnrolledModulesList();
 

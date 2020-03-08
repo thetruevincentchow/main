@@ -66,6 +66,9 @@ public class AddressBookParser {
         case DeclareCommand.COMMAND_WORD:
             return new DeclareCommandParser().parse(arguments);
 
+        case StudentCommand.COMMAND_WORD:
+            return new StudentCommandParser().parse(arguments);
+
         case ModuleCommand.COMMAND_WORD:
             return new ModuleCommandParser().parse(arguments);
 
