@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.UniqueModuleCodeList;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.*;
 
@@ -11,20 +13,36 @@ import seedu.address.model.student.*;
  */
 public class Planner implements ReadOnlyPlanner {
 
+    /**
+     * The current student that the user can immediately modify.
+     * `activeStudent` must be an element of `students`, i.e. `students.contains(activeStudent)` is `true`
+     */
     protected Student activeStudent;
-    protected UniqueStudentList students; //TOOD: use list of students in storage
-    protected UniqueModuleList modules;
 
     /**
-     * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}
+     * The list of students created by the user.
+     */
+    protected UniqueStudentList students; //TOOD: use list of students in storage
+
+    /**
+     * The list of available modules in NUS.
+     */
+    protected UniqueModuleList modules;
+
+    //TODO: move to `Student` or `User`
+    //TODO: replace `UniqueModuleCodeList` with `TimeTable` (once loading available module list is implemented)
+    protected UniqueModuleCodeList enrolledModules;
+
+    /**
+     * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
      */
     public Planner() {
-        //TODO: serialize `activeStudent` in `JsonSerializablePlanner`
         activeStudent = null; //new Student(new Name("Placeholder Name"), new Degrees(), new Major("Placeholder Major"));
 
         students = new UniqueStudentList();
         //students.add(activeStudent);
         modules = new UniqueModuleList();
+        enrolledModules = new UniqueModuleCodeList();
     }
 
 
@@ -37,6 +55,7 @@ public class Planner implements ReadOnlyPlanner {
         activeStudent = planner.activeStudent;
         students = planner.students;
         modules = planner.modules;
+        enrolledModules = planner.enrolledModules;
         return true;
     }
 
@@ -55,11 +74,29 @@ public class Planner implements ReadOnlyPlanner {
         return true;
     }
 
+    //TODO: replace with `TimeTable` and `Enrollment`
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        return enrolledModules.contains(moduleCode);
+    }
+
+    public boolean addEnrollment(ModuleCode moduleCode) {
+        enrolledModules.add(moduleCode);
+        return true;
+    }
+
+    public boolean removeEnrollment(ModuleCode moduleCode) {
+        enrolledModules.remove(moduleCode);
+        return true;
+    }
+
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        return enrolledModules.asUnmodifiableObservableList();
     }
 
     public Student getActiveStudent() {

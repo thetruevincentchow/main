@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Student;
 
@@ -159,6 +160,23 @@ public class ModelManager implements Model {
 
     @Override
     public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // TODO: replace with `TimeTable` and `Enrollment`
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeEnrollment(ModuleCode moduleCode) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }

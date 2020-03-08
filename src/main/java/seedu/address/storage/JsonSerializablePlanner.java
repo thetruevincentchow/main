@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
 
 import java.util.ArrayList;
@@ -23,15 +24,18 @@ class JsonSerializablePlanner {
 
     private final JsonAdaptedStudent activeStudent;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedModuleCode> enrolledModules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializablePlanner(@JsonProperty("activeStudent") JsonAdaptedStudent activeStudent,
-                                   @JsonProperty("students") List<JsonAdaptedStudent> students) {
+                                   @JsonProperty("students") List<JsonAdaptedStudent> students,
+                                   @JsonProperty("enrolledModules") List<JsonAdaptedModuleCode> enrolledModules) {
         this.activeStudent = activeStudent;
         this.students.addAll(students);
+        this.enrolledModules.addAll(enrolledModules);
     }
 
     /**
@@ -42,6 +46,8 @@ class JsonSerializablePlanner {
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
         activeStudent = new JsonAdaptedStudent(source.getActiveStudent());
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -51,6 +57,7 @@ class JsonSerializablePlanner {
      */
     public Planner toModelType() throws IllegalValueException {
         Planner planner = new Planner();
+
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (planner.hasStudent(student)) {
@@ -58,7 +65,17 @@ class JsonSerializablePlanner {
             }
             planner.addStudent(student);
         }
+
         planner.setActiveStudent(activeStudent.toModelType());
+
+        for (JsonAdaptedModuleCode jsonAdaptedModuleCode : enrolledModules) {
+            ModuleCode moduleCode = jsonAdaptedModuleCode.toModelType();
+            if (planner.hasEnrollment(moduleCode)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            planner.addEnrollment(moduleCode);
+        }
+
         return planner;
     }
 

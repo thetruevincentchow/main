@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
@@ -17,15 +18,33 @@ public class ModuleListCommand extends ModuleCommand {
             + ": List enrolled modules in the timetable.\n"
             + "Example: " + "module " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable";
+    public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable: %1$s";
+
+    /**
+     * Generates a command execution success message based on whether the remark is added to or removed from
+     * {@code personToEdit}.
+     */
+    private String generateSuccessMessage(ObservableList<ModuleCode> codes) {
+        StringBuffer sb = new StringBuffer();
+        boolean isFirst = true;
+        for (ModuleCode moduleCode : codes) {
+            if (!isFirst) {
+                sb.append(", ");
+            }
+            sb.append(moduleCode.value);
+            isFirst = false;
+        }
+
+        return String.format(MESSAGE_SUCCESS, codes.isEmpty() ? "[None]" : sb.toString());
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student student = model.getActiveStudent();
+        //Student student = model.getActiveStudent();
 
-        return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
-        //return new CommandResult(MESSAGE_SUCCESS);
+        //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
+        return new CommandResult(generateSuccessMessage(model.getEnrolledModulesList()));
     }
 }

@@ -32,6 +32,14 @@ public class ModuleRemoveCommand extends ModuleCommand {
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
+    private String generateFailureMessage(ModuleCode moduleCode) {
+        return String.format(MESSAGE_ADD_MODULE_NOT_EXISTS, moduleCode.value);
+    }
+
+    /**
+     * Generates a command execution success message based on whether the remark is added to or removed from
+     * {@code personToEdit}.
+     */
     private String generateSuccessMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
     }
@@ -40,14 +48,21 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student student = model.getActiveStudent();
+        // TODO: add to a `TimeTable` of a `Student` or `User`
+        //Student student = model.getActiveStudent();
+        if (!model.hasEnrollment(moduleCode)) {
+            throw new CommandException(generateFailureMessage(moduleCode));
+        }
+
+        model.removeEnrollment(moduleCode);
+
         /*
         Student editedStudent = new Student(student.getName(), student.getDegrees(), major);
         assert(model instanceof PlannerModelManager);
         model.setActiveStudent(editedStudent);
         */
 
-        return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
-        //return new CommandResult(generateSuccessMessage(moduleCode));
+        //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
+        return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

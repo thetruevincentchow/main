@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -57,5 +59,25 @@ public class PlannerModelManager extends ModelManager {
     @Override
     public void setActiveStudent(Student editedStudent) {
         planner.setActiveStudent(editedStudent);
+    }
+
+    @Override
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        return planner.getEnrolledModulesList();
+    }
+
+    @Override
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        return planner.hasEnrollment(moduleCode);
+    }
+
+    @Override
+    public void addEnrollment(ModuleCode moduleCode) {
+        planner.addEnrollment(moduleCode);
+    }
+
+    @Override
+    public void removeEnrollment(ModuleCode moduleCode) {
+        planner.removeEnrollment(moduleCode);
     }
 }

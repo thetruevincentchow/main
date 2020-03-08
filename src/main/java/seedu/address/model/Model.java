@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Student;
 
@@ -94,4 +96,12 @@ public interface Model {
     Student getActiveStudent();
 
     void setActiveStudent(Student editedStudent);
+
+    ObservableList<ModuleCode> getEnrolledModulesList();
+
+    boolean hasEnrollment(ModuleCode moduleCode);
+
+    void addEnrollment(ModuleCode moduleCode);
+
+    void removeEnrollment(ModuleCode moduleCode);
 }
