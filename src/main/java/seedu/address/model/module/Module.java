@@ -2,6 +2,8 @@ package seedu.address.model.module;
 
 import seedu.address.model.time.Semester;
 
+import java.lang.invoke.SwitchPoint;
+
 public class Module {
 
     public ModuleCode ModuleCode;
@@ -36,7 +38,7 @@ public class Module {
         this.ModuleCode = new ModuleCode(ModuleCode);
         this.ModuleTitle = ModuleTitle;
         this.AcadYear = AcadYear;
-        this.SemesterName = Semester.valueOf(SemesterName);
+        this.SemesterName = convertSem(SemesterName);
         this.Faculty = Faculty;
         this.Department = Department;
         this.ModuleDescription = new Description(ModuleDescription);
@@ -62,6 +64,29 @@ public class Module {
 
     public Semester getSemesterName() {
         return SemesterName;
+    }
+
+    public Semester convertSem(String semesterName) {
+        String convertedValue;
+        switch (semesterName){
+            case "Semester 1":
+                convertedValue = "ONE";
+                break;
+            case "Semester 2":
+                convertedValue = "TWO";
+                break;
+            case "Special Semester 1":
+                convertedValue = "SPECIAL_ONE";
+                break;
+            case "Special Semester 2":
+                convertedValue = "SPECIAL_TWO";
+                break;
+            default:
+                convertedValue = "NULL";
+                break;
+        }
+        return Semester.valueOf(convertedValue);
+
     }
 
 
