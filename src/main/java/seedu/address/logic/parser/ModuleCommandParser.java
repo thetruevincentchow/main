@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.DeclareCommand;
-import seedu.address.logic.commands.DeclareMajorCommand;
-import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
@@ -11,7 +9,7 @@ import java.util.regex.Pattern;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-public class DeclareCommandParser implements Parser<DeclareCommand> {
+public class ModuleCommandParser implements Parser<ModuleCommand> {
     /**
      * Used for initial separation of command word and args.
      */
@@ -25,7 +23,7 @@ public class DeclareCommandParser implements Parser<DeclareCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public DeclareCommand parse(String userInput) throws ParseException {
+    public ModuleCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -33,9 +31,16 @@ public class DeclareCommandParser implements Parser<DeclareCommand> {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
-        case DeclareMajorCommand.COMMAND_WORD:
-            return new DeclareMajorCommandParser().parse(arguments);
+        case ModuleAddCommand.COMMAND_WORD:
+            return new ModuleAddCommandParser().parse(arguments);
+
+        case ModuleRemoveCommand.COMMAND_WORD:
+            return new ModuleRemoveCommandParser().parse(arguments);
+
+        case ModuleListCommand.COMMAND_WORD:
+            return new ModuleListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -3,10 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
-import seedu.address.model.student.Major;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.*;
 
 /**
  * Wraps all data at the planner level
@@ -14,16 +11,19 @@ import seedu.address.model.student.UniqueStudentList;
  */
 public class Planner implements ReadOnlyPlanner {
 
-    protected Student student;
-    protected UniqueStudentList students;
+    protected Student activeStudent;
+    protected UniqueStudentList students; //TOOD: use list of students in storage
     protected UniqueModuleList modules;
 
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}
      */
     public Planner() {
-        student = new Student(new Name("Placeholder Name"), new Major("Placeholder Major"));
+        //TODO: serialize `activeStudent` in `JsonSerializablePlanner`
+        activeStudent = null; //new Student(new Name("Placeholder Name"), new Degrees(), new Major("Placeholder Major"));
+
         students = new UniqueStudentList();
+        //students.add(activeStudent);
         modules = new UniqueModuleList();
     }
 
@@ -33,7 +33,10 @@ public class Planner implements ReadOnlyPlanner {
         return true;
     }
 
-    public boolean resetData() {
+    public boolean resetData(Planner planner) {
+        activeStudent = planner.activeStudent;
+        students = planner.students;
+        modules = planner.modules;
         return true;
     }
 
@@ -57,5 +60,21 @@ public class Planner implements ReadOnlyPlanner {
     }
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+
+    public Student getActiveStudent() {
+        if (activeStudent == null) {
+            //TODO: handle `activeStudents` being null (e.g. if data file is missing)
+            activeStudent = students.iterator().next();
+        }
+        return activeStudent;
+    }
+
+    public void setActiveStudent(Student editedStudent) {
+        //TODO: mutate `students`
+        if (activeStudent != null) {
+            students.setStudent(activeStudent, editedStudent);
+        }
+        activeStudent = editedStudent;
     }
 }

@@ -149,4 +149,16 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+
+    // TODO: place implementation of methods in PlannerModelManager into ModelManager
+    //       and remove PlannerModelManager
+    @Override
+    public Student getActiveStudent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

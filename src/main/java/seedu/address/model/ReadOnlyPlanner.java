@@ -13,6 +13,9 @@ public interface ReadOnlyPlanner {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
+
+    Student getActiveStudent();
+
     ObservableList<Student> getStudentList();
 
     ObservableList<Module> getModuleList();

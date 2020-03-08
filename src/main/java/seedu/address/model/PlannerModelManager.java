@@ -36,7 +36,7 @@ public class PlannerModelManager extends ModelManager {
     //=========== Planner ================================================================================
 
     public void setPlanner(Planner planner) {
-        this.planner.resetData();
+        this.planner.resetData(planner);
     }
 
     public Planner getPlanner() {
@@ -49,4 +49,13 @@ public class PlannerModelManager extends ModelManager {
     }
 
 
+    @Override
+    public Student getActiveStudent() {
+        return planner.getActiveStudent();
+    }
+
+    @Override
+    public void setActiveStudent(Student editedStudent) {
+        planner.setActiveStudent(editedStudent);
+    }
 }

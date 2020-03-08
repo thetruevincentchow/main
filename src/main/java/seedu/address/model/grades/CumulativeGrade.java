@@ -13,7 +13,7 @@ public class CumulativeGrade {
         this.totalCredits = totalCredits;
     }
 
-    public OptionalDouble getVaue() {
+    public OptionalDouble getValue() {
         return OptionalDouble.empty();
     }
 }
