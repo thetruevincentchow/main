@@ -22,7 +22,10 @@ public interface ReadOnlyPlanner {
 
     ObservableList<Module> getModuleList();
 
+
     UniqueModuleList getModules();
 
     ObservableList<ModuleCode> getEnrolledModulesList();
+
+
 }
