@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,6 +21,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final Planner planner;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -31,7 +34,7 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
+        this.planner = new Planner();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -89,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyPlanner getPlanner() {
+        return planner;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -112,12 +120,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
@@ -148,4 +150,51 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+
+    // TODO: place implementation of methods in PlannerModelManager into ModelManager
+    //       and remove PlannerModelManager
+    public ObservableList<Student> getStudentList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public boolean hasStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public Student getActiveStudent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void activateStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // TODO: replace with `TimeTable` and `Enrollment`
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
