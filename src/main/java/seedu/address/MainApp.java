@@ -122,10 +122,10 @@ public class MainApp extends Application {
             initialData = plannerOptional.orElseGet(SampleDataUtil::getSamplePlanner);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Planner");
-            initialData = new Planner();
+            initialData = Planner.samplePlanner();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Planner");
-            initialData = new Planner();
+            initialData = Planner.samplePlanner();
         }
         //ModuleDataImporter.run();
 

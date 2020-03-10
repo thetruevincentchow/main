@@ -5,9 +5,14 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
+
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+
 import seedu.address.model.student.Student;
 
 import static java.util.Objects.requireNonNull;
@@ -47,13 +52,40 @@ public class PlannerModelManager extends ModelManager {
     //=========== Planner ================================================================================
 
     public void setPlanner(Planner planner) {
-        this.planner.resetData();
+        this.planner.resetData(planner);
     }
 
     public Planner getPlanner() {
         return planner;
     }
 
+    @Override
+    public ObservableList<Student> getStudentList() {
+        return planner.getStudentList();
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        return planner.hasStudent(student);
+    }
+
+    @Override
+    public Student getActiveStudent() {
+        return planner.getActiveStudent();
+    }
+
+    @Override
+    public void setActiveStudent(Student editedStudent) {
+        planner.setActiveStudent(editedStudent);
+    }
+
+    @Override
+    public void activateStudent(Student student) {
+        planner.activateStudent(student);
+    }
+
+    @Override
+=======
     /*public ObservableList<Module> getFilteredModuleList() {
         return filteredmodules;
     }
@@ -63,10 +95,34 @@ public class PlannerModelManager extends ModelManager {
         filteredmodules.setPredicate(predicate);
     }*/
 
+
     public void addStudent(Student student) {
         requireAllNonNull(student);
         planner.addStudent(student);
     }
 
+    @Override
+    public void removeStudent(Student student) {
+        requireAllNonNull(student);
+        planner.removeStudent(student);
+    }
+    @Override
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        return planner.getEnrolledModulesList();
+    }
 
+    @Override
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        return planner.hasEnrollment(moduleCode);
+    }
+
+    @Override
+    public void addEnrollment(ModuleCode moduleCode) {
+        planner.addEnrollment(moduleCode);
+    }
+
+    @Override
+    public void removeEnrollment(ModuleCode moduleCode) {
+        planner.removeEnrollment(moduleCode);
+    }
 }

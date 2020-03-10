@@ -6,6 +6,8 @@ import seedu.address.model.programmes.DegreeProgramme;
 import java.util.Objects;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Represents a Student in the address book.
@@ -16,20 +18,29 @@ public class Student {
     // Identity fields
     private final Name name;
 
-    private Degrees degrees;
+    private final Degrees degrees;
 
-    private Major major;
+    private final Major major;
+
     /**
      * Every field must be present and not null.
      */
     public Student(Name name) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.degrees = new Degrees();
+        this(name, new Degrees(), null);
     }
 
+    //TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
     public Student(Name name, Major major) {
-        this(name);
+        requireAllNonNull(name);
+        this.name = name;
+        this.degrees = null;
+        this.major = major;
+    }
+
+    public Student(Name name, Degrees degrees, Major major) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.degrees = degrees;
         this.major = major;
     }
 
@@ -66,7 +77,8 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName()) && otherStudent.getMajor().equals(getMajor());
+        //TODO: initialize and compare `degrees`
+        return otherStudent.getName().equals(getName()) && otherStudent.getMajor().equals(getMajor());// && otherStudent.degrees.equals(getDegrees());
     }
 
     @Override
@@ -78,7 +90,8 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(PREFIX_NAME).append(getName()).append(" ")
+                .append(PREFIX_MAJOR).append(getName());
         return builder.toString();
     }
 

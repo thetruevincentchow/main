@@ -12,53 +12,53 @@ public class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
-    private final String ModuleCode;
-    private final String ModuleTitle;
-    private final String AcadYear;
-    private final String SemesterName;
-    private final String Faculty;
-    private final String Department;
-    private final String ModuleDescription;
-    private final String CrossModule;
-    private final String ModuleCredit;
-    private final String Workload;
-    private final String Prerequisite;
-    private final String Preclusion;
-    private final String Corequisite;
+    private final String acadYear;
+    private final String preclusion;
+    private final String description;
+    private final String title;
+    private final String department;
+    private final String faculty;
+    // private final String workload;
+    private final String prerequisite;
+    private final String moduleCredit;
+    private final String moduleCode;
+    private final String semesterData;
+    private final String prereqTree;
+    private final String fulfillRequirements;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedModule(
-        @JsonProperty("ModuleCode") String ModuleCode,
-        @JsonProperty("ModuleTitle") String ModuleTitle,
-        @JsonProperty("AcadYear") String AcadYear,
-        @JsonProperty("SemesterName") String SemesterName,
-        @JsonProperty("Faculty") String Faculty,
-        @JsonProperty("Department") String Department,
-        @JsonProperty("ModuleDescription") String ModuleDescription,
-        @JsonProperty("CrossModule") String CrossModule,
-        @JsonProperty("ModuleCredit") String ModuleCredit,
-        @JsonProperty("Workload") String Workload,
-        @JsonProperty("Prerequisite") String Prerequisite,
-        @JsonProperty("Preclusion") String Preclusion,
-        @JsonProperty("Corequisite") String Corequisite
+        @JsonProperty("acadYear") String acadYear,
+        @JsonProperty("preclusion") String preclusion,
+        @JsonProperty("description") String description,
+        @JsonProperty("title") String title,
+        @JsonProperty("department") String department,
+        @JsonProperty("faculty") String faculty,
+        // @JsonProperty("workload") String workload,
+        @JsonProperty("prerequisite") String prerequisite,
+        @JsonProperty("moduleCredit") String moduleCredit,
+        @JsonProperty("moduleCode") String moduleCode,
+        @JsonProperty("semesterData") String semesterData,
+        @JsonProperty("prereqTree") String prereqTree,
+        @JsonProperty("fulfillRequirements") String fulfillRequirements
 
         ) {
-        this.ModuleCode = ModuleCode;
-        this.ModuleTitle = ModuleTitle;
-        this.AcadYear = AcadYear;
-        this.SemesterName = SemesterName;
-        this.Faculty = Faculty;
-        this.Department = Department;
-        this.ModuleDescription = ModuleDescription;
-        this.CrossModule = CrossModule;
-        this.ModuleCredit = ModuleCredit;
-        this.Workload = Workload;
-        this.Prerequisite = Prerequisite;
-        this.Preclusion = Preclusion;
-        this.Corequisite = Corequisite;
+        this.acadYear = acadYear;
+        this.preclusion = preclusion;
+        this.description = description;
+        this.title = title;
+        this.department = department;
+        this.faculty = faculty;
+        // this.workload = workload;
+        this.prerequisite = prerequisite;
+        this.moduleCredit = moduleCredit;
+        this.moduleCode = moduleCode;
+        this.semesterData = semesterData;
+        this.prereqTree = prereqTree;
+        this.fulfillRequirements = fulfillRequirements;
 
     }
 
@@ -66,19 +66,19 @@ public class JsonAdaptedModule {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module module) {
-        this.ModuleCode = module.ModuleCode.toString();
-        this.ModuleTitle = module.ModuleTitle;
-        this.AcadYear = module.AcadYear;
-        this.SemesterName = module.SemesterName.toString();
-        this.Faculty = module.Faculty;
-        this.Department = module.Department;
-        this.ModuleDescription = module.ModuleDescription.toString();
-        this.CrossModule = module.CrossModule;
-        this.ModuleCredit = module.ModuleCredit.toString();
-        this.Workload = module.Workload;
-        this.Prerequisite = module.Prerequisite;
-        this.Preclusion = module.Preclusion;
-        this.Corequisite = module.Corequisite;
+        this.acadYear = module.acadYear;
+        this.preclusion = module.preclusion;
+        this.description = module.description;
+        this.title = module.title;
+        this.department = module.department;
+        this.faculty = module.faculty;
+        // this.workload = module.workload;
+        this.prerequisite = module.prerequisite;
+        this.moduleCredit = module.moduleCredit;
+        this.moduleCode = module.moduleCode.toString();
+        this.semesterData = module.semesterData;
+        this.prereqTree = module.prereqTree;
+        this.fulfillRequirements = module.fulfillRequirements;
     }
 
     /**
@@ -102,6 +102,20 @@ public class JsonAdaptedModule {
 //            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
 //        }
 //        final Major modelMajor = new Major(major);
-        return new Module(ModuleCode, ModuleTitle, AcadYear, SemesterName, Faculty, Department, ModuleDescription, CrossModule, ModuleCredit, Workload, Prerequisite, Preclusion, Corequisite);
+        return new Module(
+            acadYear,
+            preclusion,
+            description,
+            title,
+            department,
+            faculty,
+            null, // workload,
+            prerequisite,
+            moduleCredit,
+            moduleCode,
+            semesterData,
+            prereqTree,
+            fulfillRequirements
+            );
     }
 }

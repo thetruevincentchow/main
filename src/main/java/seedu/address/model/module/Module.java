@@ -1,24 +1,55 @@
 package seedu.address.model.module;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Semester;
 
 import java.lang.invoke.SwitchPoint;
 
 public class Module {
 
-    public ModuleCode ModuleCode;
-    public String ModuleTitle;
-    public String AcadYear;
-    public Semester SemesterName;
-    public String Faculty;
-    public String Department;
-    public Description ModuleDescription;
-    public String CrossModule;
-    public Credit ModuleCredit;
-    public String Workload;
-    public String Prerequisite;
-    public String Preclusion;
-    public String Corequisite;
+    public String acadYear;
+    public String preclusion;
+    public String description;
+    public String title;
+    public String department;
+    public String faculty;
+    public String workload;
+    public String prerequisite;
+    public String moduleCredit;
+    public ModuleCode moduleCode;
+    public String semesterData;
+    public String prereqTree;
+    public String fulfillRequirements;
+
+
+    public Module (
+        String acadYear,
+        String preclusion,
+        String description,
+        String title,
+        String department,
+        String faculty,
+        String workload,
+        String prerequisite,
+        String moduleCredit,
+        String moduleCode,
+        String semesterData,
+        String prereqTree,
+        String fulfillRequirements
+    ) throws IllegalValueException {
+        this.acadYear = acadYear;
+        this.preclusion = preclusion;
+        this.description = description;
+        this.title = title;
+        this.department = department;
+        this.faculty = faculty;
+        this.workload = workload;
+        this.prerequisite = prerequisite;
+        this.moduleCredit = moduleCredit;
+        this.moduleCode = new ModuleCode(moduleCode);
+        this.semesterData = semesterData;
+        this.prereqTree = prereqTree;
+        this.fulfillRequirements = fulfillRequirements;
 
     public Module(
         String ModuleCode,
@@ -48,9 +79,10 @@ public class Module {
         this.Prerequisite = Prerequisite;
         this.Preclusion = Preclusion;
         this.Corequisite = Corequisite;
+
     }
 
-    public boolean isSameModuleOffering(Module module) {
+    public boolean isSameModule(Module module) {
         return false; // TODO
     }
 

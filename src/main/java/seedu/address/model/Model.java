@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
@@ -95,4 +97,26 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Student> getStudentList();
+
+    boolean hasStudent(Student student);
+
+    Student getActiveStudent();
+
+    void setActiveStudent(Student editedStudent);
+
+    void activateStudent(Student student);
+
+    void addStudent(Student student);
+
+    void removeStudent(Student student);
+
+    ObservableList<ModuleCode> getEnrolledModulesList();
+
+    boolean hasEnrollment(ModuleCode moduleCode);
+
+    void addEnrollment(ModuleCode moduleCode);
+
+    void removeEnrollment(ModuleCode moduleCode);
 }

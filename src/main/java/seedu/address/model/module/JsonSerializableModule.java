@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
+import seedu.address.model.time.Semester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,52 +19,52 @@ public class JsonSerializableModule {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
-    public String ModuleCode;
-    public String ModuleTitle;
-    public String AcadYear;
-    public String SemesterName;
-    public String Faculty;
-    public String Department;
-    public String ModuleDescription;
-    public String CrossModule;
-    public String ModuleCredit;
-    public String Workload;
-    public String Prerequisite;
-    public String Preclusion;
-    public String Corequisite;
+    public String acadYear;
+    public String preclusion;
+    public String description;
+    public String title;
+    public String department;
+    public String faculty;
+    // public String workload;
+    public String prerequisite;
+    public String moduleCredit;
+    public String moduleCode;
+    // public String semesterData;
+    public String prereqTree;
+    public String fulfillRequirements;
 
     /**
      * Constructs a {@code JsonSerializableModule} with the given persons.
      */
     @JsonCreator
     public JsonSerializableModule(
-        @JsonProperty("ModuleCode") String ModuleCode,
-        @JsonProperty("ModuleTitle") String ModuleTitle,
-        @JsonProperty("AcadYear") String AcadYear,
-        @JsonProperty("SemesterName") String SemesterName,
-        @JsonProperty("Faculty") String Faculty,
-        @JsonProperty("Department") String Department,
-        @JsonProperty("ModuleDescription") String ModuleDescription,
-        @JsonProperty("CrossModule") String CrossModule,
-        @JsonProperty("ModuleCredit") String ModuleCredit,
-        @JsonProperty("Workload") String Workload,
-        @JsonProperty("Prerequisite") String Prerequisite,
-        @JsonProperty("Preclusion") String Preclusion,
-        @JsonProperty("Corequisite") String Corequisite
+        @JsonProperty("acadYear") String acadYear,
+        @JsonProperty("preclusion") String preclusion,
+        @JsonProperty("description") String description,
+        @JsonProperty("title") String title,
+        @JsonProperty("department") String department,
+        @JsonProperty("faculty") String faculty,
+        // @JsonProperty("workload") String workload,
+        @JsonProperty("prerequisite") String prerequisite,
+        @JsonProperty("moduleCredit") String moduleCredit,
+        @JsonProperty("moduleCode") String moduleCode,
+        // @JsonProperty("semesterData") String semesterData,
+        @JsonProperty("prereqTree") String prereqTree,
+        @JsonProperty("fulfillRequirements") String fulfillRequirements
         ) {
-        this.ModuleCode = ModuleCode;
-        this.ModuleTitle = ModuleTitle;
-        this.AcadYear = AcadYear;
-        this.SemesterName = SemesterName;
-        this.Faculty = Faculty;
-        this.Department = Department;
-        this.ModuleDescription = ModuleDescription;
-        this.CrossModule = CrossModule;
-        this.ModuleCredit = ModuleCredit;
-        this.Workload = Workload;
-        this.Prerequisite = Prerequisite;
-        this.Preclusion = Preclusion;
-        this.Corequisite = Corequisite;
+        this.acadYear = acadYear;
+        this.preclusion = preclusion;
+        this.description = description;
+        this.title = title;
+        this.department = department;
+        this.faculty = faculty;
+        // this.workload = workload;
+        this.prerequisite = prerequisite;
+        this.moduleCredit = moduleCredit;
+        this.moduleCode = moduleCode;
+        // this.semesterData = semesterData;
+        this.prereqTree = prereqTree;
+        this.fulfillRequirements = fulfillRequirements;
     }
 
     /**
@@ -82,20 +83,21 @@ public class JsonSerializableModule {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Module toModelType() throws IllegalValueException {
+
         return new Module(
-            this.ModuleCode,
-            this.ModuleTitle,
-            this.AcadYear,
-            this.SemesterName,
-            this.Faculty,
-            this.Department,
-            this.ModuleDescription,
-            this.CrossModule,
-            this.ModuleCredit,
-            this.Workload,
-            this.Prerequisite,
-            this.Preclusion,
-            this.Corequisite
+            this.acadYear,
+            this.preclusion,
+            this.description,
+            this.title,
+            this.department,
+            this.faculty,
+            null, // this.workload,
+            this.prerequisite,
+            this.moduleCredit,
+            this.moduleCode.replaceAll("[^a-zA-Z0-9]", ""),
+            null, // this.semesterData,
+            this.prereqTree,
+            this.fulfillRequirements
         );
     }
 

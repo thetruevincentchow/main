@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
@@ -180,4 +181,51 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+
+    // TODO: place implementation of methods in PlannerModelManager into ModelManager
+    //       and remove PlannerModelManager
+    public ObservableList<Student> getStudentList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public boolean hasStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public Student getActiveStudent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void activateStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // TODO: replace with `TimeTable` and `Enrollment`
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
