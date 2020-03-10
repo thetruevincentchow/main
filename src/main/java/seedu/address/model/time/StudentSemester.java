@@ -35,4 +35,9 @@ public class StudentSemester {
                     && degreeYear == ((StudentSemester) other).degreeYear;
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Year %d, %s", degreeYear, semYear);
+    }
 }

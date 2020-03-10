@@ -5,6 +5,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.Student;
+import seedu.address.model.time.StudentSemester;
 
 /**
  * Unmodifiable view of an address book
@@ -25,4 +26,6 @@ public interface ReadOnlyPlanner {
     UniqueModuleList getModules();
 
     ObservableList<ModuleCode> getEnrolledModulesList();
+
+    boolean hasSemester(StudentSemester semester);
 }

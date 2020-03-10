@@ -5,6 +5,9 @@ public enum Semester {
 
     private String name;
 
+    public static final String MESSAGE_CONSTRAINTS = "Semester can be one of the following: " + Semester.values().toString();
+
+
     public String getAction() {
         return this.name;
     }

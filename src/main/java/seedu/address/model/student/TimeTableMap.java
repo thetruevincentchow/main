@@ -13,7 +13,7 @@ public class TimeTableMap extends HashMap<StudentSemester, TimeTable> {
      */
     public static TimeTableMap sampleTimeTableMap() {
         TimeTableMap timeTableMap = new TimeTableMap();
-        timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 1), 2019), TimeTable.sampleTimeTable());
+        timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 2019), 1), TimeTable.sampleTimeTable());
         return timeTableMap;
     }
 }

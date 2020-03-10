@@ -19,7 +19,6 @@ public class Enrollment {
     }
 
     public ModuleCode getModuleCode() {
-        //return module.getModuleCode();
         return code;
     }
 

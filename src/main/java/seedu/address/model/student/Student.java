@@ -1,10 +1,16 @@
 package seedu.address.model.student;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.time.StudentSemester;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -131,5 +137,21 @@ public class Student {
             throw new IllegalArgumentException("Semester does not exist in timetable list");
         }
         timeTableMap.remove(keyToRemove);
+    }
+
+    public List<StudentSemester> getStudentSemesters() {
+        return new ArrayList<>(timeTableMap.keySet());
+    }
+
+    /**
+     * Returns a list mof (@code ModuleCode) taken across all timetables.
+     * @return List of all modules enrolled.
+     */
+    public ObservableList<ModuleCode> getAllEnrolledModules() {
+        ObservableList<ModuleCode> allModules = FXCollections.observableArrayList();
+        for (TimeTable timeTable : timeTableMap.values()) {
+            allModules.addAll(timeTable.getModuleCodes());
+        }
+        return allModules;
     }
 }

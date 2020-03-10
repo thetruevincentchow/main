@@ -7,6 +7,7 @@ import seedu.address.model.student.Enrollment;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
@@ -134,5 +135,9 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
 
     public Stream<Enrollment> stream() {
         return asUnmodifiableObservableList().stream();
+    }
+
+    public void removeIf(Predicate<? super Enrollment> predicate) {
+        internalList.removeIf(predicate);
     }
 }

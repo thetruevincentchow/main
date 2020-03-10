@@ -11,18 +11,18 @@ import seedu.address.model.student.TimeTableMap;
 
 //TODO: add other fields (currently only stores ModuleCode)
 public class JsonAdaptedEnrollment {
-    private final ModuleCode code;
+    private final JsonAdaptedModuleCode code;
 
     @JsonCreator
-    public JsonAdaptedEnrollment(@JsonProperty("code") ModuleCode code) {
+    public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code) {
         this.code = code;
     }
 
     public JsonAdaptedEnrollment(Enrollment source) {
-        this.code = source.getModuleCode();
+        this.code = new JsonAdaptedModuleCode(source.getModuleCode());
     }
 
     public Enrollment toModelType() throws IllegalValueException  {
-        return new Enrollment(code);
+        return new Enrollment(code.toModelType());
     }
 }

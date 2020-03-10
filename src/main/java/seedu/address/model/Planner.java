@@ -2,16 +2,11 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleDataImporter;
-import seedu.address.model.module.UniqueModuleCodeList;
-import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.module.*;
 import seedu.address.model.student.*;
-import seedu.address.model.time.SemesterYear;
 import seedu.address.model.time.StudentSemester;
 
 import java.util.List;
-import java.util.Map;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -39,10 +34,6 @@ public class Planner implements ReadOnlyPlanner {
      */
     protected UniqueModuleList modules;
 
-    //TODO: move to `Student` or `User`
-    //TODO: replace `UniqueModuleCodeList` with `TimeTable` (once loading available module list is implemented)
-    protected UniqueModuleCodeList enrolledModules;
-
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
      */
@@ -51,7 +42,6 @@ public class Planner implements ReadOnlyPlanner {
         students = new UniqueStudentList();
         //students.add(activeStudent);
         modules = new UniqueModuleList();
-        enrolledModules = new UniqueModuleCodeList();
         loadModules();
     }
 
@@ -91,7 +81,6 @@ public class Planner implements ReadOnlyPlanner {
         activeStudent = planner.activeStudent;
         students = planner.students;
         modules = planner.modules;
-        enrolledModules = planner.enrolledModules;
         return true;
     }
 
@@ -110,18 +99,21 @@ public class Planner implements ReadOnlyPlanner {
         return true;
     }
 
-    //TODO: replace with `TimeTable` and `Enrollment`
+    //TODO: Replace `ModuleCode` with`Enrollment`.
+    //      Currently we can query with `ModuleCode` and add `Enrollment`.
     public boolean hasEnrollment(ModuleCode moduleCode) {
-        return enrolledModules.contains(moduleCode);
+        TimeTable timeTable = getActiveTimeTable();
+        return timeTable.hasModuleCode(moduleCode);
+        //return enrolledModules.contains(moduleCode);
     }
 
-    public boolean addEnrollment(ModuleCode moduleCode) {
-        enrolledModules.add(moduleCode);
+    public boolean addEnrollment(Enrollment enrollment) {
+        getActiveTimeTable().addEnrollment(enrollment);
         return true;
     }
 
     public boolean removeEnrollment(ModuleCode moduleCode) {
-        enrolledModules.remove(moduleCode);
+        getActiveTimeTable().removeModuleCode(moduleCode);
         return true;
     }
 
@@ -134,14 +126,15 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public ObservableList<ModuleCode> getEnrolledModulesList() {
-        return enrolledModules.asUnmodifiableObservableList();
+        //return enrolledModules.asUnmodifiableObservableList();
+        return activeStudent.getAllEnrolledModules();
     }
 
     public void activateValidStudent() {
         //TODO: handle `activeStudents` being null (e.g. if data file is missing)
         //TODO: handle all students being removed
         activeStudent = students.iterator().next();
-
+        activeSemester = null; //TODO: possibly validate existing value first
     }
 
     public Student getActiveStudent() {
@@ -167,19 +160,21 @@ public class Planner implements ReadOnlyPlanner {
             throw new IllegalArgumentException("Student does not exist in student list");
         }
         activeStudent = student;
+        activeSemester = null; //TODO: validate existing value first
     }
 
     public void removeStudent(Student toRemove) {
         //TODO: handle all students being removed
         if (toRemove == activeStudent) {
             activeStudent = null;
+            activeSemester = null; //TODO: validate existing value first
         }
         students.remove(toRemove);
 
         activateValidStudent();
     }
 
-    public TimeTable getTimeTable() {
+    public TimeTable getActiveTimeTable() {
         requireAllNonNull(activeStudent);
         if (activeSemester == null) {
             activateValidSemester();
@@ -207,6 +202,10 @@ public class Planner implements ReadOnlyPlanner {
         requireAllNonNull(keyToRemove);
         activeStudent.removeTimeTable(keyToRemove);
         keyToRemove = null;
+    }
+
+    public boolean hasSemester(StudentSemester semester) {
+        return activeStudent.getTimeTableMap().containsKey(semester);
     }
 
     public void activateSemester(StudentSemester semester) {
