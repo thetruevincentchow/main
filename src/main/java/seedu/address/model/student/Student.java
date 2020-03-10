@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 
 import seedu.address.model.programmes.DegreeProgramme;
+import seedu.address.model.time.StudentSemester;
 
 import java.util.Objects;
 
@@ -117,4 +118,18 @@ public class Student {
         return this.equals(student);
     }
 
+    public TimeTable getTimeTable(StudentSemester activeSemester) {
+        return timeTableMap.get(activeSemester);
+    }
+
+    public void setTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
+        timeTableMap.put(activeSemester, timeTable);
+    }
+
+    public void removeTimeTable(StudentSemester keyToRemove) {
+        if (!timeTableMap.containsKey(keyToRemove)) {
+            throw new IllegalArgumentException("Semester does not exist in timetable list");
+        }
+        timeTableMap.remove(keyToRemove);
+    }
 }

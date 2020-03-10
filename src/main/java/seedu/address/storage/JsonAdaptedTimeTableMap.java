@@ -17,10 +17,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JsonAdaptedTimeTableMap {
-    public final List<Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable>> timeTables;
+    public final List<JsonAdaptedTimeTablePair> timeTables;
 
     @JsonCreator
-    public JsonAdaptedTimeTableMap(List<Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable>> timeTables) {
+    public JsonAdaptedTimeTableMap(List<JsonAdaptedTimeTablePair> timeTables) {
         this.timeTables = timeTables;
     }
 
@@ -35,19 +35,20 @@ public class JsonAdaptedTimeTableMap {
         }).collect(Collectors.toCollection(ArrayList<Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable>>::new));
          */
         for (Map.Entry<StudentSemester, TimeTable> entry : source.entrySet()) {
-            timeTables.add(new Pair<>(new JsonAdaptedStudentSemester(entry.getKey()), new JsonAdaptedTimeTable(entry.getValue())));
+            timeTables.add(new JsonAdaptedTimeTablePair(entry));
         }
     }
 
     @JsonValue
-    public List<Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable>> getTimeTables() {
+    public List<JsonAdaptedTimeTablePair> getTimeTables() {
         return timeTables;
     }
 
     public TimeTableMap toModelType() throws IllegalValueException {
         TimeTableMap map  = new TimeTableMap();
-        for (Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable> timeTable : timeTables) {
-            if (map.put(timeTable.getKey().toModelType(), timeTable.getValue().toModelType()) != null) {
+        for (JsonAdaptedTimeTablePair timeTable : timeTables) {
+            Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable> modelPair = timeTable.toModelType();
+            if (map.put(modelPair.getKey().toModelType(), modelPair.getValue().toModelType()) != null) {
                 throw new IllegalStateException("Duplicate key");
             }
         }
