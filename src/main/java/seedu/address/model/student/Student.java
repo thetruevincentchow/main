@@ -1,9 +1,16 @@
 package seedu.address.model.student;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
+import seedu.address.model.time.StudentSemester;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -17,10 +24,11 @@ public class Student {
 
     // Identity fields
     private final Name name;
-
     private final Degrees degrees;
-
     private final Major major;
+
+    // Timetables
+    public final TimeTableMap timeTableMap;
 
     /**
      * Every field must be present and not null.
@@ -35,13 +43,23 @@ public class Student {
         this.name = name;
         this.degrees = null;
         this.major = major;
+        this.timeTableMap = new TimeTableMap();
+    }
+
+    public Student(Name name, Major major, TimeTableMap timeTableMap) {
+        requireAllNonNull(name, major, timeTableMap);
+        this.name = name;
+        this.degrees = null;
+        this.major = major;
+        this.timeTableMap = timeTableMap;
     }
 
     public Student(Name name, Degrees degrees, Major major) {
-        requireAllNonNull(name);
+        requireAllNonNull(name, major);
         this.name = name;
         this.degrees = degrees;
         this.major = major;
+        this.timeTableMap = new TimeTableMap();
     }
 
     public Name getName() {
@@ -53,7 +71,11 @@ public class Student {
     }
 
     public Degrees getDegrees() {
-        return this.degrees;
+        return degrees;
+    }
+
+    public TimeTableMap getTimeTableMap() {
+        return timeTableMap;
     }
 
     public boolean addDegrees(DegreeProgramme degree) {
@@ -78,13 +100,16 @@ public class Student {
 
         Student otherStudent = (Student) other;
         //TODO: initialize and compare `degrees`
-        return otherStudent.getName().equals(getName()) && otherStudent.getMajor().equals(getMajor());// && otherStudent.degrees.equals(getDegrees());
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getMajor().equals(getMajor())
+                //&& otherStudent.getDegrees().equals(getDegrees())
+                && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(name, major, timeTableMap);
     }
 
     @Override
@@ -99,4 +124,34 @@ public class Student {
         return this.equals(student);
     }
 
+    public TimeTable getTimeTable(StudentSemester activeSemester) {
+        return timeTableMap.get(activeSemester);
+    }
+
+    public void setTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
+        timeTableMap.put(activeSemester, timeTable);
+    }
+
+    public void removeTimeTable(StudentSemester keyToRemove) {
+        if (!timeTableMap.containsKey(keyToRemove)) {
+            throw new IllegalArgumentException("Semester does not exist in timetable list");
+        }
+        timeTableMap.remove(keyToRemove);
+    }
+
+    public List<StudentSemester> getStudentSemesters() {
+        return new ArrayList<>(timeTableMap.keySet());
+    }
+
+    /**
+     * Returns a list mof (@code ModuleCode) taken across all timetables.
+     * @return List of all modules enrolled.
+     */
+    public ObservableList<ModuleCode> getAllEnrolledModules() {
+        ObservableList<ModuleCode> allModules = FXCollections.observableArrayList();
+        for (TimeTable timeTable : timeTableMap.values()) {
+            allModules.addAll(timeTable.getModuleCodes());
+        }
+        return allModules;
+    }
 }

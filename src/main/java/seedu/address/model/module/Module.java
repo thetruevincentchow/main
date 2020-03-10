@@ -82,6 +82,10 @@ public class Module {
 
     }
 
+    public ModuleCode getModuleCode() {
+        return moduleCode;
+    }
+
     public boolean isSameModule(Module module) {
         return false; // TODO
     }

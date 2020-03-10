@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.PlannerModelManager;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Student;
 
@@ -60,16 +62,27 @@ public class ModuleAddCommand extends ModuleCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: add to a `TimeTable` of a `Student` or `User`
-        //Student student = model.getActiveStudent();
+        // Check if active student and timetable exists
+        if (model.getActiveStudent() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+        if (model.getActiveTimeTable() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
+        }
+
+        // Check if module is duplicate in active timetable
+        // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
         if (model.hasEnrollment(moduleCode)) {
             throw new CommandException(generateDuplicateMessage(moduleCode));
         }
+
+        // Check if module exists in module database
         if (!model.getPlanner().getModules().contains(moduleCode)) {
             throw new CommandException(generateModuleDoesNotExists(moduleCode));
         }
 
-        model.addEnrollment(moduleCode);
+        Enrollment enrollment = new Enrollment(moduleCode);
+        model.addEnrollment(enrollment);
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

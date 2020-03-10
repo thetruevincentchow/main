@@ -81,39 +81,99 @@ This is equivalent to `declare spec`.
 
 === Adding a module: `module add`
 
-Add a module to your module list. +
-Format: `module add [MODULE CODE]`
-
-Examples:
+Add a module to your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+Format: `module add MODULE_CODE`
+Example:
 
 * `module add CS2040`
 
-=== Adding a module: `module remove`
+=== Removing a module: `module remove`
 
-Add a module to your module list. +
-Format: `module remove [MODULE CODE]`
-
-Examples:
+Remove a module from your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+Format: `module remove MODULE_CODE`
+Example:
 
 * `module remove CS2040`
 
 === Viewing added modules: `module list`
 
-Displays modules in your added module list. +
+Displays modules in your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
 Format: `module list`
-
-Examples:
+Example:
 
 * `module list`
 
 === Viewing exempted modules: `module list exempted`
 
-Displays modules in your added module list. +
+Displays modules that you have declared as exempted.
 Format: `module list exempted`
-
-Examples:
+Example:
 
 * `module list exempted`
+
+=== View student list: `student list`
+
+Displays a numbered list of students in the student list.
+Format: `student list`
+Example:
+
+* `student list`
+
+=== Add a student: `student add`
+
+Adds a student to the student list.
+Format: `student add n/NAME major/MAJOR`
+Example:
+
+* `student add n/Alice major/CS`
+
+=== Remove a student: `student remove`
+
+Removes the student with the number `INDEX` from the student list.
+Format: `student remove INDEX`
+Example:
+
+* `student remove 1`
+
+=== Select a student: `student active`
+
+Selects the student with the number `INDEX` from the student list.
+Format: `student active INDEX`
+Example:
+
+* `student active 1`
+
+=== List timetables: `timetable list`
+
+Lists the timetables of the selected student (see `student active`).
+Format: `timetable list`
+Example:
+
+* `student list`
+
+=== Add a timetable: `timetable add`
+
+Adds a timetable to the specified semester of the selected student (see `student active`).
+Format: `timetable add year/YEAR sem/SEM`
+Example:
+
+* `timetable add year/2 sem/ONE`
+
+=== Remove a timetable: `timetable remove`
+
+Removes the timetable for the specified semester and the selected student (see `student active`).
+Format: `timetable remove year/YEAR sem/SEM`
+Example:
+
+* `timetable remove year/2 sem/ONE`
+
+=== Select a timetable: `timetable active`
+
+Selects the timetable for the specified semester and the selected student (see `student active`).
+Format: `timetable active year/YEAR sem/SEM`
+Example:
+
+* `timetable active year/2 sem/ONE`
 
 === Exiting the program : `exit`
 
@@ -140,3 +200,5 @@ _{explain how the user can enable/disable data encryption}_
 == Command Summary
 
 * *Help* : `help`
+
+
