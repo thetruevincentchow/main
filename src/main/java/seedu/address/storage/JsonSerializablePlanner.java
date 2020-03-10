@@ -46,8 +46,8 @@ class JsonSerializablePlanner {
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
         activeStudent = new JsonAdaptedStudent(source.getActiveStudent());
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
-        enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
-                .collect(Collectors.toList()));
+        //enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
+        //        .collect(Collectors.toList()));
     }
 
     /**
@@ -67,15 +67,6 @@ class JsonSerializablePlanner {
         }
 
         planner.setActiveStudent(activeStudent.toModelType());
-
-        for (JsonAdaptedModuleCode jsonAdaptedModuleCode : enrolledModules) {
-            ModuleCode moduleCode = jsonAdaptedModuleCode.toModelType();
-            if (planner.hasEnrollment(moduleCode)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            planner.addEnrollment(moduleCode);
-        }
-
         return planner;
     }
 

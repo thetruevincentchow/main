@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -42,9 +42,14 @@ public class ModuleListCommand extends ModuleCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //Student student = model.getActiveStudent();
+        // Check if active student and timetable exists
+        if (model.getActiveStudent() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+        if (model.getActiveTimeTable() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
+        }
 
-        //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
-        return new CommandResult(generateSuccessMessage(model.getEnrolledModulesList()));
+        return new CommandResult(generateSuccessMessage(model.getEnrolledModuleCodes()));
     }
 }

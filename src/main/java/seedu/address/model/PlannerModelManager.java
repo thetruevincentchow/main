@@ -5,7 +5,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.time.StudentSemester;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -82,8 +85,8 @@ public class PlannerModelManager extends ModelManager {
         planner.removeStudent(student);
     }
     @Override
-    public ObservableList<ModuleCode> getEnrolledModulesList() {
-        return planner.getEnrolledModulesList();
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
+        return planner.getActiveModuleCodes();
     }
 
     @Override
@@ -92,12 +95,32 @@ public class PlannerModelManager extends ModelManager {
     }
 
     @Override
-    public void addEnrollment(ModuleCode moduleCode) {
-        planner.addEnrollment(moduleCode);
+    public void addEnrollment(Enrollment enrollment) {
+        planner.addEnrollment(enrollment);
     }
 
     @Override
     public void removeEnrollment(ModuleCode moduleCode) {
         planner.removeEnrollment(moduleCode);
+    }
+
+    @Override
+    public void activateSemester(StudentSemester studentSemester) {
+        planner.activateSemester(studentSemester);
+    }
+
+    @Override
+    public TimeTable getActiveTimeTable() {
+        return planner.getActiveTimeTable();
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        planner.addSemesterTimeTable(studentSemester);
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
+        planner.removeSemesterTimeTable(studentSemester);
     }
 }

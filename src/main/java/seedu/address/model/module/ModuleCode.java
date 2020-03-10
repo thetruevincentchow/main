@@ -42,7 +42,9 @@ public class ModuleCode {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof ModuleCode)) {
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof ModuleCode)) {
             return false;
         } else {
             return value.equals(((ModuleCode)other).value);

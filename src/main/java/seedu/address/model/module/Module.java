@@ -49,6 +49,10 @@ public class Module {
         this.fulfillRequirements = fulfillRequirements;
     }
 
+    public ModuleCode getModuleCode() {
+        return moduleCode;
+    }
+
     public boolean isSameModule(Module module) {
         return false; // TODO
     }

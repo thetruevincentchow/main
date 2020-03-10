@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -8,7 +9,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.time.StudentSemester;
 
 /**
  * The API of the Model component.
@@ -107,11 +111,19 @@ public interface Model {
 
     void removeStudent(Student student);
 
-    ObservableList<ModuleCode> getEnrolledModulesList();
+    ObservableList<ModuleCode> getEnrolledModuleCodes();
 
     boolean hasEnrollment(ModuleCode moduleCode);
 
-    void addEnrollment(ModuleCode moduleCode);
+    void addEnrollment(Enrollment enrollment);
 
     void removeEnrollment(ModuleCode moduleCode);
+
+    void activateSemester(StudentSemester studentSemester);
+
+    TimeTable getActiveTimeTable();
+
+    void addSemesterTimeTable(StudentSemester studentSemester);
+
+    void removeSemesterTimeTable(StudentSemester studentSemester);
 }
