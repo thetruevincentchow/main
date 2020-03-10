@@ -48,7 +48,9 @@ public class Planner implements ReadOnlyPlanner {
 
 
     private void loadModules() {
+        System.out.println("Loading modules. This might take awhile...");
         List<Module> modulesToImport = ModuleDataImporter.run();
+        System.out.println("Done!");
         if (modulesToImport == null) {
 
         } else {

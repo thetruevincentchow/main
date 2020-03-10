@@ -21,7 +21,7 @@ public class TimeTableAddCommand extends TimeTableCommand {
             + "Parameters: "
             + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
-            + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/Semester 1";
+            + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/ONE";
 
     public static final String MESSAGE_ADD_TIMETABLE_SUCCESS = "Added timetable to semester: %1$s";
     public static final String MESSAGE_EXISTING_SEMESTER = "Semester already exists in list of timetables: %1$s";

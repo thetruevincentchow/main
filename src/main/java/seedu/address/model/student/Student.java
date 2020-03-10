@@ -23,9 +23,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 public class Student {
 
     // Identity fields
-    private final Name name;
-    private final Degrees degrees;
-    private final Major major;
+    private Name name;
+    private Degrees degrees;
+    private Major major;
 
     // Timetables
     public final TimeTableMap timeTableMap;
@@ -55,7 +55,7 @@ public class Student {
     }
 
     public Student(Name name, Degrees degrees, Major major) {
-        requireAllNonNull(name, major);
+        requireAllNonNull(name);
         this.name = name;
         this.degrees = degrees;
         this.major = major;
@@ -68,6 +68,10 @@ public class Student {
 
     public Major getMajor() {
         return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 
     public Degrees getDegrees() {
