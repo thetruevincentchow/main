@@ -13,6 +13,14 @@ public class StudentSemester {
         this.degreeYear = degreeYear;
     }
 
+    public SemesterYear getSemesterYear() {
+        return semYear;
+    }
+
+    public int getDegreeYear() {
+        return degreeYear;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(semYear, degreeYear);

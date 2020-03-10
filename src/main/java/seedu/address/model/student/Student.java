@@ -17,10 +17,11 @@ public class Student {
 
     // Identity fields
     private final Name name;
-
     private final Degrees degrees;
-
     private final Major major;
+
+    // Timetables
+    public final TimeTableMap timeTableMap;
 
     /**
      * Every field must be present and not null.
@@ -35,13 +36,23 @@ public class Student {
         this.name = name;
         this.degrees = null;
         this.major = major;
+        this.timeTableMap = new TimeTableMap();
+    }
+
+    public Student(Name name, Major major, TimeTableMap timeTableMap) {
+        requireAllNonNull(name, major, timeTableMap);
+        this.name = name;
+        this.degrees = null;
+        this.major = major;
+        this.timeTableMap = timeTableMap;
     }
 
     public Student(Name name, Degrees degrees, Major major) {
-        requireAllNonNull(name);
+        requireAllNonNull(name, major);
         this.name = name;
         this.degrees = degrees;
         this.major = major;
+        this.timeTableMap = new TimeTableMap();
     }
 
     public Name getName() {
@@ -53,7 +64,11 @@ public class Student {
     }
 
     public Degrees getDegrees() {
-        return this.degrees;
+        return degrees;
+    }
+
+    public TimeTableMap getTimeTableMap() {
+        return timeTableMap;
     }
 
     public boolean addDegrees(DegreeProgramme degree) {
@@ -78,13 +93,16 @@ public class Student {
 
         Student otherStudent = (Student) other;
         //TODO: initialize and compare `degrees`
-        return otherStudent.getName().equals(getName()) && otherStudent.getMajor().equals(getMajor());// && otherStudent.degrees.equals(getDegrees());
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getMajor().equals(getMajor())
+                //&& otherStudent.getDegrees().equals(getDegrees())
+                && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(name, major, timeTableMap);
     }
 
     @Override

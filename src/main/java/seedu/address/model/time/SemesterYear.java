@@ -1,14 +1,30 @@
 package seedu.address.model.time;
 
+import seedu.address.storage.JsonAdaptedSemesterYear;
+
 import java.util.Objects;
 
 public class SemesterYear {
+    public static final String MESSAGE_CONSTRAINTS = "Semester year should be valid."; //TODO: figure out required constraints
+
     protected final Semester sem;
     protected final int academicYear;
 
     public SemesterYear(Semester sem, int academicYear) {
         this.sem = sem;
         this.academicYear = academicYear;
+    }
+
+    public Semester getSemester() {
+        return sem;
+    }
+    public int getAcademicYear() {
+        return academicYear;
+    }
+
+    //TODO: validate StudentSemester and academicYear
+    public boolean isValidSemesterYear() {
+        return sem != null;
     }
 
     @Override
@@ -24,5 +40,10 @@ public class SemesterYear {
             return sem.equals(((SemesterYear) other).sem)
                     && academicYear == ((SemesterYear) other).academicYear;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("AY %d/%d %s", academicYear, academicYear+1, sem.toString());
     }
 }

@@ -2,11 +2,10 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.Name;
+import seedu.address.model.student.*;
 import seedu.address.model.person.Person;
-import seedu.address.model.student.Major;
-import seedu.address.model.student.Student;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -15,16 +14,21 @@ class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
+    // Identity fields
     private final String name;
     private final String major;
+
+    // Timetables
+    public final JsonAdaptedTimeTableMap timeTableMap;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("major") String major) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("major") String major, @JsonProperty("timeTableMap") JsonAdaptedTimeTableMap timeTableMap) {
         this.name = name;
         this.major = major;
+        this.timeTableMap = timeTableMap;
     }
 
     /**
@@ -33,6 +37,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         major = source.getMajor().toString();
+        timeTableMap = new JsonAdaptedTimeTableMap(source.getTimeTableMap());
     }
 
     /**
@@ -57,7 +62,13 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
         final Major modelMajor = new Major(major);
-        return new Student(modelName, modelMajor);
+
+        if (timeTableMap == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeTableMap.class.getSimpleName()));
+        }
+        final TimeTableMap  modelTimeTableMap = timeTableMap.toModelType();
+
+        return new Student(modelName, modelMajor, modelTimeTableMap);
     }
 
 }
