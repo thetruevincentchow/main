@@ -1,26 +1,24 @@
 package seedu.address.logic.commands;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleCode;
+import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.student.Student;
 
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class StudentListCommand extends StudentCommand {
-    public static final String COMMAND_WORD = "list";
+public class MajorStatusCommand extends MajorCommand {
+    public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student list' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'major status' command not implemented yet";
 
-    public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": List students in the student list.\n"
-            + "Example: " + "student " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "major " + COMMAND_WORD
+            + ": Lists the current progress of graduating with a given major";
 
-    public static final String MESSAGE_SUCCESS = "Listed students in student list:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Listed the graduation requirement status:\n%1$s";
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
@@ -39,16 +37,21 @@ public class StudentListCommand extends StudentCommand {
             sb.append(student);
             isFirst = false;
         }
-
         return String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        ObservableList<Student> lastShownList = model.getStudentList();
-
-        return new CommandResult(generateSuccessMessage(lastShownList));
+        List<GraduationRequirement> graduationRequirementList = model.getActiveStudent().getMajor().getGraduationRequirements();
+        StringBuffer sb = new StringBuffer();
+        boolean isFirst = true;
+        for (GraduationRequirement graduationRequirement : graduationRequirementList) {
+            if (!isFirst) {
+                sb.append("\n");
+            }
+            sb.append(graduationRequirement);
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString()));
     }
 }

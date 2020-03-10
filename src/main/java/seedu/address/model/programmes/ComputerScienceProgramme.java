@@ -50,7 +50,5 @@ public class ComputerScienceProgramme extends DegreeProgramme {
             )))
         ))));
         graduationRequirementList.add(new CompoundGraduationRequirement("Unrestricted Electives", 32, null));
-
     }
-
 }

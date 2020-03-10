@@ -72,6 +72,9 @@ public class AddressBookParser {
         case ModuleCommand.COMMAND_WORD:
             return new ModuleCommandParser().parse(arguments);
 
+        case MajorCommand.COMMAND_WORD:
+            return new MajorCommandParser().parse(arguments);
+
         case TimeTableCommand.COMMAND_WORD:
             return new TimeTableCommandParser().parse(arguments);
 
