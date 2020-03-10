@@ -2,8 +2,13 @@ package seedu.address.model;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.time.StudentSemester;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -36,17 +41,86 @@ public class PlannerModelManager extends ModelManager {
     //=========== Planner ================================================================================
 
     public void setPlanner(Planner planner) {
-        this.planner.resetData();
+        this.planner.resetData(planner);
     }
 
     public Planner getPlanner() {
         return planner;
     }
 
+    @Override
+    public ObservableList<Student> getStudentList() {
+        return planner.getStudentList();
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        return planner.hasStudent(student);
+    }
+
+    @Override
+    public Student getActiveStudent() {
+        return planner.getActiveStudent();
+    }
+
+    @Override
+    public void setActiveStudent(Student editedStudent) {
+        planner.setActiveStudent(editedStudent);
+    }
+
+    @Override
+    public void activateStudent(Student student) {
+        planner.activateStudent(student);
+    }
+
+    @Override
     public void addStudent(Student student) {
         requireAllNonNull(student);
         planner.addStudent(student);
     }
 
+    @Override
+    public void removeStudent(Student student) {
+        requireAllNonNull(student);
+        planner.removeStudent(student);
+    }
+    @Override
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
+        return planner.getActiveModuleCodes();
+    }
 
+    @Override
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        return planner.hasEnrollment(moduleCode);
+    }
+
+    @Override
+    public void addEnrollment(Enrollment enrollment) {
+        planner.addEnrollment(enrollment);
+    }
+
+    @Override
+    public void removeEnrollment(ModuleCode moduleCode) {
+        planner.removeEnrollment(moduleCode);
+    }
+
+    @Override
+    public void activateSemester(StudentSemester studentSemester) {
+        planner.activateSemester(studentSemester);
+    }
+
+    @Override
+    public TimeTable getActiveTimeTable() {
+        return planner.getActiveTimeTable();
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        planner.addSemesterTimeTable(studentSemester);
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
+        planner.removeSemesterTimeTable(studentSemester);
+    }
 }

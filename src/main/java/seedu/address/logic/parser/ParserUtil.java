@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.time.Semester;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +121,15 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Semester parseSemester(String semester) throws ParseException {
+        requireNonNull(semester);
+        try {
+            final Semester semesterEnum = Semester.valueOf(semester);
+            return semesterEnum;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Semester.MESSAGE_CONSTRAINTS);
+        }
     }
 }

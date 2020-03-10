@@ -11,8 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.time.StudentSemester;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -149,4 +153,71 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+
+    // TODO: place implementation of methods in PlannerModelManager into ModelManager
+    //       and remove PlannerModelManager
+    public ObservableList<Student> getStudentList() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public boolean hasStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public Student getActiveStudent() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void setActiveStudent(Student editedStudent) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void activateStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeStudent(Student student) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // TODO: replace with `TimeTable` and `Enrollment`
+    public boolean hasEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void addEnrollment(Enrollment enrollment) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public void removeEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void activateSemester(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public TimeTable getActiveTimeTable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
