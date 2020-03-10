@@ -85,8 +85,8 @@ public class PlannerModelManager extends ModelManager {
         planner.removeStudent(student);
     }
     @Override
-    public ObservableList<ModuleCode> getEnrolledModulesList() {
-        return planner.getEnrolledModulesList();
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
+        return planner.getActiveModuleCodes();
     }
 
     @Override
@@ -112,5 +112,15 @@ public class PlannerModelManager extends ModelManager {
     @Override
     public TimeTable getActiveTimeTable() {
         return planner.getActiveTimeTable();
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        planner.addSemesterTimeTable(studentSemester);
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
+        planner.removeSemesterTimeTable(studentSemester);
     }
 }

@@ -184,7 +184,7 @@ public class ModelManager implements Model {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public ObservableList<ModuleCode> getEnrolledModulesList() {
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
@@ -208,6 +208,16 @@ public class ModelManager implements Model {
 
     @Override
     public TimeTable getActiveTimeTable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }

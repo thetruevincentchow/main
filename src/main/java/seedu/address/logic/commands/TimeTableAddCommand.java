@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
@@ -10,27 +8,27 @@ import seedu.address.model.time.StudentSemester;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
-public class TimeTableActiveCommand extends TimeTableCommand {
-    public static final String COMMAND_WORD = "active";
+public class TimeTableAddCommand extends TimeTableCommand {
+    public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'timetable active' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'timetable add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "timetable " + COMMAND_WORD
-            + ": Sets the active timetable of the active student.\n"
+            + ": Adds a timetable with the given semester to the active student.\n"
             + "Parameters: "
             + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
             + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/Semester 1";
 
-    public static final String MESSAGE_ACTIVE_TIMETABLE_SUCCESS = "Set semester as active: %1$s";
-    public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exist in list of timetables: %1$s";
+    public static final String MESSAGE_ADD_TIMETABLE_SUCCESS = "Added timetable to semester: %1$s";
+    public static final String MESSAGE_EXISTING_SEMESTER = "Semester already exists in list of timetables: %1$s";
 
     private final StudentSemester studentSemester;
 
-    public TimeTableActiveCommand(StudentSemester studentSemester) {
+    public TimeTableAddCommand(StudentSemester studentSemester) {
         requireAllNonNull(studentSemester);
         this.studentSemester = studentSemester;
     }
@@ -40,30 +38,25 @@ public class TimeTableActiveCommand extends TimeTableCommand {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
-        return String.format(MESSAGE_ACTIVE_TIMETABLE_SUCCESS, semesterYear);
+        return String.format(MESSAGE_ADD_TIMETABLE_SUCCESS, semesterYear);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student activeStudent  = model.getActiveStudent();
+        Student activeStudent = model.getActiveStudent();
         if (activeStudent == null) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
         //TODO: validate semester
-        /*
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-         */
 
-        if (!model.getPlanner().hasSemester(studentSemester)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));
+        if (model.getPlanner().hasSemester(studentSemester)) {
+            throw new CommandException(String.format(MESSAGE_EXISTING_SEMESTER, studentSemester));
         }
 
-        model.activateSemester(studentSemester);
+        model.addSemesterTimeTable(studentSemester);
 
         return new CommandResult(generateSuccessMessage(studentSemester));
     }

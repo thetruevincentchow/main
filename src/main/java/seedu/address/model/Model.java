@@ -111,7 +111,7 @@ public interface Model {
 
     void removeStudent(Student student);
 
-    ObservableList<ModuleCode> getEnrolledModulesList();
+    ObservableList<ModuleCode> getEnrolledModuleCodes();
 
     boolean hasEnrollment(ModuleCode moduleCode);
 
@@ -122,4 +122,8 @@ public interface Model {
     void activateSemester(StudentSemester studentSemester);
 
     TimeTable getActiveTimeTable();
+
+    void addSemesterTimeTable(StudentSemester studentSemester);
+
+    void removeSemesterTimeTable(StudentSemester studentSemester);
 }

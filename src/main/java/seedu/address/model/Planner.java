@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.*;
@@ -125,8 +126,13 @@ public class Planner implements ReadOnlyPlanner {
         return modules.asUnmodifiableObservableList();
     }
 
-    public ObservableList<ModuleCode> getEnrolledModulesList() {
-        //return enrolledModules.asUnmodifiableObservableList();
+    public ObservableList<ModuleCode> getActiveModuleCodes() {
+        ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
+        moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
+        return moduleCodes;
+    }
+
+    public ObservableList<ModuleCode> getAllEnrolledModuleCodes() {
         return activeStudent.getAllEnrolledModules();
     }
 
@@ -176,7 +182,8 @@ public class Planner implements ReadOnlyPlanner {
 
     public TimeTable getActiveTimeTable() {
         requireAllNonNull(activeStudent);
-        if (activeSemester == null) {
+
+        if (activeSemester == null && !activeStudent.getTimeTableMap().isEmpty()) {
             activateValidSemester();
         }
         return activeStudent.getTimeTable(activeSemester);
@@ -190,6 +197,9 @@ public class Planner implements ReadOnlyPlanner {
 
         //TODO: handle `activeStudents` being null (e.g. if data file is missing)
         //TODO: handle all students being removed
+        if (activeStudent.getTimeTableMap().isEmpty()) {
+            throw new IllegalArgumentException("Active student has no timetables");
+        }
         activeSemester = activeStudent.getTimeTableMap().keySet().iterator().next();
     }
 
@@ -205,6 +215,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public boolean hasSemester(StudentSemester semester) {
+        if (activeStudent == null) {
+            throw new IllegalArgumentException("No active student selected");
+        }
         return activeStudent.getTimeTableMap().containsKey(semester);
     }
 
@@ -213,5 +226,27 @@ public class Planner implements ReadOnlyPlanner {
             throw new IllegalArgumentException("Semester does not exist in timetable list");
         }
         activeSemester = semester;
+    }
+
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        if (activeStudent == null) {
+            throw new IllegalArgumentException("No active student selected");
+        }
+        if (hasSemester(studentSemester)) {
+            throw new IllegalArgumentException("Semester already exists in timetable list");
+        }
+
+        activeStudent.setTimeTable(studentSemester, new TimeTable());
+    }
+
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
+        if (activeStudent == null) {
+            throw new IllegalArgumentException("No active student selected");
+        }
+        if (!hasSemester(studentSemester)) {
+            throw new IllegalArgumentException("Semester does not exists in timetable list");
+        }
+
+        activeStudent.removeTimeTable(studentSemester);
     }
 }

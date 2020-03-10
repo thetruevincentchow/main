@@ -33,13 +33,12 @@ public class TimeTableCommandParser implements Parser<TimeTableCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            /*
         case StudentRemoveCommand.COMMAND_WORD:
-            return new StudentRemoveCommandParser().parse(arguments);
+            return new TimeTableRemoveCommandParser().parse(arguments);
 
-        case StudentAddCommand.COMMAND_WORD:
-            return new StudentAddCommandParser().parse(arguments);
-*/
+        case TimeTableAddCommand.COMMAND_WORD:
+            return new TimeTableAddCommandParser().parse(arguments);
+
         case TimeTableActiveCommand.COMMAND_WORD:
             return new TimeTableActiveCommandParser().parse(arguments);
 

@@ -11,4 +11,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
     public static final String MESSAGE_NO_STUDENT_ACTIVE = "No student is active";
+    public static final String MESSAGE_NO_TIMETABLE_ACTIVE = "No timetable is active";
 }
