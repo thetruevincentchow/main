@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.PlannerModelManager;
-import seedu.address.model.person.Person;
+import seedu.address.model.ModelManager;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Student;
 
@@ -46,7 +44,7 @@ public class DeclareMajorCommand extends DeclareCommand {
 
         Student student = model.getActiveStudent();
         Student editedStudent = new Student(student.getName(), student.getDegrees(), major);
-        assert(model instanceof PlannerModelManager);
+        assert(model instanceof ModelManager);
         model.setActiveStudent(editedStudent);
 
         //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);

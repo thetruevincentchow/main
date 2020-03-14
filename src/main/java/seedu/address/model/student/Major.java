@@ -1,5 +1,10 @@
 package seedu.address.model.student;
 
+import seedu.address.model.graduation.GraduationRequirement;
+import seedu.address.model.programmes.ComputerScienceProgramme;
+
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -38,6 +43,10 @@ public class Major {
         return test.matches(VALIDATION_REGEX);
     }
 
+
+    public List<GraduationRequirement> getGraduationRequirements() {
+        return (new ComputerScienceProgramme()).getGraduationRequirementList();
+    }
 
     @Override
     public String toString() {

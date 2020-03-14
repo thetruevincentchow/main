@@ -40,22 +40,34 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    // TODO: remove dependence on `ReadOnlyAddressBook` and `AddressBook`.
+    //       This would require removal of all related tests for `AddressBook` and other associated classes,
+    //       since they may require functionality from `AddressBook`.
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Planner planner) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-        this.planner = new Planner();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        requireAllNonNull(planner);
+        logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
+
+        this.planner = planner;
+        // this.userPrefs = new UserPrefs(userPrefs);
     }
 
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new Planner());
+    }
+
+    public ModelManager(Planner planner) {
+        this(new AddressBook(), new UserPrefs(), planner);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -187,71 +199,70 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    public void setPlanner(Planner planner) {
+        this.planner.resetData(planner);
+    }
 
-    // TODO: place implementation of methods in PlannerModelManager into ModelManager
-    //       and remove PlannerModelManager
     public ObservableList<Student> getStudentList() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.getStudentList();
     }
 
     public boolean hasStudent(Student student) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.hasStudent(student);
     }
 
     public Student getActiveStudent() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.getActiveStudent();
     }
 
     public void setActiveStudent(Student editedStudent) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.setActiveStudent(editedStudent);
     }
 
     public void activateStudent(Student student) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.activateStudent(student);
     }
 
     public void addStudent(Student student) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        requireAllNonNull(student);
+        planner.addStudent(student);
     }
 
     public void removeStudent(Student student) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        requireAllNonNull(student);
+        planner.removeStudent(student);
     }
 
     public ObservableList<ModuleCode> getEnrolledModuleCodes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.getActiveModuleCodes();
     }
 
     // TODO: replace with `TimeTable` and `Enrollment`
     public boolean hasEnrollment(ModuleCode moduleCode) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.hasEnrollment(moduleCode);
     }
 
     public void addEnrollment(Enrollment enrollment) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.addEnrollment(enrollment);
     }
 
     public void removeEnrollment(ModuleCode moduleCode) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.removeEnrollment(moduleCode);
     }
 
-    @Override
     public void activateSemester(StudentSemester studentSemester) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.activateSemester(studentSemester);
     }
 
-    @Override
     public TimeTable getActiveTimeTable() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return planner.getActiveTimeTable();
     }
 
-    @Override
     public void addSemesterTimeTable(StudentSemester studentSemester) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.addSemesterTimeTable(studentSemester);
     }
 
-    @Override
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        planner.removeSemesterTimeTable(studentSemester);
     }
 }

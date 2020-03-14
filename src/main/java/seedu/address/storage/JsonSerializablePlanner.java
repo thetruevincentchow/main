@@ -44,7 +44,9 @@ class JsonSerializablePlanner {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
+        //TODO: allow serialization of planner with no active student
         activeStudent = new JsonAdaptedStudent(source.getActiveStudent());
+
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         //enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
         //        .collect(Collectors.toList()));

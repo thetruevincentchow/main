@@ -23,7 +23,7 @@ public class TimeTableActiveCommand extends TimeTableCommand {
             + "Parameters: "
             + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
-            + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/Semester 1";
+            + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/ONE";
 
     public static final String MESSAGE_ACTIVE_TIMETABLE_SUCCESS = "Set semester as active: %1$s";
     public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exist in list of timetables: %1$s";

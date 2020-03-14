@@ -1,14 +1,15 @@
 package seedu.address.model.programmes;
 
 import seedu.address.model.graduation.GraduationRequirement;
+import seedu.address.model.student.Student;
 
 public abstract class DegreeProgramme extends Programme {
 
-    private DegreeType degreeType;
+    public DegreeType degreeType;
 
-    public boolean isFulfilled() {
+    public boolean isFulfilled(Student student) {
         for (GraduationRequirement requirement : this.graduationRequirementList) {
-            if (!requirement.isFulfilled()) {
+            if (!requirement.isFulfilled(student)) {
                 return false;
             }
         }
