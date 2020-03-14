@@ -19,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
-import seedu.address.model.PlannerModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -123,7 +122,7 @@ public class MainApp extends Application {
             initialData = Planner.samplePlanner();
         }
 
-        return new PlannerModelManager(initialData);
+        return new ModelManager(initialData);
     }
 
     private void initLogging(Config config) {
