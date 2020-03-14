@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueEnrollmentList;
 import seedu.address.model.time.StudentSemester;
+import seedu.address.model.util.SampleDataUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,12 +18,6 @@ public class TimeTable {
 
     public TimeTable(List<Enrollment> enrollments) {
         enrollments.forEach(this.enrollments::add);
-    }
-
-    public static TimeTable sampleTimeTable() {
-        TimeTable timeTable = new TimeTable();
-        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040")));
-        return timeTable;
     }
 
     public void addEnrollment(Enrollment enrollment) {

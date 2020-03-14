@@ -116,10 +116,10 @@ public class MainApp extends Application {
             initialData = plannerOptional.orElseGet(SampleDataUtil::getSamplePlanner);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Planner");
-            initialData = Planner.samplePlanner();
+            initialData = SampleDataUtil.getSamplePlanner();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Planner");
-            initialData = Planner.samplePlanner();
+            initialData = SampleDataUtil.getSamplePlanner();
         }
 
         return new ModelManager(initialData);

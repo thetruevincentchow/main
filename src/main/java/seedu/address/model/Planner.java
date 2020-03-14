@@ -62,18 +62,6 @@ public class Planner implements ReadOnlyPlanner {
         return modules;
     }
 
-    /**
-     * Returns a valid planner state.
-     * @return Sample planner
-     */
-    public static Planner samplePlanner() {
-        Planner planner = new Planner();
-        Student student = new Student(new Name("Placeholder name"), new Major("Placeholder major"), TimeTableMap.sampleTimeTableMap());
-        planner.students.add(student);
-        planner.activeStudent = student;
-        return planner;
-    }
-
 
     public boolean addStudent(Student student) {
         students.add(student);
@@ -157,6 +145,7 @@ public class Planner implements ReadOnlyPlanner {
      * @params editedStudent Student to copy for replacement
      */
     public void setActiveStudent(Student editedStudent) {
+        // TODO: ensure that `activeStudent` is not null
         if (activeStudent != null) {
             students.setStudent(activeStudent, editedStudent);
         }
