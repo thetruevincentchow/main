@@ -19,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
-import seedu.address.model.PlannerModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -117,13 +116,13 @@ public class MainApp extends Application {
             initialData = plannerOptional.orElseGet(SampleDataUtil::getSamplePlanner);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Planner");
-            initialData = Planner.samplePlanner();
+            initialData = SampleDataUtil.getSamplePlanner();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Planner");
-            initialData = Planner.samplePlanner();
+            initialData = SampleDataUtil.getSamplePlanner();
         }
 
-        return new PlannerModelManager(initialData);
+        return new ModelManager(initialData);
     }
 
     private void initLogging(Config config) {

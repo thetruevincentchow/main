@@ -120,7 +120,7 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(PREFIX_NAME).append(getName()).append(" ")
-                .append(PREFIX_MAJOR).append(getName());
+                .append(PREFIX_MAJOR).append(getMajor());
         return builder.toString();
     }
 

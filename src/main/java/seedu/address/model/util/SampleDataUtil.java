@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.Planner;
-import seedu.address.model.student.Student;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,11 +53,31 @@ public class SampleDataUtil {
 
     public static Planner getSamplePlanner() {
         Planner samplePlanner = new Planner();
-        Student student = new Student(new seedu.address.model.student.Name("Dummy Name"));
-        // TODO
+        Student student = SampleDataUtil.getSampleStudent();
         samplePlanner.addStudent(student);
-
+        samplePlanner.activateStudent(student); //TODO: allow serialization of planner with no active student
         return samplePlanner;
+    }
+
+    public static Student getSampleStudent() {
+        Student sampleStudent = new Student(new seedu.address.model.student.Name("Placeholder name"), new Major("Placeholder major"), SampleDataUtil.getSampleTimeTableMap());
+        return sampleStudent;
+    }
+
+    public static TimeTableMap getSampleTimeTableMap() {
+        TimeTableMap timeTableMap = new TimeTableMap();
+        // timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 2019), 1), SampleDataUtil.getSampleTimeTable());
+        return timeTableMap;
+    }
+
+    /**
+     * Returns a non-empty (@code TimeTableMap) which (@code Student) can immediately use.
+     * @return Non-empty (@code TimeTableMap)
+     */
+    public static TimeTable getSampleTimeTable() {
+        TimeTable timeTable = new TimeTable();
+        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040")));
+        return timeTable;
     }
 
     /**
