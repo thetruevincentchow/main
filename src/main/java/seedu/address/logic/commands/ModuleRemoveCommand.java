@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
@@ -48,21 +49,21 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: add to a `TimeTable` of a `Student` or `User`
-        //Student student = model.getActiveStudent();
+        // Check if active student and timetable exists
+        if (model.getActiveStudent() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+        if (model.getActiveTimeTable() == null) {
+            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
+        }
+
+        // Check if module is present in active timetable
         if (!model.hasEnrollment(moduleCode)) {
             throw new CommandException(generateFailureMessage(moduleCode));
         }
 
         model.removeEnrollment(moduleCode);
 
-        /*
-        Student editedStudent = new Student(student.getName(), student.getDegrees(), major);
-        assert(model instanceof PlannerModelManager);
-        model.setActiveStudent(editedStudent);
-        */
-
-        //return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

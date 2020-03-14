@@ -23,6 +23,11 @@ import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Enrollment;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.time.StudentSemester;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -213,7 +218,7 @@ public class ModelManager implements Model {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public ObservableList<ModuleCode> getEnrolledModulesList() {
+    public ObservableList<ModuleCode> getEnrolledModuleCodes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
@@ -222,11 +227,31 @@ public class ModelManager implements Model {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public void addEnrollment(ModuleCode moduleCode) {
+    public void addEnrollment(Enrollment enrollment) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public void removeEnrollment(ModuleCode moduleCode) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void activateSemester(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public TimeTable getActiveTimeTable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void addSemesterTimeTable(StudentSemester studentSemester) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void removeSemesterTimeTable(StudentSemester studentSemester) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }

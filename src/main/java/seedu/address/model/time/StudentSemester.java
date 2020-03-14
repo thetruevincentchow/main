@@ -13,6 +13,14 @@ public class StudentSemester {
         this.degreeYear = degreeYear;
     }
 
+    public SemesterYear getSemesterYear() {
+        return semYear;
+    }
+
+    public int getDegreeYear() {
+        return degreeYear;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(semYear, degreeYear);
@@ -26,5 +34,10 @@ public class StudentSemester {
             return semYear.equals(((StudentSemester) other).semYear)
                     && degreeYear == ((StudentSemester) other).degreeYear;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Year %d, %s", degreeYear, semYear);
     }
 }

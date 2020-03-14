@@ -211,7 +211,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<ModuleCode> getEnrolledModulesList() {
+        public ObservableList<ModuleCode> getEnrolledModuleCodes() {
             return (new UniqueModuleCodeList()).asUnmodifiableObservableList();
         }
     }
