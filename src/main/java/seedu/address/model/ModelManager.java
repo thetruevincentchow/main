@@ -22,6 +22,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.

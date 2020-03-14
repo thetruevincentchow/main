@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import java.util.ArrayList;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,13 +7,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.ModuleCode;
 
-import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 
 import seedu.address.model.student.Student;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -85,7 +79,6 @@ public class PlannerModelManager extends ModelManager {
     }
 
     @Override
-=======
     /*public ObservableList<Module> getFilteredModuleList() {
         return filteredmodules;
     }

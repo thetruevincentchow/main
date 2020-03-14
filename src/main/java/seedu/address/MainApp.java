@@ -114,7 +114,6 @@ public class MainApp extends Application {
         Optional<Planner> plannerOptional;
         Planner initialData;
         try {
-
             plannerOptional = storage.readPlanner();
             if (!plannerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Planner");

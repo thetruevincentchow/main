@@ -3,8 +3,6 @@ package seedu.address.model.module;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Semester;
 
-import java.lang.invoke.SwitchPoint;
-
 public class Module {
 
     public String acadYear;
@@ -21,21 +19,20 @@ public class Module {
     public String prereqTree;
     public String fulfillRequirements;
 
-
     public Module (
-        String acadYear,
-        String preclusion,
-        String description,
-        String title,
-        String department,
-        String faculty,
-        String workload,
-        String prerequisite,
-        String moduleCredit,
-        String moduleCode,
-        String semesterData,
-        String prereqTree,
-        String fulfillRequirements
+            String acadYear,
+            String preclusion,
+            String description,
+            String title,
+            String department,
+            String faculty,
+            String workload,
+            String prerequisite,
+            String moduleCredit,
+            String moduleCode,
+            String semesterData,
+            String prereqTree,
+            String fulfillRequirements
     ) throws IllegalValueException {
         this.acadYear = acadYear;
         this.preclusion = preclusion;
@@ -50,52 +47,22 @@ public class Module {
         this.semesterData = semesterData;
         this.prereqTree = prereqTree;
         this.fulfillRequirements = fulfillRequirements;
+    }
 
-    public Module(
-        String ModuleCode,
-        String ModuleTitle,
-        String AcadYear,
-        String SemesterName,
-        String Faculty,
-        String Department,
-        String ModuleDescription,
-        String CrossModule,
-        String ModuleCredit,
-        String Workload,
-        String Prerequisite,
-        String Preclusion,
-        String Corequisite
-    ) {
-        this.ModuleCode = new ModuleCode(ModuleCode);
-        this.ModuleTitle = ModuleTitle;
-        this.AcadYear = AcadYear;
-        this.SemesterName = convertSem(SemesterName);
-        this.Faculty = Faculty;
-        this.Department = Department;
-        this.ModuleDescription = new Description(ModuleDescription);
-        this.CrossModule = CrossModule;
-        this.ModuleCredit = new Credit(ModuleCredit);
-        this.Workload = Workload;
-        this.Prerequisite = Prerequisite;
-        this.Preclusion = Preclusion;
-        this.Corequisite = Corequisite;
-
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     public boolean isSameModule(Module module) {
         return false; // TODO
     }
 
-    public ModuleCode getModuleCode() {
-        return ModuleCode;
-    }
-
     public String getModuleTitle() {
-        return ModuleTitle;
+        return title;
     }
 
-    public Semester getSemesterName() {
-        return SemesterName;
+    public String getSemesterName() {
+        return semesterData;
     }
 
     public Semester convertSem(String semesterName) {
