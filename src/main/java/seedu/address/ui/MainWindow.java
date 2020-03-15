@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
+    private CalendarBox calendarBox;
     private HelpWindow helpWindow;
 
     @FXML
@@ -44,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane calendarBoxPlaceholder;
 
     @FXML
     private StackPane moduleListPanelPlaceholder;
@@ -115,8 +119,11 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        calendarBox = new CalendarBox();
+        calendarBoxPlaceholder.getChildren().add(calendarBox.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

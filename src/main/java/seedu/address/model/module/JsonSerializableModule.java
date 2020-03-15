@@ -30,6 +30,7 @@ public class JsonSerializableModule {
     public String moduleCredit;
     public String moduleCode;
     // public String semesterData;
+    public ArrayList<String> semesters;
     public String prereqTree;
     public String fulfillRequirements;
 
@@ -48,6 +49,7 @@ public class JsonSerializableModule {
         @JsonProperty("prerequisite") String prerequisite,
         @JsonProperty("moduleCredit") String moduleCredit,
         @JsonProperty("moduleCode") String moduleCode,
+        @JsonProperty("semesters") ArrayList<String> semesters,
         // @JsonProperty("semesterData") String semesterData,
         @JsonProperty("prereqTree") String prereqTree,
         @JsonProperty("fulfillRequirements") String fulfillRequirements
@@ -63,6 +65,7 @@ public class JsonSerializableModule {
         this.moduleCredit = moduleCredit;
         this.moduleCode = moduleCode;
         // this.semesterData = semesterData;
+        this.semesters = semesters;
         this.prereqTree = prereqTree;
         this.fulfillRequirements = fulfillRequirements;
     }
@@ -95,7 +98,7 @@ public class JsonSerializableModule {
             this.prerequisite,
             this.moduleCredit,
             this.moduleCode.replaceAll("[^a-zA-Z0-9]", ""),
-            null, // this.semesterData,
+            this.semesters.toArray().toString(), // this.semesterData,
             this.prereqTree,
             this.fulfillRequirements
         );

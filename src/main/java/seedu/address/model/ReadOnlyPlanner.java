@@ -31,7 +31,5 @@ public interface ReadOnlyPlanner {
 
     boolean hasSemester(StudentSemester semester);
 
-    ObservableList<ModuleCode> getEnrolledModulesList();
-
 
 }

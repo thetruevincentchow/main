@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.JsonSerializableModule;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.JsonAdaptedModule;
@@ -154,10 +155,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         ArrayList<Module> modules = new ArrayList<>();
-        ArrayList<JsonAdaptedModule> jsonAdaptedModules = new ArrayList<>();
+        ArrayList<JsonSerializableModule> jsonAdaptedModules = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/bulletinModulesList.json"), new TypeReference<ArrayList<JsonAdaptedModule>>(){});
+            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/moduleList.json"), new TypeReference<ArrayList<JsonSerializableModule>>(){});
         } catch (IOException e) {
             e.printStackTrace();
         }

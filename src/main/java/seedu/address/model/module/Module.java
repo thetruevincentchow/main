@@ -53,10 +53,6 @@ public class Module {
         return moduleCode;
     }
 
-    public ModuleCode getModuleCode() {
-        return moduleCode;
-    }
-
     public boolean isSameModule(Module module) {
         return false; // TODO
     }

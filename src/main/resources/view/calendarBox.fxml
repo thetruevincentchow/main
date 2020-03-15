@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Label fx:id="semester" text="Semester" />
+            <GridPane gridLinesVisible="true">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="day_time" text="Days/Time" />
+                  <Label text="Monday" GridPane.rowIndex="1" />
+                  <Label text="Tuesday" GridPane.rowIndex="2" />
+                  <Label text="Wednesday" GridPane.rowIndex="3" />
+                  <Label text="Thursday" GridPane.rowIndex="4" />
+                  <Label text="Friday" GridPane.rowIndex="5" />
+                  <Label text="0800-0900" GridPane.columnIndex="1" />
+                  <Label text="0900-1000" GridPane.columnIndex="2" />
+                  <Label text="1000-1100" GridPane.columnIndex="3" />
+                  <Label text="1100-1200" GridPane.columnIndex="4" />
+                  <Label text="1200-1300" GridPane.columnIndex="5" />
+                  <Label text="1300-1400" GridPane.columnIndex="6" />
+                  <Label text="1400-1500" GridPane.columnIndex="7" />
+                  <Label text="1500-1600" GridPane.columnIndex="8" />
+                  <Label text="1600-1700" GridPane.columnIndex="9" />
+                  <Label text="1700-1800" GridPane.columnIndex="10" />
+                  <Label text="1800-1900" GridPane.columnIndex="11" />
+                  <Label text="1900-2000" GridPane.columnIndex="12" />
+                  <Label text="m1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="m2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label text="m3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="m4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label text="m5" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Label text="m6" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <Label text="m7" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <Label text="m8" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                  <Label text="m9" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                  <Label text="m10" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                  <Label text="m11" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                  <Label text="m12" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                  <Label text="t1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="t2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="t3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label text="t4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label text="t5" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Label text="t6" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Label text="t7" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                  <Label text="t8" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                  <Label text="t9" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                  <Label text="t10" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                  <Label text="t11" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                  <Label text="t12" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                  <Label text="w1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="th1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="f1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="w2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="w3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label text="th3" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label text="th2" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label text="f2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label text="f3" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label text="w4" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Label text="th4" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Label text="f4" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Label text="w5" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Label text="th5" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label text="f5" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Label text="w6" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <Label text="th6" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <Label text="f6" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Label text="w7" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                  <Label text="th7" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Label text="f7" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Label text="w8" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                  <Label text="th8" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Label text="f8" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                  <Label text="w9" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                  <Label text="th9" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                  <Label text="f9" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                  <Label text="w10" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                  <Label text="th10" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                  <Label text="f10" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+                  <Label text="w11" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                  <Label text="th11" GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                  <Label text="f11" GridPane.columnIndex="11" GridPane.rowIndex="5" />
+                  <Label text="w12" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                  <Label text="th12" GridPane.columnIndex="12" GridPane.rowIndex="4" />
+                  <Label text="f12" GridPane.columnIndex="12" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
