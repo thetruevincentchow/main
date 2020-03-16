@@ -33,7 +33,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * The list of available modules in NUS.
      */
-    protected UniqueModuleList modules;
+    protected static UniqueModuleList modules = new UniqueModuleList();
 
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
@@ -41,20 +41,18 @@ public class Planner implements ReadOnlyPlanner {
     public Planner() {
         activeStudent = null; //new Student(new Name("Placeholder Name"), new Degrees(), new Major("Placeholder Major"));
         students = new UniqueStudentList();
-        //students.add(activeStudent);
-        modules = new UniqueModuleList();
         loadModules();
     }
 
 
     private void loadModules() {
-        System.out.println("Loading modules. This might take awhile...");
-        List<Module> modulesToImport = ModuleDataImporter.run();
-        System.out.println("Done!");
-        if (modulesToImport == null) {
-
-        } else {
-            modulesToImport.forEach(x -> modules.add(x));
+        if (modules.isEmpty()) {
+            System.out.println("Loading modules. This might take awhile...");
+            List<Module> modulesToImport = ModuleDataImporter.run();
+            System.out.println("Done!");
+            if (modulesToImport != null) {
+                modulesToImport.forEach(x -> modules.add(x));
+            }
         }
     }
 
@@ -62,6 +60,18 @@ public class Planner implements ReadOnlyPlanner {
         return modules;
     }
 
+
+    /**
+     * Returns a valid planner state.
+     * @return Sample planner
+     */
+    public static Planner samplePlanner() {
+        Planner planner = new Planner();
+        Student student = new Student(new Name("Mark Suckerberg"), new Major("CS"), TimeTableMap.sampleTimeTableMap());
+        planner.students.add(student);
+        planner.activeStudent = student;
+        return planner;
+    }
 
     public boolean addStudent(Student student) {
         students.add(student);
