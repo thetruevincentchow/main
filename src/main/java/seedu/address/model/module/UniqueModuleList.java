@@ -104,4 +104,8 @@ public class UniqueModuleList implements Iterable<Module> {
         }
         return true;
     }
+
+    public boolean isEmpty() {
+        return internalList.size() == 0;
+    }
 }

@@ -3,8 +3,11 @@ package seedu.address.model.student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.graduation.FocusAreaGraduationRequirement;
+import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
+import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class Student {
     private Name name;
     private Degrees degrees;
     private Major major;
+    private GenericSpecialisation specialisation;
 
     // Timetables
     public final TimeTableMap timeTableMap;
@@ -105,9 +109,9 @@ public class Student {
         Student otherStudent = (Student) other;
         //TODO: initialize and compare `degrees`
         return otherStudent.getName().equals(getName())
-                && otherStudent.getMajor().equals(getMajor())
-                //&& otherStudent.getDegrees().equals(getDegrees())
-                && otherStudent.getTimeTableMap().equals(getTimeTableMap());
+            && otherStudent.getMajor().equals(getMajor())
+            //&& otherStudent.getDegrees().equals(getDegrees())
+            && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
@@ -149,6 +153,7 @@ public class Student {
 
     /**
      * Returns a list mof (@code ModuleCode) taken across all timetables.
+     *
      * @return List of all modules enrolled.
      */
     public ObservableList<ModuleCode> getAllEnrolledModules() {
@@ -157,5 +162,19 @@ public class Student {
             allModules.addAll(timeTable.getModuleCodes());
         }
         return allModules;
+    }
+
+    public GenericSpecialisation getSpecialisation() {
+        return specialisation;
+    }
+
+    public void setSpecialisation(GenericSpecialisation specialisation) {
+        this.specialisation = specialisation;
+        for (GraduationRequirement graduationRequirement : this.major.degreeProgramme.getGraduationRequirementList()) {
+            if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
+                FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement;
+                focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
+            }
+        }
     }
 }

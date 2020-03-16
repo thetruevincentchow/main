@@ -3,19 +3,22 @@ package seedu.address.model.programmes;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import seedu.address.model.Model;
 import seedu.address.model.graduation.CompoundGraduationRequirement;
+import seedu.address.model.graduation.FocusAreaGraduationRequirement;
 import seedu.address.model.graduation.SingleGraduationRequirement;
+import seedu.address.model.graduation.WildcardGraduationRequirement;
 import seedu.address.model.module.ModuleCode;
 
 
 public class ComputerScienceProgramme extends DegreeProgramme {
 
-    public ComputerScienceProgramme() { // TODO: Load from JSON or XML
+    public ComputerScienceProgramme(Model model) { // TODO: Load from JSON or XML
         graduationRequirementList = new ArrayList<>();
         graduationRequirementList.add(new CompoundGraduationRequirement("University Level Requirements", 20, new ArrayList<>(Arrays.asList(
-            new CompoundGraduationRequirement("Human Cultures", 4, null),
-            new CompoundGraduationRequirement("Thinking and Expression", 4, null),
-            new CompoundGraduationRequirement("Singapore Studies", 4, null),
+            new WildcardGraduationRequirement("Human Cultures", 4, "GEH.*"),
+            new WildcardGraduationRequirement("Thinking and Expression", 4, "GET.*"),
+            new WildcardGraduationRequirement("Singapore Studies", 4, "GES.*"),
             new SingleGraduationRequirement(new ModuleCode("GEQ1000")),
             new SingleGraduationRequirement(new ModuleCode("GER1000"))
         ))));
@@ -32,6 +35,7 @@ public class ComputerScienceProgramme extends DegreeProgramme {
                 new SingleGraduationRequirement(new ModuleCode("CS3230"))
             ))),
             new CompoundGraduationRequirement("Computer Science Breadth and Depth", 44, new ArrayList<>(Arrays.asList(
+                new FocusAreaGraduationRequirement(model),
                 new CompoundGraduationRequirement("Focus Area", 24, null),
                 new CompoundGraduationRequirement("Computer Systems Team Project", 8, null),
                 new CompoundGraduationRequirement("Industrial Experience Requirement", 12, null)
