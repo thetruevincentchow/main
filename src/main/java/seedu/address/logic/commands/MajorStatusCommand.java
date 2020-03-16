@@ -50,7 +50,7 @@ public class MajorStatusCommand extends MajorCommand {
             if (!isFirst) {
                 sb.append("\n");
             }
-            sb.append(graduationRequirement);
+            sb.append(graduationRequirement.getString(model.getActiveStudent().getAllEnrolledModules()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString()));
     }

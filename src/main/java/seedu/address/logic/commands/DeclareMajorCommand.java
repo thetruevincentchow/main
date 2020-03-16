@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PlannerModelManager;
+import seedu.address.model.person.Person;
+import seedu.address.model.programmes.ComputerScienceProgramme;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Student;
 
@@ -43,6 +46,9 @@ public class DeclareMajorCommand extends DeclareCommand {
         requireNonNull(model);
 
         Student student = model.getActiveStudent();
+        major.setDegreeProgramme(new ComputerScienceProgramme(model));
+        student.setMajor(major);
+
         Student editedStudent = new Student(student.getName(), student.getDegrees(), major);
         assert(model instanceof ModelManager);
         model.setActiveStudent(editedStudent);
