@@ -1,0 +1,62 @@
+package seedu.address.logic.parser;
+
+import seedu.address.logic.commands.ModuleAddCommand;
+import seedu.address.logic.commands.ModuleGradeCommand;
+import seedu.address.logic.commands.StudentAddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.grades.LetterGrade;
+import seedu.address.model.module.ModuleCode;
+
+import java.util.stream.Stream;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
+
+public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
+    public static final String MESSAGE_GRADE_INVALID = "Grade is invalid: %1$s";
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
+     * and returns a DeclareMajorCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    @Override
+    public ModuleGradeCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
+        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
+        //TODO: use ArgumentTokenizer for all subcommands
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_GRADE);
+
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleGradeCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            ModuleCode moduleCode = new ModuleCode(argMultimap.getPreamble());
+
+            if (arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
+                String letterGradeString = argMultimap.getValue(PREFIX_GRADE).get();
+                try {
+                    LetterGrade letterGrade = LetterGrade.valueOf(letterGradeString);
+                    return new ModuleGradeCommand(moduleCode, letterGrade);
+                } catch (IllegalArgumentException e) {
+                    throw new ParseException(String.format(MESSAGE_GRADE_INVALID, letterGradeString));
+                }
+            } else {
+                return new ModuleGradeCommand(moduleCode);
+            }
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+}

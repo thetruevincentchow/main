@@ -42,6 +42,9 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         case ModuleListCommand.COMMAND_WORD:
             return new ModuleListCommand();
 
+        case ModuleGradeCommand.COMMAND_WORD:
+            return new ModuleGradeCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -9,6 +9,6 @@ public abstract class StudentCommand extends Command {
             //+ ": Deletes the person identified by the index number used in the displayed person list.\n"
             //+ "Parameters: INDEX (must be a positive integer)\n"
             + ":\n"
-            + "Subcommands: add remove active\n"
+            + "Subcommands: add, remove, active, grade\n"
             + "Example: " + COMMAND_WORD + " active 1";
 }

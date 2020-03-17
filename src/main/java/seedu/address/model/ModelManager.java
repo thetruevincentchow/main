@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;
@@ -230,5 +232,13 @@ public class ModelManager implements Model {
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
         planner.removeSemesterTimeTable(studentSemester);
+    }
+
+    public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
+        return planner.getModuleGrade(moduleCode);
+    }
+
+    public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        planner.setModuleGrade(moduleCode, grade);
     }
 }

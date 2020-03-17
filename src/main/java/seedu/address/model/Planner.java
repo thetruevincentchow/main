@@ -2,12 +2,15 @@ package seedu.address.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.*;
 import seedu.address.model.student.*;
 import seedu.address.model.time.StudentSemester;
+import seedu.address.model.util.SampleDataUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -61,18 +64,6 @@ public class Planner implements ReadOnlyPlanner {
     }
 
 
-    /**
-     * Returns a valid planner state.
-     * @return Sample planner
-     */
-    public static Planner samplePlanner() {
-        Planner planner = new Planner();
-        Student student = new Student(new Name("Mark Suckerberg"), new Major("CS"), TimeTableMap.sampleTimeTableMap());
-        planner.students.add(student);
-        planner.activeStudent = student;
-        return planner;
-    }
-
     public boolean addStudent(Student student) {
         students.add(student);
         return true;
@@ -81,7 +72,6 @@ public class Planner implements ReadOnlyPlanner {
     public boolean resetData(Planner planner) {
         activeStudent = planner.activeStudent;
         students = planner.students;
-        modules = planner.modules;
         return true;
     }
 
@@ -106,6 +96,23 @@ public class Planner implements ReadOnlyPlanner {
         TimeTable timeTable = getActiveTimeTable();
         return timeTable.hasModuleCode(moduleCode);
         //return enrolledModules.contains(moduleCode);
+    }
+
+    public Enrollment getEnrollment(ModuleCode moduleCode) {
+        requireAllNonNull(moduleCode);
+        TimeTable timeTable = getActiveTimeTable();
+        return timeTable.getEnrollment(moduleCode);
+        //return enrolledModules.contains(moduleCode);
+    }
+
+    public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
+        Enrollment enrollment = getEnrollment(moduleCode);
+        return enrollment.getGrade();
+    }
+
+    public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        Enrollment enrollment = getEnrollment(moduleCode);
+        enrollment.grade = Optional.of(grade);
     }
 
     public boolean addEnrollment(Enrollment enrollment) {
@@ -152,7 +159,7 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Replaces the currently active student with the student given by (@code editedStudent).
-     * @params editedStudent Student to copy for replacement
+     * @params editedStudent Student to copy for replacement.
      */
     public void setActiveStudent(Student editedStudent) {
         // TODO: ensure that `activeStudent` is not null
@@ -199,7 +206,7 @@ public class Planner implements ReadOnlyPlanner {
         //TODO: handle `activeStudents` being null (e.g. if data file is missing)
         //TODO: handle all students being removed
         if (activeStudent.getTimeTableMap().isEmpty()) {
-            throw new IllegalArgumentException("Active student has no timetables");
+            throw new IllegalArgumentException("The active student has no timetables");
         }
         activeSemester = activeStudent.getTimeTableMap().keySet().iterator().next();
     }
@@ -245,7 +252,7 @@ public class Planner implements ReadOnlyPlanner {
             throw new IllegalArgumentException("No active student selected");
         }
         if (!hasSemester(studentSemester)) {
-            throw new IllegalArgumentException("Semester does not exists in timetable list");
+            throw new IllegalArgumentException("Semester does not exist in timetable list");
         }
 
         activeStudent.removeTimeTable(studentSemester);

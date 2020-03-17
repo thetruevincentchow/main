@@ -32,6 +32,15 @@ public class TimeTable {
         return enrollments.contains(enrollment);
     }
 
+    public Enrollment getEnrollment(ModuleCode moduleCode) {
+        for (Enrollment enrollment : enrollments) {
+            if (enrollment.getModuleCode().equals(moduleCode)) {
+                return enrollment;
+            }
+        }
+        throw new NullPointerException(String.format("Key %s does not exist", moduleCode));
+    }
+
     public UniqueEnrollmentList getEnrollments() {
         return enrollments;
         //return enrollments.asUnmodifiableObservableList(); //TODO: replace with ObservableList<Enrollment>

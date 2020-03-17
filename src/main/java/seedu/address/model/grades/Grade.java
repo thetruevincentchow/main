@@ -3,15 +3,29 @@ package seedu.address.model.grades;
 import java.util.OptionalDouble;
 
 public class Grade {
-    protected LetterGrade letterGrade;
-    protected boolean isSu;
+    public final LetterGrade letterGrade;
+    public final boolean isSu;
 
     public Grade(LetterGrade letterGrade, boolean isSu) {
         this.letterGrade = letterGrade;
         this.isSu = isSu;
     }
 
-    public OptionalDouble getGradePoint(int credit) {
-        return OptionalDouble.empty();
+    /**
+     * The grade point of the letter grade. This ranges from 0.0 to 5.0.
+     * This does not account the S/U declaration (@code isSu).
+     * @return Grade point of letter grade
+     */
+    public OptionalDouble getGradePoint() {
+        return letterGrade.points;
+    }
+
+    @Override
+    public String toString() {
+        if (isSu && !letterGrade.isSu) {
+            return String.format("%s (S/U exercised)", this.letterGrade);
+        } else {
+            return String.format("%s", this.letterGrade);
+        }
     }
 }

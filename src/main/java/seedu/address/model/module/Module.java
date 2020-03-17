@@ -59,4 +59,8 @@ public class Module {
         return false; // TODO
     }
 
+    public int getModuleCredit() {
+        //TODO: make `moduleCredit` an `int`
+        return Integer.parseInt(moduleCredit);
+    }
 }
