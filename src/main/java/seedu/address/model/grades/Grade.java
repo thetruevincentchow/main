@@ -19,4 +19,13 @@ public class Grade {
     public OptionalDouble getGradePoint() {
         return letterGrade.points;
     }
+
+    @Override
+    public String toString() {
+        if (isSu && !letterGrade.isSu) {
+            return String.format("%s (S/U exercised)", this.letterGrade);
+        } else {
+            return String.format("%s", this.letterGrade);
+        }
+    }
 }

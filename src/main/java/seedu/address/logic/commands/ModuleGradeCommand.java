@@ -8,6 +8,8 @@ import seedu.address.model.grades.LetterGrade;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
+import java.util.Optional;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -21,9 +23,9 @@ public class ModuleGradeCommand extends ModuleCommand {
             + ": If GRADE is specified, sets the grade of the module specified.\n"
             + "Otherwise, displays grade of module specified.\n"
             + "Parameters: "
-            + "Module code "
-            + "[" + PREFIX_GRADE + " + GRADE]\n"
-            + "Example: " + "module " + COMMAND_WORD + "CS2030 grade/A";
+            + "MODULE_CODE "
+            + "[" + PREFIX_GRADE + "GRADE]\n"
+            + "Example: " + "module " + COMMAND_WORD + " CS2030 grade/A";
 
     public static final String MESSAGE_SET_GRADE_SUCCESS = "Set grade of module %1$s to: %2$s";
     public static final String MESSAGE_VIEW_GRADE_SUCCESS  = "Grade of module %1$s: %2$s";
@@ -66,7 +68,11 @@ public class ModuleGradeCommand extends ModuleCommand {
         return String.format(MESSAGE_MODULE_NOT_ENROLLED, moduleCode.value);
     }
 
-    private String generateViewGradeSuccessMessage(ModuleCode moduleCode, LetterGrade grade) {
+    private String generateViewGradeSuccessMessage(ModuleCode moduleCode) {
+        return String.format(MESSAGE_VIEW_GRADE_SUCCESS, moduleCode.value, "Pending");
+    }
+
+    private String generateViewGradeSuccessMessage(ModuleCode moduleCode, Grade grade) {
         return String.format(MESSAGE_VIEW_GRADE_SUCCESS, moduleCode.value, grade);
     }
 
@@ -106,7 +112,12 @@ public class ModuleGradeCommand extends ModuleCommand {
             model.setModuleGrade(moduleCode, new Grade(letterGrade, false));
             return new CommandResult(generateSetGradeSuccessMessage(moduleCode, letterGrade));
         } else {
-            return new CommandResult(MESSAGE_NOT_IMPLEMENTED_YET);
+            Optional<Grade> optionalGrade = model.getModuleGrade(moduleCode);
+            if (optionalGrade.isPresent()) {
+                return new CommandResult(generateViewGradeSuccessMessage(moduleCode, optionalGrade.get()));
+            } else {
+                return new CommandResult(generateViewGradeSuccessMessage(moduleCode));
+            }
         }
     }
 }

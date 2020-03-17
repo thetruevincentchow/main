@@ -105,6 +105,11 @@ public class Planner implements ReadOnlyPlanner {
         //return enrolledModules.contains(moduleCode);
     }
 
+    public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
+        Enrollment enrollment = getEnrollment(moduleCode);
+        return enrollment.getGrade();
+    }
+
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         Enrollment enrollment = getEnrollment(moduleCode);
         enrollment.grade = Optional.of(grade);
