@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,7 +61,8 @@ public class SampleDataUtil {
     }
 
     public static Student getSampleStudent() {
-        Student sampleStudent = new Student(new seedu.address.model.student.Name("Placeholder name"), new Major("Placeholder major"), SampleDataUtil.getSampleTimeTableMap());
+        Student sampleStudent = new Student(new seedu.address.model.student.Name("Mark"), new Major("CS"), SampleDataUtil.getSampleTimeTableMap());
+        //Student sampleStudent = new Student(new seedu.address.model.student.Name("Placeholder name"), new Major("Placeholder major"), SampleDataUtil.getSampleTimeTableMap());
         return sampleStudent;
     }
 
@@ -76,7 +78,7 @@ public class SampleDataUtil {
      */
     public static TimeTable getSampleTimeTable() {
         TimeTable timeTable = new TimeTable();
-        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040")));
+        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040"), Optional.empty(),4));
         return timeTable;
     }
 

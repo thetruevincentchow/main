@@ -3,6 +3,8 @@ package seedu.address.model.student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.grades.CumulativeGrade;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.graduation.FocusAreaGraduationRequirement;
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
@@ -10,9 +12,7 @@ import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -164,6 +164,14 @@ public class Student {
         return allModules;
     }
 
+    public ObservableList<Enrollment> getAllEnrollments() {
+        ObservableList<Enrollment> allEnrollments = FXCollections.observableArrayList();
+        for (TimeTable timeTable : timeTableMap.values()) {
+            allEnrollments.addAll(timeTable.getEnrollments().asUnmodifiableObservableList());
+        }
+        return allEnrollments;
+    }
+
     public GenericSpecialisation getSpecialisation() {
         return specialisation;
     }
@@ -176,5 +184,19 @@ public class Student {
                 focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
             }
         }
+    }
+
+    public CumulativeGrade getCumulativeGrade() {
+        CumulativeGrade cumulativeGrade = new CumulativeGrade();
+        for (Enrollment enrollment : getAllEnrollments()) {
+            Optional<Grade> optionalGrade = enrollment.getGrade();
+            if (optionalGrade.isPresent()) {
+                OptionalDouble gradePoint = enrollment.getGradePoint();
+                cumulativeGrade.accumulate(optionalGrade.get(), enrollment.credit);
+            } else {
+                cumulativeGrade.accumulate(enrollment.credit);
+            }
+        }
+        return cumulativeGrade;
     }
 }
