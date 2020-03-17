@@ -18,11 +18,11 @@ public class JsonAdaptedEnrollment {
     /**
      * Represents the student's grade. Can be null.
      */
-    public Grade grade;
+    public JsonAdaptedGrade grade;
     public int credit;
 
     @JsonCreator
-    public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code, @JsonProperty("grade") Grade grade,
+    public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code, @JsonProperty("grade") JsonAdaptedGrade grade,
                                  @JsonProperty("credit") int credit) {
         this.code = code;
         this.grade = grade;
@@ -31,11 +31,16 @@ public class JsonAdaptedEnrollment {
 
     public JsonAdaptedEnrollment(Enrollment source) {
         this.code = new JsonAdaptedModuleCode(source.getModuleCode());
-        this.grade = source.getGrade().orElse(null);
+        Optional<Grade> optionalGrade = source.getGrade();
+        if (optionalGrade.isPresent()) {
+            this.grade = new JsonAdaptedGrade(optionalGrade.get());
+        } else {
+            this.grade = null;
+        }
         this.credit = source.credit;
     }
 
     public Enrollment toModelType() throws IllegalValueException  {
-        return new Enrollment(code.toModelType(), Optional.ofNullable(grade), credit);
+        return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()), credit);
     }
 }

@@ -23,7 +23,7 @@ public class ModuleAddCommand extends ModuleCommand {
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
-    public static final String MESSAGE_ADD_MODULE_DOES_NOT_EXISTS = "Module does not exist: %1$s";
+    public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
 
 
@@ -38,7 +38,7 @@ public class ModuleAddCommand extends ModuleCommand {
      * {@code personToEdit}.
      */
     private String generateModuleDoesNotExists(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_DOES_NOT_EXISTS, moduleCode.value);
+        return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
     }
 
 

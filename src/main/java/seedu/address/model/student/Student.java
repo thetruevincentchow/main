@@ -194,7 +194,7 @@ public class Student {
                 OptionalDouble gradePoint = enrollment.getGradePoint();
                 cumulativeGrade.accumulate(optionalGrade.get(), enrollment.credit);
             } else {
-                cumulativeGrade.accumulate(enrollment.credit);
+                cumulativeGrade.accumulatePending(enrollment.credit);
             }
         }
         return cumulativeGrade;

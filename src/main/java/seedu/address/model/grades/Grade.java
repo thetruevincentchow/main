@@ -3,8 +3,8 @@ package seedu.address.model.grades;
 import java.util.OptionalDouble;
 
 public class Grade {
-    protected final LetterGrade letterGrade;
-    protected final boolean isSu;
+    public final LetterGrade letterGrade;
+    public final boolean isSu;
 
     public Grade(LetterGrade letterGrade, boolean isSu) {
         this.letterGrade = letterGrade;

@@ -22,33 +22,41 @@ public class CumulativeGrade {
     }
 
     /**
-     * Accumulates the grade to the counter.
-     * @param isSu Whether the grade is declared S/U
-     * @param gradePoint Weighted grade points, equal to grade point of the grade multiplied by number of credits
+     * Accumulates the letter grade to the counter.
+     * @param gradePoint Grade points, from 0.0 to 5.0
      * @param credits Number of credits
      */
-    private void accumulate(boolean isSu, double gradePoint, int credits) {
+    private void accumulateGraded(double gradePoint, int credits) {
         totalCredits += credits;
-        if (isSu) {
-            numSu++;
-            totalSuCredits += credits;
-        } else {
-            totalGradePoints += gradePoint;
-            totalGradedCredits += credits;
-        }
+        totalGradePoints += gradePoint * credits;
+        totalGradedCredits += credits;
     }
 
-    public void accumulate(Grade grade, int credits) {
-        accumulate(grade.isSu || grade.letterGrade.isSu, grade.getGradePoint().getAsDouble(), credits);
+    /**
+     * Accumulates module credits and the S/U to the counter.
+     * @param credits Number of credits
+     */
+    private void accumulateSu(int credits) {
+        totalCredits += credits;
+        numSu++;
+        totalSuCredits += credits;
     }
 
-    /**2
+    /**
      * Accumulates pending module credits. This does not affect the calculated CAP.
      * The number of S/U modules declared is not affected.
      * @param credits Number of credits
      */
-    public void accumulate(int credits) {
+    public void accumulatePending(int credits) {
         totalCredits += credits;
+    }
+
+    public void accumulate(Grade grade, int credits) {
+        if (grade.isSu || grade.letterGrade.isSu) {
+            accumulateSu(credits);
+        } else {
+            accumulateGraded(grade.getGradePoint().getAsDouble(), credits);
+        }
     }
 
     public OptionalDouble getAverage() {

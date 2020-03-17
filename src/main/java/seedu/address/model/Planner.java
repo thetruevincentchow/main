@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.*;
 import seedu.address.model.student.*;
@@ -9,6 +10,7 @@ import seedu.address.model.time.StudentSemester;
 import seedu.address.model.util.SampleDataUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -94,6 +96,18 @@ public class Planner implements ReadOnlyPlanner {
         TimeTable timeTable = getActiveTimeTable();
         return timeTable.hasModuleCode(moduleCode);
         //return enrolledModules.contains(moduleCode);
+    }
+
+    public Enrollment getEnrollment(ModuleCode moduleCode) {
+        requireAllNonNull(moduleCode);
+        TimeTable timeTable = getActiveTimeTable();
+        return timeTable.getEnrollment(moduleCode);
+        //return enrolledModules.contains(moduleCode);
+    }
+
+    public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        Enrollment enrollment = getEnrollment(moduleCode);
+        enrollment.grade = Optional.of(grade);
     }
 
     public boolean addEnrollment(Enrollment enrollment) {

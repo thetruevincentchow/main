@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;
@@ -230,5 +231,9 @@ public class ModelManager implements Model {
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
         planner.removeSemesterTimeTable(studentSemester);
+    }
+
+    public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        planner.setModuleGrade(moduleCode, grade);
     }
 }
