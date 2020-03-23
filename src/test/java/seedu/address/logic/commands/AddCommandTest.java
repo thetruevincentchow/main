@@ -27,7 +27,9 @@ import seedu.address.model.module.UniqueModuleCodeList;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
 import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.time.StudentSemester;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -171,7 +173,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addEnrollment(ModuleCode enrollment) {
+        public TimeTable getActiveTimeTable() {
+            return null;
+        }
+
+        @Override
+        public void addSemesterTimeTable(StudentSemester studentSemester) {
+
+        }
+
+        @Override
+        public void removeSemesterTimeTable(StudentSemester studentSemester) {
+
+        }
+
+        @Override
+        public void activateSemester(StudentSemester studentSemester) {
+
+        }
+
+        @Override
+        public void addEnrollment(Enrollment enrollment) {
 
         }
 

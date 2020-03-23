@@ -58,6 +58,10 @@ public class Degrees {
         return true;
     }
 
+    public List<DegreeProgramme> getDegrees() {
+        return degrees;
+    }
+
     public boolean addDegrees(List<DegreeProgramme> degree) {
         this.degrees.addAll(degree);
         return true;

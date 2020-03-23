@@ -78,6 +78,9 @@ public class AddressBookParser {
         case TimeTableCommand.COMMAND_WORD:
             return new TimeTableCommandParser().parse(arguments);
 
+        case SpecialisationCommand.COMMAND_WORD:
+            return new SpecialisationCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

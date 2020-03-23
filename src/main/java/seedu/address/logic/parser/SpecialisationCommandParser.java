@@ -1,6 +1,12 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ModuleAddCommand;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.ModuleListCommand;
+import seedu.address.logic.commands.ModuleRemoveCommand;
+import seedu.address.logic.commands.SpecialisationCommand;
+import seedu.address.logic.commands.SpecialisationSetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
@@ -9,7 +15,7 @@ import java.util.regex.Pattern;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-public class ModuleCommandParser implements Parser<ModuleCommand> {
+public class SpecialisationCommandParser implements Parser<SpecialisationCommand> {
     /**
      * Used for initial separation of command word and args.
      */
@@ -23,7 +29,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public ModuleCommand parse(String userInput) throws ParseException {
+    public SpecialisationCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -33,18 +39,8 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case ModuleAddCommand.COMMAND_WORD:
-            return new ModuleAddCommandParser().parse(arguments);
-
-        case ModuleRemoveCommand.COMMAND_WORD:
-            return new ModuleRemoveCommandParser().parse(arguments);
-
-        case ModuleListCommand.COMMAND_WORD:
-            return new ModuleListCommand();
-
-        case ModuleGradeCommand.COMMAND_WORD:
-            return new ModuleGradeCommandParser().parse(arguments);
-
+        case SpecialisationSetCommand.COMMAND_WORD:
+            return new SpecialisationSetCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

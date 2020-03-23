@@ -3,6 +3,8 @@ package seedu.address.model.module;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Semester;
 
+import java.util.List;
+
 public class Module {
 
     public String acadYear;
@@ -15,11 +17,12 @@ public class Module {
     public String prerequisite;
     public String moduleCredit;
     public ModuleCode moduleCode;
-    public String semesterData;
+    public List<SemesterData> semesterData;
     public String prereqTree;
     public String fulfillRequirements;
 
     public Module (
+
             String acadYear,
             String preclusion,
             String description,
@@ -33,6 +36,7 @@ public class Module {
             String semesterData,
             String prereqTree,
             String fulfillRequirements
+
     ) throws IllegalValueException {
         this.acadYear = acadYear;
         this.preclusion = preclusion;
@@ -59,6 +63,12 @@ public class Module {
 
     public boolean isSameModule(Module module) {
         return false; // TODO
+    }
+
+
+    public int getModuleCredit() {
+        //TODO: make `moduleCredit` an `int`
+        return Integer.parseInt(moduleCredit);
     }
 
     public String getModuleTitle() {
@@ -91,6 +101,7 @@ public class Module {
         return Semester.valueOf(convertedValue);
 
     }
+
 
 
 }
