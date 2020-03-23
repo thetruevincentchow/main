@@ -26,11 +26,19 @@ public interface ReadOnlyPlanner {
 
     ObservableList<Module> getModuleList();
 
+
     UniqueModuleList getModules();
+
 
     ObservableList<ModuleCode> getActiveModuleCodes();
 
     boolean hasSemester(StudentSemester semester);
 
+
     Optional<Grade> getModuleGrade(ModuleCode moduleCode);
+
+    ObservableList<ModuleCode> getEnrolledModulesList();
+
+
+
 }
