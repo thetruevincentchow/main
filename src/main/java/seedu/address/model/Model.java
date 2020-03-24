@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.grades.Grade;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;

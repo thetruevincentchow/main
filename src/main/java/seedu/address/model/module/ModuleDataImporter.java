@@ -1,14 +1,5 @@
 package seedu.address.model.module;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -18,8 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
+
 
 public class ModuleDataImporter {
 

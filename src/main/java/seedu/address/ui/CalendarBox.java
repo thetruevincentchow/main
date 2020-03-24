@@ -21,22 +21,152 @@ public class CalendarBox extends UiPart<Region> {
     private Label dayTime;
 
     @FXML
-    private Label t89, t910, t1011, t1112, t1213, t1314, t1516, t1617, t1718, t1819, t1920;
+    private Label t89;
+    @FXML
+    private Label t910;
+    @FXML
+    private Label t1011;
+    @FXML
+    private Label t1112;
+    @FXML
+    private Label t1213;
+    @FXML
+    private Label t1314;
+    @FXML
+    private Label t1516;
+    @FXML
+    private Label t1617;
+    @FXML
+    private Label t1718;
+    @FXML
+    private Label t1819;
+    @FXML
+    private Label t1920;
 
     @FXML
-    private Label m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12;
+    private Label m1;
+    @FXML
+    private Label m2;
+    @FXML
+    private Label m3;
+    @FXML
+    private Label m4;
+    @FXML
+    private Label m5;
+    @FXML
+    private Label m6;
+    @FXML
+    private Label m7;
+    @FXML
+    private Label m8;
+    @FXML
+    private Label m9;
+    @FXML
+    private Label m10;
+    @FXML
+    private Label m11;
+    @FXML
+    private Label m12;
 
     @FXML
-    private Label t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12;
+    private Label t1;
+    @FXML
+    private Label t2;
+    @FXML
+    private Label t3;
+    @FXML
+    private Label t4;
+    @FXML
+    private Label t5;
+    @FXML
+    private Label t6;
+    @FXML
+    private Label t7;
+    @FXML
+    private Label t8;
+    @FXML
+    private Label t9;
+    @FXML
+    private Label t10;
+    @FXML
+    private Label t11;
+    @FXML
+    private Label t12;
 
     @FXML
-    private Label w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12;
+    private Label w1;
+    @FXML
+    private Label w2;
+    @FXML
+    private Label w3;
+    @FXML
+    private Label w4;
+    @FXML
+    private Label w5;
+    @FXML
+    private Label w6;
+    @FXML
+    private Label w7;
+    @FXML
+    private Label w8;
+    @FXML
+    private Label w9;
+    @FXML
+    private Label w10;
+    @FXML
+    private Label w11;
+    @FXML
+    private Label w12;
 
     @FXML
-    private Label th1, th2, th3, th4, th5, th6, th7, th8, th9, th10, th11, th12;
+    private Label th1;
+    @FXML
+    private Label th2;
+    @FXML
+    private Label th3;
+    @FXML
+    private Label th4;
+    @FXML
+    private Label th5;
+    @FXML
+    private Label th6;
+    @FXML
+    private Label th7;
+    @FXML
+    private Label th8;
+    @FXML
+    private Label th9;
+    @FXML
+    private Label th10;
+    @FXML
+    private Label th11;
+    @FXML
+    private Label th12;
 
     @FXML
-    private Label f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12;
+    private Label f1;
+    @FXML
+    private Label f2;
+    @FXML
+    private Label f3;
+    @FXML
+    private Label f4;
+    @FXML
+    private Label f5;
+    @FXML
+    private Label f6;
+    @FXML
+    private Label f7;
+    @FXML
+    private Label f8;
+    @FXML
+    private Label f9;
+    @FXML
+    private Label f10;
+    @FXML
+    private Label f11;
+    @FXML
+    private Label f12;
 
 
     /**
