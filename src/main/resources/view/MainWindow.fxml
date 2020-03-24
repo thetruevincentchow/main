@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
@@ -53,6 +54,10 @@
                     <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
 
+                <AnchorPane fx:id="calendarBox" styleClass="pane-with-border" >
+                    <StackPane fx:id="calendarBoxPlaceholder" VBox.vgrow="ALWAYS" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+                </AnchorPane>
+
                 <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                       VBox.vgrow="ALWAYS">
                     <padding>
@@ -66,4 +71,3 @@
         </Scene>
     </scene>
 </fx:root>
-

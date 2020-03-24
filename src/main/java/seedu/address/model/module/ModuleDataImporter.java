@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
+
 
 public class ModuleDataImporter {
 
@@ -56,5 +60,10 @@ public class ModuleDataImporter {
             }
         }
         return modules;
+    }
+
+    public ObservableList<Module> getFilteredModuleList() {
+        ObservableList<Module> oList = FXCollections.observableArrayList(modules);
+        return oList;
     }
 }

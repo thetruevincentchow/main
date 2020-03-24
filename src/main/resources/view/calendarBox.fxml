@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Label fx:id="semester" style="-fx-text-fill: #FFFFFF" text="Semester" />
+            <GridPane gridLinesVisible="true" style="-fx-background-color: #FFFFFF;">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;">
+                     <children>
+                        <Label fx:id="dayTime" alignment="CENTER" layoutX="19.0" layoutY="7.0" text="Days/Time" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;" GridPane.rowIndex="1">
+                     <children>
+                        <Label layoutX="25.0" layoutY="7.0" text="Monday" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;" GridPane.rowIndex="2">
+                     <children>
+                        <Label layoutX="25.0" layoutY="7.0" text="Tuesday" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;" GridPane.rowIndex="3">
+                     <children>
+                        <Label layoutX="15.0" layoutY="7.0" text="Wednesday" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;" GridPane.rowIndex="4">
+                     <children>
+                        <Label layoutX="22.0" layoutY="7.0" text="Thursday" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #34c9eb;" GridPane.rowIndex="5">
+                     <children>
+                        <Label layoutX="31.0" layoutY="7.0" text="Friday" />
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="t89" text="0800-0900" GridPane.columnIndex="1" />
+                  <Label fx:id="t910" text="0900-1000" GridPane.columnIndex="2" />
+                  <Label fx:id="t1011" text="1000-1100" GridPane.columnIndex="3" />
+                  <Label fx:id="t1112" text="1100-1200" GridPane.columnIndex="4" />
+                  <Label fx:id="t1213" text="1200-1300" GridPane.columnIndex="5" />
+                  <Label fx:id="t1314" text="1300-1400" GridPane.columnIndex="6" />
+                  <Label fx:id="t1415" text="1400-1500" GridPane.columnIndex="7" />
+                  <Label fx:id="t1516" text="1500-1600" GridPane.columnIndex="8" />
+                  <Label fx:id="t1617" text="1600-1700" GridPane.columnIndex="9" />
+                  <Label fx:id="t1718" text="1700-1800" GridPane.columnIndex="10" />
+                  <Label fx:id="t1819" text="1800-1900" GridPane.columnIndex="11" />
+                  <Label fx:id="t1920" text="1900-2000" GridPane.columnIndex="12" />
+                  <Label fx:id="m1" text="m1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="m2" text="m2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="m3" text="m3" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="m4" text="m4" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label fx:id="m5" text="m5" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Label fx:id="m6" text="m6" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <Label fx:id="m7" text="m7" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <Label fx:id="m8" text="m8" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                  <Label fx:id="m9" text="m9" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                  <Label fx:id="m10" text="m10" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                  <Label fx:id="m11" text="m11" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                  <Label fx:id="m12" text="m12" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                  <Label fx:id="t1" text="t1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="t2" text="t2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="t3" text="t3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label fx:id="t4" text="t4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label fx:id="t5" text="t5" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Label fx:id="t6" text="t6" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Label fx:id="t7" text="t7" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                  <Label fx:id="t8" text="t8" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                  <Label fx:id="t9" text="t9" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                  <Label fx:id="t10" text="t10" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                  <Label fx:id="t11" text="t11" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                  <Label fx:id="t12" text="t12" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                  <Label fx:id="w1" text="w1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="th1" text="th1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="f1" text="f1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="w2" text="w2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="w3" text="w3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="th3" text="th3" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label fx:id="th2" text="th2" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="f2" text="f2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="f3" text="f3" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label fx:id="w4" text="w4" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Label fx:id="th4" text="th4" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Label fx:id="f4" text="f4" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Label fx:id="w5" text="w5" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Label fx:id="th5" text="th5" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label fx:id="f5" text="f5" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Label fx:id="w6" text="w6" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <Label fx:id="th6" text="th6" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <Label fx:id="f6" text="f6" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Label fx:id="w7" text="w7" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                  <Label fx:id="th7" text="th7" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Label fx:id="f7" text="f7" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Label fx:id="w8" text="w8" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                  <Label fx:id="th8" text="th8" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Label fx:id="f8" text="f8" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                  <Label fx:id="w9" text="w9" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                  <Label fx:id="th9" text="th9" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                  <Label fx:id="f9" text="f9" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                  <Label fx:id="w10" text="w10" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                  <Label fx:id="th10" text="th10" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                  <Label fx:id="f10" text="f10" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+                  <Label fx:id="w11" text="w11" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                  <Label fx:id="th11" text="th11" GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                  <Label fx:id="f11" text="f11" GridPane.columnIndex="11" GridPane.rowIndex="5" />
+                  <Label fx:id="w12" text="w12" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                  <Label fx:id="th12" text="th12" GridPane.columnIndex="12" GridPane.rowIndex="4" />
+                  <Label fx:id="f12" text="f12" GridPane.columnIndex="12" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

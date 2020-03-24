@@ -3,27 +3,17 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.grades.Grade;
-import seedu.address.model.module.JsonAdaptedModule;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;
@@ -161,30 +151,6 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        ArrayList<Module> modules = new ArrayList<>();
-        ArrayList<JsonAdaptedModule> jsonAdaptedModules = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            jsonAdaptedModules = objectMapper.readValue(
-                new File("src/main/resources/json/bulletinModulesList.json"),
-                new TypeReference<ArrayList<JsonAdaptedModule>>() {
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < jsonAdaptedModules.size(); i++) {
-            try {
-                modules.add(jsonAdaptedModules.get(i).toModelType());
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-            }
-        }
-        ObservableList<Module> oList = FXCollections.observableArrayList(modules);
-        return oList;
-    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {

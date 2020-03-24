@@ -249,7 +249,6 @@ public class AddCommandTest {
             return Optional.empty();
         }
 
-        @Override
         public ObservableList<Module> getFilteredModuleList() {
             return null;
         }

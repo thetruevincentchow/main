@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
@@ -36,25 +36,30 @@ public class ModuleCard extends UiPart<Region> {
     private Label semester;
     @FXML
     private FlowPane tags;
-    /*@FXML
-    private Label email;
-    @FXML
-    private Label remark;*/
 
+    /**
+     * Constructor for ModuleCard Class
+     * @param module
+     * @param displayedIndex
+     */
     public ModuleCard(Module module, int displayedIndex) {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
         code.setText(module.getModuleCode().value);
         title.setText(module.getModuleTitle());
-        semester.setText(module.getSemesterName().toString());
-        /*email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        remark.setText(person.getRemark().value);*/
+        String builder = "Semesters: ";
+        for (int i = 0; i < module.getSemesterName().size(); i++) {
+            builder += module.getSemesterName().get(i).getSemester() + " ";
+        }
+        semester.setText(builder);
     }
 
+    /**
+     * Overrides Equal function to compare objects
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
