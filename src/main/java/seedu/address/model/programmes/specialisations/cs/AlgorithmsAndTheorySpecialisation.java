@@ -1,16 +1,13 @@
 package seedu.address.model.programmes.specialisations.cs;
 
-import seedu.address.model.graduation.GraduationRequirement;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.programmes.specialisations.GenericSpecialisation;
-
 import java.util.ArrayList;
-import java.util.List;
+
+import seedu.address.model.module.ModuleCode;
 
 public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
 
     public AlgorithmsAndTheorySpecialisation() {
-        name = "Algorithms And Theory";
+        setName("Algorithms And Theory");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 

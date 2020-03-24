@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -11,10 +15,6 @@ import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TimeTable;
 import seedu.address.model.time.StudentSemester;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalDouble;
 
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
@@ -48,7 +48,7 @@ public class StudentGradeCommand extends StudentCommand {
             for (Enrollment enrollment : timeTable.enrollments) {
                 sb.append("\n");
                 sb.append(enrollment.getModuleCode().value);
-                sb.append(String.format(" (%d MCs): ", enrollment.credit));
+                sb.append(String.format(" (%d MCs): ", enrollment.getCredit()));
 
                 Optional<Grade> optionalGrade = enrollment.getGrade();
                 if (optionalGrade.isPresent()) {

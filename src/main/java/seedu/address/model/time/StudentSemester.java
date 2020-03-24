@@ -1,7 +1,5 @@
 package seedu.address.model.time;
 
-import seedu.address.model.module.ModuleCode;
-
 import java.util.Objects;
 
 public class StudentSemester {

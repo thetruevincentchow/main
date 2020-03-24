@@ -1,10 +1,10 @@
 package seedu.address.model.programmes.specialisations.cs;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.programmes.specialisations.GenericSpecialisation;
-
 import java.util.List;
 import java.util.regex.Pattern;
+
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 
 public abstract class GenericCsSpecialisation extends GenericSpecialisation {
 

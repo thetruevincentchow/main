@@ -7,22 +7,21 @@ import java.util.List;
 
 public class Module {
 
-    public String acadYear;
-    public String preclusion;
-    public String description;
-    public String title;
-    public String department;
-    public String faculty;
-    public String workload;
-    public String prerequisite;
-    public String moduleCredit;
-    public ModuleCode moduleCode;
-    public List<SemesterData> semesterData;
-    public String prereqTree;
-    public String fulfillRequirements;
+    private String acadYear;
+    private String preclusion;
+    private String description;
+    private String title;
+    private String department;
+    private String faculty;
+    private String workload;
+    private String prerequisite;
+    private String moduleCredit;
+    private ModuleCode moduleCode;
+    private List<SemesterData> semesterData;
+    private String prereqTree;
+    private String fulfillRequirements;
 
     public Module(
-
         String acadYear,
         String preclusion,
         String description,
@@ -63,7 +62,7 @@ public class Module {
 
 
     public int getModuleCredit() {
-        //TODO: make `moduleCredit` an `int`
+        // TODO: make `moduleCredit` an `int`
         return Integer.parseInt(moduleCredit);
     }
 
@@ -99,4 +98,99 @@ public class Module {
     }
 
 
+    public String getAcadYear() {
+        return acadYear;
+    }
+
+    public void setAcadYear(String acadYear) {
+        this.acadYear = acadYear;
+    }
+
+    public String getPreclusion() {
+        return preclusion;
+    }
+
+    public void setPreclusion(String preclusion) {
+        this.preclusion = preclusion;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public String getWorkload() {
+        return workload;
+    }
+
+    public void setWorkload(String workload) {
+        this.workload = workload;
+    }
+
+    public String getPrerequisite() {
+        return prerequisite;
+    }
+
+    public void setPrerequisite(String prerequisite) {
+        this.prerequisite = prerequisite;
+    }
+
+    public void setModuleCredit(String moduleCredit) {
+        this.moduleCredit = moduleCredit;
+    }
+
+    public void setModuleCode(ModuleCode moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+    public List<SemesterData> getSemesterData() {
+        return semesterData;
+    }
+
+    public void setSemesterData(List<SemesterData> semesterData) {
+        this.semesterData = semesterData;
+    }
+
+    public String getPrereqTree() {
+        return prereqTree;
+    }
+
+    public void setPrereqTree(String prereqTree) {
+        this.prereqTree = prereqTree;
+    }
+
+    public String getFulfillRequirements() {
+        return fulfillRequirements;
+    }
+
+    public void setFulfillRequirements(String fulfillRequirements) {
+        this.fulfillRequirements = fulfillRequirements;
+    }
 }

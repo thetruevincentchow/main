@@ -2,10 +2,9 @@ package seedu.address.model.module;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyPlanner;
-
-import java.util.List;
 
 /**
  * An Immutable ModuleList that is serializable to JSON format.
@@ -14,15 +13,82 @@ public class JsonSerializableLesson {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
-    public String classNo;
-    public String startTime;
-    public String endTime;
-    public Object weeks;
-    public String venue;
-    public String day;
-    public String lessonType;
-    public int size;
+    private String classNo;
+    private String startTime;
+    private String endTime;
+    private Object weeks;
+    private String venue;
+    private String day;
+    private String lessonType;
+    private int size;
 
+    public static String getMessageDuplicateModule() {
+        return MESSAGE_DUPLICATE_MODULE;
+    }
+
+    public String getClassNo() {
+        return classNo;
+    }
+
+    public void setClassNo(String classNo) {
+        this.classNo = classNo;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public Object getWeeks() {
+        return weeks;
+    }
+
+    public void setWeeks(Object weeks) {
+        this.weeks = weeks;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getLessonType() {
+        return lessonType;
+    }
+
+    public void setLessonType(String lessonType) {
+        this.lessonType = lessonType;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     /**
      * Constructs a {@code JsonSerializableLesson} with the given lessons.

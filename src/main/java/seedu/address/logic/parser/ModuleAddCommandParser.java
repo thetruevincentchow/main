@@ -1,10 +1,8 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.DeclareMajorCommand;
 import seedu.address.logic.commands.ModuleAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Major;
 
 import static java.util.Objects.requireNonNull;
 

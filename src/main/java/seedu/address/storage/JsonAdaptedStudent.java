@@ -2,10 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.*;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Major;
+import seedu.address.model.student.TimeTableMap;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -13,9 +17,7 @@ import seedu.address.model.person.Person;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
-    // Timetables
     public final JsonAdaptedTimeTableMap timeTableMap;
-    // Identity fields
     private final String name;
     private final String major;
 
@@ -23,7 +25,8 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("major") String major, @JsonProperty("timeTableMap") JsonAdaptedTimeTableMap timeTableMap) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("major") String major,
+                              @JsonProperty("timeTableMap") JsonAdaptedTimeTableMap timeTableMap) {
         this.name = name;
         this.major = major;
         this.timeTableMap = timeTableMap;
@@ -62,7 +65,8 @@ class JsonAdaptedStudent {
         final Major modelMajor = new Major(major);
 
         if (timeTableMap == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeTableMap.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                TimeTableMap.class.getSimpleName()));
         }
         final TimeTableMap modelTimeTableMap = timeTableMap.toModelType();
 

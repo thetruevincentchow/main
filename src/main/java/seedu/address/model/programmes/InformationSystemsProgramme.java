@@ -1,24 +1,26 @@
 package seedu.address.model.programmes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import seedu.address.model.graduation.CompoundGraduationRequirement;
 import seedu.address.model.graduation.SingleGraduationRequirement;
 import seedu.address.model.module.ModuleCode;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class InformationSystemsProgramme extends DegreeProgramme {
 
     public InformationSystemsProgramme() { // TODO: Load from JSON or XML
         graduationRequirementList = new ArrayList<>();
-        graduationRequirementList.add(new CompoundGraduationRequirement("University Level Requirements", 20, new ArrayList<>(Arrays.asList(
+        graduationRequirementList.add(new CompoundGraduationRequirement("University Level Requirements",
+            20, new ArrayList<>(Arrays.asList(
             new CompoundGraduationRequirement("Human Cultures", 4, null),
             new CompoundGraduationRequirement("Thinking and Expression", 4, null),
             new CompoundGraduationRequirement("Singapore Studies", 4, null),
             new SingleGraduationRequirement(new ModuleCode("GEQ1000")),
             new SingleGraduationRequirement(new ModuleCode("GER1000"))
         ))));
-        graduationRequirementList.add(new CompoundGraduationRequirement("Programme Requirements", 72, new ArrayList<>(Arrays.asList(
+        graduationRequirementList.add(new CompoundGraduationRequirement("Programme Requirements", 72,
+            new ArrayList<>(Arrays.asList(
             new CompoundGraduationRequirement("Core Modules", 72, new ArrayList<>(Arrays.asList(
                 new SingleGraduationRequirement(new ModuleCode("CS1010J")),
                 new SingleGraduationRequirement(new ModuleCode("CS1231")),
@@ -44,11 +46,13 @@ public class InformationSystemsProgramme extends DegreeProgramme {
             new CompoundGraduationRequirement("Programme Electives", 24, new ArrayList<>(Arrays.asList(
 
             ))),
-            new CompoundGraduationRequirement("Internship or Dissertation", 12, new ArrayList<>(Arrays.asList(
+            new CompoundGraduationRequirement("Internship or Dissertation", 12,
+                new ArrayList<>(Arrays.asList(
                 new SingleGraduationRequirement(new ModuleCode("IS4010")),
                 new SingleGraduationRequirement(new ModuleCode("CP4101"))
             )))
         ))));
-        graduationRequirementList.add(new CompoundGraduationRequirement("Unrestricted Electives", 32, null));
+        graduationRequirementList.add(new CompoundGraduationRequirement("Unrestricted Electives", 32,
+            null));
     }
 }
