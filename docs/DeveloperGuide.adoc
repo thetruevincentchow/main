@@ -294,18 +294,61 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Priority |As a ... |I want to ... |So that I ...
+|`* * *` |new user |see usage instructions |can refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`*` |user with many persons in the address book |sort persons by name |can locate a person easily
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |user |declare what my major is |get the right graduation requirements to follow
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`*` |user |declare what my minor(s) is/are |get the right graduation requirements to follow
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |user |declare what I am exempted from (e.g. Polytechnic Exemptions) |am not recommended modules that I am exempted from
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |user |declare that I am part of a Residential College program |am given recommendations that take into account UTCP modules
+
+|`* * *` |user |declare what tracks/specializations (Focus Areas) I am interested/am taking |am given recommendations that will fulfill the requirements of that track/specialization
+
+|`* *` |user |declare my intention of overloading modules |am given recommendations to graduate faster
+
+|`* *` |user |declare my intention of underloading modules |am given recommendations to graduate faster
+
+|`* *` |user |verify if I can graduate on time given currently selected modules |am given recommendations of feasible modules to take
+
+|`* * *` |user |view the list of modules which I have taken |can remember what modules I have taken
+
+|`* * *` |user |view the list of modules which I have declared exempted from |can remember what modules I am exempted from
+
+|`* *` |user |check which lecturer is teaching the module |can decide if I should take that module in that semester
+
+|`* * *` |user |see a list of all available modules in NUS |can see what modules is available for me to take
+
+|`* * *` |user |enter the grades I got for each module |can view my Cumulative Average Point (CAP) for each and all semesters
+
+|`* *` |user |declare that I am part of NOC programme |can count NOC modules towards my graduation requirements
+
+|`* *` |user |declare that I am part of the university scholar programme |can replace my requirements for graduation with USP modules
+
+|`* * *` |user |can see if a module is being offered in a semester that I want |can plan my academic plan correctly
+
+|`* *` |user |can check the venue of the class |can plan my traveling route during module planning
+
+|`*` |user |set the module to be non graded to pass or fail |can set the overseas module to be pass or fail without affecting my CAP
+
+|`* *` |user |change the colours of the module planner for customizable |can enjoy dark theme
+
+|`* * *` |user |see the list of grades I obtained for each module |can have a better understanding of my academic performance
+
+|`* *` |user |declare when I would like to undergo an internship |can plan the timing of my modules
+
+|`* *` |user |view changes in Grade Point Average (GPA) according to projected grades |can have a better understanding of my academic performance
+
+|`*` |user |see which pathways would be more challenging (i.e. Level 3K, 4K, 5K modules) |can choose a better course pathway in terms of maximising GPA/fulfilling course requirements
+
+|`*` |user |set preferences (e.g. ‘free’ days/only after 12 PM) in order to automatically organise the timetable |have an efficient and personalised timetable
+
+|`* *` |user |automatically select non-conflicting lecture and tutorial slots based on preferences |can create usable timetables based on my preferences
+
 |=======================================================================
 
 _{More to be added}_
