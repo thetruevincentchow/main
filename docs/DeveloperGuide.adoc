@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= NUS Module Planner - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920S2-CS2103T-W13-4/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team AY1920S2-CS2103T-W13-4`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -117,12 +117,12 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/model/PlannerModel.java[`PlannerModel.java`]
 
-The `Model`,
+The `PlannerModel`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the Planner data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -294,18 +294,61 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Priority |As a ... |I want to ... |So that I ...
+|`* * *` |new user |see usage instructions |can refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`*` |user with many persons in the address book |sort persons by name |can locate a person easily
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |user |declare what my major is |get the right graduation requirements to follow
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`*` |user |declare what my minor(s) is/are |get the right graduation requirements to follow
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |user |declare what I am exempted from (e.g. Polytechnic Exemptions) |am not recommended modules that I am exempted from
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |user |declare that I am part of a Residential College program |am given recommendations that take into account UTCP modules
+
+|`* * *` |user |declare what tracks/specializations (Focus Areas) I am interested/am taking |am given recommendations that will fulfill the requirements of that track/specialization
+
+|`* *` |user |declare my intention of overloading modules |am given recommendations to graduate faster
+
+|`* *` |user |declare my intention of underloading modules |am given recommendations to graduate faster
+
+|`* *` |user |verify if I can graduate on time given currently selected modules |am given recommendations of feasible modules to take
+
+|`* * *` |user |view the list of modules which I have taken |can remember what modules I have taken
+
+|`* * *` |user |view the list of modules which I have declared exempted from |can remember what modules I am exempted from
+
+|`* *` |user |check which lecturer is teaching the module |can decide if I should take that module in that semester
+
+|`* * *` |user |see a list of all available modules in NUS |can see what modules is available for me to take
+
+|`* * *` |user |enter the grades I got for each module |can view my Cumulative Average Point (CAP) for each and all semesters
+
+|`* *` |user |declare that I am part of NOC programme |can count NOC modules towards my graduation requirements
+
+|`* *` |user |declare that I am part of the university scholar programme |can replace my requirements for graduation with USP modules
+
+|`* * *` |user |can see if a module is being offered in a semester that I want |can plan my academic plan correctly
+
+|`* *` |user |can check the venue of the class |can plan my traveling route during module planning
+
+|`*` |user |set the module to be non graded to pass or fail |can set the overseas module to be pass or fail without affecting my CAP
+
+|`* *` |user |change the colours of the module planner for customizable |can enjoy dark theme
+
+|`* * *` |user |see the list of grades I obtained for each module |can have a better understanding of my academic performance
+
+|`* *` |user |declare when I would like to undergo an internship |can plan the timing of my modules
+
+|`* *` |user |view changes in Grade Point Average (GPA) according to projected grades |can have a better understanding of my academic performance
+
+|`*` |user |see which pathways would be more challenging (i.e. Level 3K, 4K, 5K modules) |can choose a better course pathway in terms of maximising GPA/fulfilling course requirements
+
+|`*` |user |set preferences (e.g. ‘free’ days/only after 12 PM) in order to automatically organise the timetable |have an efficient and personalised timetable
+
+|`* *` |user |automatically select non-conflicting lecture and tutorial slots based on preferences |can create usable timetables based on my preferences
+
 |=======================================================================
 
 _{More to be added}_
@@ -313,33 +356,320 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `Planner` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Add plan (UCA01)
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a plan
+2.  User supplies plan name and plan major
+3.  Planner adds the plan
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
+* 2a. Any of the plan or major is missing or invalid
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 2a1. Planner shows an error message
 +
-Use case resumes at step 2.
+Use case ends
+
+
+[discrete]
+=== Use case: Delete plan (UCA02)
+
+*MSS*
+
+1.  User requests to list plans
+2.  Planner shows a list of plans
+3.  User requests to delete a specific plan in the list
+4.  Planner deletes the plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 3a. The given index is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 2
+
+
+[discrete]
+=== Use case: Select plan (UCA03)
+
+*MSS*
+
+1.  User requests to list plans
+2.  Planner shows a list of plans
+3.  User requests to select a specific plan in the list
+4.  Planner selects the plan as the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 3a. The given index is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 2
+
+
+[discrete]
+=== Use case: Add timetable (UCB01)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to add a timetable
+3.  User specifies semester of the timetable
+4.  Planner adds the timetable to the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. There is no plan currently selected
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+* 3a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Delete timetable (UCB02)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list timetables
+3.  Planner shows a list of timetables of the active plan
+4.  User specifies a corresponding semester for a timetable to delete
+5.  Planner deletes the timetable from the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. There is no plan currently selected
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+* 4a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Select timetable (UCB03)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list timetables
+3.  Planner shows a list of timetables of the active plan
+4.  User requests to select a specific timetable in the list
+5.  Planner selects the timetable as the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 4a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 3
+
+
+
+[discrete]
+=== Use case: Add module (UCC01)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to add a specified module
+3.  Planner adds the module to the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module already exists in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+=== Use case: Delete module (UCC02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to delete a specified module
+3.  Planner deletes the module from the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Delete module (UCC02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to delete a specified module
+3.  Planner deletes the module from the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: List grades (UCD01)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list grades
+3.  Planner lists grades and statistics
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The user requests to list all modules taken
++
+[none]
+** 2a1. Planner lists all modules taken and their respective grades
++
+Use case ends
+
+
+=== Use case: Set module grade (UCD02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to set the grade of a specified module
+3.  Planner sets the grade of the specified module
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2c. The given grade is invalid
++
+[none]
+** 2c1. Planner shows an error message
++
+Use case ends
 
 _{More to be added}_
 
@@ -392,7 +722,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample plans. The window size may not be optimal.
 
 . Saving window preferences
 
@@ -402,16 +732,28 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a plan
 
-. Deleting a person while all persons are listed
+. Deleting a plan while all plans are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
+.. Test case: `student remove 1` +
+   Expected: First plan is deleted from the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student remove 0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
+   Expected: Similar to previous.
+
+=== Adding a plan
+
+. Adding a plan while all plans are listed
+
+.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
+.. Test case: `student add name/Alice major/CS` +
+   Expected: Plan is added to the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student add major/CS` +
+   Expected: No plan is added. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `student add`, `student add name/` +
    Expected: Similar to previous.
 
 _{ more test cases ... }_
@@ -420,6 +762,15 @@ _{ more test cases ... }_
 
 . Dealing with missing/corrupted data files
 
+////
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+////
+
+.. Test case: Delete the file named `planner.json` in the `data` folder, relative to the path of the jar file.
+   Launch the app by double-clicking the jar file. +
+   Expected: Shows the GUI with a set of sample plans.
+.. Test case: Edit the file named `planner.json` in the `data` folder such that it is no longer valid JSON.
+   This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
+   Expected: Shows the GUI with a set of sample plans.
 
 _{ more test cases ... }_
