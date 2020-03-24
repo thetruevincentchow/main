@@ -15,6 +15,12 @@ public class User {
     private Map<StudentSemester, TimeTable> timeTables;
     private Set<ModuleCode> exemptedModules;
 
+    public User(Student student) {
+        this.student = student;
+        timeTables = new HashMap<>();
+        exemptedModules = new HashSet<>();
+    }
+
     public Student getStudent() {
         return student;
     }
@@ -38,11 +44,4 @@ public class User {
     public void setExemptedModules(Set<ModuleCode> exemptedModules) {
         this.exemptedModules = exemptedModules;
     }
-
-    public User(Student student) {
-        this.student = student;
-        timeTables = new HashMap<>();
-        exemptedModules = new HashSet<>();
-    }
-
 }

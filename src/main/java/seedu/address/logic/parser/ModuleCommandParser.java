@@ -1,13 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ModuleAddCommand;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.ModuleGradeCommand;
+import seedu.address.logic.commands.ModuleListCommand;
+import seedu.address.logic.commands.ModuleRemoveCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ModuleCommandParser implements Parser<ModuleCommand> {
     /**

@@ -45,7 +45,7 @@ public class StudentGradeCommand extends StudentCommand {
             sb.append("\n");
             sb.append(sem.toString());
 
-            for (Enrollment enrollment : timeTable.enrollments) {
+            for (Enrollment enrollment : timeTable.getEnrollments()) {
                 sb.append("\n");
                 sb.append(enrollment.getModuleCode().value);
                 sb.append(String.format(" (%d MCs): ", enrollment.getCredit()));

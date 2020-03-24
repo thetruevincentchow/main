@@ -10,6 +10,8 @@ public abstract class GenericSpecialisation {
 
     private String name;
 
+    protected List<GraduationRequirement> graduationRequirements = new ArrayList<>();
+
     public String getName() {
         return name;
     }
@@ -17,8 +19,6 @@ public abstract class GenericSpecialisation {
     public void setName(String name) {
         this.name = name;
     }
-
-    protected List<GraduationRequirement> graduationRequirements = new ArrayList<>();
 
     private List<GraduationRequirement> getGraduationRequirements() {
         return graduationRequirements;

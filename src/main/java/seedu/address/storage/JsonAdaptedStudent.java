@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
+import seedu.address.model.student.Major;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Major;
 import seedu.address.model.student.TimeTableMap;
 
 
