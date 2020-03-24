@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= NUS Module Planner - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -117,12 +117,12 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/model/PlannerModel.java[`PlannerModel.java`]
 
-The `Model`,
+The `PlannerModel`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the Planner data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -679,7 +679,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Expected: Shows the GUI with a set of sample plans. The window size may not be optimal.
 
 . Saving window preferences
 
@@ -689,16 +689,28 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a plan
 
-. Deleting a person while all persons are listed
+. Deleting a plan while all plans are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
+.. Test case: `student remove 1` +
+   Expected: First plan is deleted from the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student remove 0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
+   Expected: Similar to previous.
+
+=== Adding a plan
+
+. Adding a plan while all plans are listed
+
+.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
+.. Test case: `student add name/Alice major/CS` +
+   Expected: Plan is added to the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student add major/CS` +
+   Expected: No plan is added. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `student add`, `student add name/` +
    Expected: Similar to previous.
 
 _{ more test cases ... }_
@@ -707,6 +719,15 @@ _{ more test cases ... }_
 
 . Dealing with missing/corrupted data files
 
+////
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+////
+
+.. Test case: Delete the file named `planner.json` in the `data` folder, relative to the path of the jar file.
+   Launch the app by double-clicking the jar file. +
+   Expected: Shows the GUI with a set of sample plans.
+.. Test case: Edit the file named `planner.json` in the `data` folder such that it is no longer valid JSON.
+   This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
+   Expected: Shows the GUI with a set of sample plans.
 
 _{ more test cases ... }_
