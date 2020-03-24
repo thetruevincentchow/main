@@ -87,7 +87,7 @@ public class Planner implements ReadOnlyPlanner {
         return true;
     }
 
-    //TODO: Replace `ModuleCode` with`Enrollment`.
+    // TODO: Replace `ModuleCode` with`Enrollment`.
     //      Currently we can query with `ModuleCode` and add `Enrollment`.
     public boolean hasEnrollment(ModuleCode moduleCode) {
         TimeTable timeTable = getActiveTimeTable();
@@ -109,7 +109,7 @@ public class Planner implements ReadOnlyPlanner {
 
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         Enrollment enrollment = getEnrollment(moduleCode);
-        enrollment.grade = Optional.of(grade);
+        enrollment.setGrade(Optional.of(grade));
     }
 
     public boolean addEnrollment(Enrollment enrollment) {
@@ -145,13 +145,13 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public void activateValidStudent() {
-        //TODO: handle `activeStudents` being null (e.g. if data file is missing)
-        //TODO: handle all students being removed
+        // TODO: handle `activeStudents` being null (e.g. if data file is missing)
+        // TODO: handle all students being removed
         activeStudent = null;
         if (students.iterator().hasNext()) {
             activeStudent = students.iterator().next();
         }
-        activeSemester = null; //TODO: possibly validate existing value first
+        activeSemester = null; // TODO: possibly validate existing value first
     }
 
     public Student getActiveStudent() {
@@ -179,14 +179,14 @@ public class Planner implements ReadOnlyPlanner {
             throw new IllegalArgumentException("Student does not exist in student list");
         }
         activeStudent = student;
-        activeSemester = null; //TODO: validate existing value first
+        activeSemester = null; // TODO: validate existing value first
     }
 
     public void removeStudent(Student toRemove) {
-        //TODO: handle all students being removed
+        // TODO: handle all students being removed
         if (toRemove == activeStudent) {
             activeStudent = null;
-            activeSemester = null; //TODO: validate existing value first
+            activeSemester = null; // TODO: validate existing value first
         }
         students.remove(toRemove);
 
@@ -213,8 +213,8 @@ public class Planner implements ReadOnlyPlanner {
         }
         requireAllNonNull(activeStudent);
 
-        //TODO: handle `activeStudents` being null (e.g. if data file is missing)
-        //TODO: handle all students being removed
+        // TODO: handle `activeStudents` being null (e.g. if data file is missing)
+        // TODO: handle all students being removed
         if (activeStudent.getTimeTableMap().isEmpty()) {
             throw new IllegalArgumentException("The active student has no timetables");
         }

@@ -39,10 +39,10 @@ class JsonAdaptedSemesterData {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedSemesterData(SemesterData semesterData) {
-        this.semester = semesterData.semester;
-        this.examDate = semesterData.examDate;
-        this.examDuration = semesterData.examDuration;
-        this.timetable = semesterData.timetable.stream().map(JsonAdaptedLesson::new).collect(Collectors.toList());
+        this.semester = semesterData.getSemester();
+        this.examDate = semesterData.getExamDate();
+        this.examDuration = semesterData.getExamDuration();
+        this.timetable = semesterData.getTimetable().stream().map(JsonAdaptedLesson::new).collect(Collectors.toList());
     }
 
     /**

@@ -51,7 +51,7 @@ public class TimeTableActiveCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        //TODO: validate semester
+        // TODO: validate semester
         /*
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

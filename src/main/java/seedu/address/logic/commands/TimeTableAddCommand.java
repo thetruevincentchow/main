@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -51,7 +51,7 @@ public class TimeTableAddCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        //TODO: validate semester
+        // TODO: validate semester
 
         if (model.getPlanner().hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_EXISTING_SEMESTER, studentSemester));

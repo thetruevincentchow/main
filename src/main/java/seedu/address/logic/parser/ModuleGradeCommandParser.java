@@ -35,7 +35,7 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
         requireNonNull(args);
 
         //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
-        //TODO: use ArgumentTokenizer for all subcommands
+        // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_GRADE);
 
         if (argMultimap.getPreamble().isEmpty()) {

@@ -38,7 +38,7 @@ public class TimeTableRemoveCommandParser implements Parser<TimeTableRemoveComma
         requireNonNull(args);
 
         //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
-        //TODO: use ArgumentTokenizer for all subcommands
+        // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR)
@@ -56,7 +56,7 @@ public class TimeTableRemoveCommandParser implements Parser<TimeTableRemoveComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableRemoveCommand.MESSAGE_USAGE), pe);
         }
 
-        SemesterYear semesterYear = new SemesterYear(sem, 0); //TODO: input academic year
+        SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year
         StudentSemester studentSemester = new StudentSemester(semesterYear, index.getOneBased());
         return new TimeTableRemoveCommand(studentSemester);
     }

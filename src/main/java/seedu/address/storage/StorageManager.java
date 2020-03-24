@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.Planner;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -24,7 +24,8 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, PlannerStorage plannerStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          PlannerStorage plannerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
