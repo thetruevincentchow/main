@@ -14,16 +14,16 @@ public class MajorSetCommand extends MajorCommand {
 
     private Major major;
 
+    public MajorSetCommand(String major) {
+        this.major = new Major(major);
+    }
+
     public Major getMajor() {
         return major;
     }
 
     public void setMajor(Major major) {
         this.major = major;
-    }
-
-    public MajorSetCommand(String major) {
-        this.major = new Major(major);
     }
 
     @Override

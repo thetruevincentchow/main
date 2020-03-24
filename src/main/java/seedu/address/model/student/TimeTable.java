@@ -7,7 +7,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueEnrollmentList;
 
 public class TimeTable {
-    public UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
+    private UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
 
     public TimeTable() { }
 
@@ -51,5 +51,9 @@ public class TimeTable {
 
     public void removeModuleCode(ModuleCode moduleCode) {
         enrollments.removeIf(enrollment -> enrollment.getModuleCode().equals(moduleCode));
+    }
+
+    public void setEnrollments(UniqueEnrollmentList enrollments) {
+        this.enrollments = enrollments;
     }
 }

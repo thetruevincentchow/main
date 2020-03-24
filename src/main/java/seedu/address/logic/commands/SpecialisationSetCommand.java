@@ -14,6 +14,12 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     public static final String MESSAGE_USAGE = "specialisation " + COMMAND_WORD
         + ": Set's the current Student's specialisation";
 
+    private GenericSpecialisation specialisation;
+
+    public SpecialisationSetCommand(GenericSpecialisation specialisation) {
+        this.specialisation = specialisation;
+    }
+
     public GenericSpecialisation getSpecialisation() {
         return specialisation;
     }
@@ -22,11 +28,6 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
         this.specialisation = specialisation;
     }
 
-    private GenericSpecialisation specialisation;
-
-    public SpecialisationSetCommand(GenericSpecialisation specialisation) {
-        this.specialisation = specialisation;
-    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

@@ -1,24 +1,20 @@
 package seedu.address.model.graduation;
 
+import java.util.List;
+
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import static seedu.address.model.graduation.AggregationType.ALL;
-
 public class FocusAreaGraduationRequirement extends GraduationRequirement {
 
-    public GenericSpecialisation genericSpecialisation = null;
+    private GenericSpecialisation genericSpecialisation = null;
 
     public FocusAreaGraduationRequirement(Model model) {
         try {
             genericSpecialisation = model.getActiveStudent().getSpecialisation();
         } catch (Exception e) {
-
+            return;
         }
     }
 
@@ -31,6 +27,10 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
             return false;
         }
         return genericSpecialisation.isFulfilled(moduleCodes);
+    }
+
+    public GenericSpecialisation getGenericSpecialisation() {
+        return genericSpecialisation;
     }
 
     public String getString(List<ModuleCode> moduleCodes) {

@@ -180,9 +180,11 @@ public class Student {
 
     public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
-        for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme().getGraduationRequirementList()) {
+        for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
+            .getGraduationRequirementList()) {
             if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
-                FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement;
+                FocusAreaGraduationRequirement focusAreaGraduationRequirement =
+                    (FocusAreaGraduationRequirement) graduationRequirement;
                 focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
             }
         }

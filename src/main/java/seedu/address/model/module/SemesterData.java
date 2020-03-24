@@ -9,6 +9,13 @@ public class SemesterData {
     private int examDuration;
     private List<Lesson> timetable;
 
+    public SemesterData(int semester, String examDate, int examDuration, List<Lesson> timetable) {
+        this.semester = semester;
+        this.examDate = examDate;
+        this.examDuration = examDuration;
+        this.timetable = timetable;
+    }
+
     public int getSemester() {
         return semester;
     }
@@ -41,10 +48,4 @@ public class SemesterData {
         this.timetable = timetable;
     }
 
-    public SemesterData(int semester, String examDate, int examDuration, List<Lesson> timetable) {
-        this.semester = semester;
-        this.examDate = examDate;
-        this.examDuration = examDuration;
-        this.timetable = timetable;
-    }
 }

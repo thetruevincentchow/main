@@ -1,18 +1,22 @@
 package seedu.address.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.grades.Grade;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.*;
-import seedu.address.model.student.*;
-import seedu.address.model.time.StudentSemester;
-import seedu.address.model.util.SampleDataUtil;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.grades.Grade;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleDataImporter;
+import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.student.Enrollment;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.time.StudentSemester;
 
 /**
  * Wraps all data at the planner level
@@ -39,7 +43,7 @@ public class Planner implements ReadOnlyPlanner {
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
      */
     public Planner() {
-        activeStudent = null; //new Student(new Name("Placeholder Name"), new Degrees(), new Major("Placeholder Major"));
+        activeStudent = null;
         students = new UniqueStudentList();
         loadModules();
     }
