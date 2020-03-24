@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,8 +15,6 @@ import seedu.address.model.time.StudentSemester;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
-
-import static java.util.Objects.requireNonNull;
 
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
