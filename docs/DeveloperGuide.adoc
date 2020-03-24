@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920S2-CS2103T-W13-4/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team AY1920S2-CS2103T-W13-4`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -313,33 +313,320 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `Planner` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Add plan (UCA01)
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a plan
+2.  User supplies plan name and plan major
+3.  Planner adds the plan
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
+* 2a. Any of the plan or major is missing or invalid
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 2a1. Planner shows an error message
 +
-Use case resumes at step 2.
+Use case ends
+
+
+[discrete]
+=== Use case: Delete plan (UCA02)
+
+*MSS*
+
+1.  User requests to list plans
+2.  Planner shows a list of plans
+3.  User requests to delete a specific plan in the list
+4.  Planner deletes the plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 3a. The given index is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 2
+
+
+[discrete]
+=== Use case: Select plan (UCA03)
+
+*MSS*
+
+1.  User requests to list plans
+2.  Planner shows a list of plans
+3.  User requests to select a specific plan in the list
+4.  Planner selects the plan as the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 3a. The given index is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 2
+
+
+[discrete]
+=== Use case: Add timetable (UCB01)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to add a timetable
+3.  User specifies semester of the timetable
+4.  Planner adds the timetable to the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. There is no plan currently selected
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+* 3a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Delete timetable (UCB02)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list timetables
+3.  Planner shows a list of timetables of the active plan
+4.  User specifies a corresponding semester for a timetable to delete
+5.  Planner deletes the timetable from the active plan
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. There is no plan currently selected
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+* 4a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Select timetable (UCB03)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list timetables
+3.  Planner shows a list of timetables of the active plan
+4.  User requests to select a specific timetable in the list
+5.  Planner selects the timetable as the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The list is empty
++
+Use case ends
+
+* 4a. The given semester is invalid
++
+[none]
+** 3a1. Planner shows an error message
++
+Use case resumes at step 3
+
+
+
+[discrete]
+=== Use case: Add module (UCC01)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to add a specified module
+3.  Planner adds the module to the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module already exists in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+=== Use case: Delete module (UCC02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to delete a specified module
+3.  Planner deletes the module from the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: Delete module (UCC02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to delete a specified module
+3.  Planner deletes the module from the active timetable
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+
+[discrete]
+=== Use case: List grades (UCD01)
+
+*MSS*
+
+1.  User [.underline]#selects a plan (UCA03)#
+2.  User requests to list grades
+3.  Planner lists grades and statistics
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The user requests to list all modules taken
++
+[none]
+** 2a1. Planner lists all modules taken and their respective grades
++
+Use case ends
+
+
+=== Use case: Set module grade (UCD02)
+
+*MSS*
+
+1.  User [.underline]#selects a timetable (UCB03)#
+2.  User requests to set the grade of a specified module
+3.  Planner sets the grade of the specified module
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2b. The given module does not exist in the timetable
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends
+
+[none]
+* 2c. The given grade is invalid
++
+[none]
+** 2c1. Planner shows an error message
++
+Use case ends
 
 _{More to be added}_
 
