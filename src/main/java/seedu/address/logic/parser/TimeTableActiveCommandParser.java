@@ -37,13 +37,16 @@ public class TimeTableActiveCommandParser implements Parser<TimeTableActiveComma
     public TimeTableActiveCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
+        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the
+        // preamble
         // TODO: use ArgumentTokenizer for all subcommands
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM,
+            PREFIX_STUDENT_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableActiveCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TimeTableActiveCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -53,7 +56,8 @@ public class TimeTableActiveCommandParser implements Parser<TimeTableActiveComma
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());
             sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableActiveCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TimeTableActiveCommand.MESSAGE_USAGE), pe);
         }
 
         SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year

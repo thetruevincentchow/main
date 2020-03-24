@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SpecialisationCommand;
 import seedu.address.logic.commands.SpecialisationSetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SpecialisationCommandParser implements Parser<SpecialisationCommand> {
     /**

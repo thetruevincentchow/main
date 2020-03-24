@@ -21,8 +21,9 @@ public class SpecialisationSetCommandParser implements Parser<SpecialisationSetC
             switch (args) {
             case "algo":
                 return new SpecialisationSetCommand(new AlgorithmsAndTheorySpecialisation());
+            default:
+                return null;
             }
-            return null;
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }

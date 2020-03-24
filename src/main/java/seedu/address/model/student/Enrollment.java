@@ -13,6 +13,13 @@ public class Enrollment {
     private Optional<Grade> grade;
     private int credit;
 
+    public Enrollment(ModuleCode code, Optional<Grade> grade, int credit) {
+        requireAllNonNull(code, grade, credit);
+        this.code = code;
+        this.grade = grade;
+        this.credit = credit;
+    }
+
     public ModuleCode getCode() {
         return code;
     }
@@ -47,12 +54,5 @@ public class Enrollment {
         } else {
             return OptionalDouble.empty();
         }
-    }
-
-    public Enrollment(ModuleCode code, Optional<Grade> grade, int credit) {
-        requireAllNonNull(code, grade, credit);
-        this.code = code;
-        this.grade = grade;
-        this.credit = credit;
     }
 }

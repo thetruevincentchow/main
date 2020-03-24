@@ -13,32 +13,12 @@ import seedu.address.model.student.Enrollment;
 public class JsonAdaptedEnrollment {
     private final JsonAdaptedModuleCode code;
 
-    public JsonAdaptedModuleCode getCode() {
-        return code;
-    }
-
-    public JsonAdaptedGrade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(JsonAdaptedGrade grade) {
-        this.grade = grade;
-    }
-
     /**
      * Represents the student's grade. Can be null.
      */
-    private JsonAdaptedGrade grade;
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-
     private int credit;
+
+    private JsonAdaptedGrade grade;
 
     @JsonCreator
     public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code,
@@ -63,5 +43,25 @@ public class JsonAdaptedEnrollment {
     public Enrollment toModelType() throws IllegalValueException {
         return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()),
             credit);
+    }
+
+    public JsonAdaptedModuleCode getCode() {
+        return code;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public JsonAdaptedGrade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(JsonAdaptedGrade grade) {
+        this.grade = grade;
     }
 }

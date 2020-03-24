@@ -7,6 +7,8 @@ import seedu.address.model.module.ModuleCode;
 
 public abstract class DegreeProgramme extends Programme {
 
+    private DegreeType degreeType;
+
     public DegreeType getDegreeType() {
         return degreeType;
     }
@@ -14,8 +16,6 @@ public abstract class DegreeProgramme extends Programme {
     public void setDegreeType(DegreeType degreeType) {
         this.degreeType = degreeType;
     }
-
-    private DegreeType degreeType;
 
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
         for (GraduationRequirement requirement : this.graduationRequirementList) {

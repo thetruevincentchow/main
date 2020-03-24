@@ -27,10 +27,6 @@ public class Major {
 
     public final String major;
 
-    public DegreeProgramme getDegreeProgramme() {
-        return degreeProgramme;
-    }
-
     private DegreeProgramme degreeProgramme;
 
     /**
@@ -54,6 +50,10 @@ public class Major {
      */
     public static boolean isValidMajor(String test) {
         return test.matches(VALIDATION_REGEX) && (test.equals("CS") || test.equals("IS"));
+    }
+
+    public DegreeProgramme getDegreeProgramme() {
+        return degreeProgramme;
     }
 
     public void setDegreeProgramme(DegreeProgramme degreeProgramme) {
