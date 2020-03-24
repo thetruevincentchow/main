@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.ModuleAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
-
-import static java.util.Objects.requireNonNull;
 
 public class ModuleAddCommandParser implements Parser<ModuleAddCommand> {
     /**

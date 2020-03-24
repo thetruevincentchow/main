@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyPlanner;
 
@@ -27,6 +28,16 @@ public class JsonSerializableModule {
     private List<JsonSerializableSemesterData> semesterData;
     private String prereqTree;
     private String fulfillRequirements;
+
+    /**
+     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     */
+    public JsonSerializableModule(ReadOnlyPlanner source) {
+        // TODO: Don't think we will need to use this. KIV
+        // modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+    }
 
     /**
      * Constructs a {@code JsonSerializableModule} with the given Module.
@@ -60,16 +71,6 @@ public class JsonSerializableModule {
         this.semesterData = semesterData;
         this.prereqTree = prereqTree;
         this.fulfillRequirements = fulfillRequirements;
-    }
-
-    /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
-     *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
-     */
-    public JsonSerializableModule(ReadOnlyPlanner source) {
-        // TODO: Don't think we will need to use this. KIV
-        // modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**

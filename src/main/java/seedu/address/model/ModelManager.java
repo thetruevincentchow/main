@@ -6,30 +6,30 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.grades.Grade;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TimeTable;
 import seedu.address.model.time.StudentSemester;
-
 
 /**
  * Represents the in-memory model of the address book data.
@@ -167,8 +167,10 @@ public class ModelManager implements Model {
         ArrayList<JsonAdaptedModule> jsonAdaptedModules = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/bulletinModulesList.json"), new TypeReference<ArrayList<JsonAdaptedModule>>() {
-            });
+            jsonAdaptedModules = objectMapper.readValue(
+                new File("src/main/resources/json/bulletinModulesList.json"),
+                new TypeReference<ArrayList<JsonAdaptedModule>>() {
+                    });
         } catch (IOException e) {
             e.printStackTrace();
         }

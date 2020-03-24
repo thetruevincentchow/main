@@ -1,9 +1,9 @@
 package seedu.address.model.module;
 
+import java.util.List;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Semester;
-
-import java.util.List;
 
 public class Module {
 

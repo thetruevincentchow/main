@@ -1,11 +1,12 @@
 package seedu.address.model.module;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -78,7 +79,8 @@ public class JsonAdaptedModule {
         this.prerequisite = module.getPrerequisite();
         this.moduleCredit = module.getModuleTitle();
         this.moduleCode = module.getAcadYear().toString();
-        this.semesterData = module.getSemesterData().stream().map(JsonAdaptedSemesterData::new).collect(Collectors.toList());
+        this.semesterData = module.getSemesterData().stream().map(JsonAdaptedSemesterData::new)
+            .collect(Collectors.toList());
         this.prereqTree = module.getPrereqTree();
         this.fulfillRequirements = module.getFulfillRequirements();
     }
