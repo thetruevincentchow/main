@@ -22,12 +22,12 @@ import seedu.address.model.person.Remark;
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+        + "by the index number used in the last person listing. "
+        + "Existing remark will be overwritten by the input.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "r/ [REMARK]\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + "r/ Likes to swim.";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
@@ -54,8 +54,8 @@ public class RemarkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(),
-                remark);
+            personToEdit.getAddress(), personToEdit.getTags(),
+            remark);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -86,6 +86,6 @@ public class RemarkCommand extends Command {
 
         RemarkCommand e = (RemarkCommand) obj;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+            && remark.equals(e.remark);
     }
 }

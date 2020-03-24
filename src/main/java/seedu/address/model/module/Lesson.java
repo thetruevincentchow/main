@@ -1,8 +1,6 @@
 package seedu.address.model.module;
 
 public class Lesson {
-    protected ModuleTime time;
-
     public String classNo;
     public String startTime;
     public String endTime;
@@ -11,6 +9,7 @@ public class Lesson {
     public String day;
     public String lessonType;
     public int size;
+    protected ModuleTime time;
 
     public Lesson() {
 

@@ -21,21 +21,21 @@ public class Module {
     public String prereqTree;
     public String fulfillRequirements;
 
-    public Module (
+    public Module(
 
-            String acadYear,
-            String preclusion,
-            String description,
-            String title,
-            String department,
-            String faculty,
-            String workload,
-            String prerequisite,
-            String moduleCredit,
-            String moduleCode,
-            String semesterData,
-            String prereqTree,
-            String fulfillRequirements
+        String acadYear,
+        String preclusion,
+        String description,
+        String title,
+        String department,
+        String faculty,
+        String workload,
+        String prerequisite,
+        String moduleCredit,
+        String moduleCode,
+        List<SemesterData> semesterData,
+        String prereqTree,
+        String fulfillRequirements
 
     ) throws IllegalValueException {
         this.acadYear = acadYear;
@@ -57,10 +57,6 @@ public class Module {
         return moduleCode;
     }
 
-    public ModuleCode getModuleCode() {
-        return moduleCode;
-    }
-
     public boolean isSameModule(Module module) {
         return false; // TODO
     }
@@ -75,33 +71,32 @@ public class Module {
         return title;
     }
 
-    public String getSemesterName() {
+    public List<SemesterData> getSemesterName() {
         return semesterData;
     }
 
     public Semester convertSem(String semesterName) {
         String convertedValue;
-        switch (semesterName){
-            case "Semester 1":
-                convertedValue = "ONE";
-                break;
-            case "Semester 2":
-                convertedValue = "TWO";
-                break;
-            case "Special Semester 1":
-                convertedValue = "SPECIAL_ONE";
-                break;
-            case "Special Semester 2":
-                convertedValue = "SPECIAL_TWO";
-                break;
-            default:
-                convertedValue = "NULL";
-                break;
+        switch (semesterName) {
+        case "Semester 1":
+            convertedValue = "ONE";
+            break;
+        case "Semester 2":
+            convertedValue = "TWO";
+            break;
+        case "Special Semester 1":
+            convertedValue = "SPECIAL_ONE";
+            break;
+        case "Special Semester 2":
+            convertedValue = "SPECIAL_TWO";
+            break;
+        default:
+            convertedValue = "NULL";
+            break;
         }
         return Semester.valueOf(convertedValue);
 
     }
-
 
 
 }

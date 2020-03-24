@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class GraduationYear {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student IDs should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Student IDs should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -47,8 +47,8 @@ public class GraduationYear {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GraduationYear // instanceof handles nulls
-                && graduationYear == (((GraduationYear) other).graduationYear)); // state check
+            || (other instanceof GraduationYear // instanceof handles nulls
+            && graduationYear == (((GraduationYear) other).graduationYear)); // state check
     }
 
     @Override

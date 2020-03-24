@@ -21,22 +21,19 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Planner implements ReadOnlyPlanner {
 
     /**
+     * The list of available modules in NUS.
+     */
+    protected static UniqueModuleList modules = new UniqueModuleList();
+    /**
      * The current student that the user can immediately modify.
      * `activeStudent` must be an element of `students`, i.e. `students.contains(activeStudent)` is `true`
      */
     protected Student activeStudent;
-
     protected StudentSemester activeSemester;
-
     /**
      * The list of students created by the user.
      */
     protected UniqueStudentList students; //TOOD: use list of students in storage
-
-    /**
-     * The list of available modules in NUS.
-     */
-    protected static UniqueModuleList modules = new UniqueModuleList();
 
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
@@ -133,6 +130,10 @@ public class Planner implements ReadOnlyPlanner {
         return modules.asUnmodifiableObservableList();
     }
 
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        return activeStudent.getAllEnrolledModules();
+    }
+
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
         moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
@@ -146,7 +147,10 @@ public class Planner implements ReadOnlyPlanner {
     public void activateValidStudent() {
         //TODO: handle `activeStudents` being null (e.g. if data file is missing)
         //TODO: handle all students being removed
-        activeStudent = students.iterator().next();
+        activeStudent = null;
+        if (students.iterator().hasNext()) {
+            activeStudent = students.iterator().next();
+        }
         activeSemester = null; //TODO: possibly validate existing value first
     }
 
@@ -159,6 +163,7 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Replaces the currently active student with the student given by (@code editedStudent).
+     *
      * @params editedStudent Student to copy for replacement.
      */
     public void setActiveStudent(Student editedStudent) {
@@ -197,6 +202,11 @@ public class Planner implements ReadOnlyPlanner {
         return activeStudent.getTimeTable(activeSemester);
     }
 
+    public void setActiveTimeTable(TimeTable timeTable) {
+        requireAllNonNull(activeStudent);
+        activeStudent.setTimeTable(activeSemester, timeTable);
+    }
+
     private void activateValidSemester() {
         if (activeStudent == null) {
             throw new IllegalArgumentException("No active student selected");
@@ -209,11 +219,6 @@ public class Planner implements ReadOnlyPlanner {
             throw new IllegalArgumentException("The active student has no timetables");
         }
         activeSemester = activeStudent.getTimeTableMap().keySet().iterator().next();
-    }
-
-    public void setActiveTimeTable(TimeTable timeTable) {
-        requireAllNonNull(activeStudent);
-        activeStudent.setTimeTable(activeSemester, timeTable);
     }
 
     public void removeTimeTable(StudentSemester keyToRemove) {

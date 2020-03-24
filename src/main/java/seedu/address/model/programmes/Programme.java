@@ -13,6 +13,7 @@ public abstract class Programme {
     public String getName() {
         return name;
     }
+
     public List<GraduationRequirement> getGraduationRequirementList() {
         return graduationRequirementList;
     }

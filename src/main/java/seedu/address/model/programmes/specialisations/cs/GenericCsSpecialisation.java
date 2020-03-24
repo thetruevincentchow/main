@@ -15,8 +15,8 @@ public abstract class GenericCsSpecialisation extends GenericSpecialisation {
         int minModules = 3;
         int minNumOf4k = 1;
         int modules = 0;
-        int numOf4k  = 0;
-        for (ModuleCode moduleCode : moduleCodes)  {
+        int numOf4k = 0;
+        for (ModuleCode moduleCode : moduleCodes) {
             if (primaries.contains(moduleCode)) {
                 modules++;
                 if (Pattern.matches("...[456].*", moduleCode.value)) {
@@ -24,9 +24,6 @@ public abstract class GenericCsSpecialisation extends GenericSpecialisation {
                 }
             }
         }
-        if (numOf4k >= minNumOf4k && modules >= minModules) {
-            return true;
-        }
-        return false;
+        return numOf4k >= minNumOf4k && modules >= minModules;
     }
 }

@@ -35,7 +35,7 @@ class JsonAdaptedLesson {
         @JsonProperty("day") String day,
         @JsonProperty("lessonType") String lessonType,
         @JsonProperty("size") int size
-        ) {
+    ) {
         this.classNo = classNo;
         this.startTime = startTime;
         this.endTime = endTime;

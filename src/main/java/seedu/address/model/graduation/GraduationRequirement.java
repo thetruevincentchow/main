@@ -8,6 +8,7 @@ import java.util.List;
 public abstract class GraduationRequirement {
 
     public ModuleCode moduleCode;
+
     public abstract boolean isFulfilled(List<ModuleCode> moduleCodes);
 
     protected String getStatusIcon(boolean done) {

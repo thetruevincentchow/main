@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class JsonStudentSemesterDeserializer extends KeyDeserializer {
     @Override
-    public StudentSemester deserializeKey(String key, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public StudentSemester deserializeKey(String key, DeserializationContext ctxt) throws IOException {
         try {
             return new JsonAdaptedStudentSemester(JsonUtil.fromJsonString(key, StudentSemester.class)).toModelType();
         } catch (IllegalValueException e) {

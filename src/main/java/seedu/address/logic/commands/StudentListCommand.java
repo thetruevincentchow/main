@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Student;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class StudentListCommand extends StudentCommand {
     public static final String COMMAND_WORD = "list";
@@ -17,8 +14,8 @@ public class StudentListCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student list' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": List students in the student list.\n"
-            + "Example: " + "student " + COMMAND_WORD;
+        + ": List students in the student list.\n"
+        + "Example: " + "student " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed students in student list:\n%1$s";
 

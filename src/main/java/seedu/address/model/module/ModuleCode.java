@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should only contain alphanumeric characters, and it should not be blank";
+        "Module codes should only contain alphanumeric characters, and it should not be blank";
 
     /*
      * All characters must be alphanumeric, and there must be at least one character.
@@ -23,6 +23,13 @@ public class ModuleCode {
         value = code.toUpperCase(); // Allow case insensitivity.
     }
 
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidModuleCode(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     @Override
     public String toString() {
         return value;
@@ -33,13 +40,6 @@ public class ModuleCode {
         return Objects.hash(value);
     }
 
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidModuleCode(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -47,7 +47,7 @@ public class ModuleCode {
         } else if (!(other instanceof ModuleCode)) {
             return false;
         } else {
-            return value.equals(((ModuleCode)other).value);
+            return value.equals(((ModuleCode) other).value);
         }
     }
 }

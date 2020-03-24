@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -7,24 +13,18 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Enrollment;
 
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 public class ModuleAddCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": Adds the module to list of enrolled modules.\n"
-            + "Example: " + "module " + COMMAND_WORD + "CS2030";
+        + ": Adds the module to list of enrolled modules.\n"
+        + "Example: " + "module " + COMMAND_WORD + "CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
-
 
 
     private final ModuleCode moduleCode;
@@ -33,6 +33,7 @@ public class ModuleAddCommand extends ModuleCommand {
         requireAllNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
+
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.

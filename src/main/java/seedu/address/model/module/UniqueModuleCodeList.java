@@ -13,14 +13,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * A list of ModuleCode that enforces uniqueness between its elements and does not allow nulls.
  * A module code is considered unique by comparing using {@code ModuleCode#equals(Object)}.
  * As such, adding, updating and removal of module codes uses (@code ModuleCode#equals(Object)).
- *
+ * <p>
  * Supports a minimal set of list operations.
  */
 public class UniqueModuleCodeList implements Iterable<ModuleCode> {
 
     private final ObservableList<ModuleCode> internalList = FXCollections.observableArrayList();
     private final ObservableList<ModuleCode> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -106,8 +106,8 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueModuleCodeList // instanceof handles nulls
-                && internalList.equals(((UniqueModuleCodeList) other).internalList));
+            || (other instanceof UniqueModuleCodeList // instanceof handles nulls
+            && internalList.equals(((UniqueModuleCodeList) other).internalList));
     }
 
     @Override

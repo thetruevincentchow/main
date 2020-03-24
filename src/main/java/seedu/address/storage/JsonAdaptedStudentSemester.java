@@ -44,7 +44,7 @@ public class JsonAdaptedStudentSemester {
         /*if (!SemesterYear.isValidSemesterYear(semYear)) {
             throw new IllegalValueException(SemesterYear.MESSAGE_CONSTRAINTS);
         }*/
-        final SemesterYear modelSemYear  =  semYear.toModelType();
+        final SemesterYear modelSemYear = semYear.toModelType();
 
         //TODO: validate degreeYear
         final int modelDegreeYear = degreeYear;
