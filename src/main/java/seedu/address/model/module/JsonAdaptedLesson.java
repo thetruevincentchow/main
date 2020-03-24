@@ -50,14 +50,14 @@ class JsonAdaptedLesson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedLesson(Lesson lesson) {
-        this.classNo = lesson.classNo;
-        this.startTime = lesson.startTime;
-        this.endTime = lesson.endTime;
-        this.weeks = lesson.weeks;
-        this.venue = lesson.venue;
-        this.day = lesson.day;
-        this.lessonType = lesson.lessonType;
-        this.size = lesson.size;
+        this.classNo = lesson.getClassNo();
+        this.startTime = lesson.getStartTime();
+        this.endTime = lesson.getEndTime();
+        this.weeks = lesson.getWeeks();
+        this.venue = lesson.getVenue();
+        this.day = lesson.getDay();
+        this.lessonType = lesson.getLessonType();
+        this.size = lesson.getSize();
     }
 
     /**

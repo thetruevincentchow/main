@@ -1,8 +1,18 @@
 package seedu.address.model.student;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.grades.CumulativeGrade;
 import seedu.address.model.grades.Grade;
 import seedu.address.model.graduation.FocusAreaGraduationRequirement;
@@ -11,13 +21,6 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Represents a Student in the address book.
@@ -40,7 +43,7 @@ public class Student {
         this(name, new Degrees(), null);
     }
 
-    //TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
+    // TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
     public Student(Name name, Major major) {
         requireAllNonNull(name);
         this.name = name;
@@ -106,7 +109,7 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        //TODO: initialize and compare `degrees`
+        // TODO: initialize and compare `degrees`
         return otherStudent.getName().equals(getName())
             && otherStudent.getMajor().equals(getMajor())
             //&& otherStudent.getDegrees().equals(getDegrees())
@@ -177,7 +180,7 @@ public class Student {
 
     public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
-        for (GraduationRequirement graduationRequirement : this.major.degreeProgramme.getGraduationRequirementList()) {
+        for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme().getGraduationRequirementList()) {
             if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
                 FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement;
                 focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
@@ -191,9 +194,9 @@ public class Student {
             Optional<Grade> optionalGrade = enrollment.getGrade();
             if (optionalGrade.isPresent()) {
                 OptionalDouble gradePoint = enrollment.getGradePoint();
-                cumulativeGrade.accumulate(optionalGrade.get(), enrollment.credit);
+                cumulativeGrade.accumulate(optionalGrade.get(), enrollment.getCredit());
             } else {
-                cumulativeGrade.accumulatePending(enrollment.credit);
+                cumulativeGrade.accumulatePending(enrollment.getCredit());
             }
         }
         return cumulativeGrade;

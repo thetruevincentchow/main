@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import java.io.IOException;
+
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.KeyDeserializer;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.time.StudentSemester;
-
-import java.io.IOException;
 
 public class JsonStudentSemesterDeserializer extends KeyDeserializer {
     @Override

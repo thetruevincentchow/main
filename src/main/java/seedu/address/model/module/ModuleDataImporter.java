@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+
 public class ModuleDataImporter {
 
     private static final String DOWNLOAD_URL = "https://api.nusmods.com/v2/{0}/moduleInfo.json";
@@ -40,7 +43,8 @@ public class ModuleDataImporter {
                         Files.copy(in, path);
                     }
                 }
-                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(path, JsonSerializableModule[].class);
+                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(path,
+                    JsonSerializableModule[].class);
                 if (optionalModules.isPresent()) {
                     JsonSerializableModule[] moduleArray = optionalModules.get();
                     for (JsonSerializableModule m : moduleArray) {

@@ -1,28 +1,48 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.grades.Grade;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Enrollment;
-import seedu.address.model.student.TimeTableMap;
-
 import java.util.Optional;
 
-//TODO: add other fields (currently only stores ModuleCode)
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.grades.Grade;
+import seedu.address.model.student.Enrollment;
+
+// TODO: add other fields (currently only stores ModuleCode)
 public class JsonAdaptedEnrollment {
     private final JsonAdaptedModuleCode code;
+
+    public JsonAdaptedModuleCode getCode() {
+        return code;
+    }
+
+    public JsonAdaptedGrade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(JsonAdaptedGrade grade) {
+        this.grade = grade;
+    }
+
     /**
      * Represents the student's grade. Can be null.
      */
-    public JsonAdaptedGrade grade;
-    public int credit;
+    private JsonAdaptedGrade grade;
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    private int credit;
 
     @JsonCreator
-    public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code, @JsonProperty("grade") JsonAdaptedGrade grade,
+    public JsonAdaptedEnrollment(@JsonProperty("code") JsonAdaptedModuleCode code,
+                                 @JsonProperty("grade") JsonAdaptedGrade grade,
                                  @JsonProperty("credit") int credit) {
         this.code = code;
         this.grade = grade;
@@ -37,10 +57,11 @@ public class JsonAdaptedEnrollment {
         } else {
             this.grade = null;
         }
-        this.credit = source.credit;
+        this.credit = source.getCredit();
     }
 
     public Enrollment toModelType() throws IllegalValueException {
-        return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()), credit);
+        return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()),
+            credit);
     }
 }

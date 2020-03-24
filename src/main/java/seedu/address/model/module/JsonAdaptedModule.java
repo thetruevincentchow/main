@@ -68,19 +68,19 @@ public class JsonAdaptedModule {
      * Converts a given {@code Module} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module module) {
-        this.acadYear = module.acadYear;
-        this.preclusion = module.preclusion;
-        this.description = module.description;
-        this.title = module.title;
-        this.department = module.department;
-        this.faculty = module.faculty;
+        this.acadYear = module.getAcadYear();
+        this.preclusion = module.getPreclusion();
+        this.description = module.getDescription();
+        this.title = module.getTitle();
+        this.department = module.getDepartment();
+        this.faculty = module.getFaculty();
         // this.workload = module.workload;
-        this.prerequisite = module.prerequisite;
-        this.moduleCredit = module.moduleCredit;
-        this.moduleCode = module.moduleCode.toString();
-        this.semesterData = module.semesterData.stream().map(JsonAdaptedSemesterData::new).collect(Collectors.toList());
-        this.prereqTree = module.prereqTree;
-        this.fulfillRequirements = module.fulfillRequirements;
+        this.prerequisite = module.getPrerequisite();
+        this.moduleCredit = module.getModuleTitle();
+        this.moduleCode = module.getAcadYear().toString();
+        this.semesterData = module.getSemesterData().stream().map(JsonAdaptedSemesterData::new).collect(Collectors.toList());
+        this.prereqTree = module.getPrereqTree();
+        this.fulfillRequirements = module.getFulfillRequirements();
     }
 
     /**

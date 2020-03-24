@@ -38,7 +38,7 @@ public class TimeTableListCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        //TODO: check there is an active timetable
+        // TODO: check there is an active timetable
         return new CommandResult(generateSuccessMessage(activeStudent, activeStudent.getStudentSemesters()));
     }
 }

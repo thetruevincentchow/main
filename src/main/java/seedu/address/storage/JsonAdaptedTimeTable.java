@@ -1,17 +1,15 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.TimeTable;
-import seedu.address.model.student.TimeTableMap;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedTimeTable {
     private final List<JsonAdaptedEnrollment> enrollments = new ArrayList<>();

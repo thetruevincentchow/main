@@ -17,7 +17,7 @@ public class DeclareMajorCommand extends DeclareCommand {
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'declare major' command not implemented yet";
 
-    //TODO: write usage message
+    // TODO: write usage message
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the person identified by the index number used in the displayed person list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"

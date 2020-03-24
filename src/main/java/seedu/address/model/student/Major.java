@@ -1,14 +1,14 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.List;
+
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.programmes.ComputerScienceProgramme;
 import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.programmes.InformationSystemsProgramme;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's name in the application.
@@ -27,7 +27,11 @@ public class Major {
 
     public final String major;
 
-    public DegreeProgramme degreeProgramme;
+    public DegreeProgramme getDegreeProgramme() {
+        return degreeProgramme;
+    }
+
+    private DegreeProgramme degreeProgramme;
 
     /**
      * Constructs a {@code Name}.

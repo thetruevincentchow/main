@@ -43,7 +43,7 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         requireNonNull(args);
 
         //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
-        //TODO: use ArgumentTokenizer for all subcommands
+        // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_MAJOR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR)
@@ -51,7 +51,7 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 
-        //TODO: remove references to AddressBook's `person.Name` class so we can use our own `student.Name`
+        // TODO: remove references to AddressBook's `person.Name` class so we can use our own `student.Name`
         /*
         seedu.address.model.person.Name abName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Name name = new Name(abName.fullName);
