@@ -1,13 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.StudentRemoveCommand;
+import seedu.address.logic.commands.TimeTableActiveCommand;
+import seedu.address.logic.commands.TimeTableAddCommand;
+import seedu.address.logic.commands.TimeTableCommand;
+import seedu.address.logic.commands.TimeTableListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TimeTableCommandParser implements Parser<TimeTableCommand> {
     /**

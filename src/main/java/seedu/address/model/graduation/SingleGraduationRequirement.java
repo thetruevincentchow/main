@@ -1,8 +1,9 @@
 package seedu.address.model.graduation;
 
+import java.util.List;
+
 import seedu.address.model.module.ModuleCode;
 
-import java.util.List;
 
 public class SingleGraduationRequirement extends GraduationRequirement {
 

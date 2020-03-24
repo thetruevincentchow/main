@@ -1,13 +1,12 @@
 package seedu.address.model.graduation;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
-
 import static seedu.address.model.graduation.AggregationType.ALL;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import seedu.address.model.module.ModuleCode;
 
 public class CompoundGraduationRequirement extends GraduationRequirement {
 
@@ -50,8 +49,9 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
                 }
             }
             return true;
+        default:
+            return false;
         }
-        return false;
     }
 
 

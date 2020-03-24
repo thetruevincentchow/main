@@ -2,9 +2,8 @@ package seedu.address.model.module;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
 
-import java.util.List;
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Lesson}.

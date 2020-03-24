@@ -12,8 +12,8 @@ import seedu.address.model.student.TimeTable;
 import seedu.address.model.time.StudentSemester;
 
 /**
- * This class is used since Pair\<JsonAdaptedStudentSemester, JsonAdaptedTimeTable\> doesn't seem to be read correctly
- * by Jackson.
+ * This class is used since Pair of JsonAdaptedStudentSemester and JsonAdaptedTimeTable doesn't seem to be read
+ * correctly by Jackson.
  */
 
 public class JsonAdaptedTimeTablePair {
