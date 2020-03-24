@@ -1,8 +1,14 @@
 package seedu.address.model.module;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -55,5 +61,26 @@ public class ModuleDataImporter {
             }
         }
         return modules;
+    }
+
+    public ObservableList<Module> getFilteredModuleList() {
+        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<JsonSerializableModule> jsonAdaptedModules = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/moduleList.json"), new TypeReference<ArrayList<JsonSerializableModule>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i < jsonAdaptedModules.size(); i ++){
+            try {
+                modules.add(jsonAdaptedModules.get(i).toModelType());
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+            }
+        }
+        ObservableList<Module> oList = FXCollections.observableArrayList(modules);
+        return oList;
     }
 }

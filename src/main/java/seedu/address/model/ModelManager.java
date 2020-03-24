@@ -152,27 +152,7 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        ArrayList<Module> modules = new ArrayList<>();
-        ArrayList<JsonSerializableModule> jsonAdaptedModules = new ArrayList<>();
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/moduleList.json"), new TypeReference<ArrayList<JsonSerializableModule>>(){});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        for(int i = 0; i < jsonAdaptedModules.size(); i ++){
-            try {
-                modules.add(jsonAdaptedModules.get(i).toModelType());
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-            }
-        }
-        ObservableList<Module> oList = FXCollections.observableArrayList(modules);
-        return oList;
-    }
 
 
     @Override
