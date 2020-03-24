@@ -133,6 +133,10 @@ public class Planner implements ReadOnlyPlanner {
         return modules.asUnmodifiableObservableList();
     }
 
+    public ObservableList<ModuleCode> getEnrolledModulesList() {
+        return activeStudent.getAllEnrolledModules();
+    }
+
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
         moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
@@ -146,7 +150,10 @@ public class Planner implements ReadOnlyPlanner {
     public void activateValidStudent() {
         //TODO: handle `activeStudents` being null (e.g. if data file is missing)
         //TODO: handle all students being removed
-        activeStudent = students.iterator().next();
+        activeStudent = null;
+        if (students.iterator().hasNext()) {
+            activeStudent = students.iterator().next();
+        }
         activeSemester = null; //TODO: possibly validate existing value first
     }
 

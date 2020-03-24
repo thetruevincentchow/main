@@ -33,7 +33,7 @@ public class Module {
             String prerequisite,
             String moduleCredit,
             String moduleCode,
-            String semesterData,
+            List<SemesterData> semesterData,
             String prereqTree,
             String fulfillRequirements
 
@@ -57,10 +57,6 @@ public class Module {
         return moduleCode;
     }
 
-    public ModuleCode getModuleCode() {
-        return moduleCode;
-    }
-
     public boolean isSameModule(Module module) {
         return false; // TODO
     }
@@ -75,7 +71,7 @@ public class Module {
         return title;
     }
 
-    public String getSemesterName() {
+    public List<SemesterData> getSemesterName() {
         return semesterData;
     }
 

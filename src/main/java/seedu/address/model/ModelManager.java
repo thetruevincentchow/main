@@ -72,6 +72,9 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), planner);
     }
 
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs(), new Planner());
+    }
     //=========== UserPrefs ==================================================================================
 
     @Override
