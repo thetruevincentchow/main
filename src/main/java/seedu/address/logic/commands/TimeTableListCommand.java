@@ -20,8 +20,8 @@ public class TimeTableListCommand extends TimeTableCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'timetable list' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "timetable " + COMMAND_WORD
-            + ": List semesters with timetables.\n"
-            + "Example: " + "timetable " + COMMAND_WORD;
+        + ": List semesters with timetables.\n"
+        + "Example: " + "timetable " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed semesters for the active student (%1$s) :\n%2$s";
 
@@ -37,7 +37,7 @@ public class TimeTableListCommand extends TimeTableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student activeStudent  = model.getActiveStudent();
+        Student activeStudent = model.getActiveStudent();
         if (activeStudent == null) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }

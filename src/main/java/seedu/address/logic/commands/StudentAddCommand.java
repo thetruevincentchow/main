@@ -17,11 +17,11 @@ public class StudentAddCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Adds the student to list of student profiles.\n"
-            + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MAJOR + "MAJOR] \n"
-            + "Example: " + "student " + COMMAND_WORD + " n/Alice major/CS";
+        + ": Adds the student to list of student profiles.\n"
+        + "Parameters: "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_MAJOR + "MAJOR] \n"
+        + "Example: " + "student " + COMMAND_WORD + " n/Alice major/CS";
 
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added student: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list";

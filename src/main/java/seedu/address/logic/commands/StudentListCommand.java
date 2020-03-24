@@ -17,8 +17,8 @@ public class StudentListCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student list' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": List students in the student list.\n"
-            + "Example: " + "student " + COMMAND_WORD;
+        + ": List students in the student list.\n"
+        + "Example: " + "student " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed students in student list:\n%1$s";
 

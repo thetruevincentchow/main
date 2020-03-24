@@ -25,7 +25,7 @@ public class JsonAdaptedGrade {
         this.isSu = source.isSu;
     }
 
-    public Grade toModelType() throws IllegalValueException  {
+    public Grade toModelType() throws IllegalValueException {
         return new Grade(LetterGrade.valueOf(letterGrade), isSu);
     }
 }

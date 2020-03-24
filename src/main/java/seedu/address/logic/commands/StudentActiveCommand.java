@@ -16,9 +16,9 @@ public class StudentActiveCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student active' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Sets the student from the student list as the active student.\n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + "student " + COMMAND_WORD + " 1";
+        + ": Sets the student from the student list as the active student.\n"
+        + "Parameters: INDEX (must be a positive integer) \n"
+        + "Example: " + "student " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ACTIVE_STUDENT_SUCCESS = "Set student as active: %1$s";
 

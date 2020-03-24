@@ -15,8 +15,8 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module remove' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": Removes the module from list of enrolled modules.\n"
-            + "Example: " + "module " + COMMAND_WORD + "CS2030";
+        + ": Removes the module from list of enrolled modules.\n"
+        + "Example: " + "module " + COMMAND_WORD + "CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Removed module from timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_NOT_EXISTS = "Module does not exist in timetable: %1$s";

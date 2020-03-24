@@ -18,6 +18,7 @@ public class SemesterYear {
     public Semester getSemester() {
         return sem;
     }
+
     public int getAcademicYear() {
         //return academicYear;
         return -1;
@@ -40,7 +41,7 @@ public class SemesterYear {
             return false;
         } else {
             return sem.equals(((SemesterYear) other).sem);
-                    //&& academicYear == ((SemesterYear) other).academicYear;
+            //&& academicYear == ((SemesterYear) other).academicYear;
         }
     }
 

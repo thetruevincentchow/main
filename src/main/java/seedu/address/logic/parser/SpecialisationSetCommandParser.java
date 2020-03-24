@@ -12,6 +12,7 @@ public class SpecialisationSetCommandParser implements Parser<SpecialisationSetC
     /**
      * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
      * and returns a DeclareMajorCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

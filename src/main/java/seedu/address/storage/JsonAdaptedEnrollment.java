@@ -40,7 +40,7 @@ public class JsonAdaptedEnrollment {
         this.credit = source.credit;
     }
 
-    public Enrollment toModelType() throws IllegalValueException  {
+    public Enrollment toModelType() throws IllegalValueException {
         return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()), credit);
     }
 }

@@ -74,11 +74,12 @@ public class SampleDataUtil {
 
     /**
      * Returns a non-empty (@code TimeTableMap) which (@code Student) can immediately use.
+     *
      * @return Non-empty (@code TimeTableMap)
      */
     public static TimeTable getSampleTimeTable() {
         TimeTable timeTable = new TimeTable();
-        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040"), Optional.empty(),4));
+        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040"), Optional.empty(), 4));
         return timeTable;
     }
 
@@ -87,8 +88,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
 }

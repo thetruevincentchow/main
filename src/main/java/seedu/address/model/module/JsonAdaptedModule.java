@@ -47,7 +47,7 @@ public class JsonAdaptedModule {
         @JsonProperty("prereqTree") String prereqTree,
         @JsonProperty("fulfillRequirements") String fulfillRequirements
 
-        ) {
+    ) {
         this.acadYear = acadYear;
         this.preclusion = preclusion;
         this.description = description;
@@ -103,6 +103,6 @@ public class JsonAdaptedModule {
             semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()),
             prereqTree,
             fulfillRequirements
-            );
+        );
     }
 }

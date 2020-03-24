@@ -45,6 +45,7 @@ public class ModelManager implements Model {
     // TODO: remove dependence on `ReadOnlyAddressBook` and `AddressBook`.
     //       This would require removal of all related tests for `AddressBook` and other associated classes,
     //       since they may require functionality from `AddressBook`.
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -78,14 +79,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -113,18 +114,22 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
     @Override
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
+    }
+
+    @Override
     public ReadOnlyPlanner getPlanner() {
         return planner;
+    }
+
+    public void setPlanner(Planner planner) {
+        this.planner.resetData(planner);
     }
 
     @Override
@@ -162,12 +167,13 @@ public class ModelManager implements Model {
         ArrayList<JsonAdaptedModule> jsonAdaptedModules = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/bulletinModulesList.json"), new TypeReference<ArrayList<JsonAdaptedModule>>(){});
+            jsonAdaptedModules = objectMapper.readValue(new File("src/main/resources/json/bulletinModulesList.json"), new TypeReference<ArrayList<JsonAdaptedModule>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        for(int i = 0; i < jsonAdaptedModules.size(); i ++){
+        for (int i = 0; i < jsonAdaptedModules.size(); i++) {
             try {
                 modules.add(jsonAdaptedModules.get(i).toModelType());
             } catch (IllegalValueException e) {
@@ -177,7 +183,6 @@ public class ModelManager implements Model {
         ObservableList<Module> oList = FXCollections.observableArrayList(modules);
         return oList;
     }
-
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -200,12 +205,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
-    public void setPlanner(Planner planner) {
-        this.planner.resetData(planner);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
     public ObservableList<Student> getStudentList() {

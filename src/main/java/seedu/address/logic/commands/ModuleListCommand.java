@@ -15,8 +15,8 @@ public class ModuleListCommand extends ModuleCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module list' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": List enrolled modules in the timetable.\n"
-            + "Example: " + "module " + COMMAND_WORD;
+        + ": List enrolled modules in the timetable.\n"
+        + "Example: " + "module " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable: %1$s";
 

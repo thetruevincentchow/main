@@ -20,15 +20,15 @@ public class ModuleGradeCommand extends ModuleCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module grade' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": If GRADE is specified, sets the grade of the module specified.\n"
-            + "Otherwise, displays grade of module specified.\n"
-            + "Parameters: "
-            + "MODULE_CODE "
-            + "[" + PREFIX_GRADE + "GRADE]\n"
-            + "Example: " + "module " + COMMAND_WORD + " CS2030 grade/A";
+        + ": If GRADE is specified, sets the grade of the module specified.\n"
+        + "Otherwise, displays grade of module specified.\n"
+        + "Parameters: "
+        + "MODULE_CODE "
+        + "[" + PREFIX_GRADE + "GRADE]\n"
+        + "Example: " + "module " + COMMAND_WORD + " CS2030 grade/A";
 
     public static final String MESSAGE_SET_GRADE_SUCCESS = "Set grade of module %1$s to: %2$s";
-    public static final String MESSAGE_VIEW_GRADE_SUCCESS  = "Grade of module %1$s: %2$s";
+    public static final String MESSAGE_VIEW_GRADE_SUCCESS = "Grade of module %1$s: %2$s";
     public static final String MESSAGE_MODULE_INVALID = "Module code does not exist: %1$s";
     public static final String MESSAGE_MODULE_NOT_ENROLLED = "Module not in selected timetable: %1$s";
 

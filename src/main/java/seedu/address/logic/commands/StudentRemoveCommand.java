@@ -21,9 +21,9 @@ public class StudentRemoveCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student remove' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Removes the student from list of student profiles.\n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + "student " + COMMAND_WORD + " 1";
+        + ": Removes the student from list of student profiles.\n"
+        + "Parameters: INDEX (must be a positive integer) \n"
+        + "Example: " + "student " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed student: %1$s";
     public static final String MESSAGE_WOULD_BE_EMPTY = "Removing student would make student list empty";

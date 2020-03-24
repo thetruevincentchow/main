@@ -18,13 +18,12 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": Adds the module to list of enrolled modules.\n"
-            + "Example: " + "module " + COMMAND_WORD + "CS2030";
+        + ": Adds the module to list of enrolled modules.\n"
+        + "Example: " + "module " + COMMAND_WORD + "CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
-
 
 
     private final ModuleCode moduleCode;
@@ -33,6 +32,7 @@ public class ModuleAddCommand extends ModuleCommand {
         requireAllNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
+
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.

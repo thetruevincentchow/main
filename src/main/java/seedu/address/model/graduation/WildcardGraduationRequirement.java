@@ -40,6 +40,6 @@ public class WildcardGraduationRequirement extends GraduationRequirement {
     }
 
     public String getString(List<ModuleCode> moduleCodes) {
-        return "[" + getStatusIcon(isFulfilled(moduleCodes))  + "] " + name + "\n";
+        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] " + name + "\n";
     }
 }

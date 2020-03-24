@@ -21,15 +21,15 @@ public class JsonAdaptedTimeTable {
         this.enrollments.addAll(enrollments);
     }
 
+    public JsonAdaptedTimeTable(TimeTable source) {
+        enrollments.addAll(source.getEnrollments().stream()
+            .map(JsonAdaptedEnrollment::new)
+            .collect(Collectors.toList()));
+    }
+
     @JsonValue
     public List<JsonAdaptedEnrollment> getEnrollments() {
         return enrollments;
-    }
-
-    public JsonAdaptedTimeTable(TimeTable source) {
-        enrollments.addAll(source.getEnrollments().stream()
-                .map(JsonAdaptedEnrollment::new)
-                .collect(Collectors.toList()));
     }
 
     public TimeTable toModelType() throws IllegalValueException {

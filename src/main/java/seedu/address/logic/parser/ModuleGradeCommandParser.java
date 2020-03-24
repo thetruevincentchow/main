@@ -17,8 +17,17 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     public static final String MESSAGE_GRADE_INVALID = "Grade is invalid: %1$s";
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
      * and returns a DeclareMajorCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
@@ -50,13 +59,5 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

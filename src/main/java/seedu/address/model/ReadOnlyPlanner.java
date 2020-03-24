@@ -40,5 +40,4 @@ public interface ReadOnlyPlanner {
     ObservableList<ModuleCode> getEnrolledModulesList();
 
 
-
 }

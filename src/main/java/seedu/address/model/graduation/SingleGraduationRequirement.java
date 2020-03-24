@@ -10,6 +10,7 @@ public class SingleGraduationRequirement extends GraduationRequirement {
     public SingleGraduationRequirement(ModuleCode moduleCode) {
         this.moduleCode = moduleCode;
     }
+
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
         return moduleCodes.contains(moduleCode);
     }

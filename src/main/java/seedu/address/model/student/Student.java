@@ -25,14 +25,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
  */
 public class Student {
 
+    // Timetables
+    public final TimeTableMap timeTableMap;
     // Identity fields
     private Name name;
     private Degrees degrees;
     private Major major;
     private GenericSpecialisation specialisation;
-
-    // Timetables
-    public final TimeTableMap timeTableMap;
 
     /**
      * Every field must be present and not null.
@@ -124,7 +123,7 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(PREFIX_NAME).append(getName()).append(" ")
-                .append(PREFIX_MAJOR).append(getMajor());
+            .append(PREFIX_MAJOR).append(getMajor());
         return builder.toString();
     }
 

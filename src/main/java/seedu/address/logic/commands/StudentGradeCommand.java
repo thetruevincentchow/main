@@ -23,12 +23,12 @@ public class StudentGradeCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student grade' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Display average grade of active student.\n"
-            + "Example: " + "student " + COMMAND_WORD;
+        + ": Display average grade of active student.\n"
+        + "Example: " + "student " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Grade of active student %1$s: %2$s\n"
-            + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs are declared S/U.\n"
-            + "Grade for each module:\n%6$s";
+        + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs are declared S/U.\n"
+        + "Grade for each module:\n%6$s";
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
@@ -63,12 +63,12 @@ public class StudentGradeCommand extends StudentCommand {
         }
 
         return String.format(MESSAGE_SUCCESS,
-                activeStudent,
-                gradeValue.isPresent() ? String.format("%.2f/5.00", gradeValue.getAsDouble()) : "-/5.00",
-                cumulativeGrade.getTotalCredits(),
-                cumulativeGrade.getTotalGradedCredits(),
-                cumulativeGrade.getTotalSuCredits(),
-                sb.toString());
+            activeStudent,
+            gradeValue.isPresent() ? String.format("%.2f/5.00", gradeValue.getAsDouble()) : "-/5.00",
+            cumulativeGrade.getTotalCredits(),
+            cumulativeGrade.getTotalGradedCredits(),
+            cumulativeGrade.getTotalSuCredits(),
+            sb.toString());
     }
 
     @Override

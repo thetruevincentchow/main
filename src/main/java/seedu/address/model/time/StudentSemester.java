@@ -32,7 +32,7 @@ public class StudentSemester {
             return false;
         } else {
             return semYear.equals(((StudentSemester) other).semYear)
-                    && degreeYear == ((StudentSemester) other).degreeYear;
+                && degreeYear == ((StudentSemester) other).degreeYear;
         }
     }
 

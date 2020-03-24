@@ -18,7 +18,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * students uses Student#isSameStudent(Student) for equality so as to ensure that the student being added or updated is
  * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the student with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Student#isSameStudent(Student)
@@ -27,7 +27,7 @@ public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.
@@ -113,8 +113,8 @@ public class UniqueStudentList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(((UniqueStudentList) other).internalList));
+            || (other instanceof UniqueStudentList // instanceof handles nulls
+            && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override

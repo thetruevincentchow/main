@@ -47,7 +47,7 @@ public class JsonPlannerStorage implements PlannerStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializablePlanner> jsonPlanner = JsonUtil.readJsonFile(
-                filePath, JsonSerializablePlanner.class);
+            filePath, JsonSerializablePlanner.class);
         if (!jsonPlanner.isPresent()) {
             return Optional.empty();
         }

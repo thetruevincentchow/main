@@ -18,13 +18,14 @@ public class CumulativeGrade {
     }
 
     public CumulativeGrade() {
-        this(0,0,0,0,0);
+        this(0, 0, 0, 0, 0);
     }
 
     /**
      * Accumulates the letter grade to the counter.
+     *
      * @param gradePoint Grade points, from 0.0 to 5.0
-     * @param credits Number of credits
+     * @param credits    Number of credits
      */
     private void accumulateGraded(double gradePoint, int credits) {
         totalCredits += credits;
@@ -34,6 +35,7 @@ public class CumulativeGrade {
 
     /**
      * Accumulates module credits and the S/U to the counter.
+     *
      * @param credits Number of credits
      */
     private void accumulateSu(int credits) {
@@ -45,6 +47,7 @@ public class CumulativeGrade {
     /**
      * Accumulates pending module credits. This does not affect the calculated CAP.
      * The number of S/U modules declared is not affected.
+     *
      * @param credits Number of credits
      */
     public void accumulatePending(int credits) {

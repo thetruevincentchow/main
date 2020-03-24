@@ -28,7 +28,7 @@ class JsonAdaptedSemesterData {
         @JsonProperty("examDate") String examDate,
         @JsonProperty("examDuration") int examDuration,
         @JsonProperty("timetable") List<JsonAdaptedLesson> timetable
-        ) {
+    ) {
         this.semester = semester;
         this.examDate = examDate;
         this.examDuration = examDuration;

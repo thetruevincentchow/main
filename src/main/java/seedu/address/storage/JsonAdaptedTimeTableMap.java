@@ -45,7 +45,7 @@ public class JsonAdaptedTimeTableMap {
     }
 
     public TimeTableMap toModelType() throws IllegalValueException {
-        TimeTableMap map  = new TimeTableMap();
+        TimeTableMap map = new TimeTableMap();
         for (JsonAdaptedTimeTablePair timeTable : timeTables) {
             Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable> modelPair = timeTable.toModelType();
             if (map.put(modelPair.getKey().toModelType(), modelPair.getValue().toModelType()) != null) {

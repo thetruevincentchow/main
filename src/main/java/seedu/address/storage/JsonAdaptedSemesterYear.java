@@ -38,7 +38,7 @@ public class JsonAdaptedSemesterYear {
      */
     public SemesterYear toModelType() throws IllegalValueException {
 
-        if (sem  == null) {
+        if (sem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         final Semester modelSem = Semester.valueOf(sem);
