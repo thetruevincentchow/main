@@ -48,7 +48,11 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         code.setText(module.getModuleCode().value);
         title.setText(module.getModuleTitle());
-        semester.setText(module.getSemesterName().toString());
+        String builder = "Semesters: ";
+        for(int i = 0; i < module.getSemesterName().size(); i ++) {
+            builder += module.getSemesterName().get(i).getSemester() + " ";
+        }
+        semester.setText(builder);
     }
 
     /**
