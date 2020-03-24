@@ -1,13 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Enrollment;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class ModuleAddCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "add";
@@ -15,13 +19,12 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'module add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "module " + COMMAND_WORD
-            + ": Adds the module to list of enrolled modules.\n"
-            + "Example: " + "module " + COMMAND_WORD + "CS2030";
+        + ": Adds the module to list of enrolled modules.\n"
+        + "Example: " + "module " + COMMAND_WORD + "CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
-    public static final String MESSAGE_ADD_MODULE_DOES_NOT_EXISTS = "Module does not exist: %1$s";
-
+    public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
 
     private final ModuleCode moduleCode;
@@ -30,12 +33,13 @@ public class ModuleAddCommand extends ModuleCommand {
         requireAllNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
+
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
     private String generateModuleDoesNotExists(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_DOES_NOT_EXISTS, moduleCode.value);
+        return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
     }
 
 
@@ -74,11 +78,12 @@ public class ModuleAddCommand extends ModuleCommand {
         }
 
         // Check if module exists in module database
-        if (!model.getPlanner().getModules().contains(moduleCode)) {
+        Module module = model.getPlanner().getModules().getModule(moduleCode);
+        if (module == null) {
             throw new CommandException(generateModuleDoesNotExists(moduleCode));
         }
 
-        Enrollment enrollment = new Enrollment(moduleCode);
+        Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
         model.addEnrollment(enrollment);
         return new CommandResult(generateSuccessMessage(moduleCode));
     }

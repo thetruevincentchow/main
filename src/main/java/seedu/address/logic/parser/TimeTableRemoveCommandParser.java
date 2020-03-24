@@ -21,8 +21,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 public class TimeTableRemoveCommandParser implements Parser<TimeTableRemoveCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TimeTableRemoveCommand parse(String args) throws ParseException {
@@ -33,7 +42,7 @@ public class TimeTableRemoveCommandParser implements Parser<TimeTableRemoveComma
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableRemoveCommand.MESSAGE_USAGE));
         }
 
@@ -50,13 +59,5 @@ public class TimeTableRemoveCommandParser implements Parser<TimeTableRemoveComma
         SemesterYear semesterYear = new SemesterYear(sem, 0); //TODO: input academic year
         StudentSemester studentSemester = new StudentSemester(semesterYear, index.getOneBased());
         return new TimeTableRemoveCommand(studentSemester);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -15,7 +15,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Degrees {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Degrees should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Degrees should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -28,6 +28,7 @@ public class Degrees {
     public Degrees() {
         this.degrees = new ArrayList<>();
     }
+
     /**
      * Constructs a {@code Degrees}.
      *
@@ -53,16 +54,6 @@ public class Degrees {
         this.degrees = degrees;
     }
 
-    public boolean addDegree(DegreeProgramme degree) {
-        this.degrees.add(degree);
-        return true;
-    }
-
-    public boolean addDegrees(List<DegreeProgramme> degree) {
-        this.degrees.addAll(degree);
-        return true;
-    }
-
     /**
      * Returns true if a given string is a valid name.
      */
@@ -71,6 +62,19 @@ public class Degrees {
         // return Integer.toString(test).matches(VALIDATION_REGEX);
     }
 
+    public boolean addDegree(DegreeProgramme degree) {
+        this.degrees.add(degree);
+        return true;
+    }
+
+    public List<DegreeProgramme> getDegrees() {
+        return degrees;
+    }
+
+    public boolean addDegrees(List<DegreeProgramme> degree) {
+        this.degrees.addAll(degree);
+        return true;
+    }
 
     @Override
     public String toString() {
@@ -84,8 +88,8 @@ public class Degrees {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Degrees // instanceof handles nulls
-                && degrees == (((Degrees) other).degrees)); // state check
+            || (other instanceof Degrees // instanceof handles nulls
+            && degrees == (((Degrees) other).degrees)); // state check
     }
 
     @Override

@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class StudentActiveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "active";
@@ -16,9 +17,9 @@ public class StudentActiveCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student active' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Sets the student from the student list as the active student.\n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + "student " + COMMAND_WORD + " 1";
+        + ": Sets the student from the student list as the active student.\n"
+        + "Parameters: INDEX (must be a positive integer) \n"
+        + "Example: " + "student " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ACTIVE_STUDENT_SUCCESS = "Set student as active: %1$s";
 

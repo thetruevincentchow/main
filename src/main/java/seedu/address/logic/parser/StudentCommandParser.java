@@ -45,6 +45,9 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         case StudentListCommand.COMMAND_WORD:
             return new StudentListCommand();
 
+        case StudentGradeCommand.COMMAND_WORD:
+            return new StudentGradeCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

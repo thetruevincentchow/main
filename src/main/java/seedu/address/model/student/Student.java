@@ -3,13 +3,16 @@ package seedu.address.model.student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.grades.CumulativeGrade;
+import seedu.address.model.grades.Grade;
+import seedu.address.model.graduation.FocusAreaGraduationRequirement;
+import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
+import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -22,13 +25,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
  */
 public class Student {
 
+    // Timetables
+    public final TimeTableMap timeTableMap;
     // Identity fields
     private Name name;
     private Degrees degrees;
     private Major major;
-
-    // Timetables
-    public final TimeTableMap timeTableMap;
+    private GenericSpecialisation specialisation;
 
     /**
      * Every field must be present and not null.
@@ -105,9 +108,9 @@ public class Student {
         Student otherStudent = (Student) other;
         //TODO: initialize and compare `degrees`
         return otherStudent.getName().equals(getName())
-                && otherStudent.getMajor().equals(getMajor())
-                //&& otherStudent.getDegrees().equals(getDegrees())
-                && otherStudent.getTimeTableMap().equals(getTimeTableMap());
+            && otherStudent.getMajor().equals(getMajor())
+            //&& otherStudent.getDegrees().equals(getDegrees())
+            && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
@@ -120,7 +123,7 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(PREFIX_NAME).append(getName()).append(" ")
-                .append(PREFIX_MAJOR).append(getMajor());
+            .append(PREFIX_MAJOR).append(getMajor());
         return builder.toString();
     }
 
@@ -149,6 +152,7 @@ public class Student {
 
     /**
      * Returns a list mof (@code ModuleCode) taken across all timetables.
+     *
      * @return List of all modules enrolled.
      */
     public ObservableList<ModuleCode> getAllEnrolledModules() {
@@ -157,5 +161,41 @@ public class Student {
             allModules.addAll(timeTable.getModuleCodes());
         }
         return allModules;
+    }
+
+    public ObservableList<Enrollment> getAllEnrollments() {
+        ObservableList<Enrollment> allEnrollments = FXCollections.observableArrayList();
+        for (TimeTable timeTable : timeTableMap.values()) {
+            allEnrollments.addAll(timeTable.getEnrollments().asUnmodifiableObservableList());
+        }
+        return allEnrollments;
+    }
+
+    public GenericSpecialisation getSpecialisation() {
+        return specialisation;
+    }
+
+    public void setSpecialisation(GenericSpecialisation specialisation) {
+        this.specialisation = specialisation;
+        for (GraduationRequirement graduationRequirement : this.major.degreeProgramme.getGraduationRequirementList()) {
+            if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
+                FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement;
+                focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
+            }
+        }
+    }
+
+    public CumulativeGrade getCumulativeGrade() {
+        CumulativeGrade cumulativeGrade = new CumulativeGrade();
+        for (Enrollment enrollment : getAllEnrollments()) {
+            Optional<Grade> optionalGrade = enrollment.getGrade();
+            if (optionalGrade.isPresent()) {
+                OptionalDouble gradePoint = enrollment.getGradePoint();
+                cumulativeGrade.accumulate(optionalGrade.get(), enrollment.credit);
+            } else {
+                cumulativeGrade.accumulatePending(enrollment.credit);
+            }
+        }
+        return cumulativeGrade;
     }
 }

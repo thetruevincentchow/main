@@ -13,13 +13,11 @@ import seedu.address.model.person.Person;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
-
+    // Timetables
+    public final JsonAdaptedTimeTableMap timeTableMap;
     // Identity fields
     private final String name;
     private final String major;
-
-    // Timetables
-    public final JsonAdaptedTimeTableMap timeTableMap;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -66,7 +64,7 @@ class JsonAdaptedStudent {
         if (timeTableMap == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeTableMap.class.getSimpleName()));
         }
-        final TimeTableMap  modelTimeTableMap = timeTableMap.toModelType();
+        final TimeTableMap modelTimeTableMap = timeTableMap.toModelType();
 
         return new Student(modelName, modelMajor, modelTimeTableMap);
     }

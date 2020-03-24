@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import static java.util.Objects.requireNonNull;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
@@ -17,11 +17,11 @@ public class StudentAddCommand extends StudentCommand {
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student add' command not implemented yet";
 
     public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
-            + ": Adds the student to list of student profiles.\n"
-            + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MAJOR + "MAJOR] \n"
-            + "Example: " + "student " + COMMAND_WORD + " n/Alice major/CS";
+        + ": Adds the student to list of student profiles.\n"
+        + "Parameters: "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_MAJOR + "MAJOR] \n"
+        + "Example: " + "student " + COMMAND_WORD + " n/Alice major/CS";
 
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added student: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list";

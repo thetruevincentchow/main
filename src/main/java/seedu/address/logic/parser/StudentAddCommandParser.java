@@ -26,8 +26,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 public class StudentAddCommandParser implements Parser<StudentAddCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public StudentAddCommand parse(String args) throws ParseException {
@@ -38,7 +47,7 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_MAJOR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 
@@ -50,19 +59,11 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         */
 
         Name name = new Name(argMultimap.getValue(PREFIX_NAME).get());
-        Major major  = new Major(argMultimap.getValue(PREFIX_MAJOR).get());
+        Major major = new Major(argMultimap.getValue(PREFIX_MAJOR).get());
         TimeTableMap timeTableMap = SampleDataUtil.getSampleTimeTableMap();
 
         Student student = new Student(name, major, timeTableMap);
 
         return new StudentAddCommand(student);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

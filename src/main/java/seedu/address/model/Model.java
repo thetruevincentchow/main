@@ -1,12 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.module.Module;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.JsonAdaptedModule;
 import seedu.address.model.module.Module;
@@ -20,18 +20,20 @@ import seedu.address.model.time.StudentSemester;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -54,15 +56,18 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-
-
-    /** Returns the Planner */
+    /**
+     * Returns the Planner
+     */
     ReadOnlyPlanner getPlanner();
 
     /**
@@ -89,12 +94,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
-
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -128,4 +135,8 @@ public interface Model {
     void addSemesterTimeTable(StudentSemester studentSemester);
 
     void removeSemesterTimeTable(StudentSemester studentSemester);
+
+    Optional<Grade> getModuleGrade(ModuleCode moduleCode);
+
+    void setModuleGrade(ModuleCode moduleCode, Grade grade);
 }

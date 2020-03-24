@@ -29,13 +29,12 @@ public class JsonSerializableModule {
     public String prerequisite;
     public String moduleCredit;
     public String moduleCode;
-    // public String semesterData;
-    public ArrayList<String> semesters;
+    public List<JsonSerializableSemesterData> semesterData;
     public String prereqTree;
     public String fulfillRequirements;
 
     /**
-     * Constructs a {@code JsonSerializableModule} with the given persons.
+     * Constructs a {@code JsonSerializableModule} with the given Module.
      */
     @JsonCreator
     public JsonSerializableModule(
@@ -49,11 +48,10 @@ public class JsonSerializableModule {
         @JsonProperty("prerequisite") String prerequisite,
         @JsonProperty("moduleCredit") String moduleCredit,
         @JsonProperty("moduleCode") String moduleCode,
-        @JsonProperty("semesters") ArrayList<String> semesters,
-        // @JsonProperty("semesterData") String semesterData,
+        @JsonProperty("semesterData") List<JsonSerializableSemesterData> semesterData,
         @JsonProperty("prereqTree") String prereqTree,
         @JsonProperty("fulfillRequirements") String fulfillRequirements
-        ) {
+    ) {
         this.acadYear = acadYear;
         this.preclusion = preclusion;
         this.description = description;
@@ -64,8 +62,7 @@ public class JsonSerializableModule {
         this.prerequisite = prerequisite;
         this.moduleCredit = moduleCredit;
         this.moduleCode = moduleCode;
-        // this.semesterData = semesterData;
-        this.semesters = semesters;
+        this.semesterData = semesterData;
         this.prereqTree = prereqTree;
         this.fulfillRequirements = fulfillRequirements;
     }
@@ -81,12 +78,11 @@ public class JsonSerializableModule {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this module into the model's {@code Module} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Module toModelType() throws IllegalValueException {
-
         return new Module(
             this.acadYear,
             this.preclusion,
@@ -98,7 +94,7 @@ public class JsonSerializableModule {
             this.prerequisite,
             this.moduleCredit,
             this.moduleCode.replaceAll("[^a-zA-Z0-9]", ""),
-            this.semesters.toArray().toString(), // this.semesterData,
+            this.semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()), // this.semesterData,
             this.prereqTree,
             this.fulfillRequirements
         );

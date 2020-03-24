@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.module.JsonSerializableModule;
+import seedu.address.model.grades.Grade;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.JsonAdaptedModule;
@@ -44,6 +45,7 @@ public class ModelManager implements Model {
     // TODO: remove dependence on `ReadOnlyAddressBook` and `AddressBook`.
     //       This would require removal of all related tests for `AddressBook` and other associated classes,
     //       since they may require functionality from `AddressBook`.
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -71,17 +73,20 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), planner);
     }
 
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs(), new Planner());
+    }
     //=========== UserPrefs ==================================================================================
+
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     @Override
@@ -109,18 +114,22 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
     @Override
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
+    }
+
+    @Override
     public ReadOnlyPlanner getPlanner() {
         return planner;
+    }
+
+    public void setPlanner(Planner planner) {
+        this.planner.resetData(planner);
     }
 
     @Override
@@ -153,8 +162,6 @@ public class ModelManager implements Model {
     }
 
 
-
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -176,12 +183,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
-    public void setPlanner(Planner planner) {
-        this.planner.resetData(planner);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
     public ObservableList<Student> getStudentList() {
@@ -245,5 +248,13 @@ public class ModelManager implements Model {
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
         planner.removeSemesterTimeTable(studentSemester);
+    }
+
+    public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
+        return planner.getModuleGrade(moduleCode);
+    }
+
+    public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        planner.setModuleGrade(moduleCode, grade);
     }
 }

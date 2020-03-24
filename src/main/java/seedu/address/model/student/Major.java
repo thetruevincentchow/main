@@ -2,6 +2,8 @@ package seedu.address.model.student;
 
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.programmes.ComputerScienceProgramme;
+import seedu.address.model.programmes.DegreeProgramme;
+import seedu.address.model.programmes.InformationSystemsProgramme;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Majors should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Majors should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -25,6 +27,8 @@ public class Major {
 
     public final String major;
 
+    public DegreeProgramme degreeProgramme;
+
     /**
      * Constructs a {@code Name}.
      *
@@ -33,6 +37,11 @@ public class Major {
     public Major(String major) {
         requireNonNull(major);
         checkArgument(isValidMajor(major), MESSAGE_CONSTRAINTS);
+        if (major.equals("CS")) {
+            this.degreeProgramme = new ComputerScienceProgramme(null);
+        } else if (major.equals("IS")) {
+            this.degreeProgramme = new InformationSystemsProgramme();
+        }
         this.major = major;
     }
 
@@ -40,12 +49,15 @@ public class Major {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidMajor(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && (test.equals("CS") || test.equals("IS"));
     }
 
+    public void setDegreeProgramme(DegreeProgramme degreeProgramme) {
+        this.degreeProgramme = degreeProgramme;
+    }
 
     public List<GraduationRequirement> getGraduationRequirements() {
-        return (new ComputerScienceProgramme()).getGraduationRequirementList();
+        return degreeProgramme.getGraduationRequirementList();
     }
 
     @Override
@@ -56,8 +68,8 @@ public class Major {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Major // instanceof handles nulls
-                && major.equals(((Major) other).major)); // state check
+            || (other instanceof Major // instanceof handles nulls
+            && major.equals(((Major) other).major)); // state check
     }
 
     @Override
