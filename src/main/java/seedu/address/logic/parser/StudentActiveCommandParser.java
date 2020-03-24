@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.StudentActiveCommand;
-import seedu.address.logic.commands.StudentRemoveCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.StudentActiveCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -26,7 +25,8 @@ public class StudentActiveCommandParser implements Parser<StudentActiveCommand> 
         try {
             index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentActiveCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                StudentActiveCommand.MESSAGE_USAGE), pe);
         }
 
         return new StudentActiveCommand(index);

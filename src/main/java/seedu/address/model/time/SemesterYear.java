@@ -1,11 +1,10 @@
 package seedu.address.model.time;
 
-import seedu.address.storage.JsonAdaptedSemesterYear;
-
 import java.util.Objects;
 
 public class SemesterYear {
-    public static final String MESSAGE_CONSTRAINTS = "Semester year should be valid."; //TODO: figure out required constraints
+    public static final String MESSAGE_CONSTRAINTS = "Semester year should be valid."; //TODO: figure out required
+    // constraints
 
     protected final Semester sem;
     //protected final int academicYear; //TODO: support academic year in Student operations

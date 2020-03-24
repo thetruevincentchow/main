@@ -1,12 +1,10 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ModuleAddCommand;
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.SpecialisationSetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.specialisations.cs.AlgorithmsAndTheorySpecialisation;
-
-import static java.util.Objects.requireNonNull;
 
 public class SpecialisationSetCommandParser implements Parser<SpecialisationSetCommand> {
     /**
@@ -23,8 +21,10 @@ public class SpecialisationSetCommandParser implements Parser<SpecialisationSetC
             switch (args) {
             case "algo":
                 return new SpecialisationSetCommand(new AlgorithmsAndTheorySpecialisation());
+
+            default:
+                return null;
             }
-            return null;
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }

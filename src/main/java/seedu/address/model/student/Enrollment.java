@@ -1,13 +1,12 @@
 package seedu.address.model.student;
 
-import seedu.address.model.grades.Grade;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 import java.util.OptionalDouble;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.grades.Grade;
+import seedu.address.model.module.ModuleCode;
 
 public class Enrollment {
     public ModuleCode code;

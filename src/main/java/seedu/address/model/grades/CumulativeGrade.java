@@ -9,7 +9,8 @@ public class CumulativeGrade {
     protected int totalGradedCredits;
     protected int totalSuCredits;
 
-    public CumulativeGrade(int numSu, int totalCredits, double totalGradePoints, int totalGradedCredits, int totalSuCredits) {
+    public CumulativeGrade(int numSu, int totalCredits, double totalGradePoints, int totalGradedCredits,
+                           int totalSuCredits) {
         this.numSu = numSu;
         this.totalCredits = totalCredits;
         this.totalGradePoints = totalGradePoints;

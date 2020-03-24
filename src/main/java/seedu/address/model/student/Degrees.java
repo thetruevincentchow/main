@@ -1,12 +1,12 @@
 package seedu.address.model.student;
 
-import seedu.address.model.programmes.DegreeProgramme;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.programmes.DegreeProgramme;
 
 /**
  * Represents a Student's graduation Year in the application.

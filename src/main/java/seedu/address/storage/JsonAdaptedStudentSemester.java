@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.SemesterYear;
 import seedu.address.model.time.StudentSemester;
@@ -17,7 +18,8 @@ public class JsonAdaptedStudentSemester {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedStudentSemester(@JsonProperty("semYear") JsonAdaptedSemesterYear semYear, @JsonProperty("degreeYear") int degreeYear) {
+    public JsonAdaptedStudentSemester(@JsonProperty("semYear") JsonAdaptedSemesterYear semYear, @JsonProperty(
+        "degreeYear") int degreeYear) {
         this.semYear = semYear;
         this.degreeYear = degreeYear;
     }
@@ -38,7 +40,8 @@ public class JsonAdaptedStudentSemester {
     public StudentSemester toModelType() throws IllegalValueException {
 
         if (semYear == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, SemesterYear.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                SemesterYear.class.getSimpleName()));
         }
         //TODO: validate input
         /*if (!SemesterYear.isValidSemesterYear(semYear)) {

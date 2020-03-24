@@ -1,15 +1,14 @@
 package seedu.address.model.module;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * A list of Module that enforces uniqueness between its elements and does not allow nulls.
@@ -36,7 +35,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
-        return internalList.containsKey(toCheck.moduleCode);
+        return internalList.containsKey(toCheck.getModuleCode());
     }
 
     /**
@@ -48,7 +47,7 @@ public class UniqueModuleList implements Iterable<Module> {
         if (contains(toAdd)) {
             // throw new DuplicateModuleException(); TODO
         }
-        internalList.put(toAdd.moduleCode, toAdd);
+        internalList.put(toAdd.getModuleCode(), toAdd);
     }
 
     public Module getModule(ModuleCode moduleCode) {
@@ -61,17 +60,16 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
-        internalList.remove(toRemove.moduleCode);
+        internalList.remove(toRemove.getModuleCode());
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
-        return null;
-//         ArrayList<Module> modules = new ArrayList<>();
-//         internalList.forEach(module -> modules.add(module));
-//         return FXCollections.unmodifiableObservableList(modules);
+        ArrayList<Module> modules = new ArrayList<>();
+        internalList.forEach((moduleCode, module) -> modules.add(module));
+        return FXCollections.<Module>unmodifiableObservableList(FXCollections.observableArrayList(modules));
     }
 
     @Override

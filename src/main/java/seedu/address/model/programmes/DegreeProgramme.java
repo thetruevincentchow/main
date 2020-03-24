@@ -1,14 +1,13 @@
 package seedu.address.model.programmes;
 
+import java.util.List;
+
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
-
-import java.util.List;
 
 public abstract class DegreeProgramme extends Programme {
 
-    public DegreeType degreeType;
+    protected DegreeType degreeType;
 
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
         for (GraduationRequirement requirement : this.graduationRequirementList) {

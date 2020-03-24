@@ -1,13 +1,12 @@
 package seedu.address.model.graduation;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
-
 import java.util.List;
+
+import seedu.address.model.module.ModuleCode;
 
 public abstract class GraduationRequirement {
 
-    public ModuleCode moduleCode;
+    protected ModuleCode moduleCode;
 
     public abstract boolean isFulfilled(List<ModuleCode> moduleCodes);
 

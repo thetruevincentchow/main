@@ -1,17 +1,13 @@
 package seedu.address.model.student;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueEnrollmentList;
-import seedu.address.model.time.StudentSemester;
-import seedu.address.model.util.SampleDataUtil;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.UniqueEnrollmentList;
+
 public class TimeTable {
-    public UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
+    private UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
 
     public TimeTable() {
     }

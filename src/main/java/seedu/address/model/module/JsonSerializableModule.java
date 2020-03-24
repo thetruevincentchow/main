@@ -1,16 +1,12 @@
 package seedu.address.model.module;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Planner;
-import seedu.address.model.ReadOnlyPlanner;
-import seedu.address.model.time.Semester;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * An Immutable ModuleList that is serializable to JSON format.
@@ -19,19 +15,19 @@ public class JsonSerializableModule {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
 
-    public String acadYear;
-    public String preclusion;
-    public String description;
-    public String title;
-    public String department;
-    public String faculty;
-    // public String workload;
-    public String prerequisite;
-    public String moduleCredit;
-    public String moduleCode;
-    public List<JsonSerializableSemesterData> semesterData;
-    public String prereqTree;
-    public String fulfillRequirements;
+    private final String acadYear;
+    private final String preclusion;
+    private final String description;
+    private final String title;
+    private final String department;
+    private final String faculty;
+    // private final String workload;
+    private final String prerequisite;
+    private final String moduleCredit;
+    private final String moduleCode;
+    private final List<JsonSerializableSemesterData> semesterData;
+    private final String prereqTree;
+    private final String fulfillRequirements;
 
     /**
      * Constructs a {@code JsonSerializableModule} with the given Module.
@@ -72,10 +68,10 @@ public class JsonSerializableModule {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableModule(ReadOnlyPlanner source) {
+    /*public JsonSerializableModule(ReadOnlyPlanner source) {
         // TODO: Don't think we will need to use this. KIV
         // modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
-    }
+    }*/
 
     /**
      * Converts this module into the model's {@code Module} object.

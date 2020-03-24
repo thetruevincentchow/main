@@ -2,12 +2,10 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.grades.Grade;
 import seedu.address.model.grades.LetterGrade;
-import seedu.address.model.student.Enrollment;
-
-import java.util.Optional;
 
 //TODO: add other fields (currently only stores ModuleCode)
 public class JsonAdaptedGrade {

@@ -1,10 +1,9 @@
 package seedu.address.model.programmes;
 
+import java.util.List;
+
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
-
-import java.util.List;
 
 public abstract class Programme {
     protected String name;

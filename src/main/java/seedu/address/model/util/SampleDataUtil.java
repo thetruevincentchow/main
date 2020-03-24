@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
@@ -13,8 +14,11 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.Planner;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Enrollment;
+import seedu.address.model.student.Major;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTable;
+import seedu.address.model.student.TimeTableMap;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,7 +26,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
@@ -61,14 +65,17 @@ public class SampleDataUtil {
     }
 
     public static Student getSampleStudent() {
-        Student sampleStudent = new Student(new seedu.address.model.student.Name("Mark"), new Major("CS"), SampleDataUtil.getSampleTimeTableMap());
-        //Student sampleStudent = new Student(new seedu.address.model.student.Name("Placeholder name"), new Major("Placeholder major"), SampleDataUtil.getSampleTimeTableMap());
+        Student sampleStudent = new Student(new seedu.address.model.student.Name("Mark"), new Major("CS"),
+            SampleDataUtil.getSampleTimeTableMap());
+        //Student sampleStudent = new Student(new seedu.address.model.student.Name("Placeholder name"), new Major
+        // ("Placeholder major"), SampleDataUtil.getSampleTimeTableMap());
         return sampleStudent;
     }
 
     public static TimeTableMap getSampleTimeTableMap() {
         TimeTableMap timeTableMap = new TimeTableMap();
-        // timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 2019), 1), SampleDataUtil.getSampleTimeTable());
+        // timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 2019), 1), SampleDataUtil
+        // .getSampleTimeTable());
         return timeTableMap;
     }
 

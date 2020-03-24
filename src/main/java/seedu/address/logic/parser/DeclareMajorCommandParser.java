@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.DeclareMajorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Major;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeclareMajorCommandParser implements Parser<DeclareMajorCommand> {
     //private static final Prefix PREFIX_DECLARE_MAJOR = new Prefix("r/");

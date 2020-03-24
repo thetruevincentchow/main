@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.time.StudentSemester;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
 public class TimeTableRemoveCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "remove";

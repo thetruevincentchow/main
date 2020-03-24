@@ -1,5 +1,15 @@
 package seedu.address.model.student;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,13 +21,6 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Represents a Student in the address book.
@@ -179,7 +182,8 @@ public class Student {
         this.specialisation = specialisation;
         for (GraduationRequirement graduationRequirement : this.major.degreeProgramme.getGraduationRequirementList()) {
             if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
-                FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement;
+                FocusAreaGraduationRequirement focusAreaGraduationRequirement =
+                    (FocusAreaGraduationRequirement) graduationRequirement;
                 focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
             }
         }

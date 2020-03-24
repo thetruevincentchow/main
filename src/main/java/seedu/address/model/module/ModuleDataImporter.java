@@ -1,8 +1,5 @@
 package seedu.address.model.module;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -12,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+
 public class ModuleDataImporter {
 
     private static final String DOWNLOAD_URL = "https://api.nusmods.com/v2/{0}/moduleInfo.json";
-    private static final String[] acadYears = new String[] {
+    private static final String[] acadYears = new String[]{
         "2019-2020",
         "2018-2019"
     };
@@ -34,7 +34,8 @@ public class ModuleDataImporter {
                         Files.copy(in, path);
                     }
                 }
-                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(path, JsonSerializableModule[].class);
+                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(path,
+                    JsonSerializableModule[].class);
                 if (optionalModules.isPresent()) {
                     JsonSerializableModule[] moduleArray = optionalModules.get();
                     for (JsonSerializableModule m : moduleArray) {

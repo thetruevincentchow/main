@@ -1,17 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ModuleAddCommand;
-import seedu.address.logic.commands.ModuleGradeCommand;
-import seedu.address.logic.commands.StudentAddCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.grades.LetterGrade;
-import seedu.address.model.module.ModuleCode;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.ModuleGradeCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.grades.LetterGrade;
+import seedu.address.model.module.ModuleCode;
 
 public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     public static final String MESSAGE_GRADE_INVALID = "Grade is invalid: %1$s";
@@ -34,7 +32,8 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     public ModuleGradeCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
+        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the
+        // preamble
         //TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_GRADE);
 

@@ -4,10 +4,10 @@ import java.util.List;
 
 public class SemesterData {
 
-    public int semester;
-    public String examDate;
-    public int examDuration;
-    public List<Lesson> timetable;
+    public final int semester;
+    public final String examDate;
+    public final int examDuration;
+    public final List<Lesson> timetable;
 
 
     public SemesterData(int semester, String examDate, int examDuration, List<Lesson> timetable) {
@@ -17,7 +17,7 @@ public class SemesterData {
         this.timetable = timetable;
     }
 
-    public SemesterData(JsonSerializableSemesterData jsonSerializableModule, String semesterData) {
+    /*public SemesterData(JsonSerializableSemesterData jsonSerializableModule, String semesterData) {
 
-    }
+    }*/
 }

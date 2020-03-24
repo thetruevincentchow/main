@@ -1,14 +1,14 @@
 package seedu.address.model.programmes.specialisations;
 
-import seedu.address.model.graduation.GraduationRequirement;
-import seedu.address.model.module.ModuleCode;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.graduation.GraduationRequirement;
+import seedu.address.model.module.ModuleCode;
+
 public abstract class GenericSpecialisation {
 
-    public String name;
+    protected String name;
 
     protected List<GraduationRequirement> graduationRequirements = new ArrayList<>();
 

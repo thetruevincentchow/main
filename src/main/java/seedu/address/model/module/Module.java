@@ -1,25 +1,25 @@
 package seedu.address.model.module;
 
+import java.util.List;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Semester;
 
-import java.util.List;
-
 public class Module {
 
-    public String acadYear;
-    public String preclusion;
-    public String description;
-    public String title;
-    public String department;
-    public String faculty;
-    public String workload;
-    public String prerequisite;
-    public String moduleCredit;
-    public ModuleCode moduleCode;
-    public List<SemesterData> semesterData;
-    public String prereqTree;
-    public String fulfillRequirements;
+    public final String acadYear;
+    public final String preclusion;
+    public final String description;
+    public final String title;
+    public final String department;
+    public final String faculty;
+    public final String workload;
+    public final String prerequisite;
+    public final String moduleCredit;
+    public final ModuleCode moduleCode;
+    public final List<SemesterData> semesterData;
+    public final String prereqTree;
+    public final String fulfillRequirements;
 
     public Module(
 

@@ -1,9 +1,9 @@
 package seedu.address.model.module;
 
 public class Lecture extends Lesson {
-
-    public Lecture() {
-
+    public Lecture(String classNo, String startTime, String endTime, Object weeks, String venue, String day,
+                   String lessonType, int size) {
+        super(classNo, startTime, endTime, weeks, venue, day, lessonType, size);
     }
 
     public ModuleTime getTime() {

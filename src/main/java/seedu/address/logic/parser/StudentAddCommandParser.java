@@ -1,24 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.StudentAddCommand;
-import seedu.address.logic.commands.StudentRemoveCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Major;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.TimeTableMap;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.StudentAddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Major;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.TimeTableMap;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -42,7 +37,8 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
     public StudentAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the preamble
+        //NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the
+        // preamble
         //TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_MAJOR);
 

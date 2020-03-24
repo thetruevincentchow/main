@@ -2,9 +2,8 @@ package seedu.address.model.module;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
 
-import java.util.List;
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
@@ -13,14 +12,14 @@ class JsonAdaptedLesson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Lesson's %s field is missing!";
 
-    private final String classNo;
-    private final String startTime;
-    private final String endTime;
-    private final Object weeks;
-    private final String venue;
-    private final String day;
-    private final String lessonType;
-    private final int size;
+    public final String classNo;
+    public final String startTime;
+    public final String endTime;
+    public final Object weeks;
+    public final String venue;
+    public final String day;
+    public final String lessonType;
+    public final int size;
 
     /**
      * Constructs a {@code JsonAdaptedLesson} with the given Lesson details.

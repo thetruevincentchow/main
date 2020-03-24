@@ -1,14 +1,9 @@
 package seedu.address.model.graduation;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.student.Student;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static seedu.address.model.graduation.AggregationType.ALL;
+import seedu.address.model.module.ModuleCode;
 
 public class WildcardGraduationRequirement extends GraduationRequirement {
 
