@@ -169,7 +169,7 @@ It is appended with the tag `MAJOR`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.1.1.png[]
 
 Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
@@ -196,7 +196,7 @@ It is appended with the tag `MINOR`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.1.2.png[]
 
 Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
@@ -223,7 +223,7 @@ It is appended with the tag `ACTION` and `TRACK`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.1.3.png[]
 
 Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
@@ -250,7 +250,7 @@ It is appended with the tag `ACTION` and `SPEC`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.1.4.png[]
 
 Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
@@ -278,7 +278,7 @@ It is appended with the tag `MODULE_CODE`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.2.1.png[]
 
 Given below is an example usage scenario and how the `add` mechanism behaves at each step:
 
@@ -299,7 +299,7 @@ It is appended with the tag `MODULE_CODE`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.2.2.png[]
 
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
@@ -318,7 +318,7 @@ The `module list` command lists all `Module` entities.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::sequenceDiagram3.2.3.png[]
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
