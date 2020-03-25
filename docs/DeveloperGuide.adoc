@@ -955,11 +955,45 @@ _{More to be added}_
 [appendix]
 == Glossary
 
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
+[horizontal]
+[[api]] API::
+Stands for "Application Programming Interface" which simplifies programming by abstracting the underlying implementation and only exposing objects or actions the developer needs.
 
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
+[[locale]] Locale::
+Stands for a setting on the user's computer that defines the user's language and region.
+
+[[mainstream-os]] Mainstream OS::
+References major operating systems (i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS).
+
+[[major]] Major::
+Refers to one of academic majors students read in NUS.
+
+[[minor]] Minor::
+Refers to one of academic minors students can optionally read in NUS.
+
+[[module]] Module::
+Refers to one of multiple academic modules students read in NUS.
+
+[[MSS]] MSS::
+Stands for "Main Success Scenario" that describes the interaction for a given use case, which assumes that nothing goes wrong.
+
+[[nfr]] NFR::
+Stands for "Non-Functional Requirement(s)".
+
+[[nus]] NUS::
+Stands for "National University of Singapore", the university this application was developed for.
+
+[[puml]] PlantUML::
+Is a tool used to render diagrams used in this document.
+
+[[specialisation]] Specialisation::
+Refers to one of academic specialisations students can optionally read in NUS.
+
+[[timetable]] Timetable::
+Refers to the module timetable that students will go for classes in NUS.
+
+[[track]] Track::
+Refers to one of academic tracks students can optionally read in NUS.
 
 [appendix]
 == Product Survey
