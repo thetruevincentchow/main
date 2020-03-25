@@ -11,6 +11,10 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.time.StudentSemester;
 
+
+/**
+ * Lists all timetables in the currently selected student's timetable list.
+ */
 public class TimeTableListCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "list";
 

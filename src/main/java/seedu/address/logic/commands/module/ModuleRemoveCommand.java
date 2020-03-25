@@ -10,6 +10,9 @@ import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 
 
+/**
+ * Removes a module from the selected timetable.
+ */
 public class ModuleRemoveCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "remove";
 

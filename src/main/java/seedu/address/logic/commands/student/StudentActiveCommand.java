@@ -11,6 +11,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
+
+/**
+ * Sets the currently selected student in the student list.
+ */
 public class StudentActiveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "active";
 

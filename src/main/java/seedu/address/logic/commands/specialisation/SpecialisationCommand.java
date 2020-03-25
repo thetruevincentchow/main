@@ -6,10 +6,7 @@ public abstract class SpecialisationCommand extends Command {
 
     public static final String COMMAND_WORD = "specialisation";
 
-    // TODO: fill in usage message
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        //+ ": Deletes the person identified by the index number used in the displayed person list.\n"
-        //+ "Parameters: INDEX (must be a positive integer)\n"
         + ":\n"
         + "1. Algorithms & Theory\n"
         + "2. Artificial Intelligence\n"
@@ -25,6 +22,11 @@ public abstract class SpecialisationCommand extends Command {
         + "Example: " + COMMAND_WORD + " set 1";
 
 
+    /**
+     * Returns the (@code COMMAND_NAME) concatenated with the name of the input (@code subCommand).
+     * @param subCommand
+     * @return Qualified name
+     */
     public static String getQualifiedCommand(String subCommand) {
         return COMMAND_WORD + " " + subCommand;
     }

@@ -12,6 +12,10 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.time.StudentSemester;
 
+
+/**
+ * Sets a timetable as the currently selected timetable in the currently selected student's timetable list.
+ */
 public class TimeTableActiveCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "active";
 

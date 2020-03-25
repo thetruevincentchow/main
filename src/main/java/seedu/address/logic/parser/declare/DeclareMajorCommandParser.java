@@ -2,7 +2,7 @@ package seedu.address.logic.parser.declare;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.DeclareMajorCommand;
+import seedu.address.logic.commands.declare.DeclareMajorCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Major;

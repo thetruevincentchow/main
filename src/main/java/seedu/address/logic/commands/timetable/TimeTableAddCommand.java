@@ -12,6 +12,10 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.time.StudentSemester;
 
+
+/**
+ * Adds a timetable to the currently selected student's timetable list.
+ */
 public class TimeTableAddCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "add";
 

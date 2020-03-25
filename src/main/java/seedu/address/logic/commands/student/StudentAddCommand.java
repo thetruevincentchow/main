@@ -11,6 +11,9 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 
+/**
+ * Sets a student to the student list.
+ */
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
 

@@ -14,6 +14,9 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.student.Enrollment;
 
+/**
+ * Adds a module to the selected timetable.
+ */
 public class ModuleAddCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "add";
 

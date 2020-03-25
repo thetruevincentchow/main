@@ -1,4 +1,6 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.declare;
+
+import seedu.address.logic.commands.Command;
 
 public abstract class DeclareCommand extends Command {
 

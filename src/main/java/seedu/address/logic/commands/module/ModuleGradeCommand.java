@@ -17,7 +17,9 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 
-
+/**
+ * Sets the grade of a module in the selected timetable.
+ */
 public class ModuleGradeCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "grade";
 

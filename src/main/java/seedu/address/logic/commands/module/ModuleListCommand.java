@@ -9,6 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 
+
+/**
+ * Lists modules enrolled in the selected timetable.
+ */
 public class ModuleListCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "list";
 

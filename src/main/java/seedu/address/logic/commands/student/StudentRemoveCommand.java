@@ -12,6 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 
+/**
+ * Removes a student from the student list.
+ */
 public class StudentRemoveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "remove";
 

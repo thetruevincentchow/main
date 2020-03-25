@@ -17,6 +17,9 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.TimeTable;
 import seedu.address.model.time.StudentSemester;
 
+/**
+ * Lists the grade of the currently selected student.
+ */
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
 
