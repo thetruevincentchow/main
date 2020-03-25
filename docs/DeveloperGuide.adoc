@@ -543,7 +543,7 @@ Refer to the guide <<DevOps#, here>>.
 [appendix]
 == Product Scope
 
-*Target user profile*:
+=== Target User Profile
 
 * targets prospective, incoming and current Undergraduate NUS Students
 * needs to plan/track academic progression via enrolling and passed modules
@@ -552,7 +552,7 @@ Refer to the guide <<DevOps#, here>>.
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*:
+=== Value Proposition
 
 * aggregates all information regarding modules and graduation requirements in a single app
 * manages academic progress and module planning faster than a typical mouse/GUI driven app
@@ -626,8 +626,7 @@ _{More to be added}_
 
 (For all use cases below, the *System* is the `Planner` and the *Actor* is the `user`, unless specified otherwise)
 
-[discrete]
-=== Use case: Add plan (UCA01)
+=== Use Case: Add Plan (UCA01)
 
 *MSS*
 
@@ -647,9 +646,7 @@ Use case ends
 +
 Use case ends
 
-
-[discrete]
-=== Use case: Delete plan (UCA02)
+=== Use Case: Delete Plan (UCA02)
 
 *MSS*
 
@@ -674,9 +671,7 @@ Use case ends
 +
 Use case resumes at step 2
 
-
-[discrete]
-=== Use case: Select plan (UCA03)
+=== Use Case: Select Plan (UCA03)
 
 *MSS*
 
@@ -701,9 +696,7 @@ Use case ends
 +
 Use case resumes at step 2
 
-
-[discrete]
-=== Use case: Add timetable (UCB01)
+=== Use Case: Add Timetable (UCB01)
 
 *MSS*
 
@@ -731,9 +724,7 @@ Use case ends
 +
 Use case ends
 
-
-[discrete]
-=== Use case: Delete timetable (UCB02)
+=== Use Case: Delete Timetable (UCB02)
 
 *MSS*
 
@@ -762,9 +753,7 @@ Use case ends
 +
 Use case ends
 
-
-[discrete]
-=== Use case: Select timetable (UCB03)
+=== Use Case: Select Timetable (UCB03)
 
 *MSS*
 
@@ -790,10 +779,7 @@ Use case ends
 +
 Use case resumes at step 3
 
-
-
-[discrete]
-=== Use case: Add module (UCC01)
+=== Use Case: Add Module (UCC01)
 
 *MSS*
 
@@ -821,38 +807,7 @@ Use case ends
 +
 Use case ends
 
-
-=== Use case: Delete module (UCC02)
-
-*MSS*
-
-1.  User [.underline]#selects a timetable (UCB03)#
-2.  User requests to delete a specified module
-3.  Planner deletes the module from the active timetable
-+
-Use case ends
-
-*Extensions*
-
-[none]
-* 2a. The given module is invalid
-+
-[none]
-** 2a1. Planner shows an error message
-+
-Use case ends
-
-[none]
-* 2b. The given module does not exist in the timetable
-+
-[none]
-** 2b1. Planner shows an error message
-+
-Use case ends
-
-
-[discrete]
-=== Use case: Delete module (UCC02)
+=== Use Case: Delete Module (UCC02)
 
 *MSS*
 
@@ -880,9 +835,7 @@ Use case ends
 +
 Use case ends
 
-
-[discrete]
-=== Use case: List grades (UCD01)
+=== Use Case: List Grades (UCD01)
 
 *MSS*
 
@@ -902,8 +855,7 @@ Use case ends
 +
 Use case ends
 
-
-=== Use case: Set module grade (UCD02)
+=== Use Case: Set Module Grade (UCD02)
 
 *MSS*
 
@@ -1036,7 +988,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a plan
+=== Deleting a Plan
 
 . Deleting a plan while all plans are listed
 
@@ -1048,7 +1000,7 @@ _{ more test cases ... }_
 .. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
    Expected: Similar to previous.
 
-=== Adding a plan
+=== Adding a Plan
 
 . Adding a plan while all plans are listed
 
@@ -1062,7 +1014,7 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
-=== Saving data
+=== Saving Data
 
 . Dealing with missing/corrupted data files
 
