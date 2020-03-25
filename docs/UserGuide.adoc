@@ -12,13 +12,25 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W13-4/main
 
 By: `CS2103T-W13-4`      Since: `Jan 2020`      Licence: `MIT`
 
 == Introduction
 
-NUS Module Planner (NUSModPlnr) is for those who prefer to use a desktop app to plan and manage their modules to fulfil their graduation requirements. More importantly, the NUSModPlnr optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet intuitive way.
+NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. **With NUSModPlnr, module planning has never been easier!**
+
+Do you want to keep track of the modules you will be taking over multiple semesters? Do you want to easily create multiple plans of these multiple semesters?
+
+Are you frustrated about managing the numerous details of the graduation requirements for a CS degree? NUSModPlnr allows you to check which graduation requirements you can satisfy, on the fly.
+
+Do you want to keep track of your grades to better decide on which modules to enrol in? NUSModPlnr provides a simple way to calculate grade statistics.
+
+If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet intuitive way. NUSModPlnr is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+== Overview
+
+NUSModPlnr is a timetable and enrollment management application. Users can add different student plans which consist of the student's degree programme and timetables for different semesters. Within each timetable, users can add modules they intend to enrol in. After managing student plans, timetables and modules, users can request information about the plan. This includes the student's cumulative grades and the status of graduation requirements (for the degree programme that was set).
 
 == Quick Start
 
@@ -52,6 +64,8 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ** Must be a positive integer
 * `NAME` - a name of a plan
 ** Must be alphanumeric, possibly with spaces
+* `SEM`
+** Must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`
 * `YEAR` - a year number
 ** Must be a non-negative integer
 ====
@@ -69,40 +83,46 @@ Format: `exit`
 
 === Student management
 
-==== View student list: `student list`
+==== Viewing the student list: `student list`
 
-Displays a numbered list of students in the student list.
+Displays a numbered list of students in the student list. +
 Format: `student list`
+
 Example:
 
 * `student list`
 
-==== Add a student: `student add`
+==== Adding a student: `student add`
 
-Adds a student to the student list.
+Adds a student to the student list. +
 Format: `student add n/NAME major/MAJOR`
+
 Example:
 
 * `student add n/Alice major/CS`
 
-==== Remove a student: `student remove`
+==== Removing a student: `student remove`
 
-Removes the student with the number `INDEX` from the student list.
+Removes the student with the number `INDEX` from the student list. =
 Format: `student remove INDEX`
+
 Example:
 
 * `student remove 1`
 
-==== Select a student: `student active`
+==== Selecting a student: `student active`
 
-Selects the student with the number `INDEX` from the student list.
+Selects the student with the number `INDEX` from the student list. +
 Format: `student active INDEX`
+
 Example:
 
 * `student active 1`
 
 
 === Student detail management
+
+All the following commands require a student to be selected (using the `student active` command).
 
 ==== Declaring your major: `declare major`
 
@@ -141,34 +161,40 @@ This is equivalent to `declare spec`.
 
 === Timetable management
 
-==== List timetables: `timetable list`
+All the following commands require a student to be selected (using the `student active` command).
 
-Lists the timetables of the selected student (see `student active`).
+==== Listing timetables: `timetable list`
+
+Lists the timetables of the selected student (see `student active`). +
 Format: `timetable list`
+
 Example:
 
 * `student list`
 
-==== Add a timetable: `timetable add`
+==== Adding a timetable: `timetable add`
 
-Adds a timetable to the specified semester of the selected student (see `student active`).
+Adds a timetable to the specified semester of the selected student (see `student active`). +
 Format: `timetable add year/YEAR sem/SEM`
+
 Example:
 
 * `timetable add year/2 sem/ONE`
 
-==== Remove a timetable: `timetable remove`
+==== Removing a timetable: `timetable remove`
 
-Removes the timetable for the specified semester and the selected student (see `student active`).
+Removes the timetable for the specified semester and the selected student (see `student active`). +
 Format: `timetable remove year/YEAR sem/SEM`
+
 Example:
 
 * `timetable remove year/2 sem/ONE`
 
-==== Select a timetable: `timetable active`
+==== Selecting a timetable: `timetable active`
 
-Selects the timetable for the specified semester and the selected student (see `student active`).
+Selects the timetable for the specified semester and the selected student (see `student active`). +
 Format: `timetable active year/YEAR sem/SEM`
+
 Example:
 
 * `timetable active year/2 sem/ONE`
@@ -176,10 +202,13 @@ Example:
 
 === Module management
 
+All the following commands require a timetable to be selected (using the `timetable active` command).
+
 ==== Adding a module: `module add`
 
 Add a module to your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
 Format: `module add MODULE_CODE`
+
 Example:
 
 * `module add CS2040`
@@ -188,6 +217,7 @@ Example:
 
 Remove a module from your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
 Format: `module remove MODULE_CODE`
+
 Example:
 
 * `module remove CS2040`
@@ -196,17 +226,53 @@ Example:
 
 Displays modules in your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
 Format: `module list`
+
 Example:
 
 * `module list`
 
+////
 ==== Viewing exempted modules: `module list exempted`
 
-Displays modules that you have declared as exempted.
-Format: `module list exempted`
+Displays modules that you have declared as exempted. +
+Format: `module list exempted
+
 Example:
 
 * `module list exempted`
+////
+
+
+=== Grade management
+
+==== Viewing a student's grade: `student grade`
+
+Displays the cumulative grade of the selected student (see the `student active` command). +
+This command require a student to be selected (using the `student active` command). +
+Format: `student grade`
+
+Example:
+
+* `student grade`
+
+==== Managing a module's grade: `module grade`
+
+Displays the grade of the specified module. +
+This command require a timetable to be selected (using the `timetable active` command). +
+Format: `module grade MODULE_CODE`
+
+Example:
+
+* `module grade CS2040`
+
+Sets the grade of the specified module. +
+This command require a timetable to be selected (using the `timetable active` command). +
+Format: `module grade MODULE_CODE grade/GRADE`
+
+Example:
+
+* `module grade CS2040 grade/A`
+
 
 === Saving the data
 
@@ -229,6 +295,24 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Help* : `help`
-
+* *View help* : `help`
+* *Exit the program* : `exit`
+* *View the student list* : `student list`
+* *Add a student* : `student add`
+* *Remove a student* : `student remove`
+* *Select a student* : `student active`
+* *Declare major* : `declare major`
+* *Declare minor* : `declare minor`
+* *Declare specialisation* : `declare spec`
+* *Declare track* : `declare track`
+* *List timetables* : `timetable list`
+* *Add a timetable* : `timetable add`
+* *Remove a timetable* : `timetable remove`
+* *Select a timetable* : `timetable active`
+* *Add a module* : `module add`
+* *Remove a module* : `module remove`
+* *View added modules* : `module list`
+* *View exempted modules* : `module list exempted`
+* *View a student's grade* : `student grade`
+* *Manage a module's grade* : `module grade`
 
