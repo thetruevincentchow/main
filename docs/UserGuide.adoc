@@ -45,6 +45,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Common Parameters*
 
+These are parameters that are commonly used in commands available in NUSModPlnr.
+
 * `MODULE_CODE` - a code for a module in NUS
 * `INDEX` - a index number of an item listed
 ** Must be a positive integer
@@ -54,16 +56,55 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ** Must be a non-negative integer
 ====
 
-=== Viewing help : `help`
+=== Miscellaneous
+
+==== Viewing help : `help`
 
 Format: `help`
 
-=== Exiting the program : `exit`
+==== Exiting the program : `exit`
 
 Exits the program. +
 Format: `exit`
 
-=== Declaring your major: `declare major`
+=== Student management
+
+==== View student list: `student list`
+
+Displays a numbered list of students in the student list.
+Format: `student list`
+Example:
+
+* `student list`
+
+==== Add a student: `student add`
+
+Adds a student to the student list.
+Format: `student add n/NAME major/MAJOR`
+Example:
+
+* `student add n/Alice major/CS`
+
+==== Remove a student: `student remove`
+
+Removes the student with the number `INDEX` from the student list.
+Format: `student remove INDEX`
+Example:
+
+* `student remove 1`
+
+==== Select a student: `student active`
+
+Selects the student with the number `INDEX` from the student list.
+Format: `student active INDEX`
+Example:
+
+* `student active 1`
+
+
+=== Student detail management
+
+==== Declaring your major: `declare major`
 
 Declares your major for studies and is required for the module planning. +
 Format: `declare major [MAJOR]`
@@ -73,7 +114,7 @@ Examples:
 
 * `declare major comsci`
 
-=== Declaring your minor: `declare minor`
+==== Declaring your minor: `declare minor`
 
 Declares your minor for studies. +
 Format: `declare major [MINOR]`
@@ -83,7 +124,7 @@ Examples:
 * `declare minor none`
 * `declare minor comsci`
 
-=== Declaring your specialisation: `declare spec`
+==== Declaring your specialisation: `declare spec`
 
 Declares your Focus Areas, should you require them in module planning. +
 Format: `declare spec [ACTION] [SPEC]`
@@ -93,75 +134,14 @@ Examples:
 * `declare spec add networking`
 * `declare spec remove networking`
 
-=== Declaring your track: `declare track`
+==== Declaring your track: `declare track`
 
 This is equivalent to `declare spec`.
 
-=== Adding a module: `module add`
 
-Add a module to your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
-Format: `module add MODULE_CODE`
-Example:
+=== Timetable management
 
-* `module add CS2040`
-
-=== Removing a module: `module remove`
-
-Remove a module from your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
-Format: `module remove MODULE_CODE`
-Example:
-
-* `module remove CS2040`
-
-=== Viewing added modules: `module list`
-
-Displays modules in your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
-Format: `module list`
-Example:
-
-* `module list`
-
-=== Viewing exempted modules: `module list exempted`
-
-Displays modules that you have declared as exempted.
-Format: `module list exempted`
-Example:
-
-* `module list exempted`
-
-=== View student list: `student list`
-
-Displays a numbered list of students in the student list.
-Format: `student list`
-Example:
-
-* `student list`
-
-=== Add a student: `student add`
-
-Adds a student to the student list.
-Format: `student add n/NAME major/MAJOR`
-Example:
-
-* `student add n/Alice major/CS`
-
-=== Remove a student: `student remove`
-
-Removes the student with the number `INDEX` from the student list.
-Format: `student remove INDEX`
-Example:
-
-* `student remove 1`
-
-=== Select a student: `student active`
-
-Selects the student with the number `INDEX` from the student list.
-Format: `student active INDEX`
-Example:
-
-* `student active 1`
-
-=== List timetables: `timetable list`
+==== List timetables: `timetable list`
 
 Lists the timetables of the selected student (see `student active`).
 Format: `timetable list`
@@ -169,7 +149,7 @@ Example:
 
 * `student list`
 
-=== Add a timetable: `timetable add`
+==== Add a timetable: `timetable add`
 
 Adds a timetable to the specified semester of the selected student (see `student active`).
 Format: `timetable add year/YEAR sem/SEM`
@@ -177,7 +157,7 @@ Example:
 
 * `timetable add year/2 sem/ONE`
 
-=== Remove a timetable: `timetable remove`
+==== Remove a timetable: `timetable remove`
 
 Removes the timetable for the specified semester and the selected student (see `student active`).
 Format: `timetable remove year/YEAR sem/SEM`
@@ -185,13 +165,48 @@ Example:
 
 * `timetable remove year/2 sem/ONE`
 
-=== Select a timetable: `timetable active`
+==== Select a timetable: `timetable active`
 
 Selects the timetable for the specified semester and the selected student (see `student active`).
 Format: `timetable active year/YEAR sem/SEM`
 Example:
 
 * `timetable active year/2 sem/ONE`
+
+
+=== Module management
+
+==== Adding a module: `module add`
+
+Add a module to your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+Format: `module add MODULE_CODE`
+Example:
+
+* `module add CS2040`
+
+==== Removing a module: `module remove`
+
+Remove a module from your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+Format: `module remove MODULE_CODE`
+Example:
+
+* `module remove CS2040`
+
+==== Viewing added modules: `module list`
+
+Displays modules in your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+Format: `module list`
+Example:
+
+* `module list`
+
+==== Viewing exempted modules: `module list exempted`
+
+Displays modules that you have declared as exempted.
+Format: `module list exempted`
+Example:
+
+* `module list exempted`
 
 === Saving the data
 
@@ -202,7 +217,9 @@ There is no need to save manually.
 // tag::sharingdatafiles[]
 === Sharing the data files `[coming in v2.0]`
 
+////
 _{explain how the user can enable/disable data encryption}_
+////
 // end::sharingdatafiles[]
 
 == FAQ
