@@ -11,4 +11,9 @@ public abstract class StudentCommand extends Command {
         + ":\n"
         + "Subcommands: add, remove, active, grade\n"
         + "Example: " + COMMAND_WORD + " active 1";
+
+
+    public static String getQualifiedCommand(String subCommand) {
+        return COMMAND_WORD + " " + subCommand;
+    }
 }

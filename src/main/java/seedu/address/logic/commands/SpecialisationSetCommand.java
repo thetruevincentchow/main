@@ -9,9 +9,10 @@ import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 
 public class SpecialisationSetCommand extends SpecialisationCommand {
     public static final String COMMAND_WORD = "set";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'specialisation set' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
     public static final String MESSAGE_SUCCESS = "Successfully updated Student's Focus Area to: %1$s";
-    public static final String MESSAGE_USAGE = "specialisation " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Set's the current Student's specialisation";
 
     private GenericSpecialisation specialisation;

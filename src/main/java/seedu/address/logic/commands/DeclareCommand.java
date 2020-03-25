@@ -11,4 +11,9 @@ public abstract class DeclareCommand extends Command {
         + ":\n"
         + "Subcommands: major\n"
         + "Example: " + COMMAND_WORD + " major CS";
+
+
+    public static String getQualifiedCommand(String subCommand) {
+        return COMMAND_WORD + " " + subCommand;
+    }
 }

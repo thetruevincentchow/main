@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
@@ -15,14 +14,15 @@ import seedu.address.model.time.StudentSemester;
 public class TimeTableAddCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'timetable add' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
 
-    public static final String MESSAGE_USAGE = "timetable " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Adds a timetable with the given semester to the active student.\n"
         + "Parameters: "
         + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
         + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
-        + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/ONE";
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " year/1 sem/ONE";
 
     public static final String MESSAGE_ADD_TIMETABLE_SUCCESS = "Added timetable to semester: %1$s";
     public static final String MESSAGE_EXISTING_SEMESTER = "Semester already exists in list of timetables: %1$s";

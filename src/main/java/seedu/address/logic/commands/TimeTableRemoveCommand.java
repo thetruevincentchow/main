@@ -14,14 +14,15 @@ import seedu.address.model.time.StudentSemester;
 public class TimeTableRemoveCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'timetable remove' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
 
-    public static final String MESSAGE_USAGE = "timetable " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Removes a timetable identified by the given semester from the active student.\n"
         + "Parameters: "
         + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
         + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
-        + "Example: " + "timetable " + COMMAND_WORD + " year/1 sem/Semester 1";
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " year/1 sem/Semester 1";
 
     public static final String MESSAGE_REMOVE_TIMETABLE_SUCCESS = "Removed timetable from semester: %1$s";
     public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exists in list of timetables: %1$s";

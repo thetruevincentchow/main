@@ -21,4 +21,9 @@ public abstract class SpecialisationCommand extends Command {
         + "10. Software Engineering\n"
         + "Subcommands: set\n"
         + "Example: " + COMMAND_WORD + " set 1";
+
+
+    public static String getQualifiedCommand(String subCommand) {
+        return COMMAND_WORD + " " + subCommand;
+    }
 }

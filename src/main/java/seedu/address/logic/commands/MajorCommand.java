@@ -11,4 +11,9 @@ public abstract class MajorCommand extends Command {
         + ":\n"
         + "Subcommands: status, set\n"
         + "Example: " + COMMAND_WORD + " set CS";
+
+
+    public static String getQualifiedCommand(String subCommand) {
+        return COMMAND_WORD + " " + subCommand;
+    }
 }

@@ -1,11 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,12 +14,13 @@ import seedu.address.model.student.Student;
 public class StudentRemoveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student remove' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
 
-    public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Removes the student from list of student profiles.\n"
         + "Parameters: INDEX (must be a positive integer) \n"
-        + "Example: " + "student " + COMMAND_WORD + " 1";
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed student: %1$s";
     public static final String MESSAGE_WOULD_BE_EMPTY = "Removing student would make student list empty";

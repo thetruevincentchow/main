@@ -15,13 +15,14 @@ import seedu.address.model.student.Student;
 public class DeclareMajorCommand extends DeclareCommand {
     public static final String COMMAND_WORD = "major";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'declare major' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
 
     // TODO: write usage message
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Deletes the person identified by the index number used in the displayed person list.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_EDIT_MAJOR_SUCCESS = "Changed major to: %1$s";
 

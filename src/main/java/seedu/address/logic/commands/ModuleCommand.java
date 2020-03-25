@@ -10,5 +10,10 @@ public abstract class ModuleCommand extends Command {
         //+ "Parameters: INDEX (must be a positive integer)\n"
         + ":\n"
         + "Subcommands: add, remove, list, grade\n"
-        + "Example: " + COMMAND_WORD + " add CS2030";
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
+
+
+    public static String getQualifiedCommand(String subCommand) {
+        return COMMAND_WORD + " " + subCommand;
+    }
 }

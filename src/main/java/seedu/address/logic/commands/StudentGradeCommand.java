@@ -19,11 +19,12 @@ import seedu.address.model.time.StudentSemester;
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'student grade' command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
+        + "' command not implemented yet";
 
-    public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Display average grade of active student.\n"
-        + "Example: " + "student " + COMMAND_WORD;
+        + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Grade of active student %1$s: %2$s\n"
         + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs are declared S/U.\n"

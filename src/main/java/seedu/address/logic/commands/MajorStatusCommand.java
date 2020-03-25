@@ -14,9 +14,7 @@ import seedu.address.model.student.Student;
 public class MajorStatusCommand extends MajorCommand {
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'major status' command not implemented yet";
-
-    public static final String MESSAGE_USAGE = "major " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Lists the current progress of graduating with a given major";
 
     public static final String MESSAGE_SUCCESS = "Listed the graduation requirement status:\n%1$s";
