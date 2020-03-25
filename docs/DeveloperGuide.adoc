@@ -153,6 +153,115 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=== Declaration Implementation
+==== Declare Major
+
+The `declare major` command associates an existing `Major` entity (with all associated values) provided by the user.
+
+It is appended with the tag `MAJOR`.
+
+[NOTE]
+`Major` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`MajorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MajorSetCommand` is parsed using `MajorCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `MajorCommandParser` will associate the specified `Major` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-1 relationship with a `Major` entity.
+
+===== Design Considerations
+====== Aspect: How `MajorSetCommand` Executes
+
+==== Declare Minor
+
+The `declare minor` command associates an existing `Minor` entity (with all associated values) provided by the user.
+
+It is appended with the tag `MINOR`.
+
+[NOTE]
+`Minor` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`MinorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MinorSetCommand` is parsed using `MinorCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `MinorCommandParser` will associate the specified `Minor` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Minor` entity.
+
+===== Design Considerations
+====== Aspect: How `MinorSetCommand` Executes
+
+==== Declare Track
+
+The `declare track` command associates an existing `Track` entity (with all associated values) provided by the user.
+
+It is appended with the tag `ACTION` and `TRACK`.
+
+[NOTE]
+`Track` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`TrackSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TrackSetCommand` is parsed using `TrackCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `TrackCommandParser` will associate the specified `Minor` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Track` entity.
+
+===== Design Considerations
+====== Aspect: How `TrackSetCommand` Executes
+
+==== Declare Specialisation
+
+The `declare spec` command associates an existing `Specialisation` entity (with all associated values) provided by the user.
+
+It is appended with the tag `ACTION` and `SPEC`.
+
+[NOTE]
+`Specialisation` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`SpecialisationSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `SpecialisationSetCommand` is parsed using `SpecialisationCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `SpecialisationCommandParser` will associate the specified `Specialisation` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Specialisation` entity.
+
+===== Design Considerations
+====== Aspect: How `SpecialisationSetCommand` Executes
+
 === Module Implementation
 ==== Add Module
 
