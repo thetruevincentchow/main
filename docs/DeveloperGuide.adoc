@@ -153,94 +153,360 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
-=== [Proposed] Undo/Redo feature
-==== Proposed Implementation
+=== Declaration Implementation
+==== Declare Major
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+The `declare major` command associates an existing `Major` entity (with all associated values) provided by the user.
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-image::UndoRedoState0.png[]
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-image::UndoRedoState1.png[]
-
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-image::UndoRedoState2.png[]
+It is appended with the tag `MAJOR`.
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+`Major` entities are automatically created and populated through the JSON data received from NUSMods.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+===== Current Implementation
 
-image::UndoRedoState3.png[]
+`MajorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MajorSetCommand` is parsed using `MajorCommandParser` to split the user input into relevant fields.
 
-[NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-The following sequence diagram shows how the undo operation works:
+%DiagramToBeInserted%
 
-image::UndoSequenceDiagram.png[]
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
-NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+. User enters the command. `MajorCommandParser` will associate the specified `Major` object (if it exists).
 
 [NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+As of this time, `Student` entities can only be associated in a 1-1 relationship with a `Major` entity.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+===== Design Considerations
+====== Aspect: How `MajorSetCommand` Executes
 
-image::UndoRedoState4.png[]
+==== Declare Minor
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+The `declare minor` command associates an existing `Minor` entity (with all associated values) provided by the user.
 
-image::UndoRedoState5.png[]
+It is appended with the tag `MINOR`.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[NOTE]
+`Minor` entities are automatically created and populated through the JSON data received from NUSMods.
 
-image::CommitActivityDiagram.png[]
+===== Current Implementation
 
-==== Design Considerations
+`MinorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MinorSetCommand` is parsed using `MinorCommandParser` to split the user input into relevant fields.
 
-===== Aspect: How undo & redo executes
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
+%DiagramToBeInserted%
 
-===== Aspect: Data structure to support the undo/redo commands
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
-// end::undoredo[]
+. User enters the command. `MinorCommandParser` will associate the specified `Minor` object (if it exists).
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Minor` entity.
 
-_{Explain here how the data encryption feature will be implemented}_
+===== Design Considerations
+====== Aspect: How `MinorSetCommand` Executes
 
-// end::dataencryption[]
+==== Declare Track
+
+The `declare track` command associates an existing `Track` entity (with all associated values) provided by the user.
+
+It is appended with the tag `ACTION` and `TRACK`.
+
+[NOTE]
+`Track` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`TrackSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TrackSetCommand` is parsed using `TrackCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `TrackCommandParser` will associate the specified `Minor` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Track` entity.
+
+===== Design Considerations
+====== Aspect: How `TrackSetCommand` Executes
+
+==== Declare Specialisation
+
+The `declare spec` command associates an existing `Specialisation` entity (with all associated values) provided by the user.
+
+It is appended with the tag `ACTION` and `SPEC`.
+
+[NOTE]
+`Specialisation` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`SpecialisationSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `SpecialisationSetCommand` is parsed using `SpecialisationCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+
+. User enters the command. `SpecialisationCommandParser` will associate the specified `Specialisation` object (if it exists).
+
+[NOTE]
+As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Specialisation` entity.
+
+===== Design Considerations
+====== Aspect: How `SpecialisationSetCommand` Executes
+
+=== Module Implementation
+==== Add Module
+
+The `module add` command associates an existing `Module` entity (with all associated values) provided by the user.
+
+It is appended with the tag `MODULE_CODE`.
+
+[NOTE]
+`Module` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`ModuleAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleAddCommand` is parsed using `ModuleAddCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+
+. User enters the command. `ModuleAddCommandParser` will associate the specified `Module` object (if it exists).
+
+===== Design Considerations
+====== Aspect: How `ModuleAddCommand` Executes
+
+==== Remove Module
+
+The `module remove` command disassociates a `Module` entity (with all associated values) when instructed by the user.
+
+It is appended with the tag `MODULE_CODE`.
+
+===== Current Implementation
+
+`ModuleRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleRemoveCommand` is parsed using `ModuleRemoveCommandParser` to parse the action.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+
+. User enters the command. `ModuleRemoveCommandParser` will disassociate the specified `Module` object (if it exists), along with its associated values.
+
+===== Design Considerations
+====== Aspect: How `ModuleRemoveCommand` Executes
+
+==== List Modules
+
+The `module list` command lists all `Module` entities.
+
+===== Current Implementation
+
+`ModuleListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleListCommand` is parsed using `ModuleCommandParser` to get the command input.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+. User enters the command. `ModuleCommandParser` will list all `Module` objects (if any exists).
+
+[NOTE]
+When appended with `exempted` (i.e. `module list exempted`) the command lists all `Module` entities that have been marked as exempted.
+
+===== Design Considerations
+====== Aspect: How `ModuleListCommand` Executes
+
+=== Student Implementation
+==== Add Student
+
+The `student add` command creates a `Student` entity (with name and/or major) with the fields provided by the user.
+
+It is appended with the tags `n/NAME` and `major/MAJOR`.
+
+* `Student(Name name,)` -- Creates a `Student` entity with only the student's name.
+* `Student(Name name, Major major)` -- Creates a `Student` entity with both the student's name and intended major.
+* `Student(Name name, Major major, TimeTableMap timeTableMap)` -- Creates a `Student` entity with the student's TimeTable, alongside student's name and intended major.
+* `Student(Name name, Degrees degrees, Major major)` -- Creates a `Student` entity with the student's Degrees, alongside the student's name and intended major.
+
+===== Current Implementation
+
+`StudentAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentAddCommand` is parsed using `StudentAddCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+
+. User launches the application.
+.. If it is the first time, a `Student` object will be created using `StudentAddCommand`.
+. User enters the command. `StudentAddCommandParser` will create a `Student` object, which can contain `name`, `major`, `timetable` and/or `degrees`.
+
+===== Design Considerations
+====== Aspect: How `StudentAddCommand` Executes
+
+==== Remove Student
+
+The `student remove` command destroys a `Student` entity (with all associated values) when instructed by the user.
+
+It is appended with the tag `INDEX`.
+
+===== Current Implementation
+
+`StudentRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentRemoveCommand` is parsed using `StudentRemoveCommandParser` to parse the action.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+
+. User enters the command. `StudentRemoveCommandParser` will destroy the specified `Student` object (if it exists), along with its associated values.
+
+===== Design Considerations
+====== Aspect: How `StudentRemoveCommand` Executes
+
+==== Active Student
+
+The `student active` command selects the specified `Student` entity with its associated values, by the index input provided by the user.
+
+It is appended with the tag `INDEX`.
+
+===== Current Implementation
+
+`StudentActiveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentActiveCommand` is parsed using `StudentActiveCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `active` mechanism behaves at each step:
+
+. User enters the command. `StudentActiveCommandParser` will select the specified `Student` object (if it exists), by the specified index.
+
+===== Design Considerations
+====== Aspect: How `StudentActiveCommand` Executes
+
+==== List Students
+
+The `student list` command lists all `Student` entities.
+
+===== Current Implementation
+
+`StudentListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentListCommand` is parsed using `StudentCommandParser` to get the command input.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+. User enters the command. `StudentCommandParser` will list all `Student` objects (if any exists).
+
+===== Design Considerations
+====== Aspect: How `StudentListCommand` Executes
+
+=== Timetable Implementation
+==== Add Timetable
+
+The `timetable add` command creates a `TimeTable` entity (possibly with enrollments, year and semester) provided by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+* `TimeTable()` -- Creates a `TimeTable` entity with no associated values.
+* `TimeTable(List<Enrollment> enrollments)` -- Creates a `TimeTable` entity with an associated `Enrollment` list.
+
+===== Current Implementation
+
+`TimeTableAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableAddCommand` is parsed using `TimeTableAddCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+
+. User launches the application.
+.. If it is the first time, a `TimeTable` object will be created using `TimeTableAddCommand`.
+. User enters the command. `TimeTableAddCommandParser` will create a `TimeTable` object, which can contain `enrollments`.
+
+===== Design Considerations
+====== Aspect: How `TimeTableAddCommand` Executes
+
+==== Remove TimeTable
+
+The `timetable remove` command destroys a `TimeTable` entity (with all associated values) when instructed by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+===== Current Implementation
+
+`TimeTableRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableRemoveCommand` is parsed using `TimeTableRemoveCommandParser` to parse the action.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+
+. User enters the command. `TimeTableRemoveCommandParser` will destroy the specified `TimeTable` object (if it exists), along with its associated values.
+
+===== Design Considerations
+====== Aspect: How `TimeTableRemoveCommand` Executes
+
+==== Active TimeTable
+
+The `TimeTable active` command selects the specified `TimeTable` entity with its associated values, by the index input provided by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+===== Current Implementation
+
+`TimeTableActiveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableActiveCommand` is parsed using `TimeTableActiveCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `active` mechanism behaves at each step:
+
+. User enters the command. `TimeTableActiveCommandParser` will select the specified `TimeTable` object (if it exists), by the specified index.
+
+===== Design Considerations
+====== Aspect: How `TimeTableActiveCommand` Executes
+
+==== List Timetables
+
+The `timetable list` command lists all `TimeTable` entities.
+
+===== Current Implementation
+
+`TimeTableListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableListCommand` is parsed using `TimeTableCommandParser` to get the command input.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+. User enters the command. `TimeTableCommandParser` will list all `TimeTable` objects (if any exists).
+
+===== Design Considerations
+====== Aspect: How `TimeTableListCommand` Executes
 
 === Logging
 
@@ -279,13 +545,17 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* targets prospective, incoming and current Undergraduate NUS Students
+* needs to plan/track academic progression via enrolling and passed modules
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*:
+
+* aggregates all information regarding modules and graduation requirements in a single app
+* manages academic progress and module planning faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -296,8 +566,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I ...
 |`* * *` |new user |see usage instructions |can refer to instructions when I forget how to use the App
-
-|`*` |user with many persons in the address book |sort persons by name |can locate a person easily
 
 |`* * *` |user |declare what my major is |get the right graduation requirements to follow
 
@@ -674,22 +942,58 @@ Use case ends
 _{More to be added}_
 
 [appendix]
-== Non Functional Requirements
+== Non-Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+. The application should be able to run on all major operating systems (i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS).
+. The user should run the software with OpenJDK 11 (as per constraints).
+. The application should come prepackaged with pre-populated data (for offline use).
+. The application be able to hold up to 10 students and their respective module plans/enrollments without a noticeable sluggishness in performance for typical usage.
+. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
 
 [appendix]
 == Glossary
 
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
+[horizontal]
+[[api]] API::
+Stands for "Application Programming Interface" which simplifies programming by abstracting the underlying implementation and only exposing objects or actions the developer needs.
 
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
+[[locale]] Locale::
+Stands for a setting on the user's computer that defines the user's language and region.
+
+[[mainstream-os]] Mainstream OS::
+References major operating systems (i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS).
+
+[[major]] Major::
+Refers to one of academic majors students read in NUS.
+
+[[minor]] Minor::
+Refers to one of academic minors students can optionally read in NUS.
+
+[[module]] Module::
+Refers to one of multiple academic modules students read in NUS.
+
+[[MSS]] MSS::
+Stands for "Main Success Scenario" that describes the interaction for a given use case, which assumes that nothing goes wrong.
+
+[[nfr]] NFR::
+Stands for "Non-Functional Requirement(s)".
+
+[[nus]] NUS::
+Stands for "National University of Singapore", the university this application was developed for.
+
+[[puml]] PlantUML::
+Is a tool used to render diagrams used in this document.
+
+[[specialisation]] Specialisation::
+Refers to one of academic specialisations students can optionally read in NUS.
+
+[[timetable]] Timetable::
+Refers to the module timetable that students will go for classes in NUS.
+
+[[track]] Track::
+Refers to one of academic tracks students can optionally read in NUS.
 
 [appendix]
 == Product Survey
