@@ -16,13 +16,18 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MajorCommand;
-import seedu.address.logic.commands.ModuleCommand;
 import seedu.address.logic.commands.RemarkCommand;
-import seedu.address.logic.commands.SpecialisationCommand;
-import seedu.address.logic.commands.StudentCommand;
-import seedu.address.logic.commands.TimeTableCommand;
+import seedu.address.logic.commands.major.MajorCommand;
+import seedu.address.logic.commands.module.ModuleCommand;
+import seedu.address.logic.commands.specialisation.SpecialisationCommand;
+import seedu.address.logic.commands.student.StudentCommand;
+import seedu.address.logic.commands.timetable.TimeTableCommand;
+import seedu.address.logic.parser.declare.DeclareCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.module.ModuleCommandParser;
+import seedu.address.logic.parser.specialisation.SpecialisationCommandParser;
+import seedu.address.logic.parser.student.StudentCommandParser;
+import seedu.address.logic.parser.timetable.TimeTableCommandParser;
 
 /**
  * Parses user input.

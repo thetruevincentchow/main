@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.declare;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -6,14 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.DeclareCommand;
+import seedu.address.logic.commands.DeclareMajorCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.major.MajorCommand;
-import seedu.address.logic.commands.major.MajorSetCommand;
-import seedu.address.logic.commands.major.MajorStatusCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-public class MajorCommandParser implements Parser<MajorCommand> {
+public class DeclareCommandParser implements Parser<DeclareCommand> {
     /**
      * Used for initial separation of command word and args.
      */
@@ -27,7 +26,7 @@ public class MajorCommandParser implements Parser<MajorCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public MajorCommand parse(String userInput) throws ParseException {
+    public DeclareCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -35,13 +34,9 @@ public class MajorCommandParser implements Parser<MajorCommand> {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-
         switch (commandWord) {
-        case MajorSetCommand.COMMAND_WORD:
-            return new MajorSetCommand(arguments);
-
-        case MajorStatusCommand.COMMAND_WORD:
-            return new MajorStatusCommand();
+        case DeclareMajorCommand.COMMAND_WORD:
+            return new DeclareMajorCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
