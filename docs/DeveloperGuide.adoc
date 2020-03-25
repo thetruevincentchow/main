@@ -153,6 +153,74 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=== Module Implementation
+==== Add Module
+
+The `module add` command associates an existing `Module` entity (with all associated values) provided by the user.
+
+It is appended with the tag `MODULE_CODE`.
+
+[NOTE]
+`Module` entities are automatically created and populated through the JSON data received from NUSMods.
+
+===== Current Implementation
+
+`ModuleAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleAddCommand` is parsed using `ModuleAddCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+
+. User enters the command. `ModuleAddCommandParser` will associate the specified `Module` object (if it exists).
+
+===== Design Considerations
+====== Aspect: How `ModuleAddCommand` Executes
+
+==== Remove Module
+
+The `module remove` command disassociates a `Module` entity (with all associated values) when instructed by the user.
+
+It is appended with the tag `MODULE_CODE`.
+
+===== Current Implementation
+
+`ModuleRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleRemoveCommand` is parsed using `ModuleRemoveCommandParser` to parse the action.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+
+. User enters the command. `ModuleRemoveCommandParser` will disassociate the specified `Module` object (if it exists), along with its associated values.
+
+===== Design Considerations
+====== Aspect: How `ModuleRemoveCommand` Executes
+
+==== List Modules
+
+The `module list` command lists all `Module` entities.
+
+===== Current Implementation
+
+`ModuleListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleListCommand` is parsed using `ModuleCommandParser` to get the command input.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+. User enters the command. `ModuleCommandParser` will list all `Module` objects (if any exists).
+
+[NOTE]
+When appended with `exempted` (i.e. `module list exempted`) the command lists all `Module` entities that have been marked as exempted.
+
+===== Design Considerations
+====== Aspect: How `ModuleListCommand` Executes
+
 === Student Implementation
 ==== Add Student
 
@@ -179,9 +247,6 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 .. If it is the first time, a `Student` object will be created using `StudentAddCommand`.
 . User enters the command. `StudentAddCommandParser` will create a `Student` object, which can contain `name`, `major`, `timetable` and/or `degrees`.
 
-[NOTE]
-%ReplaceOrRemoveNote
-
 ===== Design Considerations
 ====== Aspect: How `StudentAddCommand` Executes
 
@@ -202,9 +267,6 @@ The following high-level sequence diagram illustrates the interactions between t
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
 . User enters the command. `StudentRemoveCommandParser` will destroy the specified `Student` object (if it exists), along with its associated values.
-
-[NOTE]
-%ReplaceOrRemoveNote
 
 ===== Design Considerations
 ====== Aspect: How `StudentRemoveCommand` Executes
@@ -227,9 +289,6 @@ Given below is an example usage scenario and how the `active` mechanism behaves 
 
 . User enters the command. `StudentActiveCommandParser` will select the specified `Student` object (if it exists), by the specified index.
 
-[NOTE]
-%ReplaceOrRemoveNote
-
 ===== Design Considerations
 ====== Aspect: How `StudentActiveCommand` Executes
 
@@ -247,10 +306,7 @@ The following high-level sequence diagram illustrates the interactions between t
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
-. User enters the command. `StudentCommandParser` will list all `Student` object (if any exists).
-
-[NOTE]
-%ReplaceOrRemoveNote
+. User enters the command. `StudentCommandParser` will list all `Student` objects (if any exists).
 
 ===== Design Considerations
 ====== Aspect: How `StudentListCommand` Executes
@@ -279,9 +335,6 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 .. If it is the first time, a `TimeTable` object will be created using `TimeTableAddCommand`.
 . User enters the command. `TimeTableAddCommandParser` will create a `TimeTable` object, which can contain `enrollments`.
 
-[NOTE]
-%ReplaceOrRemoveNote
-
 ===== Design Considerations
 ====== Aspect: How `TimeTableAddCommand` Executes
 
@@ -302,9 +355,6 @@ The following high-level sequence diagram illustrates the interactions between t
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
 . User enters the command. `TimeTableRemoveCommandParser` will destroy the specified `TimeTable` object (if it exists), along with its associated values.
-
-[NOTE]
-%ReplaceOrRemoveNote
 
 ===== Design Considerations
 ====== Aspect: How `TimeTableRemoveCommand` Executes
@@ -327,13 +377,10 @@ Given below is an example usage scenario and how the `active` mechanism behaves 
 
 . User enters the command. `TimeTableActiveCommandParser` will select the specified `TimeTable` object (if it exists), by the specified index.
 
-[NOTE]
-%ReplaceOrRemoveNote
-
 ===== Design Considerations
 ====== Aspect: How `TimeTableActiveCommand` Executes
 
-==== List Students
+==== List Timetables
 
 The `timetable list` command lists all `TimeTable` entities.
 
@@ -347,10 +394,7 @@ The following high-level sequence diagram illustrates the interactions between t
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
-. User enters the command. `TimeTableCommandParser` will list all `TimeTable` object (if any exists).
-
-[NOTE]
-%ReplaceOrRemoveNote
+. User enters the command. `TimeTableCommandParser` will list all `TimeTable` objects (if any exists).
 
 ===== Design Considerations
 ====== Aspect: How `TimeTableListCommand` Executes
