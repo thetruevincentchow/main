@@ -42,14 +42,32 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
+====
+*Common Parameters*
+
+* `MODULE_CODE` - a code for a module in NUS
+* `INDEX` - a index number of an item listed
+** Must be a positive integer
+* `NAME` - a name of a plan
+** Must be alphanumeric, possibly with spaces
+* `YEAR` - a year number
+** Must be a non-negative integer
+====
+
 === Viewing help : `help`
 
 Format: `help`
+
+=== Exiting the program : `exit`
+
+Exits the program. +
+Format: `exit`
 
 === Declaring your major: `declare major`
 
 Declares your major for studies and is required for the module planning. +
 Format: `declare major [MAJOR]`
+
 
 Examples:
 
@@ -174,11 +192,6 @@ Format: `timetable active year/YEAR sem/SEM`
 Example:
 
 * `timetable active year/2 sem/ONE`
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-Format: `exit`
 
 === Saving the data
 
