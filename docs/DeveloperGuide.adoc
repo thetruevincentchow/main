@@ -156,12 +156,14 @@ This section describes some noteworthy details on how certain features are imple
 === Student Implementation
 ==== Add Student
 
-The `student add` command creates a Student entity (with name and/or major) with the fields provided by the user.
+The `student add` command creates a `Student` entity (with name and/or major) with the fields provided by the user.
 
-* `Student(Name name,)` -- Creates a Student entity with only the student's name.
-* `Student(Name name, Major major)` -- Creates a Student entity with both the student's name and intended major.
-* `Student(Name name, Major major, TimeTableMap timeTableMap)` -- Creates a Student entity with the student's TimeTable, alongside student's name and intended major.
-* `Student(Name name, Degrees degrees, Major major)` -- Creates a Student entity with the student's Degrees, alongside the student's name and intended major.
+It is appended with the tags `n/NAME` and `major/MAJOR`.
+
+* `Student(Name name,)` -- Creates a `Student` entity with only the student's name.
+* `Student(Name name, Major major)` -- Creates a `Student` entity with both the student's name and intended major.
+* `Student(Name name, Major major, TimeTableMap timeTableMap)` -- Creates a `Student` entity with the student's TimeTable, alongside student's name and intended major.
+* `Student(Name name, Degrees degrees, Major major)` -- Creates a `Student` entity with the student's Degrees, alongside the student's name and intended major.
 
 ===== Current Implementation
 
@@ -185,7 +187,9 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 
 ==== Remove Student
 
-The `student remove` command destroys a Student entity (with all associated values) when instructed by the user.
+The `student remove` command destroys a `Student` entity (with all associated values) when instructed by the user.
+
+It is appended with the tag `INDEX`.
 
 ===== Current Implementation
 
@@ -207,7 +211,9 @@ Given below is an example usage scenario and how the `remove` mechanism behaves 
 
 ==== Active Student
 
-The `student active INDEX` command selects the specified Student entity with its associated values, by the index input provided by the user.
+The `student active` command selects the specified `Student` entity with its associated values, by the index input provided by the user.
+
+It is appended with the tag `INDEX`.
 
 ===== Current Implementation
 
@@ -229,7 +235,7 @@ Given below is an example usage scenario and how the `active` mechanism behaves 
 
 ==== List Students
 
-The `student list` command lists all Student entities.
+The `student list` command lists all `Student` entities.
 
 ===== Current Implementation
 
@@ -248,6 +254,106 @@ Given below is an example usage scenario and how the `list` mechanism behaves at
 
 ===== Design Considerations
 ====== Aspect: How `StudentListCommand` Executes
+
+=== Timetable Implementation
+==== Add Timetable
+
+The `timetable add` command creates a `TimeTable` entity (possibly with enrollments, year and semester) provided by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+* `TimeTable()` -- Creates a `TimeTable` entity with no associated values.
+* `TimeTable(List<Enrollment> enrollments)` -- Creates a `TimeTable` entity with an associated `Enrollment` list.
+
+===== Current Implementation
+
+`TimeTableAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableAddCommand` is parsed using `TimeTableAddCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+
+. User launches the application.
+.. If it is the first time, a `TimeTable` object will be created using `TimeTableAddCommand`.
+. User enters the command. `TimeTableAddCommandParser` will create a `TimeTable` object, which can contain `enrollments`.
+
+[NOTE]
+%ReplaceOrRemoveNote
+
+===== Design Considerations
+====== Aspect: How `TimeTableAddCommand` Executes
+
+==== Remove TimeTable
+
+The `timetable remove` command destroys a `TimeTable` entity (with all associated values) when instructed by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+===== Current Implementation
+
+`TimeTableRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableRemoveCommand` is parsed using `TimeTableRemoveCommandParser` to parse the action.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+
+. User enters the command. `TimeTableRemoveCommandParser` will destroy the specified `TimeTable` object (if it exists), along with its associated values.
+
+[NOTE]
+%ReplaceOrRemoveNote
+
+===== Design Considerations
+====== Aspect: How `TimeTableRemoveCommand` Executes
+
+==== Active TimeTable
+
+The `TimeTable active` command selects the specified `TimeTable` entity with its associated values, by the index input provided by the user.
+
+It is appended with the tags `year/YEAR` and `sem/SEM`.
+
+===== Current Implementation
+
+`TimeTableActiveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableActiveCommand` is parsed using `TimeTableActiveCommandParser` to split the user input into relevant fields.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `active` mechanism behaves at each step:
+
+. User enters the command. `TimeTableActiveCommandParser` will select the specified `TimeTable` object (if it exists), by the specified index.
+
+[NOTE]
+%ReplaceOrRemoveNote
+
+===== Design Considerations
+====== Aspect: How `TimeTableActiveCommand` Executes
+
+==== List Students
+
+The `timetable list` command lists all `TimeTable` entities.
+
+===== Current Implementation
+
+`TimeTableListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableListCommand` is parsed using `TimeTableCommandParser` to get the command input.
+
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+
+%DiagramToBeInserted%
+
+Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+
+. User enters the command. `TimeTableCommandParser` will list all `TimeTable` object (if any exists).
+
+[NOTE]
+%ReplaceOrRemoveNote
+
+===== Design Considerations
+====== Aspect: How `TimeTableListCommand` Executes
 
 === Logging
 
