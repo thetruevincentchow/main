@@ -350,7 +350,7 @@ It is appended with the tags `n/NAME` and `major/MAJOR`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::StudentAddSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `add` mechanism behaves at each step:
 
@@ -373,7 +373,7 @@ It is appended with the tag `INDEX`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::StudentRemoveSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
@@ -394,7 +394,7 @@ It is appended with the tag `INDEX`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::StudentActiveSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `active` mechanism behaves at each step:
 
@@ -413,7 +413,7 @@ The `student list` command lists all `Student` entities.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::StudentListSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
@@ -438,7 +438,7 @@ It is appended with the tags `year/YEAR` and `sem/SEM`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::TimeTableAddSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `add` mechanism behaves at each step:
 
@@ -461,7 +461,7 @@ It is appended with the tags `year/YEAR` and `sem/SEM`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::TimeTableRemoveSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
@@ -482,7 +482,7 @@ It is appended with the tags `year/YEAR` and `sem/SEM`.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::TimeTableActiveSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `active` mechanism behaves at each step:
 
@@ -501,7 +501,7 @@ The `timetable list` command lists all `TimeTable` entities.
 
 The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
 
-%DiagramToBeInserted%
+image::TimeTableListSequenceDiagram.png[]
 
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
