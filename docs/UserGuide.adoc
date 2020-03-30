@@ -3,7 +3,11 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 3
 :sectnums:
+:sectnumlevels: 4
+:sectlinks:
+:sectanchors:
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
@@ -16,12 +20,16 @@ endif::[]
 
 By: `CS2103T-W13-4`      Since: `Jan 2020`      Licence: `MIT`
 
+Thank you for your interest in the *NUS Module Planner* and welcome to the *User Guide*!
+
 == Introduction
+
+The *NUS Module Planner* (_NUSModPlnr_) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. **With NUSModPlnr, module planning has never been easier!**
+
+When starting up the application, you will be able to see the *Home Screen* (_Figure 1. below_).
 
 .Home Screen View
 image::Ui.png[width="600", align="left"]
-
-NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. **With NUSModPlnr, module planning has never been easier!**
 
 Do you want to keep track of the modules you will be taking over multiple semesters? Do you want to easily create multiple plans of these multiple semesters?
 
@@ -31,9 +39,37 @@ Do you want to keep track of your grades to better decide on which modules to en
 
 If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet intuitive way. NUSModPlnr is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-== Overview
+== How To Use This User Guide
 
-NUSModPlnr is a timetable and enrollment management application. Users can add different student plans which consist of the student's degree programme and timetables for different semesters. Within each timetable, users can add modules they intend to enrol in. After managing student plans, timetables and modules, users can request information about the plan. This includes the student's cumulative grades and the status of graduation requirements (for the degree programme that was set).
+NUSModPlnr is a timetable and enrollment management application. Users can add different student plans which consist of the student's degree programme and timetables for different semesters.
+
+//Within each timetable, users can add modules they intend to enrol in. After managing student plans, timetables and modules, users can request information about the plan. This includes the student's cumulative grades and the status of graduation requirements (for the degree programme that was set).
+
+====
+This *User Guide* is designed to bring you through the following features:
+
+. Viewing Help
+. Creating a New Student
+. Declaring a Major
+. Viewing and Adding Modules
+. Viewing, Adding and Selecting Timetables
+. Managing and Viewing Grades
+. Exiting the Application
+====
+
+====
+Please note the following which may serve as points of interests:
+
+. `word` : This grey highlight indicates commands that you can type with more info in [[Features]].
+
+. kbd:[Enter] : This grey highlight with white outline indicates a keyboard's key
+
+[NOTE]
+This symbol and corresponding box has information that you may wish to take note of.
+
+[TIP]
+This symbol and corresponding box has tips from the team, which we think might be useful for you.
+====
 
 == Quick Start
 
@@ -44,6 +80,7 @@ NUSModPlnr is a timetable and enrollment management application. Users can add d
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to Section 3, “Features” for details of each command.
+
 
 [[Features]]
 == Features
@@ -299,41 +336,67 @@ _{Explain how the user can share their data files here!}_
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
 
+== Glossary
+
+[horizontal]
+
+[[CLI]] Command Line Interface::
+Type of computer interface based on entering text commands and viewing text output, as opposed to using other hardware inputs such as a mouse.
+
+[[major]] Major::
+Refers to one of academic majors students read in NUS.
+
+[[minor]] Minor::
+Refers to one of academic minors students can optionally read in NUS.
+
+[[module]] Module::
+Refers to one of multiple academic modules students read in NUS.
+
+[[nus]] NUS::
+Stands for "National University of Singapore", the university this application was developed for.
+
+[[specialisation]] Specialisation::
+Refers to one of academic specialisations students can optionally read in NUS.
+
+[[timetable]] Timetable::
+Refers to the module timetable that students will go for classes in NUS.
+
+[[track]] Track::
+Refers to one of academic tracks students can optionally read in NUS.
+
 == Command Summary
-
-
-*Main Navigation*
+=== Main Navigation
 
 * *Viewing Help* : `help`
 * *Exiting The Program* : `exit`
 
-*Declaration Management*
+=== Declaration Management
 
 * *Declare major* : `declare major`
 * *Declare minor* : `declare minor`
 * *Declare specialisation* : `declare spec`
 * *Declare track* : `declare track`
 
-*Module Management*
+=== Module Management
 
 * *Adding a Module* : `module add`
 * *Removing a Module* : `module remove`
 * *Viewing the (Added) Module List* : `module list`
 * *Viewing the Exempted Module List* : `module list exempted`
 
-*Grade Management*
+=== Grade Management
 
 * *Managing a Module's Grade* : `module grade`
 * *Viewing a Student's Grade* : `student grade`
 
-*Student Management*
+=== Student Management
 
 * *Adding a Student* : `student add`
 * *Removing a Student* : `student remove`
 * *Selecting a Student* : `student active`
 * *Viewing the Student List* : `student list`
 
-*Timetable Management*
+=== Timetable Management
 
 * *Adding a Timetable* : `timetable add`
 * *Removing a Timetable* : `timetable remove`
