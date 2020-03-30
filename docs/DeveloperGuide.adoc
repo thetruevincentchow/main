@@ -3,7 +3,11 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 3
 :sectnums:
+:sectnumlevels: 4
+:sectlinks:
+:sectanchors:
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
