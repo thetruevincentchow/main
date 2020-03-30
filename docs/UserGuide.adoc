@@ -83,12 +83,15 @@ If you are looking to jump right into the application, you can follow the below 
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to Section 3, “Features” for details of each command.
 
+[TIP]
+These steps are recommended only if you have experience in setting up the application for first time use, or already have a saved file you would like to continue working with.
 
 == Features
 
 These are the key features that are part of the NUSModPlnr!
 
-Before you dive into the commands themselves, do familiarise yourself with how the *User Guide* has been formatted in terms of the commands to key in:
+[TIP]
+Before you dive into the commands themselves, do familiarise yourself with how the *User Guide* has been formatted in terms of the commands to key in!
 
 ====
 *Command Format*
@@ -399,6 +402,9 @@ This provides a list of *Frequently Asked Questions (FAQ)*, that users may have!
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
 
+[TIP]
+If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!
+
 == Glossary
 
 This *Glossary* provides explanations for keywords used throughout the *User Guide*.
@@ -432,6 +438,9 @@ Refers to one of academic tracks students can optionally read in NUS.
 == Command Summary
 
 This section provides a quick summary on all the commands currently available in the application.
+
+[TIP]
+If you need more in-depth information on a specific command, you can kbd:[CTRL + F] the exact command name to find it in the *Features* section.
 
 === Main Navigation
 
