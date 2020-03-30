@@ -84,7 +84,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to Section 3, “Features” for details of each command.
 
 
-[[features]]
 == Features
 
 These are the key features that are part of the NUSModPlnr!
@@ -436,10 +435,8 @@ This section provides a quick summary on all the commands currently available in
 
 === Main Navigation
 
-[#features]#FEATURES TEST#
-
-* *Viewing Help* : `help`
-* *Exiting The Program* : `exit`
+* *Viewing help* : `help`
+* *Exiting the program* : `exit`
 
 === Declaration Management
 
@@ -450,26 +447,26 @@ This section provides a quick summary on all the commands currently available in
 
 === Grade Management
 
-* *Managing a Module's Grade* : `module grade`
-* *Viewing a Student's Grade* : `student grade`
+* *Managing a module's grade* : `module grade`
+* *Viewing a student's grade* : `student grade`
 
 === Module Management
 
-* *Adding a Module* : `module add`
-* *Removing a Module* : `module remove`
-* *Viewing the (Added) Module List* : `module list`
-* *Viewing the Exempted Module List* : `module list exempted`
+* *Adding a module* : `module add`
+* *Removing a module* : `module remove`
+* *Viewing added modules* : `module list`
+* *Viewing exempted modules* : `module list exempted`
 
 === Student Management
 
-* *Adding a Student* : `student add`
-* *Removing a Student* : `student remove`
-* *Selecting a Student* : `student active`
-* *Viewing the Student List* : `student list`
+* *Adding a student* : `student add`
+* *Removing a student* : `student remove`
+* *Selecting a student* : `student active`
+* *Viewing the student list* : `student list`
 
 === Timetable Management
 
-* *Adding a Timetable* : `timetable add`
-* *Removing a Timetable* : `timetable remove`
-* *Selecting a Timetable* : `timetable active`
-* *Viewing the Timetable List* : `timetable list`
+* *Adding a timetable* : `timetable add`
+* *Removing a timetable* : `timetable remove`
+* *Selecting a timetable* : `timetable active`
+* *Listing timetables* : `timetable list`
