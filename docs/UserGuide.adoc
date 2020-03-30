@@ -41,7 +41,7 @@ If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet i
 
 == How To Use This User Guide
 
-NUSModPlnr is a timetable and enrollment management application. Users can add different student plans which consist of the student's degree programme and timetables for different semesters.
+NUSModPlnr is a timetable and enrollment management application, which help you add plans which consist of your degree programme and timetables for different semesters.
 
 //Within each timetable, users can add modules they intend to enrol in. After managing student plans, timetables and modules, users can request information about the plan. This includes the student's cumulative grades and the status of graduation requirements (for the degree programme that was set).
 
@@ -58,11 +58,11 @@ This *User Guide* is designed to bring you through the following features:
 ====
 
 ====
-Please note the following which may serve as points of interests:
+Please note the following which may serve as points of interests throughout this *User Guide*:
 
-. `word` : This grey highlight indicates commands that you can type with more info in [[Features]].
+. `keyword` : This grey highlight indicates commands that you can type with more info in Features.
 
-. kbd:[Enter] : This grey highlight with white outline indicates a keyboard's key
+. kbd:[Enter] : This grey highlight with white outline indicates a keyboard's key to use.
 
 [NOTE]
 This symbol and corresponding box has information that you may wish to take note of.
@@ -73,6 +73,8 @@ This symbol and corresponding box has tips from the team, which we think might b
 
 == Quick Start
 
+If you are looking to jump right into the application, you can follow the below quick steps to get the application up and running:
+
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `nusmodplnr.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your NUS Module Planner.
@@ -81,9 +83,15 @@ This symbol and corresponding box has tips from the team, which we think might b
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to Section 3, “Features” for details of each command.
 
+[TIP]
+These steps are recommended only if you have experience in setting up the application for first time use, or already have a saved file you would like to continue working with.
 
-[[Features]]
 == Features
+
+These are the key features that are part of the NUSModPlnr!
+
+[TIP]
+Before you dive into the commands themselves, do familiarise yourself with how the *User Guide* has been formatted in terms of the commands to key in!
 
 ====
 *Command Format*
@@ -110,23 +118,35 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ** Must be a non-negative integer
 ====
 
+Let's begin!
+
 === Main Navigation
+
+The following commands below are part of the application's *Main Navigation*.
+
 ==== Viewing help : `help`
+
+If you get lost or are unsure on what commands to use, while in the application, you can use the `help` command.
 
 Format: `help`
 
 ==== Exiting the program : `exit`
 
-Exits the program. +
+When you are done using the application, you can exit the program with the `exit` command.
+
 Format: `exit`
 
 === Declaration Management
 
-All the following commands require a student to be selected (using the `student active` command).
+The following commands below are part of the application's *Declaration Management*, which allow you to declare important details of your academic plan, such as your `majors`, `minors`, `specialisations` and `tracks`.
+
+[NOTE]
+All the following commands require a `student` to be selected (using the `student active` command).
 
 ==== Declaring your major: `declare major`
 
-Declares your major for studies and is required for the module planning. +
+You can use this command to declare the `major` of your studies, which is also required for the module planning.
+
 Format: `declare major MAJOR`
 
 Examples:
@@ -135,7 +155,8 @@ Examples:
 
 ==== Declaring your minor: `declare minor`
 
-Declares your minor for studies. +
+You can use this command to declare any `minors` of your studies, which will affect module planning.
+
 Format: `declare minor MINOR`
 
 Examples:
@@ -145,31 +166,48 @@ Examples:
 
 ==== Declaring your specialisation: `declare spec`
 
-Declares your Focus Areas, should you require them in module planning. +
+You can use this command to declare any `specialisations` in your studies, should you require them in module planning.
+
 Format: `declare spec [ACTION] [SPEC]`
 
 Examples:
 
-* `declare spec add networking`
-* `declare spec remove networking`
+* `declare spec add it-security`
+* `declare spec remove it-security`
 
 ==== Declaring your track: `declare track`
 
-This is equivalent to `declare spec`.
+You can use this command to declare any `tracks` in your studies, should you require them in module planning.
+
+Format: `declare track [ACTION] [SPEC]`
+
+Examples:
+
+* `declare track add networking`
+* `declare track remove networking`
 
 === Grade Management
+
+The following commands below are part of the application's *Grade Management*, which allow you to manage and view your `grades` to see modules affected in your academic plan.
+
 ==== Managing a module's grade: `module grade`
 
-Displays the grade of the specified module. +
-This command require a timetable to be selected (using the `timetable active` command). +
+This command displays the `grade` of the specified module.
+
+[NOTE]
+This command require a timetable to be selected (using the `timetable active` command).
+
 Format: `module grade MODULE_CODE`
 
 Example:
 
 * `module grade CS2040`
 
-Sets the grade of the specified module. +
-This command require a timetable to be selected (using the `timetable active` command). +
+Furthermore, this follow-up command sets the `grade` of the specified module.
+
+[NOTE]
+This command require a timetable to be selected (using the `timetable active` command).
+
 Format: `module grade MODULE_CODE grade/GRADE`
 
 Example:
@@ -178,8 +216,11 @@ Example:
 
 ==== Viewing a student's grade: `student grade`
 
-Displays the cumulative grade of the selected student (see the `student active` command). +
-This command require a student to be selected (using the `student active` command). +
+This command displays  the cumulative grade of the selected student (_see the `student active` command_).
+
+[NOTE]
+This command require a student to be selected (using the `student active` command).
+
 Format: `student grade`
 
 Example:
@@ -187,15 +228,20 @@ Example:
 * `student grade`
 
 === Module Management
+The following commands below are part of the application's *Module Management*, which allow you manage the `modules` of your academic plan.
+
+When managing your `modules`, you will be able to see the *Module View Screen* (_Figure 2. below_).
 
 .Home Screen View
 image::ModuleList.png[width="600", align="left"]
 
-All the following commands require a timetable to be selected (using the `timetable active` command).
+[NOTE]
+All the following commands require a `timetable` to be selected (_using the `timetable active` command_).
 
 ==== Adding a module: `module add`
 
-Add a module to your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+This command adds a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+
 Format: `module add MODULE_CODE`
 
 Example:
@@ -204,7 +250,8 @@ Example:
 
 ==== Removing a module: `module remove`
 
-Remove a module from your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+This command removes a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+
 Format: `module remove MODULE_CODE`
 
 Example:
@@ -213,32 +260,37 @@ Example:
 
 ==== Viewing added modules: `module list`
 
-Displays modules in your timetable for the selected semester (see `timetable active`) and student (see `student active`). +
+This command displays a list of `modules` of your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+
 Format: `module list`
 
 Example:
 
 * `module list`
 
-////
 ==== Viewing exempted modules: `module list exempted`
 
-Displays modules that you have declared as exempted. +
+This command displays a list of `modules` that you have declared as exempted.
+
 Format: `module list exempted
 
 Example:
 
 * `module list exempted`
-////
 
 === Student Management
+
+The following commands below are part of the application's *Student Management*, which allow you manage the `students` *which include you* for the academic planning.
+
+When managing `students`, you will be able to see the *Student View Screen* (_Figure 3. below_).
 
 .Student List View
 image::StudentList.png[width="600", align="left"]
 
 ==== Adding a student: `student add`
 
-Adds a student to the student list. +
+This command adds a `student` to the student list.
+
 Format: `student add n/NAME major/MAJOR`
 
 Example:
@@ -247,7 +299,8 @@ Example:
 
 ==== Removing a student: `student remove`
 
-Removes the student with the number `INDEX` from the student list. =
+This command removes the `student` with the number `INDEX` from the student list.
+
 Format: `student remove INDEX`
 
 Example:
@@ -256,7 +309,8 @@ Example:
 
 ==== Selecting a student: `student active`
 
-Selects the student with the number `INDEX` from the student list. +
+This command selects the student with the number `INDEX` from the student list.
+
 Format: `student active INDEX`
 
 Example:
@@ -265,7 +319,8 @@ Example:
 
 ==== Viewing the student list: `student list`
 
-Displays a numbered list of students in the student list. +
+This commands displays a numbered list of students in the student list (if populated).
+
 Format: `student list`
 
 Example:
@@ -274,14 +329,20 @@ Example:
 
 === Timetable Management
 
+The following commands below are part of the application's *Timetable Management*, which allow you manage the `timetables` of your academic plan.
+
+When managing your `timetable`, you will be able to see the *Timetable View Screen* (_Figure 4. below_).
+
 .Timetable List View
 image::TimeTableList.png[width="600", align="left"]
 
-All the following commands require a student to be selected (using the `student active` command).
+[NOTE]
+All the following commands require a student to be selected (_using the `student active` command_).
 
 ==== Adding a timetable: `timetable add`
 
-Adds a timetable to the specified semester of the selected student (see `student active`). +
+This command adds a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+
 Format: `timetable add year/YEAR sem/SEM`
 
 Example:
@@ -290,7 +351,8 @@ Example:
 
 ==== Removing a timetable: `timetable remove`
 
-Removes the timetable for the specified semester and the selected student (see `student active`). +
+This command removes a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+
 Format: `timetable remove year/YEAR sem/SEM`
 
 Example:
@@ -299,7 +361,8 @@ Example:
 
 ==== Selecting a timetable: `timetable active`
 
-Selects the timetable for the specified semester and the selected student (see `student active`). +
+This command selects the `timetable` of the specified `semester` of the selected `student` (see `student active`).
+
 Format: `timetable active year/YEAR sem/SEM`
 
 Example:
@@ -308,12 +371,13 @@ Example:
 
 ==== Listing timetables: `timetable list`
 
-Lists the timetables of the selected student (see `student active`). +
+This command lists all the `timetables`  of the selected `student` (see `student active`).
+
 Format: `timetable list`
 
 Example:
 
-* `student list`
+* `timetable list`
 
 === Saving Your Data
 
@@ -333,10 +397,17 @@ _{Explain how the user can share their data files here!}_
 
 == FAQ
 
+This provides a list of *Frequently Asked Questions (FAQ)*, that users may have!
+
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
 
+[TIP]
+If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!
+
 == Glossary
+
+This *Glossary* provides explanations for keywords used throughout the *User Guide*.
 
 [horizontal]
 
@@ -365,40 +436,46 @@ Refers to the module timetable that students will go for classes in NUS.
 Refers to one of academic tracks students can optionally read in NUS.
 
 == Command Summary
+
+This section provides a quick summary on all the commands currently available in the application.
+
+[TIP]
+If you need more in-depth information on a specific command, you can kbd:[CTRL + F] the exact command name to find it in the *Features* section.
+
 === Main Navigation
 
-* *Viewing Help* : `help`
-* *Exiting The Program* : `exit`
+* *Viewing help* : `help`
+* *Exiting the program* : `exit`
 
 === Declaration Management
 
-* *Declare major* : `declare major`
-* *Declare minor* : `declare minor`
-* *Declare specialisation* : `declare spec`
-* *Declare track* : `declare track`
-
-=== Module Management
-
-* *Adding a Module* : `module add`
-* *Removing a Module* : `module remove`
-* *Viewing the (Added) Module List* : `module list`
-* *Viewing the Exempted Module List* : `module list exempted`
+* *Declaring your major* : `declare major`
+* *Declaring your minor* : `declare minor`
+* *Declaring your specialisation* : `declare spec`
+* *Declaring your track* : `declare track`
 
 === Grade Management
 
-* *Managing a Module's Grade* : `module grade`
-* *Viewing a Student's Grade* : `student grade`
+* *Managing a module's grade* : `module grade`
+* *Viewing a student's grade* : `student grade`
+
+=== Module Management
+
+* *Adding a module* : `module add`
+* *Removing a module* : `module remove`
+* *Viewing added modules* : `module list`
+* *Viewing exempted modules* : `module list exempted`
 
 === Student Management
 
-* *Adding a Student* : `student add`
-* *Removing a Student* : `student remove`
-* *Selecting a Student* : `student active`
-* *Viewing the Student List* : `student list`
+* *Adding a student* : `student add`
+* *Removing a student* : `student remove`
+* *Selecting a student* : `student active`
+* *Viewing the student list* : `student list`
 
 === Timetable Management
 
-* *Adding a Timetable* : `timetable add`
-* *Removing a Timetable* : `timetable remove`
-* *Selecting a Timetable* : `timetable active`
-* *Viewing the Timetable List* : `timetable list`
+* *Adding a timetable* : `timetable add`
+* *Removing a timetable* : `timetable remove`
+* *Selecting a timetable* : `timetable active`
+* *Listing timetables* : `timetable list`
