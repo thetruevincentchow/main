@@ -1,10 +1,13 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import seedu.address.model.module.Module;
 
 /**
@@ -76,6 +79,26 @@ public class ModuleCard extends UiPart<Region> {
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
             && module.equals(card.module);
+    }
+
+    @FXML
+    public void showDetails() {
+
+        String moduleBuilder = "Module: " + module.getTitle() + "  " + module.getModuleTitle()
+                + "\n\n" + "Department: " + module.getDepartment() + "\n\n" + "Description: " + module.getDescription();
+        Label moduleDetails = new Label(moduleBuilder);
+        moduleDetails.setWrapText(true);
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(moduleDetails);
+
+        Scene secondScene = new Scene(secondaryLayout, 500, 500);
+        secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        // New window (Stage)
+        Stage newWindow = new Stage();
+        newWindow.setTitle(code.getText());
+        newWindow.setScene(secondScene);
+
+        newWindow.show();
     }
 }
 
