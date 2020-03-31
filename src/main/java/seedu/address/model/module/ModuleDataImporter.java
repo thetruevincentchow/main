@@ -1,11 +1,6 @@
 package seedu.address.model.module;
 
 import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.Main;
-import seedu.address.MainApp;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 
@@ -37,7 +31,8 @@ public class ModuleDataImporter {
             try {
                 fileName = "json/moduleInfo_{0}.json".replace("{0}", acadYear);
                 ClassLoader loader = Thread.currentThread().getContextClassLoader();
-                String text = new Scanner(Main.class.getClassLoader().getResourceAsStream(fileName), "UTF-8").useDelimiter("\\A").next();
+                String text = new Scanner(Main.class.getClassLoader().getResourceAsStream(fileName),
+                    "UTF-8").useDelimiter("\\A").next();
                 Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonString(text,
                     JsonSerializableModule[].class);
                 if (optionalModules.isPresent()) {
