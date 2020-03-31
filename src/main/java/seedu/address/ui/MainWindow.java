@@ -36,12 +36,16 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private CalendarBox calendarBox;
     private HelpWindow helpWindow;
+    private int colorTrack = 1;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem changeColor;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -204,6 +208,24 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Changes color to light theme
+     */
+    @FXML
+    public void changeColor() {
+        if (colorTrack == 1) {
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/view/LightTheme.css")
+                    .toExternalForm());
+            colorTrack = 0;
+        } else {
+            primaryStage.getScene().getStylesheets().remove(getClass().getResource("/view/LightTheme.css")
+                    .toExternalForm());
+            primaryStage.getScene().getStylesheets().add(getClass().getResource("/view/DarkTheme.css")
+                    .toExternalForm());
+            colorTrack = 1;
         }
     }
 }
