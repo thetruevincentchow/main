@@ -48,6 +48,11 @@ public class JsonUtil {
         return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
     }
 
+
+    static <T> T deserializeObjectFromJsonString(String string, Class<T> classOfObjectToDeserialize)
+        throws IOException {
+        return fromJsonString(string, classOfObjectToDeserialize);
+    }
     /**
      * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found.
      * If any values are missing from the file, default values will be used, as long as the file is a valid json file.
@@ -71,6 +76,21 @@ public class JsonUtil {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
+            throw new DataConversionException(e);
+        }
+
+        return Optional.of(jsonFile);
+    }
+
+    public static <T> Optional<T> readJsonString(
+        String string, Class<T> classOfObjectToDeserialize) throws DataConversionException {
+
+        T jsonFile;
+
+        try {
+            jsonFile = deserializeObjectFromJsonString(string, classOfObjectToDeserialize);
+        } catch (IOException e) {
+            logger.warning("Error reading from jsonString " + string + ": " + e);
             throw new DataConversionException(e);
         }
 

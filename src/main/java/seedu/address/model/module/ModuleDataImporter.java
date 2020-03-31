@@ -9,10 +9,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import seedu.address.Main;
+import seedu.address.MainApp;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 
@@ -33,12 +36,9 @@ public class ModuleDataImporter {
         for (String acadYear : acadYears) {
             try {
                 fileName = "json/moduleInfo_{0}.json".replace("{0}", acadYear);
-                ClassLoader classLoader = new ModuleDataImporter().getClass().getClassLoader();
-                file = new File(classLoader.getResource(fileName).getFile());
-                if (!file.exists()) {
-                    throw new Exception("Resource " + fileName + " is not found.");
-                }
-                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonFile(Path.of(file.getPath()),
+                ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                String text = new Scanner(Main.class.getClassLoader().getResourceAsStream(fileName), "UTF-8").useDelimiter("\\A").next();
+                Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonString(text,
                     JsonSerializableModule[].class);
                 if (optionalModules.isPresent()) {
                     JsonSerializableModule[] moduleArray = optionalModules.get();
