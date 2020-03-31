@@ -994,31 +994,166 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a Plan
-
-. Deleting a plan while all plans are listed
-
-.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
-.. Test case: `student remove 1` +
-   Expected: First plan is deleted from the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `student remove 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
-   Expected: Similar to previous.
-
 === Adding a Plan
 
 . Adding a plan while all plans are listed
 
-.. Prerequisites: List all plans using the `student list` command. Multiple plans in ll be displayed the list.
+.. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list.
 .. Test case: `student add name/Alice major/CS` +
-   Expected: Plan is added to the list. Details of the deleted plan shown in the status message. Timestamp in the status bar is updated.
+   Expected: Plan is added to the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `student add major/CS` +
-   Expected: No plan is added. Error details shown in the status message. Status bar remains the same.
+   Expected: No plan is added. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `student add`, `student add name/` +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+=== Deleting a Plan
+
+. Deleting a plan while all plans are listed
+
+.. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list. At least one plan should be listed.
+.. Test case: `student remove 1` +
+   Expected: First plan is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student remove 0` +
+   Expected: No plan is deleted. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
+   Expected: Similar to previous.
+
+=== Selecting a Plan
+
+. Selecting a plan while all plans are listed
+
+.. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list. At least one plan should be listed.
+.. Test case: `student active 1` +
+   Expected: Plan is selected as the active plan. Details of the selected plan are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `student active 0` +
+   Expected: No plan is selected. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `student active`, `student active xyz` +
+   Expected: Similar to previous.
+
+=== Adding a Timetable
+
+. Adding a timetable while a plan is selected and the selected plan's timetables are listed
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Plan should be empty.
+.. Test case: `timetable add year/1 sem/ONE` +
+   Expected: Timetable is added to the plan. Details of the added timetable are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `timetable add year/1 sem/THREE` +
+   Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `timetable add`, `timetable add year/` +
+   Expected: Similar to previous.
+
+. Adding a timetable while a plan is selected with an existing timetable of the same semester
+
+.. Prerequisites: Select a plan using the `student active` command. Add a timetable using the `timetable add year/1 sem/ONE` command
+.. Test case: `timetable add year/1 sem/ONE` +
+   Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
+
+=== Deleting a Timetable
+
+. Deleting a timetable while a plan is selected and the selected plan's timetables are listed
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Then list timetables with `timetable list`. At least one timetable should be listed.
+.. Test case: `timetable remove year/YEAR sem/SEM` (where `YEAR` and `SEM` are the year and semester of one of the listed timetables, respectively). +
+   Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `timetable remove` +
+   Expected: No timetable is deleted. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `timetable remove year sem`, `timetable remove year/x` (where x is larger than the list size), `timetable remove text` +
+   Expected: Similar to previous.
+
+=== Selecting a Timetable
+
+. Selecting a timetable while a plan is selected and the selected plan's timetables are listed
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Then list timetables with `timetable list`. At least one timetable should be listed.
+.. Test case: `timetable active year/YEAR sem/SEM` (where `YEAR` and `SEM` are the year and semester of one of the listed timetables, respectively). +
+   Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `timetable active` +
+   Expected: No timetable is selected. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `timetable active year sem`, `timetable active year/x` (where x is larger than the list size), `timetable active text` +
+   Expected: Similar to previous.
+
+=== Adding a Module
+
+. Adding a module while a timetable is selected and the selected timetable's modules are listed
+
+.. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable.
+.. Test case: `module add CS2040` +
+   Expected: Module is added to the timetable. Details of the added module are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `module add text` +
+   Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `module add`, +
+   Expected: Similar to previous.
+
+. Adding a module while a timetable is selected with the same module existing in the same timetable
+
+.. Prerequisites: Select a timetable using the `timetable active` command. Add a module using the `module add CS2040` command
+.. Test case: `module add CS2040` +
+   Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
+
+=== Deleting a Module
+
+. Deleting a module while a timetable is selected and the selected timetable's modules are listed
+
+.. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
+.. Test case: `module remove MODULE_CODE` (where `MODULE_CODE` is one of the listed modules). +
+   Expected: Specified module is deleted from the list. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `module remove` +
+   Expected: No module is deleted. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `module remove text` +
+   Expected: Similar to previous.
+
+=== Setting the Grade of a Module
+
+. Setting the grade of a module while a timetable is selected and the selected timetable's modules are listed
+
+.. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
+.. Test case: `module grade MODULE_CODE grade/A` (where `MODULE_CODE` is one of the listed modules). +
+   Expected: Grade of specified module is updated. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `module grade` +
+   Expected: Module grade is not updated. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `module grade text` +
+   Expected: Similar to previous.
+
+=== Viewing the Grade of a Module
+
+. Viewing the grade of a module while a timetable is selected and the selected timetable's modules are listed
+
+.. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
+.. Test case: `module grade MODULE_CODE` (where `MODULE_CODE` is one of the listed modules). +
+   Expected: Grade of specified module is displayed. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `module grade` +
+   Expected: Module grade is not displayed. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `module grade text` +
+   Expected: Similar to previous.
+
+=== Viewing the Grades of a Plan
+
+. Viewing the grades of a plan while the plan is selected
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
+.. Test case: `student grade` +
+   Expected: Selected student's grades are listed in the status message.
+
+=== Viewing the Graduation Requirements of a Plan
+
+. Viewing the graduation requirements of a plan while the plan is selected
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
+.. Test case: `major status` +
+   Expected: Selected student's graduation requirements are listed in the status message.
+
+=== Setting the Specialisation of a Plan
+
+. Setting the specialisation of a plan while the plan is selected
+
+.. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
+.. Test case: `specilisation set algo` +
+   Expected: Selected student's specialisation is updated. Details of the new specialisation are shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `specilisation set abcdefg` +
+   Expected: Selected student's specialisation is not updated. Error details are shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `specialisation set` +
+   Expected: Similar to previous.
+
 
 === Saving Data
 
