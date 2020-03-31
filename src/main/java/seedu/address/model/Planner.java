@@ -48,6 +48,11 @@ public class Planner implements ReadOnlyPlanner {
         loadModules();
     }
 
+    public Planner(ReadOnlyPlanner planner) {
+        activeStudent = null;
+        students = (UniqueStudentList) planner.getStudentList();
+        loadModules();
+    }
 
     private void loadModules() {
         if (modules.isEmpty()) {

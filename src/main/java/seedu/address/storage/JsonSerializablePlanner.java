@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.student.Student;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Planner that is serializable to JSON format.
  */
 @JsonRootName(value = "planner")
 class JsonSerializablePlanner {
@@ -26,7 +26,7 @@ class JsonSerializablePlanner {
     private final List<JsonAdaptedModuleCode> enrolledModules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializablePlanner} with the given persons.
      */
     @JsonCreator
     public JsonSerializablePlanner(@JsonProperty("activeStudent") JsonAdaptedStudent activeStudent,
@@ -38,9 +38,9 @@ class JsonSerializablePlanner {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPlanner} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePlanner}.
      */
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
         if (source.getActiveStudent() == null) {
@@ -54,7 +54,7 @@ class JsonSerializablePlanner {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code Planner} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

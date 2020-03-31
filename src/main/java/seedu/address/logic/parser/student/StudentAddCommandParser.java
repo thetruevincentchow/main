@@ -52,13 +52,6 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 
-        // TODO: remove references to AddressBook's `person.Name` class so we can use our own `student.Name`
-        /*
-        seedu.address.model.person.Name abName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Name name = new Name(abName.fullName);
-        Major major  = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        */
-
         Name name = new Name(argMultimap.getValue(PREFIX_NAME).get());
         Major major = new Major(argMultimap.getValue(PREFIX_MAJOR).get());
         TimeTableMap timeTableMap = SampleDataUtil.getSampleTimeTableMap();

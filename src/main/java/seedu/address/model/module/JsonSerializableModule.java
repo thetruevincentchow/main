@@ -30,9 +30,9 @@ public class JsonSerializableModule {
     private String fulfillRequirements;
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPlanner} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePlanner}.
      */
     public JsonSerializableModule(ReadOnlyPlanner source) {
         // TODO: Don't think we will need to use this. KIV

@@ -5,17 +5,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.grades.Grade;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.person.Person;
 import seedu.address.model.student.Enrollment;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TimeTable;
@@ -28,43 +26,30 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Planner planner;
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-
-    // TODO: remove dependence on `ReadOnlyAddressBook` and `AddressBook`.
-    //       This would require removal of all related tests for `AddressBook` and other associated classes,
-    //       since they may require functionality from `AddressBook`.
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given planner and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Planner planner) {
+    public ModelManager(ReadOnlyPlanner planner, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(planner, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-        this.addressBook = new AddressBook(addressBook);
+        logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
+        this.planner = new Planner();
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         requireAllNonNull(planner);
         logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
-
-        this.planner = planner;
         // this.userPrefs = new UserPrefs(userPrefs);
     }
 
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new Planner());
-    }
-
-    public ModelManager(Planner planner) {
-        this(new AddressBook(), new UserPrefs(), planner);
+    public ModelManager(ReadOnlyPlanner planner) {
+        this(planner, new UserPrefs());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Planner());
+        this(new Planner(), new UserPrefs());
     }
     //=========== UserPrefs ==================================================================================
 
@@ -91,71 +76,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
     public ReadOnlyPlanner getPlanner() {
         return planner;
     }
 
     public void setPlanner(Planner planner) {
         this.planner.resetData(planner);
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -172,13 +98,24 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+        return planner.equals(other.planner)
+                && userPrefs.equals(other.userPrefs);
     }
 
     public ObservableList<Student> getStudentList() {
         return planner.getStudentList();
+    }
+
+    public void addModule(Module module) {
+        planner.addModule(module);
+    }
+
+    public ObservableList<Module> getFilteredModuleList() {
+        return planner.getModuleList();
+    }
+
+    public boolean hasModule(Module module) {
+        return planner.getModuleList().contains(module);
     }
 
     public boolean hasStudent(Student student) {
@@ -246,5 +183,9 @@ public class ModelManager implements Model {
 
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         planner.setModuleGrade(moduleCode, grade);
+    }
+
+    public Path setPlannerFilePath(Path path) {
+        return path;
     }
 }
