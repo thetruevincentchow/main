@@ -8,6 +8,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.programmes.specialisations.cs.AlgorithmsAndTheorySpecialisation;
 
 public class SpecialisationSetCommandParser implements Parser<SpecialisationSetCommand> {
+
+    public static final String INVALID_SPECIALISATION = "Invalid Specialisation";
     /**
      * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
      * and returns a DeclareMajorCommand object for execution.
@@ -23,7 +25,7 @@ public class SpecialisationSetCommandParser implements Parser<SpecialisationSetC
             case "algo":
                 return new SpecialisationSetCommand(new AlgorithmsAndTheorySpecialisation());
             default:
-                return null;
+                throw new ParseException(INVALID_SPECIALISATION);
             }
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());

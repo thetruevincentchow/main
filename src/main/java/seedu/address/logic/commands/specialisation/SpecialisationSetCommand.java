@@ -34,6 +34,7 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         model.getActiveStudent().setSpecialisation(specialisation);
         return new CommandResult(String.format(MESSAGE_SUCCESS, specialisation.toString()));
     }
