@@ -119,6 +119,11 @@ public class PlannerTest {
         public StudentSemester getActiveSemester() {
             return null;
         }
+
+        @Override
+        public int getActiveStudentIndex() {
+            return -1;
+        }
     }
 
 }

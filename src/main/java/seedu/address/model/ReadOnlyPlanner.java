@@ -41,4 +41,6 @@ public interface ReadOnlyPlanner {
     ObservableList<ModuleCode> getEnrolledModulesList();
 
     StudentSemester getActiveSemester();
+
+    int getActiveStudentIndex();
 }

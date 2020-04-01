@@ -3,6 +3,7 @@ package seedu.address.model;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
@@ -32,7 +33,7 @@ public class Planner implements ReadOnlyPlanner {
      * The current student that the user can immediately modify.
      * `activeStudent` must be an element of `students`, i.e. `students.contains(activeStudent)` is `true`
      */
-    protected Student activeStudent;
+    protected int activeStudentIndex = -1;
     protected StudentSemester activeSemester;
     /**
      * The list of students created by the user.
@@ -41,17 +42,16 @@ public class Planner implements ReadOnlyPlanner {
 
 
     public Planner(boolean loadModules) {
-        activeStudent = null;
         students = new UniqueStudentList();
         if (loadModules) {
             loadModules();
         }
     }
+
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
      */
     public Planner() {
-        activeStudent = null;
         students = new UniqueStudentList();
         loadModules();
     }
@@ -88,9 +88,9 @@ public class Planner implements ReadOnlyPlanner {
 
     public void resetActiveStudent(Student target) {
         if (target == null) {
-            activeStudent = null;
+            activeStudentIndex = -1;
         } else {
-            activeStudent = getEqualStudent(target);
+            activeStudentIndex = getStudentIndex(target);
         }
     }
 
@@ -159,12 +159,17 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public ObservableList<ModuleCode> getEnrolledModulesList() {
-        return activeStudent.getAllEnrolledModules();
+        return getActiveStudent().getAllEnrolledModules();
     }
 
     @Override
     public StudentSemester getActiveSemester() {
         return activeSemester;
+    }
+
+    @Override
+    public int getActiveStudentIndex() {
+        return activeStudentIndex;
     }
 
     public ObservableList<ModuleCode> getActiveModuleCodes() {
@@ -174,28 +179,40 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public ObservableList<ModuleCode> getAllEnrolledModuleCodes() {
-        return activeStudent.getAllEnrolledModules();
+        return getActiveStudent().getAllEnrolledModules();
     }
 
     public void activateValidStudent() {
         // TODO: handle `activeStudents` being null (e.g. if data file is missing)
         // TODO: handle all students being removed
-        activeStudent = null;
-        if (students.iterator().hasNext()) {
-            activeStudent = students.iterator().next();
+        activeStudentIndex = -1;
+        if (!students.isEmpty()) {
+            activeStudentIndex = 0;
         }
-        activeSemester = null; // TODO: possibly validate existing value first
     }
 
     public Student getEqualStudent(Student student) {
         return students.getEqualStudent(student);
     }
 
+    private int getStudentIndex(Student student) {
+        return students.indexOf(student);
+    }
+
+    private boolean isValidStudentIndex(int index) {
+        return 0 <= index && index < students.size();
+    }
+
+    private boolean isValidActiveStudentIndex() {
+        return isValidStudentIndex(activeStudentIndex);
+    }
+
     public Student getActiveStudent() {
-        if (activeStudent == null) {
-            activateValidStudent();
+        if (!isValidActiveStudentIndex()) {
+            return null;
+        } else {
+            return students.get(activeStudentIndex);
         }
-        return activeStudent;
     }
 
     /**
@@ -204,118 +221,119 @@ public class Planner implements ReadOnlyPlanner {
      * @params editedStudent Student to copy for replacement.
      */
     public void setActiveStudent(Student student) {
-        // TODO: ensure that `activeStudent` is not null
-        if (activeStudent != null) {
-            students.setStudent(activeStudent, student);
-        }
-        activeStudent = student;
+        requireAllNonNull(student, getActiveStudent());
+        students.setStudent(getActiveStudent(), student);
     }
 
     public void activateStudent(Student student) {
         if (!students.contains(student)) {
             throw new IllegalArgumentException("Student does not exist in student list");
         }
-        activeStudent = student;
-        activeSemester = null; // TODO: validate existing value first
+        activeStudentIndex = students.indexOf(student);
+        activeSemester = null;
     }
 
     public void removeStudent(Student toRemove) {
         // TODO: handle all students being removed
-        if (toRemove == activeStudent) {
-            activeStudent = null;
+        Student activeStudent = getActiveStudent();
+        if (toRemove.equals(activeStudent)) {
+            students.remove(toRemove);
+            activeStudentIndex = -1;
             activeSemester = null; // TODO: validate existing value first
+        } else {
+            students.remove(toRemove);
+            activeStudentIndex = getStudentIndex(activeStudent);
         }
-        students.remove(toRemove);
-
-        activateValidStudent();
     }
 
     public TimeTable getActiveTimeTable() {
-        requireAllNonNull(activeStudent);
+        requireAllNonNull(getActiveStudent());
 
-        if (activeSemester == null && !activeStudent.getTimeTableMap().isEmpty()) {
+        if (activeSemester == null && !getActiveStudent().getTimeTableMap().isEmpty()) {
             activateValidSemester();
         }
-        return activeStudent.getTimeTable(activeSemester);
+
+        return getActiveStudent().getTimeTable(activeSemester);
     }
 
     public void setActiveTimeTable(TimeTable timeTable) {
-        requireAllNonNull(activeStudent);
-        activeStudent.setTimeTable(activeSemester, timeTable);
+        requireAllNonNull(getActiveStudent());
+        getActiveStudent().setTimeTable(activeSemester, timeTable);
     }
 
     private void activateValidSemester() {
-        if (activeStudent == null) {
+        if (getActiveStudent() == null) {
             throw new IllegalArgumentException("No active student selected");
         }
-        requireAllNonNull(activeStudent);
+        requireAllNonNull(activeStudentIndex);
 
         // TODO: handle `activeStudents` being null (e.g. if data file is missing)
         // TODO: handle all students being removed
-        if (activeStudent.getTimeTableMap().isEmpty()) {
+        if (getActiveStudent().getTimeTableMap().isEmpty()) {
             throw new IllegalArgumentException("The active student has no timetables");
         }
-        activeSemester = activeStudent.getTimeTableMap().keySet().iterator().next();
+        activeSemester = getActiveStudent().getTimeTableMap().keySet().iterator().next();
     }
 
     public void removeTimeTable(StudentSemester keyToRemove) {
         requireAllNonNull(keyToRemove);
-        activeStudent.removeTimeTable(keyToRemove);
+        getActiveStudent().removeTimeTable(keyToRemove);
         keyToRemove = null;
     }
 
-    public boolean hasSemester(StudentSemester semester) {
-        if (activeStudent == null) {
+    public void requireActiveStudentNonNull() {
+        if (getActiveStudent() == null) {
             throw new IllegalArgumentException("No active student selected");
         }
-        return activeStudent.getTimeTableMap().containsKey(semester);
+    }
+
+    public boolean hasSemester(StudentSemester semester) {
+        requireActiveStudentNonNull();
+        return getActiveStudent().getTimeTableMap().containsKey(semester);
     }
 
     public void activateSemester(StudentSemester semester) {
-        if (!activeStudent.getTimeTableMap().containsKey(semester)) {
+        requireActiveStudentNonNull();
+        if (!getActiveStudent().getTimeTableMap().containsKey(semester)) {
             throw new IllegalArgumentException("Semester does not exist in timetable list");
         }
         activeSemester = semester;
     }
 
     public void addSemesterTimeTable(StudentSemester studentSemester) {
-        if (activeStudent == null) {
-            throw new IllegalArgumentException("No active student selected");
-        }
+        requireActiveStudentNonNull();
         if (hasSemester(studentSemester)) {
             throw new IllegalArgumentException("Semester already exists in timetable list");
         }
 
-        activeStudent.setTimeTable(studentSemester, new TimeTable());
+        getActiveStudent().setTimeTable(studentSemester, new TimeTable());
     }
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
-        if (activeStudent == null) {
-            throw new IllegalArgumentException("No active student selected");
-        }
+        requireActiveStudentNonNull();
         if (!hasSemester(studentSemester)) {
             throw new IllegalArgumentException("Semester does not exist in timetable list");
         }
 
-        activeStudent.removeTimeTable(studentSemester);
+        getActiveStudent().removeTimeTable(studentSemester);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(obj instanceof Planner)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        Planner planner = (Planner) o;
+        return activeStudentIndex == planner.activeStudentIndex
+            && Objects.equals(activeSemester, planner.activeSemester)
+            && students.equals(planner.students);
+    }
 
-        // state check
-        Planner other = (Planner) obj;
-        return (activeStudent == null && other.activeStudent == null || activeStudent.equals(other.activeStudent))
-            && (activeSemester == null && other.activeSemester == null || activeSemester.equals(other.activeSemester))
-            && students.equals(other.students);
+    @Override
+    public int hashCode() {
+        return Objects.hash(activeStudentIndex, activeSemester, students);
     }
 }

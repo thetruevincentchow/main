@@ -21,7 +21,7 @@ class JsonSerializablePlanner {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
 
-    private final JsonAdaptedStudent activeStudent;
+    private final int activeStudentIndex;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleCode> enrolledModules = new ArrayList<>();
 
@@ -29,10 +29,10 @@ class JsonSerializablePlanner {
      * Constructs a {@code JsonSerializablePlanner} with the given persons.
      */
     @JsonCreator
-    public JsonSerializablePlanner(@JsonProperty("activeStudent") JsonAdaptedStudent activeStudent,
+    public JsonSerializablePlanner(@JsonProperty("activeStudentIndex") int activeStudentIndex,
                                    @JsonProperty("students") List<JsonAdaptedStudent> students,
                                    @JsonProperty("enrolledModules") List<JsonAdaptedModuleCode> enrolledModules) {
-        this.activeStudent = activeStudent;
+        this.activeStudentIndex = activeStudentIndex;
         this.students.addAll(students);
         this.enrolledModules.addAll(enrolledModules);
     }
@@ -43,11 +43,14 @@ class JsonSerializablePlanner {
      * @param source future changes to this will not affect the created {@code JsonSerializablePlanner}.
      */
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
+        activeStudentIndex = source.getActiveStudentIndex();
+        /*
         if (source.getActiveStudent() == null) {
-            activeStudent = null;
+            activeStudentIndex = -1;
         } else {
-            activeStudent = new JsonAdaptedStudent(source.getActiveStudent());
+            activeStudentIndex = new JsonAdaptedStudent(source.getActiveStudent());
         }
+         */
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         //enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
         //        .collect(Collectors.toList()));
@@ -68,8 +71,14 @@ class JsonSerializablePlanner {
             }
             planner.addStudent(student);
         }
-        if (activeStudent != null) {
-            planner.setActiveStudent(activeStudent.toModelType());
+
+        if (0 <= activeStudentIndex && activeStudentIndex < students.size()) {
+            // TODO: ensure `activeStudent.toModelType()` can be used in `Planner#activateStudent`
+            JsonAdaptedStudent jsonActiveStudent = students.get(activeStudentIndex);
+            //planner.activateStudent(jsonActiveStudent.toModelType());
+
+            Student activeStudent = planner.getEqualStudent(jsonActiveStudent.toModelType());
+            planner.activateStudent(activeStudent);
         }
         return planner;
     }
