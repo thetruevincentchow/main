@@ -2,7 +2,6 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.student.StudentAddCommand.EXAMPLE_STUDENT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -21,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonPlannerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -67,7 +67,7 @@ public class LogicManagerTest {
         // Execute help command
         String studentAddCommand = StudentAddCommand.EXAMPLE_COMMAND;
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addStudent(EXAMPLE_STUDENT);
+        expectedModel.addStudent(SampleDataUtil.getSampleStudent());
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(studentAddCommand, CommandException.class, expectedMessage, expectedModel);
     }
