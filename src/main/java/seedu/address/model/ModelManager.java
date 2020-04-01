@@ -36,7 +36,7 @@ public class ModelManager implements Model {
         requireAllNonNull(planner, userPrefs);
 
         logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
-        this.planner = new Planner();
+        this.planner = new Planner(planner);
         this.userPrefs = new UserPrefs(userPrefs);
 
         requireAllNonNull(planner);

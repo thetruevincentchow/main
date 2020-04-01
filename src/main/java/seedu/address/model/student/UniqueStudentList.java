@@ -17,7 +17,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
  * updating of students uses Student#isSameStudent(Student) for equality so as to ensure that the student being added or
  * updated is unique in terms of identity in the UniqueStudentList. However, the removal of a student uses
  * Student#equals(Object) so as to ensure that the student with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Student#isSameStudent(Student)
@@ -133,5 +133,16 @@ public class UniqueStudentList implements Iterable<Student> {
             }
         }
         return true;
+    }
+
+    public Student getEqualStudent(Student target) {
+        requireAllNonNull(target);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new StudentNotFoundException();
+        }
+
+        return internalList.get(index);
     }
 }
