@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPlannerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -175,20 +175,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /**
-     * Launches the Calendar in a separate window.
-     */
-    @FXML
-    private void launchCalendar() {
-        calendarBox = new CalendarBox(logic.getPlanner());
-        StackPane secondaryLayout = new StackPane();
-        secondaryLayout.getChildren().add(calendarBox.getRoot());
-        Scene secondScene = new Scene(secondaryLayout, 1360, 300);
-        secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
-        Stage newWindow = new Stage();
-        newWindow.setTitle("Calendar");
-        newWindow.setScene(secondScene);
-        newWindow.show();
+    public ModuleListPanel getModuleListPanel() {
+        return moduleListPanel;
     }
 
     /**

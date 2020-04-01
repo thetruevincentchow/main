@@ -25,12 +25,12 @@ public interface PlannerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<Planner> readPlanner() throws DataConversionException, IOException;
+    Optional<ReadOnlyPlanner> readPlanner() throws DataConversionException, IOException;
 
     /**
      * @see #getPlannerFilePath()
      */
-    Optional<Planner> readPlanner(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyPlanner> readPlanner(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link Planner} to the storage.

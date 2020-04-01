@@ -16,6 +16,8 @@ import seedu.address.model.student.Student;
  */
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
+    public static final String EXAMPLE_COMMAND =
+        getQualifiedCommand(COMMAND_WORD) + " " + PREFIX_NAME + "Mark " + PREFIX_MAJOR + "CS";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
         + "' command not implemented yet";

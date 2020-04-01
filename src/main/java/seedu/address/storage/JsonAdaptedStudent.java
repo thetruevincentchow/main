@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
 import seedu.address.model.student.Major;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -12,7 +11,7 @@ import seedu.address.model.student.TimeTableMap;
 
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Student}.
  */
 class JsonAdaptedStudent {
 

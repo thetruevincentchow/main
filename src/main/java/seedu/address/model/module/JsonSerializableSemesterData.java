@@ -36,9 +36,9 @@ public class JsonSerializableSemesterData {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPlanner} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePlanner}.
      */
     public JsonSerializableSemesterData(ReadOnlyPlanner source) {
         // TODO: Don't think we will need to use this. KIV
@@ -46,7 +46,7 @@ public class JsonSerializableSemesterData {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code Planner} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
