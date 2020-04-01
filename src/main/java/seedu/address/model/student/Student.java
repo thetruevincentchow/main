@@ -12,12 +12,12 @@ import java.util.OptionalDouble;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.model.grades.CumulativeGrade;
 import seedu.address.model.grades.Grade;
 import seedu.address.model.graduation.FocusAreaGraduationRequirement;
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.UniqueModuleCodeList;
 import seedu.address.model.programmes.DegreeProgramme;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
 import seedu.address.model.time.StudentSemester;
@@ -30,6 +30,8 @@ public class Student {
 
     // Timetables
     public final TimeTableMap timeTableMap;
+    // Exemptions
+    public final UniqueModuleCodeList exemptedModules = new UniqueModuleCodeList();
     // Identity fields
     private Name name;
     private Degrees degrees;
@@ -38,14 +40,7 @@ public class Student {
 
 
     public Student() {
-        this(null, new Degrees(), null);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Student(Name name) {
-        this(name, new Degrees(), null);
+        this(null, null);
     }
 
     // TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
@@ -57,19 +52,13 @@ public class Student {
         this.timeTableMap = new TimeTableMap();
     }
 
-    public Student(Name name, Major major, TimeTableMap timeTableMap) {
+    public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules) {
         requireAllNonNull(name, major, timeTableMap);
         this.name = name;
         this.degrees = null;
         this.major = major;
         this.timeTableMap = timeTableMap;
-    }
-
-    public Student(Name name, Degrees degrees, Major major) {
-        this.name = name;
-        this.degrees = degrees;
-        this.major = major;
-        this.timeTableMap = new TimeTableMap();
+        exemptedModules.forEach(this.exemptedModules::add);
     }
 
     public Name getName() {
@@ -124,7 +113,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, major, timeTableMap);
+        return Objects.hash(name, major, timeTableMap, exemptedModules);
     }
 
     @Override
@@ -207,5 +196,9 @@ public class Student {
             }
         }
         return cumulativeGrade;
+    }
+
+    public ObservableList<ModuleCode> getExemptedModules() {
+        return exemptedModules.asUnmodifiableObservableList();
     }
 }

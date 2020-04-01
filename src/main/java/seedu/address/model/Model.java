@@ -81,4 +81,6 @@ public interface Model {
     void setModuleGrade(ModuleCode moduleCode, Grade grade);
 
     void setPlanner(Planner planner);
+
+    ObservableList<ModuleCode> getExemptedModulesList();
 }

@@ -85,6 +85,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<ModuleCode> getExemptedModulesList() {
+        return planner.getExemptedModulesList();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

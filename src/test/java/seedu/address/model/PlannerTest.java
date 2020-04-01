@@ -124,6 +124,11 @@ public class PlannerTest {
         public int getActiveStudentIndex() {
             return -1;
         }
+
+        @Override
+        public ObservableList<ModuleCode> getExemptedModulesList() {
+            return null;
+        }
     }
 
 }
