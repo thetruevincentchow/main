@@ -56,7 +56,7 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String helpCommand = HelpCommand.COMMAND_WORD;
-        assertCommandSuccess(helpCommand, HelpCommand.MESSAGE_USAGE, model);
+        assertCommandSuccess(helpCommand, HelpCommand.SHOWING_HELP_MESSAGE, model);
     }
 
     @Test

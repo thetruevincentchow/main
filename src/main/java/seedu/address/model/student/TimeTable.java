@@ -1,6 +1,7 @@
 package seedu.address.model.student;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.model.module.ModuleCode;
@@ -55,5 +56,19 @@ public class TimeTable {
 
     public void setEnrollments(UniqueEnrollmentList enrollments) {
         this.enrollments = enrollments;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enrollments);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof TimeTable)) {
+            return false;
+        } else {
+            return enrollments.equals(((TimeTable) other).enrollments);
+        }
     }
 }

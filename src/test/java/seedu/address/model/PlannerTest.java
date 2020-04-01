@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.util.SampleDataUtil.getSamplePlanner;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -27,7 +28,8 @@ public class PlannerTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), planner.getModuleList());
+        assertEquals(Collections.emptyList(), planner.getStudentList());
+        assertNotEquals(Collections.emptyList(), planner.getModuleList());
     }
 
     @Test
@@ -110,6 +112,11 @@ public class PlannerTest {
 
         @Override
         public ObservableList<ModuleCode> getEnrolledModulesList() {
+            return null;
+        }
+
+        @Override
+        public StudentSemester getActiveSemester() {
             return null;
         }
     }
