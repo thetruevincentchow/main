@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.PlannerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleDataImporter;
 import seedu.address.storage.Storage;
@@ -71,5 +72,10 @@ public class LogicManager implements Logic {
     @Override
     public Path getPlannerFilePath() {
         return storage.getPlannerFilePath();
+    }
+
+    @Override
+    public ReadOnlyPlanner getPlanner() {
+        return model.getPlanner();
     }
 }

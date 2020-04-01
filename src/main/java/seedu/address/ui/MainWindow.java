@@ -223,4 +223,20 @@ public class MainWindow extends UiPart<Stage> {
             colorTrack = 1;
         }
     }
+
+    /**
+     * Launches the Calendar in a separate window.
+     */
+    @FXML
+    private void launchCalendar() {
+        calendarBox = new CalendarBox(logic.getPlanner());
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(calendarBox.getRoot());
+        Scene secondScene = new Scene(secondaryLayout, 1360, 300);
+        secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Calendar");
+        newWindow.setScene(secondScene);
+        newWindow.show();
+    }
 }
