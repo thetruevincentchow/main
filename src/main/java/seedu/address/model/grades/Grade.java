@@ -1,5 +1,6 @@
 package seedu.address.model.grades;
 
+import java.util.Objects;
 import java.util.OptionalDouble;
 
 public class Grade {
@@ -28,5 +29,19 @@ public class Grade {
         } else {
             return String.format("%s", this.letterGrade);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Grade grade = (Grade) o;
+        return isSu == grade.isSu &&
+            letterGrade == grade.letterGrade;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(letterGrade, isSu);
     }
 }
