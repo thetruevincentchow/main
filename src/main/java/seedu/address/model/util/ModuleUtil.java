@@ -22,7 +22,7 @@ public class ModuleUtil {
 
     public static Module getModuleWithCode(ModuleCode moduleCode) {
         for (Module module : getSamplePlanner().getModuleList()) {
-            if (module.getModuleCode() == moduleCode) {
+            if (module.getModuleCode().equals(moduleCode)) {
                 return module;
             }
         }
