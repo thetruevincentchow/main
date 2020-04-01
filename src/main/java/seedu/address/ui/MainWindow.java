@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -52,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane calendarBoxPlaceholder;
+
+    @FXML
+    private Button lanchCalendar;
 
     @FXML
     private StackPane moduleListPanelPlaceholder;
@@ -124,11 +129,8 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        calendarBox = new CalendarBox();
-        calendarBoxPlaceholder.getChildren().add(calendarBox.getRoot());
+        //calendarBox = new CalendarBox(logic.getPlanner());
+        //calendarBoxPlaceholder.getChildren().add(calendarBox.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -180,6 +182,22 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Launches the Calendar in a separate window.
+     */
+    @FXML
+    private void launchCalendar() {
+        calendarBox = new CalendarBox(logic.getPlanner());
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(calendarBox.getRoot());
+        Scene secondScene = new Scene(secondaryLayout, 1360, 300);
+        secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Calendar");
+        newWindow.setScene(secondScene);
+        newWindow.show();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -212,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes color to light theme
+     * Changes color between light theme and dark theme
      */
     @FXML
     public void changeColor() {

@@ -1,10 +1,14 @@
 package seedu.address.model.module;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyPlanner;
+
+
 
 /**
  * An Immutable ModuleList that is serializable to JSON format.
@@ -16,7 +20,7 @@ public class JsonSerializableLesson {
     private String classNo;
     private String startTime;
     private String endTime;
-    private Object weeks;
+    private List<String> weeks;
     private String venue;
     private String day;
     private String lessonType;
@@ -40,7 +44,7 @@ public class JsonSerializableLesson {
         @JsonProperty("classNo") String classNo,
         @JsonProperty("startTime") String startTime,
         @JsonProperty("endTime") String endTime,
-        @JsonProperty("weeks") String weeks,
+        @JsonProperty("weeks") List<String> weeks,
         @JsonProperty("venue") String venue,
         @JsonProperty("day") String day,
         @JsonProperty("lessonType") String lessonType,
@@ -106,7 +110,7 @@ public class JsonSerializableLesson {
         return weeks;
     }
 
-    public void setWeeks(Object weeks) {
+    public void setWeeks(List<String> weeks) {
         this.weeks = weeks;
     }
 
