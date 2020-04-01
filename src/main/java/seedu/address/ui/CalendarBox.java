@@ -1,11 +1,19 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ReadOnlyPlanner;
+import seedu.address.model.module.Lesson;
+import seedu.address.model.module.LessonDataImporter;
+import seedu.address.model.module.ModuleCode;
 
 /**
  * An UI component that displays information of a {@code Timetable}.
@@ -13,12 +21,135 @@ import seedu.address.commons.core.LogsCenter;
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "calendarBox.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarBox.class);
+    private ReadOnlyPlanner planner;
+    private LessonDataImporter lessonDataImporter = new LessonDataImporter();
 
     @FXML
     private Label semester;
 
     @FXML
     private Label dayTime;
+
+    @FXML
+    private AnchorPane am1;
+    @FXML
+    private AnchorPane am2;
+    @FXML
+    private AnchorPane am3;
+    @FXML
+    private AnchorPane am4;
+    @FXML
+    private AnchorPane am5;
+    @FXML
+    private AnchorPane am6;
+    @FXML
+    private AnchorPane am7;
+    @FXML
+    private AnchorPane am8;
+    @FXML
+    private AnchorPane am9;
+    @FXML
+    private AnchorPane am10;
+    @FXML
+    private AnchorPane am11;
+    @FXML
+    private AnchorPane am12;
+    @FXML
+    private AnchorPane at1;
+    @FXML
+    private AnchorPane at2;
+    @FXML
+    private AnchorPane at3;
+    @FXML
+    private AnchorPane at4;
+    @FXML
+    private AnchorPane at5;
+    @FXML
+    private AnchorPane at6;
+    @FXML
+    private AnchorPane at7;
+    @FXML
+    private AnchorPane at8;
+    @FXML
+    private AnchorPane at9;
+    @FXML
+    private AnchorPane at10;
+    @FXML
+    private AnchorPane at11;
+    @FXML
+    private AnchorPane at12;
+    @FXML
+    private AnchorPane aw1;
+    @FXML
+    private AnchorPane aw2;
+    @FXML
+    private AnchorPane aw3;
+    @FXML
+    private AnchorPane aw4;
+    @FXML
+    private AnchorPane aw5;
+    @FXML
+    private AnchorPane aw6;
+    @FXML
+    private AnchorPane aw7;
+    @FXML
+    private AnchorPane aw8;
+    @FXML
+    private AnchorPane aw9;
+    @FXML
+    private AnchorPane aw10;
+    @FXML
+    private AnchorPane aw11;
+    @FXML
+    private AnchorPane aw12;
+    @FXML
+    private AnchorPane ath1;
+    @FXML
+    private AnchorPane ath2;
+    @FXML
+    private AnchorPane ath3;
+    @FXML
+    private AnchorPane ath4;
+    @FXML
+    private AnchorPane ath5;
+    @FXML
+    private AnchorPane ath6;
+    @FXML
+    private AnchorPane ath7;
+    @FXML
+    private AnchorPane ath8;
+    @FXML
+    private AnchorPane ath9;
+    @FXML
+    private AnchorPane ath10;
+    @FXML
+    private AnchorPane ath11;
+    @FXML
+    private AnchorPane ath12;
+    @FXML
+    private AnchorPane af1;
+    @FXML
+    private AnchorPane af2;
+    @FXML
+    private AnchorPane af3;
+    @FXML
+    private AnchorPane af4;
+    @FXML
+    private AnchorPane af5;
+    @FXML
+    private AnchorPane af6;
+    @FXML
+    private AnchorPane af7;
+    @FXML
+    private AnchorPane af8;
+    @FXML
+    private AnchorPane af9;
+    @FXML
+    private AnchorPane af10;
+    @FXML
+    private AnchorPane af11;
+    @FXML
+    private AnchorPane af12;
 
     @FXML
     private Label t89;
@@ -174,8 +305,9 @@ public class CalendarBox extends UiPart<Region> {
     /**
      * Constructor for CalendarBox class
      */
-    public CalendarBox() {
+    public CalendarBox(ReadOnlyPlanner planner) {
         super(FXML);
+        this.planner = planner;
         dayTime.setText("Day / Time");
         m1.setText("");
         m2.setText("");
@@ -242,7 +374,14 @@ public class CalendarBox extends UiPart<Region> {
     /**
      * Todo once timetable can be seen
      */
-    public void setCalendar() {
+    public void setCalendar(ReadOnlyPlanner planner) {
+        ObservableList<ModuleCode> mod = planner.getEnrolledModulesList();
+        ArrayList<ModuleCode> codes = new ArrayList<>();
+        List<Lesson> lessonsMod = new ArrayList<>();
+        for (int i = 0; i < mod.size(); i++) {
+            lessonsMod = lessonDataImporter.run(mod.get(i).toString());
+            System.out.println(lessonsMod.get(1).getStartTime());
+        }
 
     }
 
