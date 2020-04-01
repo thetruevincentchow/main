@@ -28,10 +28,6 @@ public class Enrollment {
         this.code = code;
     }
 
-    public void setGrade(Optional<Grade> grade) {
-        this.grade = grade;
-    }
-
     public int getCredit() {
         return credit;
     }
@@ -48,11 +44,28 @@ public class Enrollment {
         return grade;
     }
 
+    public void setGrade(Optional<Grade> grade) {
+        this.grade = grade;
+    }
+
     public OptionalDouble getGradePoint() {
         if (grade.isPresent()) {
             return grade.get().getGradePoint();
         } else {
             return OptionalDouble.empty();
+        }
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Enrollment)) {
+            return false;
+        } else {
+            Enrollment otherEnrollment = ((Enrollment) other);
+            return code.equals(otherEnrollment.code)
+                && grade.equals(otherEnrollment.grade)
+                && credit == otherEnrollment.credit;
         }
     }
 }
