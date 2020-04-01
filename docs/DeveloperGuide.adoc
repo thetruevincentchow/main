@@ -1147,9 +1147,9 @@ _{ more test cases ... }_
 . Setting the specialisation of a plan while the plan is selected
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
-.. Test case: `specilisation set algo` +
+.. Test case: `specialisation set algo` +
    Expected: Selected student's specialisation is updated. Details of the new specialisation are shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `specilisation set abcdefg` +
+.. Test case: `specialisation set abcdefg` +
    Expected: Selected student's specialisation is not updated. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `specialisation set` +
    Expected: Similar to previous.
