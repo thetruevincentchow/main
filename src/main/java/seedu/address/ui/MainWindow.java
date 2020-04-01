@@ -33,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private CalendarBox calendarBox;
@@ -48,9 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem changeColor;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane calendarBoxPlaceholder;
@@ -129,9 +125,6 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        //calendarBox = new CalendarBox(logic.getPlanner());
-        //calendarBoxPlaceholder.getChildren().add(calendarBox.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -196,10 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         newWindow.setTitle("Calendar");
         newWindow.setScene(secondScene);
         newWindow.show();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
