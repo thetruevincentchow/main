@@ -56,8 +56,6 @@ public class TimeTableRemoveCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        // TODO: validate semester
-
         if (!model.getPlanner().hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));
         }

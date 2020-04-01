@@ -278,7 +278,6 @@ public class Planner implements ReadOnlyPlanner {
     public void removeTimeTable(StudentSemester keyToRemove) {
         requireAllNonNull(keyToRemove);
         getActiveStudent().removeTimeTable(keyToRemove);
-        keyToRemove = null;
     }
 
     public void requireActiveStudentNonNull() {

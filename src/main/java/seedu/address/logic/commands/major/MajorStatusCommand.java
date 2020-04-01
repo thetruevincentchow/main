@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -43,7 +44,13 @@ public class MajorStatusCommand extends MajorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<GraduationRequirement> graduationRequirementList = model.getActiveStudent().getMajor()
+
+        Student activeStudent = model.getActiveStudent();
+        if (activeStudent == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+
+        List<GraduationRequirement> graduationRequirementList = activeStudent.getMajor()
             .getGraduationRequirements();
         StringBuffer sb = new StringBuffer();
         boolean isFirst = true;
@@ -51,7 +58,7 @@ public class MajorStatusCommand extends MajorCommand {
             if (!isFirst) {
                 sb.append("\n");
             }
-            sb.append(graduationRequirement.getString(model.getActiveStudent().getAllEnrolledModules()));
+            sb.append(graduationRequirement.getString(activeStudent.getAllEnrolledModules()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString()));
     }

@@ -2,10 +2,12 @@ package seedu.address.logic.commands.specialisation;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.programmes.specialisations.GenericSpecialisation;
+import seedu.address.model.student.Student;
 
 
 public class SpecialisationSetCommand extends SpecialisationCommand {
@@ -35,7 +37,12 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.getActiveStudent().setSpecialisation(specialisation);
+        Student activeStudent = model.getActiveStudent();
+        if (activeStudent == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+
+        activeStudent.setSpecialisation(specialisation);
         return new CommandResult(String.format(MESSAGE_SUCCESS, specialisation.toString()));
     }
 }

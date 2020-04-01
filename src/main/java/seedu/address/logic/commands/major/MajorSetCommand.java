@@ -2,10 +2,12 @@ package seedu.address.logic.commands.major;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Major;
+import seedu.address.model.student.Student;
 
 public class MajorSetCommand extends MajorCommand {
     public static final String COMMAND_WORD = "set";
@@ -31,7 +33,13 @@ public class MajorSetCommand extends MajorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.getActiveStudent().setMajor(major);
+
+        Student activeStudent = model.getActiveStudent();
+        if (activeStudent == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+
+        activeStudent.setMajor(major);
         return new CommandResult(String.format(MESSAGE_SUCCESS, major));
     }
 }
