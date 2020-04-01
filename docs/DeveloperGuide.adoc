@@ -573,59 +573,57 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I ...
 |`* * *` |new user |see usage instructions |can refer to instructions when I forget how to use the App
 
-|`* * *` |user |declare what my major is |get the right graduation requirements to follow
+|`* * *` |freshman |declare what my major is |get the right graduation requirements to follow
 
-|`*` |user |declare what my minor(s) is/are |get the right graduation requirements to follow
+|`* * *` |freshman |declare what I am exempted from (e.g. Polytechnic Exemptions) |am not recommended modules that I am exempted from
 
-|`* * *` |user |declare what I am exempted from (e.g. Polytechnic Exemptions) |am not recommended modules that I am exempted from
+|`* * *` |freshman |declare what tracks/specializations (Focus Areas) I am interested/am taking |am given recommendations that will fulfill the requirements of that track/specialization
 
-|`* *` |user |declare that I am part of a Residential College program |am given recommendations that take into account UTCP modules
+|`* * *` |current undergraduate student |view the list of modules which I have taken |can remember what modules I have taken
 
-|`* * *` |user |declare what tracks/specializations (Focus Areas) I am interested/am taking |am given recommendations that will fulfill the requirements of that track/specialization
+|`* * *` |current undergraduate student |view the list of modules which I have declared exempted from |can remember what modules I am exempted from
 
-|`* *` |user |declare my intention of overloading modules |am given recommendations to graduate faster
+|`* * *` |freshman |see a list of all available modules in NUS |can see what modules is available for me to take
 
-|`* *` |user |declare my intention of underloading modules |am given recommendations to graduate faster
+|`* * *` |current undergraduate student |enter the grades I got for each module |can view my Cumulative Average Point (CAP) for each and all semesters
 
-|`* *` |user |verify if I can graduate on time given currently selected modules |am given recommendations of feasible modules to take
+|`* * *` |current undergraduate student |can see if a module is being offered in a semester that I want |can plan my academic plan correctly
 
-|`* * *` |user |view the list of modules which I have taken |can remember what modules I have taken
+|`* * *` |current undergraduate student |see the list of grades I obtained for each module |can have a better understanding of my academic performance
 
-|`* * *` |user |view the list of modules which I have declared exempted from |can remember what modules I am exempted from
+|`* *` |current undergraduate student in-residence |declare that I am part of a Residential College program |am given recommendations that take into account UTCP modules
 
-|`* *` |user |check which lecturer is teaching the module |can decide if I should take that module in that semester
+|`* *` |current undergraduate student |declare my intention of overloading modules |am given recommendations to graduate faster
 
-|`* * *` |user |see a list of all available modules in NUS |can see what modules is available for me to take
+|`* *` |current undergraduate student |declare my intention of underloading modules |am given recommendations to graduate faster
 
-|`* * *` |user |enter the grades I got for each module |can view my Cumulative Average Point (CAP) for each and all semesters
+|`* *` |freshman |verify if I can graduate on time given currently selected modules |am given recommendations of feasible modules to take
 
-|`* *` |user |declare that I am part of NOC programme |can count NOC modules towards my graduation requirements
+|`* *` |current undergraduate student |check which lecturer is teaching the module |can decide if I should take that module in that semester
 
-|`* *` |user |declare that I am part of the university scholar programme |can replace my requirements for graduation with USP modules
+|`* *` |current undergraduate student with NOC acceptance |declare that I am part of NOC programme |can count NOC modules towards my graduation requirements
 
-|`* * *` |user |can see if a module is being offered in a semester that I want |can plan my academic plan correctly
+|`* *` |current undergraduate student with USP acceptance |declare that I am part of the university scholar programme |can replace my requirements for graduation with USP modules
 
-|`* *` |user |can check the venue of the class |can plan my traveling route during module planning
+|`* *` |current undergraduate student |can check the venue of the class |can plan my traveling route during module planning
 
-|`*` |user |set the module to be non graded to pass or fail |can set the overseas module to be pass or fail without affecting my CAP
+|`* *` |current undergraduate student |change the colours of the module planner for customizable |can enjoy dark theme
 
-|`* *` |user |change the colours of the module planner for customizable |can enjoy dark theme
+|`* *` |current undergraduate student on internship |declare when I would like to undergo an internship |can plan the timing of my modules
 
-|`* * *` |user |see the list of grades I obtained for each module |can have a better understanding of my academic performance
+|`* *` |current undergraduate student |view changes in Grade Point Average (GPA) according to projected grades |can have a better understanding of my academic performance
 
-|`* *` |user |declare when I would like to undergo an internship |can plan the timing of my modules
+|`* *` |freshman |automatically select non-conflicting lecture and tutorial slots based on preferences |can create usable timetables based on my preferences
 
-|`* *` |user |view changes in Grade Point Average (GPA) according to projected grades |can have a better understanding of my academic performance
+|`*` |current undergraduate student on exchange |set the module to be non graded to pass or fail |can set the overseas module to be pass or fail without affecting my CAP
 
-|`*` |user |see which pathways would be more challenging (i.e. Level 3K, 4K, 5K modules) |can choose a better course pathway in terms of maximising GPA/fulfilling course requirements
+|`*` |freshman |declare what my minor(s) is/are |get the right graduation requirements to follow
 
-|`*` |user |set preferences (e.g. ‘free’ days/only after 12 PM) in order to automatically organise the timetable |have an efficient and personalised timetable
+|`*` |current undergraduate student |see which pathways would be more challenging (i.e. Level 3K, 4K, 5K modules) |can choose a better course pathway in terms of maximising GPA/fulfilling course requirements
 
-|`* *` |user |automatically select non-conflicting lecture and tutorial slots based on preferences |can create usable timetables based on my preferences
+|`*` |freshman |set preferences (e.g. ‘free’ days/only after 12 PM) in order to automatically organise the timetable |have an efficient and personalised timetable
 
 |=======================================================================
-
-_{More to be added}_
 
 [appendix]
 == Use Cases
@@ -897,8 +895,6 @@ Use case ends
 +
 Use case ends
 
-_{More to be added}_
-
 [appendix]
 == Non-Functional Requirements
 
@@ -907,8 +903,6 @@ _{More to be added}_
 . The application should come prepackaged with pre-populated data (for offline use).
 . The application be able to hold up to 10 students and their respective module plans/enrollments without a noticeable sluggishness in performance for typical usage.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
 
 [appendix]
 == Glossary
@@ -991,8 +985,6 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
-_{ more test cases ... }_
 
 === Adding a Plan
 
@@ -1169,5 +1161,3 @@ _{ more test cases ... }_
 .. Test case: Edit the file named `planner.json` in the `data` folder such that it is no longer valid JSON.
    This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
    Expected: Shows the GUI with a set of sample plans.
-
-_{ more test cases ... }_
