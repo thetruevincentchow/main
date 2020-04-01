@@ -37,12 +37,19 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
     public String getString(List<ModuleCode> moduleCodes) {
         try {
             StringBuilder sb = new StringBuilder()
-                .append("[").append(getStatusIcon(specialisation.isFulfilled(moduleCodes))).append("] " + "Focus Area: ").append(specialisation.getName())
-                .append("\n    [").append(getStatusIcon(((GenericCsSpecialisation) specialisation).arePrimariesFulfilled(moduleCodes))).append("] Primaries");
+                .append("[")
+                .append(getStatusIcon(specialisation.isFulfilled(moduleCodes)))
+                .append("] " + "Focus Area: ")
+                .append(specialisation.getName())
+                .append("\n    [")
+                .append(getStatusIcon(((GenericCsSpecialisation) specialisation).arePrimariesFulfilled(moduleCodes)))
+                .append("] Primaries");
             for (ModuleCode primaries : ((GenericCsSpecialisation) getSpecialisation()).getPrimaries()) {
                 sb.append("\n        ").append(new SingleGraduationRequirement(primaries).getString(moduleCodes));
             }
-            sb.append("\n    [").append(getStatusIcon(((GenericCsSpecialisation) specialisation).areElectivesFulfilled(moduleCodes))).append("] Electives");
+            sb.append("\n    [")
+                .append(getStatusIcon(((GenericCsSpecialisation) specialisation).areElectivesFulfilled(moduleCodes)))
+                .append("] Electives");
             for (ModuleCode electives : ((GenericCsSpecialisation) getSpecialisation()).getElectives()) {
                 sb.append("\n        ").append(new SingleGraduationRequirement(electives).getString(moduleCodes));
             }

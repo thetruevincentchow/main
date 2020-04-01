@@ -1,5 +1,10 @@
 package seedu.address.model.util;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.model.Planner;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -9,11 +14,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.TimeTable;
 import seedu.address.model.student.TimeTableMap;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code Planner} with sample data.

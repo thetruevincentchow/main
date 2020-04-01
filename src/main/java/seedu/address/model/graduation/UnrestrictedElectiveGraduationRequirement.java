@@ -1,9 +1,8 @@
 package seedu.address.model.graduation;
 
-import seedu.address.model.module.ModuleCode;
-
 import java.util.List;
-import java.util.regex.Pattern;
+
+import seedu.address.model.module.ModuleCode;
 
 public class UnrestrictedElectiveGraduationRequirement extends GraduationRequirement {
 
@@ -12,7 +11,6 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
     }
 
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
-
         return false;
     }
 

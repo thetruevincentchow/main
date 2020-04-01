@@ -56,17 +56,17 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
             }
             return true;
         case AT_LEAST_MC:
-            int current_mc = 0;
+            int currentMc = 0;
             Module module;
             for (GraduationRequirement requirement : graduationRequirementList) {
                 if (requirement.isFulfilled(moduleCodes)) {
                     module = ModuleUtil.getModuleWithCode(requirement.getModuleCode());
                     if (module != null) {
-                        current_mc += module.getModuleCredit();
+                        currentMc += module.getModuleCredit();
                     }
                 }
             }
-            return current_mc >= minMCs;
+            return currentMc >= minMCs;
         default:
             return false;
         }
@@ -75,7 +75,13 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
     public String getString(List<ModuleCode> moduleCodes) {
         StringBuilder sb = new StringBuilder();
         String buffer;
-        sb.append("[").append(getStatusIcon(isFulfilled(moduleCodes))).append("] [").append(aggregationType.getAggregationType(minMCs)).append("] ").append(name).append("\n");
+        sb.append("[")
+            .append(getStatusIcon(isFulfilled(moduleCodes)))
+            .append("] [")
+            .append(aggregationType.getAggregationType(minMCs))
+            .append("] ")
+            .append(name)
+            .append("\n");
         if (graduationRequirementList != null) {
             Iterator<GraduationRequirement> iterator = graduationRequirementList.iterator();
             while (iterator.hasNext()) {

@@ -190,11 +190,14 @@ public class Student {
             for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
                 .getGraduationRequirementList()) {
                 if (graduationRequirement instanceof CompoundGraduationRequirement) {
-                    for (GraduationRequirement graduationRequirement1 : ((CompoundGraduationRequirement) graduationRequirement).getGraduationRequirementList()) {
-                        if (graduationRequirement1 instanceof CompoundGraduationRequirement) {
-                            for (GraduationRequirement graduationRequirement2 : ((CompoundGraduationRequirement) graduationRequirement1).getGraduationRequirementList()) {
-                                if (graduationRequirement2 instanceof FocusAreaGraduationRequirement) {
-                                    FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement2;
+                    for (GraduationRequirement gradRequirement1
+                        : ((CompoundGraduationRequirement) graduationRequirement).getGraduationRequirementList()) {
+                        if (gradRequirement1 instanceof CompoundGraduationRequirement) {
+                            for (GraduationRequirement gradRequirement2
+                                : ((CompoundGraduationRequirement) gradRequirement1).getGraduationRequirementList()) {
+                                if (gradRequirement2 instanceof FocusAreaGraduationRequirement) {
+                                    FocusAreaGraduationRequirement focusAreaGraduationRequirement =
+                                        (FocusAreaGraduationRequirement) gradRequirement2;
                                     focusAreaGraduationRequirement.setSpecialisation(specialisation);
                                     break;
                                 }
@@ -204,7 +207,7 @@ public class Student {
                 }
             }
         } catch (NullPointerException ex) {
-
+            return;
         }
     }
 
