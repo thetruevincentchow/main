@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.grades.CumulativeGrade;
 import seedu.address.model.grades.Grade;
+import seedu.address.model.graduation.CompoundGraduationRequirement;
 import seedu.address.model.graduation.FocusAreaGraduationRequirement;
 import seedu.address.model.graduation.GraduationRequirement;
 import seedu.address.model.module.ModuleCode;
@@ -131,7 +132,7 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(PREFIX_NAME).append(getName()).append(" ")
-                .append(PREFIX_MAJOR).append(getMajor());
+            .append(PREFIX_MAJOR).append(getMajor());
         return builder.toString();
     }
 
@@ -185,13 +186,25 @@ public class Student {
 
     public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
-        for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
+        try {
+            for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
                 .getGraduationRequirementList()) {
-            if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
-                FocusAreaGraduationRequirement focusAreaGraduationRequirement =
-                        (FocusAreaGraduationRequirement) graduationRequirement;
-                focusAreaGraduationRequirement.setGenericSpecialisation(specialisation);
+                if (graduationRequirement instanceof CompoundGraduationRequirement) {
+                    for (GraduationRequirement graduationRequirement1 : ((CompoundGraduationRequirement) graduationRequirement).getGraduationRequirementList()) {
+                        if (graduationRequirement1 instanceof CompoundGraduationRequirement) {
+                            for (GraduationRequirement graduationRequirement2 : ((CompoundGraduationRequirement) graduationRequirement1).getGraduationRequirementList()) {
+                                if (graduationRequirement2 instanceof FocusAreaGraduationRequirement) {
+                                    FocusAreaGraduationRequirement focusAreaGraduationRequirement = (FocusAreaGraduationRequirement) graduationRequirement2;
+                                    focusAreaGraduationRequirement.setSpecialisation(specialisation);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        } catch (NullPointerException ex) {
+
         }
     }
 

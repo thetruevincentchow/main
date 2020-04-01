@@ -46,11 +46,7 @@ public class MajorStatusCommand extends MajorCommand {
         List<GraduationRequirement> graduationRequirementList = model.getActiveStudent().getMajor()
             .getGraduationRequirements();
         StringBuffer sb = new StringBuffer();
-        boolean isFirst = true;
         for (GraduationRequirement graduationRequirement : graduationRequirementList) {
-            if (!isFirst) {
-                sb.append("\n");
-            }
             sb.append(graduationRequirement.getString(model.getActiveStudent().getAllEnrolledModules()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString()));

@@ -19,7 +19,7 @@ public abstract class GraduationRequirement {
     public abstract boolean isFulfilled(List<ModuleCode> moduleCodes);
 
     protected String getStatusIcon(boolean done) {
-        return done ? "Y" : "X";
+        return done ? "\u2713" : "\u2718";
     }
 
     @Override
