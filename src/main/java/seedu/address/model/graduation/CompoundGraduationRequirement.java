@@ -57,10 +57,9 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
             return true;
         case AT_LEAST_MC:
             int currentMc = 0;
-            Module module;
             for (GraduationRequirement requirement : graduationRequirementList) {
                 if (requirement.isFulfilled(moduleCodes)) {
-                    module = ModuleUtil.getModuleWithCode(requirement.getModuleCode());
+                    Module module = ModuleUtil.getModuleWithCode(requirement.getModuleCode());
                     if (module != null) {
                         currentMc += module.getModuleCredit();
                     }
