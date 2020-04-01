@@ -10,13 +10,11 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.declare.DeclareCommand;
 import seedu.address.logic.commands.major.MajorCommand;
 import seedu.address.logic.commands.module.ModuleCommand;
 import seedu.address.logic.commands.specialisation.SpecialisationCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.timetable.TimeTableCommand;
-import seedu.address.logic.parser.declare.DeclareCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.module.ModuleCommandParser;
 import seedu.address.logic.parser.specialisation.SpecialisationCommandParser;
@@ -58,9 +56,6 @@ public class PlannerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case DeclareCommand.COMMAND_WORD:
-            return new DeclareCommandParser().parse(arguments);
 
         case StudentCommand.COMMAND_WORD:
             return new StudentCommandParser().parse(arguments);
