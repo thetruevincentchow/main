@@ -39,6 +39,14 @@ public class Planner implements ReadOnlyPlanner {
      */
     protected UniqueStudentList students; //TOOD: use list of students in storage
 
+
+    public Planner(boolean loadModules) {
+        activeStudent = null;
+        students = new UniqueStudentList();
+        if (loadModules) {
+            loadModules();
+        }
+    }
     /**
      * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
      */
@@ -48,6 +56,10 @@ public class Planner implements ReadOnlyPlanner {
         loadModules();
     }
 
+    public Planner(ReadOnlyPlanner planner) {
+        this();
+        resetData(planner);
+    }
 
     private void loadModules() {
         if (modules.isEmpty()) {
@@ -70,24 +82,36 @@ public class Planner implements ReadOnlyPlanner {
         return true;
     }
 
-    public boolean resetData(Planner planner) {
-        activeStudent = planner.activeStudent;
-        students = planner.students;
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
+    }
+
+    public void resetActiveStudent(Student target) {
+        if (target == null) {
+            activeStudent = null;
+        } else {
+            activeStudent = getEqualStudent(target);
+        }
+    }
+
+    public boolean resetData(ReadOnlyPlanner planner) {
+        setStudents(planner.getStudentList());
+        resetActiveStudent(planner.getActiveStudent());
+        activeSemester = planner.getActiveSemester();
         return true;
     }
 
     public boolean hasStudent(Student student) {
-        return false;
+        return students.contains(student);
     }
 
     public boolean hasModule(Module module) {
-        // TODO
-        return false;
+        return modules.contains(module);
     }
 
 
     public boolean addModule(Module module) {
-        // TODO
+        modules.add(module);
         return true;
     }
 
@@ -138,6 +162,11 @@ public class Planner implements ReadOnlyPlanner {
         return activeStudent.getAllEnrolledModules();
     }
 
+    @Override
+    public StudentSemester getActiveSemester() {
+        return activeSemester;
+    }
+
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
         moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
@@ -158,6 +187,10 @@ public class Planner implements ReadOnlyPlanner {
         activeSemester = null; // TODO: possibly validate existing value first
     }
 
+    public Student getEqualStudent(Student student) {
+        return students.getEqualStudent(student);
+    }
+
     public Student getActiveStudent() {
         if (activeStudent == null) {
             activateValidStudent();
@@ -170,12 +203,12 @@ public class Planner implements ReadOnlyPlanner {
      *
      * @params editedStudent Student to copy for replacement.
      */
-    public void setActiveStudent(Student editedStudent) {
+    public void setActiveStudent(Student student) {
         // TODO: ensure that `activeStudent` is not null
         if (activeStudent != null) {
-            students.setStudent(activeStudent, editedStudent);
+            students.setStudent(activeStudent, student);
         }
-        activeStudent = editedStudent;
+        activeStudent = student;
     }
 
     public void activateStudent(Student student) {
@@ -265,5 +298,24 @@ public class Planner implements ReadOnlyPlanner {
         }
 
         activeStudent.removeTimeTable(studentSemester);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof Planner)) {
+            return false;
+        }
+
+        // state check
+        Planner other = (Planner) obj;
+        return (activeStudent == null && other.activeStudent == null || activeStudent.equals(other.activeStudent))
+            && (activeSemester == null && other.activeSemester == null || activeSemester.equals(other.activeSemester))
+            && students.equals(other.students);
     }
 }

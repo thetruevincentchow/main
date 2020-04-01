@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
 
 /**
@@ -33,7 +32,7 @@ public class JsonPlannerStorage implements PlannerStorage {
     }
 
     @Override
-    public Optional<Planner> readPlanner() throws DataConversionException {
+    public Optional<ReadOnlyPlanner> readPlanner() throws DataConversionException {
         return readPlanner(filePath);
     }
 
@@ -41,13 +40,14 @@ public class JsonPlannerStorage implements PlannerStorage {
      * Similar to {@link #readPlanner()}.
      *
      * @param filePath location of the data. Cannot be null.
+     * @return
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<Planner> readPlanner(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyPlanner> readPlanner(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializablePlanner> jsonPlanner = JsonUtil.readJsonFile(
-            filePath, JsonSerializablePlanner.class);
+                filePath, JsonSerializablePlanner.class);
         if (!jsonPlanner.isPresent()) {
             return Optional.empty();
         }

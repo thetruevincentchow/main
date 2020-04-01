@@ -21,20 +21,27 @@ public class Module {
     private String prereqTree;
     private String fulfillRequirements;
 
+    public Module() {
+    }
+
+    public Module(ModuleCode moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
     public Module(
-        String acadYear,
-        String preclusion,
-        String description,
-        String title,
-        String department,
-        String faculty,
-        String workload,
-        String prerequisite,
-        String moduleCredit,
-        String moduleCode,
-        List<SemesterData> semesterData,
-        String prereqTree,
-        String fulfillRequirements
+            String acadYear,
+            String preclusion,
+            String description,
+            String title,
+            String department,
+            String faculty,
+            String workload,
+            String prerequisite,
+            String moduleCredit,
+            String moduleCode,
+            List<SemesterData> semesterData,
+            String prereqTree,
+            String fulfillRequirements
 
     ) throws IllegalValueException {
         this.acadYear = acadYear;
@@ -57,7 +64,7 @@ public class Module {
     }
 
     public boolean isSameModule(Module module) {
-        return false; // TODO
+        return this.equals(module);
     }
 
 

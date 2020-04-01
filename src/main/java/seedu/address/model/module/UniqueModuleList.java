@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -64,10 +65,9 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Module> asUnmodifiableObservableList() {
-        return null;
+    public ObservableList<Module> asUnmodifiableObservableList() throws java.lang.UnsupportedOperationException {
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(internalList.values()));
     }
-
     @Override
     public Iterator<Module> iterator() {
         return internalList.values().iterator();
