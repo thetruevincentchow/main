@@ -320,12 +320,16 @@ public class Planner implements ReadOnlyPlanner {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Planner planner = (Planner) o;
-        return activeStudentIndex == planner.activeStudentIndex &&
-            Objects.equals(activeSemester, planner.activeSemester) &&
-            students.equals(planner.students);
+        return activeStudentIndex == planner.activeStudentIndex
+            && Objects.equals(activeSemester, planner.activeSemester)
+            && students.equals(planner.students);
     }
 
     @Override
