@@ -27,7 +27,6 @@ public class StudentRemoveCommand extends StudentCommand {
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed student: %1$s";
-    public static final String MESSAGE_WOULD_BE_EMPTY = "Removing student would make student list empty";
 
     private final Index index;
 
@@ -49,9 +48,6 @@ public class StudentRemoveCommand extends StudentCommand {
         requireNonNull(model);
 
         ObservableList<Student> lastShownList = model.getStudentList();
-        if (lastShownList.size() <= 1) {
-            throw new CommandException(MESSAGE_WOULD_BE_EMPTY);
-        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

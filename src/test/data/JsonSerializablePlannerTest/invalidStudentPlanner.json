@@ -1,9 +1,5 @@
 {
-  "activeStudent" : {
-    "name" : "Ben",
-    "major" : "CS",
-    "timeTableMap" : [ ]
-  },
+  "activeStudentIndex" : -1,
   "students" : [ {
     "name" : "Ben",
     "major" : "CS",

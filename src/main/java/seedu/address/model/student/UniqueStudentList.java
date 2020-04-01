@@ -135,6 +135,10 @@ public class UniqueStudentList implements Iterable<Student> {
         return true;
     }
 
+    public int indexOf(Student target) {
+        return internalList.indexOf(target);
+    }
+
     public Student getEqualStudent(Student target) {
         requireAllNonNull(target);
 
@@ -143,6 +147,18 @@ public class UniqueStudentList implements Iterable<Student> {
             throw new StudentNotFoundException();
         }
 
+        return internalList.get(index);
+    }
+
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    public int size() {
+        return internalList.size();
+    }
+
+    public Student get(int index) {
         return internalList.get(index);
     }
 }
