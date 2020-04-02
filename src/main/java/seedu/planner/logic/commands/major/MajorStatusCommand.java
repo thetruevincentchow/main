@@ -54,7 +54,7 @@ public class MajorStatusCommand extends MajorCommand {
             .getGraduationRequirements();
         StringBuffer sb = new StringBuffer();
         for (GraduationRequirement graduationRequirement : graduationRequirementList) {
-            sb.append(graduationRequirement.getString(model.getActiveStudent().getAllEnrolledModules()));
+            sb.append(graduationRequirement.getString(model.getActiveStudent().getAllFulfilledModules()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString()));
     }

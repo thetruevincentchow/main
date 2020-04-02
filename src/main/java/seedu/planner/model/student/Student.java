@@ -5,14 +5,16 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.planner.model.grades.CumulativeGrade;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
@@ -213,5 +215,12 @@ public class Student {
 
     public void removeExemptedModule(ModuleCode moduleCode) {
         exemptedModules.remove(moduleCode);
+    }
+
+    public List<ModuleCode> getAllFulfilledModules() {
+        Set<ModuleCode> moduleCodeSet = new HashSet<>();
+        moduleCodeSet.addAll(getAllEnrolledModules());
+        moduleCodeSet.addAll(getExemptedModules());
+        return moduleCodeSet.stream().collect(Collectors.toList());
     }
 }
