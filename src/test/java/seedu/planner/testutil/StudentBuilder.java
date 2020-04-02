@@ -1,5 +1,6 @@
 package seedu.planner.testutil;
 
+import seedu.planner.model.student.Major;
 import seedu.planner.model.student.Name;
 import seedu.planner.model.student.Student;
 
@@ -10,22 +11,25 @@ import seedu.planner.model.student.Student;
  */
 public class StudentBuilder {
 
-    private Student student;
+    private Name name;
+    private Major major;
 
     public StudentBuilder() {
-        student = new Student();
+        name = null;
+        major = null;
     }
 
     public StudentBuilder(Student student) {
-        this.student = student;
+        this.name = student.getName();
+        this.major = student.getMajor();
     }
 
     public StudentBuilder withName(Name name) {
-        this.student.setName(name);
+        this.name = name;
         return this;
     }
 
     public Student build() {
-        return student;
+        return new Student(name, major);
     }
 }

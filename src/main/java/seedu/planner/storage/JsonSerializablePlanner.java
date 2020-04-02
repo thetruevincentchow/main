@@ -23,18 +23,15 @@ class JsonSerializablePlanner {
 
     private final int activeStudentIndex;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
-    private final List<JsonAdaptedModuleCode> enrolledModules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePlanner} with the given persons.
      */
     @JsonCreator
     public JsonSerializablePlanner(@JsonProperty("activeStudentIndex") int activeStudentIndex,
-                                   @JsonProperty("students") List<JsonAdaptedStudent> students,
-                                   @JsonProperty("enrolledModules") List<JsonAdaptedModuleCode> enrolledModules) {
+                                   @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.activeStudentIndex = activeStudentIndex;
         this.students.addAll(students);
-        this.enrolledModules.addAll(enrolledModules);
     }
 
     /**
@@ -52,8 +49,6 @@ class JsonSerializablePlanner {
         }
          */
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
-        //enrolledModules.addAll(source.getEnrolledModulesList().stream().map(JsonAdaptedModuleCode::new)
-        //        .collect(Collectors.toList()));
     }
 
     /**
@@ -80,6 +75,9 @@ class JsonSerializablePlanner {
             Student activeStudent = planner.getEqualStudent(jsonActiveStudent.toModelType());
             planner.activateStudent(activeStudent);
         }
+
+
+
         return planner;
     }
 

@@ -1,4 +1,4 @@
-package seedu.planner.logic.commands.module;
+package seedu.planner.logic.commands.exemptions;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,14 +13,14 @@ import seedu.planner.model.module.ModuleCode;
 /**
  * Lists modules enrolled in the selected timetable.
  */
-public class ModuleListCommand extends ModuleCommand {
+public class ExemptListCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": List enrolled modules in the timetable.\n"
+        + ": List exempted  modules of the active student.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
-    public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Listed exempted modules of active student:\n%1$s";
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
@@ -52,6 +52,6 @@ public class ModuleListCommand extends ModuleCommand {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
-        return new CommandResult(generateSuccessMessage(model.getEnrolledModuleCodes()));
+        return new CommandResult(generateSuccessMessage(model.getExemptedModulesList()));
     }
 }

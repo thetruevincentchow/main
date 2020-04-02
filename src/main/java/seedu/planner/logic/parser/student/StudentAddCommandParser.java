@@ -5,6 +5,8 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.student.StudentAddCommand;
@@ -13,6 +15,7 @@ import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Major;
 import seedu.planner.model.student.Name;
 import seedu.planner.model.student.Student;
@@ -55,8 +58,9 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         Name name = new Name(argMultimap.getValue(PREFIX_NAME).get());
         Major major = new Major(argMultimap.getValue(PREFIX_MAJOR).get());
         TimeTableMap timeTableMap = SampleDataUtil.getSampleTimeTableMap();
+        List<ModuleCode> exemptedModules = new ArrayList<>();
 
-        Student student = new Student(name, major, timeTableMap);
+        Student student = new Student(name, major, timeTableMap, exemptedModules);
 
         return new StudentAddCommand(student);
     }

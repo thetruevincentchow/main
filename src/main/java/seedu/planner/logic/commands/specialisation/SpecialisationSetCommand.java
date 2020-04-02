@@ -2,11 +2,12 @@ package seedu.planner.logic.commands.specialisation;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
-
+import seedu.planner.model.student.Student;
 
 public class SpecialisationSetCommand extends SpecialisationCommand {
     public static final String COMMAND_WORD = "set";
@@ -35,7 +36,12 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.getActiveStudent().setSpecialisation(specialisation);
+        Student activeStudent = model.getActiveStudent();
+        if (activeStudent == null) {
+            throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
+        }
+
+        activeStudent.setSpecialisation(specialisation);
         return new CommandResult(String.format(MESSAGE_SUCCESS, specialisation.toString()));
     }
 }

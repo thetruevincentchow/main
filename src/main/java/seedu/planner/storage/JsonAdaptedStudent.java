@@ -1,9 +1,14 @@
 package seedu.planner.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
+import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Major;
 import seedu.planner.model.student.Name;
 import seedu.planner.model.student.Student;
@@ -16,7 +21,9 @@ import seedu.planner.model.student.TimeTableMap;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+
     public final JsonAdaptedTimeTableMap timeTableMap;
+    public final List<JsonAdaptedModuleCode> exemptedModules;
     private final String name;
     private final String major;
 
@@ -25,10 +32,12 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("major") String major,
-                              @JsonProperty("timeTableMap") JsonAdaptedTimeTableMap timeTableMap) {
+                              @JsonProperty("timeTableMap") JsonAdaptedTimeTableMap timeTableMap,
+                              @JsonProperty("exemptedModules") List<JsonAdaptedModuleCode> exemptedModules) {
         this.name = name;
         this.major = major;
         this.timeTableMap = timeTableMap;
+        this.exemptedModules = exemptedModules;
     }
 
     /**
@@ -38,6 +47,10 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         major = source.getMajor().toString();
         timeTableMap = new JsonAdaptedTimeTableMap(source.getTimeTableMap());
+        exemptedModules = new ArrayList<JsonAdaptedModuleCode>();
+        exemptedModules.addAll(source.getExemptedModules().stream()
+            .map(JsonAdaptedModuleCode::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -69,7 +82,14 @@ class JsonAdaptedStudent {
         }
         final TimeTableMap modelTimeTableMap = timeTableMap.toModelType();
 
-        return new Student(modelName, modelMajor, modelTimeTableMap);
+        final List<ModuleCode> modelExemptedModules = new ArrayList<>();
+        if (exemptedModules != null) {
+            for (JsonAdaptedModuleCode moduleCode : exemptedModules) {
+                modelExemptedModules.add(moduleCode.toModelType());
+            }
+        }
+
+        return new Student(modelName, modelMajor, modelTimeTableMap, modelExemptedModules);
     }
 
 }

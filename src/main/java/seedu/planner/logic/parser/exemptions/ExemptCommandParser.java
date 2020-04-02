@@ -1,4 +1,4 @@
-package seedu.planner.logic.parser.declare;
+package seedu.planner.logic.parser.exemptions;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -7,12 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.planner.logic.commands.HelpCommand;
-import seedu.planner.logic.commands.declare.DeclareCommand;
-import seedu.planner.logic.commands.declare.DeclareMajorCommand;
+import seedu.planner.logic.commands.exemptions.ExemptCommand;
+import seedu.planner.logic.commands.exemptions.ExemptListCommand;
+import seedu.planner.logic.commands.module.ModuleAddCommand;
+import seedu.planner.logic.commands.module.ModuleRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
-public class DeclareCommandParser implements Parser<DeclareCommand> {
+public class ExemptCommandParser implements Parser<ExemptCommand> {
     /**
      * Used for initial separation of command word and args.
      */
@@ -26,7 +28,7 @@ public class DeclareCommandParser implements Parser<DeclareCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public DeclareCommand parse(String userInput) throws ParseException {
+    public ExemptCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -34,9 +36,16 @@ public class DeclareCommandParser implements Parser<DeclareCommand> {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
-        case DeclareMajorCommand.COMMAND_WORD:
-            return new DeclareMajorCommandParser().parse(arguments);
+        case ModuleAddCommand.COMMAND_WORD:
+            return new ExemptAddCommandParser().parse(arguments);
+
+        case ModuleRemoveCommand.COMMAND_WORD:
+            return new ExemptRemoveCommandParser().parse(arguments);
+
+        case ExemptListCommand.COMMAND_WORD:
+            return new ExemptListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

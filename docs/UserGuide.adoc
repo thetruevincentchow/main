@@ -268,15 +268,35 @@ Example:
 
 * `module list`
 
-==== Viewing exempted modules: `module list exempted`
+==== Adding an exempted module: `exempt add`
 
-This command displays a list of `modules` that you have declared as exempted.
+This command adds an exempted module `module` for the selected `student` (see `student active`).
 
-Format: `module list exempted
+Format: `module add MODULE_CODE`
 
 Example:
 
-* `module list exempted`
+* `exempt add CS2040`
+
+==== Removing an exempted module: `exempt remove`
+
+This command removes an exempted module `module` from the selected `student` (see `student active`).
+
+Format: `module remove MODULE_CODE`
+
+Example:
+
+* `exempt remove CS2040`
+
+==== Viewing exempted modules: `exempt list`
+
+This command displays a list of `modules` that you have declared as exempted.
+
+Format: `exempt list`
+
+Example:
+
+* `exempt list`
 
 === Student Management
 
@@ -464,7 +484,9 @@ If you need more in-depth information on a specific command, you can kbd:[CTRL +
 * *Adding a module* : `module add`
 * *Removing a module* : `module remove`
 * *Viewing added modules* : `module list`
-* *Viewing exempted modules* : `module list exempted`
+* *Adding an exempted module* : `exempt add`
+* *Removing an exempted module* : `exempt remove`
+* *Viewing exempted modules* : `exempt list`
 
 === Student Management
 

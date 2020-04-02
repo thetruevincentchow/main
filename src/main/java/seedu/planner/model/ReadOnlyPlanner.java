@@ -43,4 +43,6 @@ public interface ReadOnlyPlanner {
     StudentSemester getActiveSemester();
 
     int getActiveStudentIndex();
+
+    ObservableList<ModuleCode> getExemptedModulesList();
 }

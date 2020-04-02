@@ -19,9 +19,6 @@ import seedu.planner.model.time.StudentSemester;
 public class TimeTableActiveCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "active";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Sets the active timetable of the active student.\n"
         + "Parameters: "
@@ -55,13 +52,6 @@ public class TimeTableActiveCommand extends TimeTableCommand {
         if (activeStudent == null) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-
-        // TODO: validate semester
-        /*
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-         */
 
         if (!model.getPlanner().hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));

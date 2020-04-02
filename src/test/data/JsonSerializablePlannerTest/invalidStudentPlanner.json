@@ -9,5 +9,5 @@
     "major" : "IS",
     "timeTableMap" : [ ]
   } ],
-  "enrolledModules" : [ ]
+  "exemptedModules" : [ ]
 }

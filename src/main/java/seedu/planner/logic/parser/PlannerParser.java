@@ -10,14 +10,14 @@ import seedu.planner.logic.commands.ClearCommand;
 import seedu.planner.logic.commands.Command;
 import seedu.planner.logic.commands.ExitCommand;
 import seedu.planner.logic.commands.HelpCommand;
-import seedu.planner.logic.commands.declare.DeclareCommand;
+import seedu.planner.logic.commands.exemptions.ExemptCommand;
 import seedu.planner.logic.commands.major.MajorCommand;
 import seedu.planner.logic.commands.module.ModuleCommand;
 import seedu.planner.logic.commands.specialisation.SpecialisationCommand;
 import seedu.planner.logic.commands.student.StudentCommand;
 import seedu.planner.logic.commands.timetable.TimeTableCommand;
-import seedu.planner.logic.parser.declare.DeclareCommandParser;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.logic.parser.exemptions.ExemptCommandParser;
 import seedu.planner.logic.parser.module.ModuleCommandParser;
 import seedu.planner.logic.parser.specialisation.SpecialisationCommandParser;
 import seedu.planner.logic.parser.student.StudentCommandParser;
@@ -59,9 +59,6 @@ public class PlannerParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case DeclareCommand.COMMAND_WORD:
-            return new DeclareCommandParser().parse(arguments);
-
         case StudentCommand.COMMAND_WORD:
             return new StudentCommandParser().parse(arguments);
 
@@ -76,6 +73,9 @@ public class PlannerParser {
 
         case SpecialisationCommand.COMMAND_WORD:
             return new SpecialisationCommandParser().parse(arguments);
+
+        case ExemptCommand.COMMAND_WORD:
+            return new ExemptCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.grades.Grade;
@@ -85,6 +84,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<ModuleCode> getExemptedModulesList() {
+        return planner.getExemptedModulesList();
+    }
+
+    @Override
+    public void addExemptedModule(ModuleCode moduleCode) {
+        planner.addExemptedModule(moduleCode);
+    }
+
+    @Override
+    public void removeExemptedModule(ModuleCode moduleCode) {
+        planner.removeExemptedModule(moduleCode);
+    }
+
+    @Override
+    public boolean hasExemptedModule(ModuleCode moduleCode) {
+        return planner.hasExemptedModule(moduleCode);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -99,7 +118,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return planner.equals(other.planner)
-                && userPrefs.equals(other.userPrefs);
+            && userPrefs.equals(other.userPrefs);
     }
 
     public ObservableList<Student> getStudentList() {

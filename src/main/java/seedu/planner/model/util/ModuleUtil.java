@@ -1,12 +1,8 @@
 package seedu.planner.model.util;
 
-import java.util.Optional;
-
 import seedu.planner.model.Planner;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
-import seedu.planner.model.student.Enrollment;
-import seedu.planner.model.student.Major;
 import seedu.planner.model.student.Student;
 import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.student.TimeTableMap;
@@ -25,29 +21,19 @@ public class ModuleUtil {
         return null;
     }
     public static Module[] getSampleModules() {
-        return new Module[] {
-            new Module(new ModuleCode("CS2040")),
-            new Module(new ModuleCode("CS2103T"))
-        };
+        return SampleDataUtil.getSampleModules();
     }
 
     public static Planner getSamplePlanner() {
-        Planner samplePlanner = new Planner();
-        Student student = ModuleUtil.getSampleStudent();
-        samplePlanner.addStudent(student);
-        samplePlanner.activateStudent(student); // TODO: allow serialization of planner with no active student
-        return samplePlanner;
+        return SampleDataUtil.getSamplePlanner();
     }
 
     public static Student getSampleStudent() {
-        Student sampleStudent = new Student(new seedu.planner.model.student.Name("Mark"), new Major("CS"),
-            ModuleUtil.getSampleTimeTableMap());
-        return sampleStudent;
+        return SampleDataUtil.getSampleStudent();
     }
 
     public static TimeTableMap getSampleTimeTableMap() {
-        TimeTableMap timeTableMap = new TimeTableMap();
-        return timeTableMap;
+        return SampleDataUtil.getSampleTimeTableMap();
     }
 
     /**
@@ -56,8 +42,6 @@ public class ModuleUtil {
      * @return Non-empty (@code TimeTableMap)
      */
     public static TimeTable getSampleTimeTable() {
-        TimeTable timeTable = new TimeTable();
-        timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040"), Optional.empty(), 4));
-        return timeTable;
+        return SampleDataUtil.getSampleTimeTable();
     }
 }

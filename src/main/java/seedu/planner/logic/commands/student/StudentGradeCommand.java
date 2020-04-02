@@ -79,14 +79,12 @@ public class StudentGradeCommand extends StudentCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        Student activeStudent = model.getActiveStudent();
+        if (activeStudent == null) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        Student activeStudent = model.getActiveStudent();
         CumulativeGrade cumulativeGrade = activeStudent.getCumulativeGrade();
-
         return new CommandResult(generateSuccessMessage(activeStudent, cumulativeGrade));
     }
 }
