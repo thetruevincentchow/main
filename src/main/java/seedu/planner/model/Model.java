@@ -83,4 +83,10 @@ public interface Model {
     void setPlanner(Planner planner);
 
     ObservableList<ModuleCode> getExemptedModulesList();
+
+    void addExemptedModule(ModuleCode moduleCode);
+
+    void removeExemptedModule(ModuleCode moduleCode);
+
+    boolean hasExemptedModule(ModuleCode moduleCode);
 }

@@ -322,6 +322,14 @@ public class Planner implements ReadOnlyPlanner {
         getActiveStudent().removeTimeTable(studentSemester);
     }
 
+    public void addExemptedModule(ModuleCode moduleCode) {
+        getActiveStudent().addExemptedModule(moduleCode);
+    }
+
+    public void removeExemptedModule(ModuleCode moduleCode) {
+        getActiveStudent().removeExemptedModule(moduleCode);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -339,5 +347,9 @@ public class Planner implements ReadOnlyPlanner {
     @Override
     public int hashCode() {
         return Objects.hash(activeStudentIndex, activeSemester, students);
+    }
+
+    public boolean hasExemptedModule(ModuleCode moduleCode) {
+        return getExemptedModulesList().contains(moduleCode);
     }
 }

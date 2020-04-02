@@ -206,4 +206,12 @@ public class Student {
     public ObservableList<ModuleCode> getExemptedModules() {
         return exemptedModules.asUnmodifiableObservableList();
     }
+
+    public void addExemptedModule(ModuleCode moduleCode) {
+        exemptedModules.add(moduleCode);
+    }
+
+    public void removeExemptedModule(ModuleCode moduleCode) {
+        exemptedModules.remove(moduleCode);
+    }
 }

@@ -72,9 +72,8 @@ public class ExemptAddCommand extends ExemptCommand {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
-        // Check if module is duplicate in active timetable
-        // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
-        if (model.hasEnrollment(moduleCode)) {
+        // Check if module is present in exempted modules list
+        if (model.hasExemptedModule(moduleCode)) {
             throw new CommandException(generateDuplicateMessage(moduleCode));
         }
 
@@ -84,9 +83,7 @@ public class ExemptAddCommand extends ExemptCommand {
             throw new CommandException(generateModuleDoesNotExists(moduleCode));
         }
 
-        //Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
-        //model.addEnrollment(enrollment);
-        //return new CommandResult(generateSuccessMessage(moduleCode));
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        model.addExemptedModule(moduleCode);
+        return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

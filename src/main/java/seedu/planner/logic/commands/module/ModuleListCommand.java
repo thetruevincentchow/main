@@ -20,7 +20,7 @@ public class ModuleListCommand extends ModuleCommand {
         + ": List enrolled modules in the timetable.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
-    public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable: %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable:\n%1$s";
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from

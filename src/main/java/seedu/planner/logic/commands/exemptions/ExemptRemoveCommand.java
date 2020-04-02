@@ -54,23 +54,17 @@ public class ExemptRemoveCommand extends ExemptCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Check if active student and timetable exists
+        // Check if active student exists
         if (model.getActiveStudent() == null) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        if (model.getActiveTimeTable() == null) {
-            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
-        }
 
-        // Check if module is present in active timetable
-        /*
-        if (!model.hasEnrollment(moduleCode)) {
+        // Check if module is present in exempted modules list
+        if (!model.hasExemptedModule(moduleCode)) {
             throw new CommandException(generateFailureMessage(moduleCode));
         }
 
-        //model.removeEnrollment(moduleCode);
-        //return new CommandResult(generateSuccessMessage(moduleCode));
-         */
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        model.removeExemptedModule(moduleCode);
+        return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }

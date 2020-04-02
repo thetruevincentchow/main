@@ -20,7 +20,7 @@ public class ExemptListCommand extends ExemptCommand {
         + ": List exempted  modules of the active student.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
-    public static final String MESSAGE_SUCCESS = "Listed exempted modules of active student: %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed exempted modules of active student:\n%1$s";
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
