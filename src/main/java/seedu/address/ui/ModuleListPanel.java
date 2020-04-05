@@ -43,4 +43,9 @@ public class ModuleListPanel extends UiPart<Region> {
         }
     }
 
+    public void setSearch(ObservableList<Module> moduleList) {
+        moduleListView.setItems(moduleList);
+        moduleListView.setCellFactory(listView -> new ModuleListViewCell());
+    }
+
 }

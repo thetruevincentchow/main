@@ -1,12 +1,16 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -59,6 +64,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private TextField searchBox;
+
+    @FXML
+    private Button searchButton;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -238,5 +249,20 @@ public class MainWindow extends UiPart<Stage> {
         newWindow.setTitle("Calendar");
         newWindow.setScene(secondScene);
         newWindow.show();
+    }
+
+    /**
+     * Searches Module.
+     */
+    @FXML
+    private void searchMod() {
+        String searchCriteria = searchBox.getText();
+        ObservableList<Module> tempSearch = logic.getFilteredModuleList();
+        if (!searchCriteria.isEmpty()) {
+            tempSearch = tempSearch.stream().filter(mod -> mod.getModuleCode().value.contains(searchCriteria)
+                    || mod.getModuleTitle().contains(searchCriteria))
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        }
+        moduleListPanel.setSearch(tempSearch);
     }
 }
