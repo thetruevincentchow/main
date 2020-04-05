@@ -64,6 +64,8 @@ Please note the following which may serve as points of interests throughout this
 
 . kbd:[Enter] : This grey highlight with white outline indicates a keyboard's key to use.
 
+. [underline]#underlined# : This underline indicates clickable links referring to other sections of this *User Guide*. When used in conjunction with a grey highlight (e.g. <<student-active-command,`student active`>>), this indicates a clickable reference to another command.
+
 [NOTE]
 This symbol and corresponding box has information that you may wish to take note of.
 
@@ -141,7 +143,7 @@ Format: `exit`
 The following commands below are part of the application's *Degree Management*, which allow you to declare important details of your academic plan, such as your `majors` and `specialisations`.
 
 [NOTE]
-All the following commands require a `student` to be selected (using the `student active` command).
+All the following commands require a `student` to be selected (using the <<student-active-command,`student active`>> command).
 
 ==== Declaring your major: `major set`
 
@@ -182,7 +184,7 @@ The following commands below are part of the application's *Grade Management*, w
 You can use this command to display the `grade` of the specified module.
 
 [NOTE]
-This command requires a timetable to be selected (using the `timetable active` command).
+This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
 
 Format: `module grade MODULE_CODE`
 
@@ -193,7 +195,7 @@ Example:
 Furthermore, you can also use this follow-up command to set the `grade` of the specified module.
 
 [NOTE]
-This command requires a timetable to be selected (using the `timetable active` command).
+This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
 
 Format: `module grade MODULE_CODE grade/GRADE`
 
@@ -203,10 +205,10 @@ Example:
 
 ==== Viewing a student's grade: `student grade`
 
-You can use this command to display  the cumulative grade of the selected student (_see the `student active` command_).
+You can use this command to display  the cumulative grade of the selected student (see the <<student-active-command,`student active`>> command).
 
 [NOTE]
-This command requires a student to be selected (using the `student active` command).
+This command requires a student to be selected (using the <<student-active-command,`student active`>> command).
 
 Format: `student grade`
 
@@ -223,11 +225,11 @@ When managing your `modules`, you will be able to see the *Module View Screen* (
 image::ModuleList.png[width="600", align="left"]
 
 [NOTE]
-All the following commands require a `timetable` to be selected (_using the `timetable active` command_).
+All the following commands require a `timetable` to be selected (using the <<timetable-active-command,`timetable active`>> command).
 
 ==== Adding a module: `module add`
 
-You can use this command to add a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to add a `module` to your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `module add MODULE_CODE`
 
@@ -237,7 +239,7 @@ Example:
 
 ==== Removing a module: `module remove`
 
-You can use this command to remove a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to remove a `module` to your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `module remove MODULE_CODE`
 
@@ -247,7 +249,7 @@ Example:
 
 ==== Viewing added modules: `module list`
 
-You can use this command to display a list of `modules` of your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to display a list of `modules` of your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `module list`
 
@@ -257,7 +259,7 @@ Example:
 
 ==== Adding an exempted module: `exempt add`
 
-You can use this command to add an exempted module `module` for the selected `student` (see `student active`).
+You can use this command to add an exempted module for the selected `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `module add MODULE_CODE`
 
@@ -267,7 +269,7 @@ Example:
 
 ==== Removing an exempted module: `exempt remove`
 
-You can use this command to remove an exempted module `module` from the selected `student` (see `student active`).
+You can use this command to remove an exempted module from the selected `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `module remove MODULE_CODE`
 
@@ -314,6 +316,7 @@ Example:
 
 * `student remove 1`
 
+[[student-active-command]]
 ==== Selecting a student: `student active`
 
 You can use this command to select the student with the number `INDEX` from the student list.
@@ -344,11 +347,11 @@ When managing your `timetable`, you will be able to see the *Timetable View Scre
 image::TimeTableList.png[width="600", align="left"]
 
 [NOTE]
-All the following commands require a student to be selected (_using the `student active` command_).
+All the following commands require a student to be selected (using the <<student-active-command,`student active`>> command).
 
 ==== Adding a timetable: `timetable add`
 
-You can use this command to add a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+You can use this command to add a `timetable` to the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable add year/YEAR sem/SEM`
 
@@ -358,7 +361,7 @@ Example:
 
 ==== Removing a timetable: `timetable remove`
 
-You can use this command to remove a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+You can use this command to remove a `timetable` to the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable remove year/YEAR sem/SEM`
 
@@ -366,10 +369,10 @@ Example:
 
 * `timetable remove year/2 sem/ONE`
 
+[[timetable-active-command]]
 ==== Selecting a timetable: `timetable active`
 
-You can use this command to select the `timetable` of the specified `semester` of the selected `student` (see `student active`).
-
+You can use this command to select the `timetable` of the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
 Format: `timetable active year/YEAR sem/SEM`
 
 Example:
@@ -378,7 +381,7 @@ Example:
 
 ==== Listing timetables: `timetable list`
 
-You can use this command to list all the `timetables`  of the selected `student` (see `student active`).
+You can use this command to list all the `timetables`  of the selected `student` (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable list`
 
