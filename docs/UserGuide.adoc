@@ -105,6 +105,7 @@ Before you dive into the commands themselves, do familiarise yourself with how t
 ====
 
 ====
+[[common-parameter-list]]
 *Common Parameters*
 
 These are parameters that are commonly used in commands available in NUSModPlnr.
@@ -114,9 +115,9 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ** Must be a positive integer
 * `NAME` - a name of a plan
 ** Must be alphanumeric, possibly with spaces
-* `SEM`
+* `SEM` - an academic semester
 ** Must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`
-* `YEAR` - a year number
+* `YEAR` - a year number of your degree (e.g. year 1, 2, ...)
 ** Must be a non-negative integer
 ====
 
@@ -138,16 +139,17 @@ When you are done using the application, you can exit the program with the `exit
 
 Format: `exit`
 
+[[degree-management]]
 === Degree Management
 
-The following commands below are part of the application's *Degree Management*, which allow you to declare important details of your academic plan, such as your `majors` and `specialisations`.
+The following commands below are part of the application's *Degree Management*, which allow you to declare important details of your academic plan, such as your <<glossary,majors>> and <<glossary,specialisations>>.
 
 [NOTE]
-All the following commands require a `student` to be selected (using the <<student-active-command,`student active`>> command).
+All the following commands require a <<student-management,student>> to be selected (using the <<student-active-command,`student active`>> command).
 
 ==== Declaring your major: `major set`
 
-You can use this command to declare the `major` of your studies, which is also required for the module planning.
+You can use this command to declare the <<degree-management,major>> of your studies, which is also required for the module planning.
 
 Format: `major set MAJOR`
 
@@ -157,7 +159,7 @@ Examples:
 
 ==== Declaring your specialisation: `specialisation set`
 
-You can use this command to declare any `specialisations` in your studies, should you require them in module planning.
+You can use this command to declare any <<degree-management,specialisations>> in your studies, should you require them in module planning.
 
 Format: `specalisation set [SPEC]`
 
@@ -175,13 +177,14 @@ Examples:
 
 * `major status`
 
+[[grade-management]]
 === Grade Management
 
-The following commands below are part of the application's *Grade Management*, which allow you to manage and view your `grades` to see modules affected in your academic plan.
+The following commands below are part of the application's *Grade Management*, which allow you to manage and view your grades to see modules affected in your academic plan.
 
 ==== Managing a module's grade: `module grade`
 
-You can use this command to display the `grade` of the specified module.
+You can use this command to display the <<grade-management,grade>> of the specified module.
 
 [NOTE]
 This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
@@ -192,7 +195,7 @@ Example:
 
 * `module grade CS2040`
 
-Furthermore, you can also use this follow-up command to set the `grade` of the specified module.
+Furthermore, you can also use this follow-up command to set the <<grade-management,grade>> of the specified module.
 
 [NOTE]
 This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
@@ -216,20 +219,21 @@ Example:
 
 * `student grade`
 
+[[module-management]]
 === Module Management
-The following commands below are part of the application's *Module Management*, which allow you manage the `modules` of your academic plan.
+The following commands below are part of the application's *Module Management*, which allow you manage the modules of your academic plan.
 
-When managing your `modules`, you will be able to see the *Module View Screen* (_Figure 2. below_).
+When managing your <<module-management,modules>>, you will be able to see the *Module View Screen* (_Figure 2. below_).
 
 .Home Screen View
 image::ModuleList.png[width="600", align="left"]
 
 [NOTE]
-All the following commands require a `timetable` to be selected (using the <<timetable-active-command,`timetable active`>> command).
+All the following commands require a <<timetable-management,timetable>>  to be selected (using the <<timetable-active-command,`timetable active`>> command).
 
 ==== Adding a module: `module add`
 
-You can use this command to add a `module` to your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to add a <<module-management,module>> to your <<timetable-management,timetable>>  for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `module add MODULE_CODE`
 
@@ -239,7 +243,7 @@ Example:
 
 ==== Removing a module: `module remove`
 
-You can use this command to remove a `module` to your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to remove a <<module-management,module>> to your <<timetable-management,timetable>> for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `module remove MODULE_CODE`
 
@@ -249,7 +253,7 @@ Example:
 
 ==== Viewing added modules: `module list`
 
-You can use this command to display a list of `modules` of your `timetable` for the selected `semester` (see the <<timetable-active-command,`timetable active`>> command) and `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to display a list of <<module-management,modules>> of your <<timetable-management,timetable>> for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `module list`
 
@@ -259,9 +263,9 @@ Example:
 
 ==== Adding an exempted module: `exempt add`
 
-You can use this command to add an exempted module for the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to add an exempted module for the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `module add MODULE_CODE`
+Format: `exempt add MODULE_CODE`
 
 Example:
 
@@ -269,9 +273,9 @@ Example:
 
 ==== Removing an exempted module: `exempt remove`
 
-You can use this command to remove an exempted module from the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to remove an exempted module from the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `module remove MODULE_CODE`
+Format: `exempt remove MODULE_CODE`
 
 Example:
 
@@ -279,7 +283,7 @@ Example:
 
 ==== Viewing exempted modules: `exempt list`
 
-You can use this command to display a list of `modules` that you have declared as exempted.
+You can use this command to display a list of <<module-management,modules>> that you have declared as exempted.
 
 Format: `exempt list`
 
@@ -287,18 +291,19 @@ Example:
 
 * `exempt list`
 
+[[student-management]]
 === Student Management
 
-The following commands below are part of the application's *Student Management*, which allow you manage the `students` *which include you* for the academic planning.
+The following commands below are part of the application's *Student Management*, which allow you manage the students *which include you* for the academic planning. You are highly encouraged to use this *Student Management* feature to explore different academic plans.
 
-When managing `students`, you will be able to see the *Student View Screen* (_Figure 3. below_).
+When managing students, you will be able to see the *Student View Screen* (_Figure 3. below_).
 
 .Student List View
 image::StudentList.png[width="600", align="left"]
 
 ==== Adding a student: `student add`
 
-You can use this command to add a `student` to the student list.
+You can use this command to add a <<student-management,student>> to the student list.
 
 Format: `student add n/NAME major/MAJOR`
 
@@ -308,7 +313,7 @@ Example:
 
 ==== Removing a student: `student remove`
 
-You can use this command to remove the `student` with the number `INDEX` from the student list.
+You can use this command to remove the <<student-management,student>> with the number `INDEX` from the student list.
 
 Format: `student remove INDEX`
 
@@ -319,7 +324,7 @@ Example:
 [[student-active-command]]
 ==== Selecting a student: `student active`
 
-You can use this command to select the student with the number `INDEX` from the student list.
+You can use this command to select the <<student-management,student>> with the number `INDEX` from the student list.
 
 Format: `student active INDEX`
 
@@ -337,21 +342,22 @@ Example:
 
 * `student list`
 
+[[timetable-management]]
 === Timetable Management
 
-The following commands below are part of the application's *Timetable Management*, which allow you manage the `timetables` of your academic plan.
+The following commands below are part of the application's *Timetable Management*, which allow you manage the timetables of your academic plan.
 
-When managing your `timetable`, you will be able to see the *Timetable View Screen* (_Figure 4. below_).
+When managing your <<timetable-management,timetable>>, you will be able to see the *Timetable View Screen* (_Figure 4. below_).
 
 .Timetable List View
 image::TimeTableList.png[width="600", align="left"]
 
 [NOTE]
-All the following commands require a student to be selected (using the <<student-active-command,`student active`>> command).
+All the following commands require a <<student-management,student>> to be selected (using the <<student-active-command,`student active`>> command).
 
 ==== Adding a timetable: `timetable add`
 
-You can use this command to add a `timetable` to the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to add a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable add year/YEAR sem/SEM`
 
@@ -361,7 +367,7 @@ Example:
 
 ==== Removing a timetable: `timetable remove`
 
-You can use this command to remove a `timetable` to the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to remove a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable remove year/YEAR sem/SEM`
 
@@ -372,7 +378,7 @@ Example:
 [[timetable-active-command]]
 ==== Selecting a timetable: `timetable active`
 
-You can use this command to select the `timetable` of the specified `semester` of the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to select a <<timetable-management,timetable>> of the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 Format: `timetable active year/YEAR sem/SEM`
 
 Example:
@@ -381,7 +387,7 @@ Example:
 
 ==== Listing timetables: `timetable list`
 
-You can use this command to list all the `timetables`  of the selected `student` (see the <<student-active-command,`student active`>> command).
+You can use this command to list all the <<timetable-management,timetables>>  of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 Format: `timetable list`
 
@@ -415,6 +421,7 @@ This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 [TIP]
 If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!
 
+[[glossary]]
 == Glossary
 
 This *Glossary* provides explanations for keywords used throughout the *User Guide*.
