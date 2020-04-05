@@ -96,10 +96,10 @@ Before you dive into the commands themselves, do familiarise yourself with how t
 ====
 *Command Format*
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Words in `UPPER_CASE` are the parameters to be supplied by you (e.g. in `student add n/NAME major/MAJOR`, `NAME` is a parameter which can be used as `student add n/John Doe major/CS`).
+* Items in square brackets are optional (e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`).
+* Items with `…`​ after them can be used multiple times including zero times (e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc).
+* Parameters can be in any order (e.g. if the command specifies `n/NAME major/MAJOR`, `major/MAJOR n/NAME` is also acceptable).
 ====
 
 ====
@@ -179,10 +179,10 @@ The following commands below are part of the application's *Grade Management*, w
 
 ==== Managing a module's grade: `module grade`
 
-This command displays the `grade` of the specified module.
+You can use this command to display the `grade` of the specified module.
 
 [NOTE]
-This command require a timetable to be selected (using the `timetable active` command).
+This command requires a timetable to be selected (using the `timetable active` command).
 
 Format: `module grade MODULE_CODE`
 
@@ -190,10 +190,10 @@ Example:
 
 * `module grade CS2040`
 
-Furthermore, this follow-up command sets the `grade` of the specified module.
+Furthermore, you can also use this follow-up command to set the `grade` of the specified module.
 
 [NOTE]
-This command require a timetable to be selected (using the `timetable active` command).
+This command requires a timetable to be selected (using the `timetable active` command).
 
 Format: `module grade MODULE_CODE grade/GRADE`
 
@@ -203,10 +203,10 @@ Example:
 
 ==== Viewing a student's grade: `student grade`
 
-This command displays  the cumulative grade of the selected student (_see the `student active` command_).
+You can use this command to display  the cumulative grade of the selected student (_see the `student active` command_).
 
 [NOTE]
-This command require a student to be selected (using the `student active` command).
+This command requires a student to be selected (using the `student active` command).
 
 Format: `student grade`
 
@@ -227,7 +227,7 @@ All the following commands require a `timetable` to be selected (_using the `tim
 
 ==== Adding a module: `module add`
 
-This command adds a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to add a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
 
 Format: `module add MODULE_CODE`
 
@@ -237,7 +237,7 @@ Example:
 
 ==== Removing a module: `module remove`
 
-This command removes a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to remove a `module` to your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
 
 Format: `module remove MODULE_CODE`
 
@@ -247,7 +247,7 @@ Example:
 
 ==== Viewing added modules: `module list`
 
-This command displays a list of `modules` of your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
+You can use this command to display a list of `modules` of your `timetable` for the selected `semester` (see `timetable active`) and `student` (see `student active`).
 
 Format: `module list`
 
@@ -257,7 +257,7 @@ Example:
 
 ==== Adding an exempted module: `exempt add`
 
-This command adds an exempted module `module` for the selected `student` (see `student active`).
+You can use this command to add an exempted module `module` for the selected `student` (see `student active`).
 
 Format: `module add MODULE_CODE`
 
@@ -267,7 +267,7 @@ Example:
 
 ==== Removing an exempted module: `exempt remove`
 
-This command removes an exempted module `module` from the selected `student` (see `student active`).
+You can use this command to remove an exempted module `module` from the selected `student` (see `student active`).
 
 Format: `module remove MODULE_CODE`
 
@@ -277,7 +277,7 @@ Example:
 
 ==== Viewing exempted modules: `exempt list`
 
-This command displays a list of `modules` that you have declared as exempted.
+You can use this command to display a list of `modules` that you have declared as exempted.
 
 Format: `exempt list`
 
@@ -296,7 +296,7 @@ image::StudentList.png[width="600", align="left"]
 
 ==== Adding a student: `student add`
 
-This command adds a `student` to the student list.
+You can use this command to add a `student` to the student list.
 
 Format: `student add n/NAME major/MAJOR`
 
@@ -306,7 +306,7 @@ Example:
 
 ==== Removing a student: `student remove`
 
-This command removes the `student` with the number `INDEX` from the student list.
+You can use this command to remove the `student` with the number `INDEX` from the student list.
 
 Format: `student remove INDEX`
 
@@ -316,7 +316,7 @@ Example:
 
 ==== Selecting a student: `student active`
 
-This command selects the student with the number `INDEX` from the student list.
+You can use this command to select the student with the number `INDEX` from the student list.
 
 Format: `student active INDEX`
 
@@ -326,7 +326,7 @@ Example:
 
 ==== Viewing the student list: `student list`
 
-This commands displays a numbered list of students in the student list (if populated).
+You can use this command to display a numbered list of students in the student list (if populated).
 
 Format: `student list`
 
@@ -348,7 +348,7 @@ All the following commands require a student to be selected (_using the `student
 
 ==== Adding a timetable: `timetable add`
 
-This command adds a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+You can use this command to add a `timetable` to the specified `semester` of the selected `student` (see `student active`).
 
 Format: `timetable add year/YEAR sem/SEM`
 
@@ -358,7 +358,7 @@ Example:
 
 ==== Removing a timetable: `timetable remove`
 
-This command removes a `timetable` to the specified `semester` of the selected `student` (see `student active`).
+You can use this command to remove a `timetable` to the specified `semester` of the selected `student` (see `student active`).
 
 Format: `timetable remove year/YEAR sem/SEM`
 
@@ -368,7 +368,7 @@ Example:
 
 ==== Selecting a timetable: `timetable active`
 
-This command selects the `timetable` of the specified `semester` of the selected `student` (see `student active`).
+You can use this command to select the `timetable` of the specified `semester` of the selected `student` (see `student active`).
 
 Format: `timetable active year/YEAR sem/SEM`
 
@@ -378,7 +378,7 @@ Example:
 
 ==== Listing timetables: `timetable list`
 
-This command lists all the `timetables`  of the selected `student` (see `student active`).
+You can use this command to list all the `timetables`  of the selected `student` (see `student active`).
 
 Format: `timetable list`
 
@@ -404,7 +404,7 @@ _{Explain how the user can share their data files here!}_
 
 == FAQ
 
-This provides a list of *Frequently Asked Questions (FAQ)*, that users may have!
+This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
