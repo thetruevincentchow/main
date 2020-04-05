@@ -66,6 +66,8 @@ Please note the following which may serve as points of interests throughout this
 
 . [underline]#underlined# : This underline indicates clickable links referring to other sections of this *User Guide*. When used in conjunction with a grey highlight (e.g. <<student-active-command,`student active`>>), this indicates a clickable reference to another command.
 
+. **bold** : This bold font indicates sections of this *User Guide*.
+
 [NOTE]
 This symbol and corresponding box has information that you may wish to take note of.
 
@@ -119,6 +121,8 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ** Must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`
 * `YEAR` - a year number of your degree (e.g. year 1, 2, ...)
 ** Must be a non-negative integer
+* `GRADE` a letter grade for a module
+** Must be one of the following: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `W`, `EXE`
 ====
 
 Let's begin!
@@ -142,7 +146,7 @@ Format: `exit`
 [[student-management]]
 === Student Management
 
-The following commands below are part of the application's *Student Management*, which allow you manage the students *which include you* for the academic planning. You are highly encouraged to use this *Student Management* feature to explore different academic plans.
+The following commands below are part of the application's *Student Management*, which allow you manage the students _which include you_ for the academic planning. You are highly encouraged to use this *Student Management* feature to explore different academic plans.
 
 When managing students, you will be able to see the *Student View Screen* (_Figure 3. below_).
 
@@ -287,6 +291,13 @@ All the following commands require a <<student-management,student>> to be select
 
 You can use this command to add a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
+[NOTE]
+This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>.
+[TIP]
+While any non-negative degree year for the `YEAR` parameter is allowed (e.g. 0, 1, 999999999), try to use reasonable values for your academic planning.
+[TIP]
+The `YEAR` parameter can take the value of `0`. You can use this to add modules you have taken before entering NUS which you do not want to mark as exempt (using the <<exempt-add-command,`exempt add`>> command).
+
 Format: `timetable add year/YEAR sem/SEM`
 
 Example:
@@ -365,6 +376,7 @@ Example:
 
 * `module list`
 
+[[exempt-add-command]]
 ==== Adding an exempted module: `exempt add`
 
 You can use this command to add an exempted module for the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
