@@ -136,55 +136,42 @@ When you are done using the application, you can exit the program with the `exit
 
 Format: `exit`
 
-=== Declaration Management
+=== Degree Management
 
-The following commands below are part of the application's *Declaration Management*, which allow you to declare important details of your academic plan, such as your `majors`, `minors`, `specialisations` and `tracks`.
+The following commands below are part of the application's *Degree Management*, which allow you to declare important details of your academic plan, such as your `majors` and `specialisations`.
 
 [NOTE]
 All the following commands require a `student` to be selected (using the `student active` command).
 
-==== Declaring your major: `declare major`
+==== Declaring your major: `major set`
 
 You can use this command to declare the `major` of your studies, which is also required for the module planning.
 
-Format: `declare major MAJOR`
+Format: `major set MAJOR`
 
 Examples:
 
-* `declare major comsci`
+* `major set CS`
 
-==== Declaring your minor: `declare minor`
-
-You can use this command to declare any `minors` of your studies, which will affect module planning.
-
-Format: `declare minor MINOR`
-
-Examples:
-
-* `declare minor none`
-* `declare minor comsci`
-
-==== Declaring your specialisation: `declare spec`
+==== Declaring your specialisation: `specialisation set`
 
 You can use this command to declare any `specialisations` in your studies, should you require them in module planning.
 
-Format: `declare spec [ACTION] [SPEC]`
+Format: `specalisation set [SPEC]`
 
 Examples:
 
-* `declare spec add it-security`
-* `declare spec remove it-security`
+* `specialisation set algo`
 
-==== Declaring your track: `declare track`
+==== Viewing your degree progression: `major status`
 
-You can use this command to declare any `tracks` in your studies, should you require them in module planning.
+You can use this command view your degree progression.
 
-Format: `declare track [ACTION] [SPEC]`
+Format: `major status`
 
 Examples:
 
-* `declare track add networking`
-* `declare track remove networking`
+* `major status`
 
 === Grade Management
 
@@ -467,12 +454,11 @@ If you need more in-depth information on a specific command, you can kbd:[CTRL +
 * *Viewing help* : `help`
 * *Exiting the program* : `exit`
 
-=== Declaration Management
+=== Degree Management
 
-* *Declaring your major* : `declare major`
-* *Declaring your minor* : `declare minor`
-* *Declaring your specialisation* : `declare spec`
-* *Declaring your track* : `declare track`
+* *Declaring your major* : `major set`
+* *Declaring your specialisation*: `specialisation set`
+* *Viewing your degree progression* : `major status`
 
 === Grade Management
 
