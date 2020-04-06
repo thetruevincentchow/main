@@ -5,7 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.ModuleCode;
+import seedu.planner.model.student.Major;
+import seedu.planner.model.student.Name;
 import seedu.planner.model.time.Semester;
 
 /**
@@ -51,6 +54,36 @@ public class ParserUtil {
             return semesterEnum;
         } catch (IllegalArgumentException e) {
             throw new ParseException(Semester.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public static Name parseName(String name) throws ParseException {
+        requireNonNull(name);
+        try {
+            final Name modelName = new Name(name);
+            return modelName;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        try {
+            final Major modelMajor = new Major(major);
+            return modelMajor;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public static LetterGrade parseLetterGrade(String letterGrade) throws ParseException {
+        requireNonNull(letterGrade);
+        try {
+            final LetterGrade modelLetterGrade = LetterGrade.valueOf(letterGrade);
+            return modelLetterGrade;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(LetterGrade.MESSAGE_CONSTRAINTS);
         }
     }
 }

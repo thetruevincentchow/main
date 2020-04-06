@@ -10,14 +10,13 @@ import seedu.planner.logic.commands.module.ModuleGradeCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.ModuleCode;
 
 public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
-    public static final String MESSAGE_GRADE_INVALID = "Grade is invalid: %1$s";
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -42,22 +41,14 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleGradeCommand.MESSAGE_USAGE));
         }
 
-        try {
-            ModuleCode moduleCode = new ModuleCode(argMultimap.getPreamble());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getPreamble());
 
-            if (arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
-                String letterGradeString = argMultimap.getValue(PREFIX_GRADE).get();
-                try {
-                    LetterGrade letterGrade = LetterGrade.valueOf(letterGradeString);
-                    return new ModuleGradeCommand(moduleCode, letterGrade);
-                } catch (IllegalArgumentException e) {
-                    throw new ParseException(String.format(MESSAGE_GRADE_INVALID, letterGradeString));
-                }
-            } else {
-                return new ModuleGradeCommand(moduleCode);
-            }
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
+        if (arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
+            String letterGradeString = argMultimap.getValue(PREFIX_GRADE).get();
+            LetterGrade letterGrade = ParserUtil.parseLetterGrade(letterGradeString);
+            return new ModuleGradeCommand(moduleCode, letterGrade);
+        } else {
+            return new ModuleGradeCommand(moduleCode);
         }
     }
 }

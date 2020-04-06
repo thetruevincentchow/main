@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.planner.logic.commands.exemptions.ExemptRemoveCommand;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
@@ -18,11 +19,7 @@ public class ExemptRemoveCommandParser implements Parser<ExemptRemoveCommand> {
     public ExemptRemoveCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        try {
-            ModuleCode moduleCode = new ModuleCode(args);
-            return new ExemptRemoveCommand(moduleCode);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(args);
+        return new ExemptRemoveCommand(moduleCode);
     }
 }

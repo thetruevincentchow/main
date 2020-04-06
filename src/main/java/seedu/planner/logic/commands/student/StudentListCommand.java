@@ -15,9 +15,6 @@ import seedu.planner.model.student.Student;
 public class StudentListCommand extends StudentCommand {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": List students in the student list.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);

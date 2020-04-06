@@ -13,6 +13,7 @@ import seedu.planner.logic.commands.student.StudentAddCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
@@ -55,8 +56,8 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 
-        Name name = new Name(argMultimap.getValue(PREFIX_NAME).get());
-        Major major = new Major(argMultimap.getValue(PREFIX_MAJOR).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
         TimeTableMap timeTableMap = SampleDataUtil.getSampleTimeTableMap();
         List<ModuleCode> exemptedModules = new ArrayList<>();
 

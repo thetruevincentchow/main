@@ -1,12 +1,10 @@
 package seedu.planner.logic.parser.module;
 
-import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_SUBCOMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.planner.logic.commands.HelpCommand;
 import seedu.planner.logic.commands.module.ModuleAddCommand;
 import seedu.planner.logic.commands.module.ModuleCommand;
 import seedu.planner.logic.commands.module.ModuleGradeCommand;
@@ -32,7 +30,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
     public ModuleCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_SUBCOMMAND, ModuleCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -52,7 +50,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
             return new ModuleGradeCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_SUBCOMMAND, ModuleCommand.MESSAGE_USAGE));
         }
     }
 }

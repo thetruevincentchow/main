@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.planner.logic.commands.exemptions.ExemptAddCommand;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
@@ -18,11 +19,7 @@ public class ExemptAddCommandParser implements Parser<ExemptAddCommand> {
     public ExemptAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        try {
-            ModuleCode moduleCode = new ModuleCode(args);
-            return new ExemptAddCommand(moduleCode);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(args);
+        return new ExemptAddCommand(moduleCode);
     }
 }

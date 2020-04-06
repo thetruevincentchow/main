@@ -18,12 +18,9 @@ import seedu.planner.model.student.Student;
 public class StudentRemoveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Removes the student from list of student profiles.\n"
-        + "Parameters: INDEX (must be a positive integer) \n"
+        + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed student: %1$s";

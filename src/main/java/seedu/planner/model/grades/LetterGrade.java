@@ -19,6 +19,9 @@ public enum LetterGrade {
     W,
     EXE;
 
+    public static final String MESSAGE_CONSTRAINTS =
+        "Letter grades must be one of the following: A+, A, A-, B+, B, B-, C+, C, D+, D, F, CS, CU, W, EXE";
+
     public final OptionalDouble points;
     public final boolean isSu;
 

@@ -19,14 +19,11 @@ public class StudentAddCommand extends StudentCommand {
     public static final String EXAMPLE_COMMAND =
         getQualifiedCommand(COMMAND_WORD) + " " + PREFIX_NAME + "Mark " + PREFIX_MAJOR + "CS";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Adds the student to list of student profiles.\n"
         + "Parameters: "
-        + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_MAJOR + "MAJOR] \n"
+        + PREFIX_NAME + "NAME "
+        + PREFIX_MAJOR + "MAJOR\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " n/Alice major/CS";
 
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added student: %1$s";
