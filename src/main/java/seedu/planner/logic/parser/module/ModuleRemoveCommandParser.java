@@ -1,6 +1,7 @@
 package seedu.planner.logic.parser.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.planner.logic.commands.module.ModuleRemoveCommand;
 import seedu.planner.logic.parser.Parser;
@@ -18,6 +19,11 @@ public class ModuleRemoveCommandParser implements Parser<ModuleRemoveCommand> {
     @Override
     public ModuleRemoveCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ModuleRemoveCommand.MESSAGE_USAGE));
+        }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(args);
         return new ModuleRemoveCommand(moduleCode);
