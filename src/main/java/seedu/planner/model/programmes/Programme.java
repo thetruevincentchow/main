@@ -1,8 +1,8 @@
 package seedu.planner.model.programmes;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 import seedu.planner.model.graduation.CompoundGraduationRequirement;
 import seedu.planner.model.graduation.GraduationRequirement;
@@ -23,11 +23,13 @@ public abstract class Programme {
 
     public List<GraduationRequirement> getTerminalGraduationRequirementList() {
         List<GraduationRequirement> terminalGraduationRequirementList = new ArrayList<>();
-        PriorityQueue<GraduationRequirement> buffer = new PriorityQueue<>(graduationRequirementList);
+        LinkedList<GraduationRequirement> buffer = new LinkedList<>(graduationRequirementList);
         while (!buffer.isEmpty()) {
-            GraduationRequirement graduationRequirement = buffer.poll();
+            GraduationRequirement graduationRequirement = buffer.removeFirst();
             if (graduationRequirement instanceof CompoundGraduationRequirement) {
-                buffer.add(graduationRequirement);
+                for (GraduationRequirement childGraduationRequirement : ((CompoundGraduationRequirement) graduationRequirement).getGraduationRequirementList()) {
+                    buffer.add(childGraduationRequirement);
+                }
             }
         }
         return terminalGraduationRequirementList;
