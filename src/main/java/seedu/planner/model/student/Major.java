@@ -37,9 +37,9 @@ public class Major {
     public Major(String major) {
         requireNonNull(major);
         checkArgument(isValidMajor(major), MESSAGE_CONSTRAINTS);
-        if (major.equals("CS")) {
+        if (major.toUpperCase().equals("CS")) {
             this.degreeProgramme = new ComputerScienceProgramme(null);
-        } else if (major.equals("IS")) {
+        } else if (major.toUpperCase(.equals("IS")) {
             this.degreeProgramme = new InformationSystemsProgramme();
         }
         this.major = major;
