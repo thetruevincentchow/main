@@ -17,7 +17,8 @@ import seedu.planner.model.programmes.InformationSystemsProgramme;
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Majors should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Majors should only contain alphanumeric characters and spaces, and it should not be blank. "
+            + "Valid majors are [CS, IS].";
 
     /*
      * The first character of the planner must not be a whitespace,
@@ -37,9 +38,9 @@ public class Major {
     public Major(String major) {
         requireNonNull(major);
         checkArgument(isValidMajor(major), MESSAGE_CONSTRAINTS);
-        if (major.equals("CS")) {
+        if (major.toUpperCase().equals("CS")) {
             this.degreeProgramme = new ComputerScienceProgramme(null);
-        } else if (major.equals("IS")) {
+        } else if (major.toUpperCase().equals("IS")) {
             this.degreeProgramme = new InformationSystemsProgramme();
         }
         this.major = major;
