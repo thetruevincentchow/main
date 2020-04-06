@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private CalendarBox calendarBox;
     private HelpWindow helpWindow;
+    private GradWindow gradWindow;
     private int colorTrack = 1;
 
     @FXML
@@ -55,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane calendarBoxPlaceholder;
+
+    @FXML
+    private StackPane gradPlaceholder;
 
     @FXML
     private Button lanchCalendar;
@@ -132,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        gradWindow = new GradWindow(logic.getPlanner());
+        gradPlaceholder.getChildren().add(gradWindow.getRoot());
 
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
