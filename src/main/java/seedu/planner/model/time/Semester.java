@@ -21,4 +21,8 @@ public enum Semester {
         return Arrays.stream(Semester.values()).map(Semester::toString)
             .collect(Collectors.joining(", "));
     }
+
+    public String getFullName() {
+        return this.fullName;
+    }
 }

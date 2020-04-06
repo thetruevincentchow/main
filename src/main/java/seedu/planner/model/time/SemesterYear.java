@@ -46,7 +46,7 @@ public class SemesterYear {
 
     @Override
     public String toString() {
-        return String.format("AY ?/? %s", sem.toString());
+        return String.format("%s", sem.getFullName());
         // return String.format("AY %d/%d %s", academicYear, academicYear+1, sem.toString());
     }
 }
