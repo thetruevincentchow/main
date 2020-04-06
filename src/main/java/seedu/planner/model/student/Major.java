@@ -17,7 +17,8 @@ import seedu.planner.model.programmes.InformationSystemsProgramme;
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Majors should only contain alphanumeric characters and spaces, and it should not be blank. Valid majors are [CS, IS].";
+        "Majors should only contain alphanumeric characters and spaces, and it should not be blank. "
+            + "Valid majors are [CS, IS].";
 
     /*
      * The first character of the planner must not be a whitespace,
