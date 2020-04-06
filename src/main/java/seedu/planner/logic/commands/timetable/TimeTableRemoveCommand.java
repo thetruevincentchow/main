@@ -27,7 +27,7 @@ public class TimeTableRemoveCommand extends TimeTableCommand {
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " year/1 sem/Semester 1";
 
     public static final String MESSAGE_REMOVE_TIMETABLE_SUCCESS = "Removed timetable from semester: %1$s";
-    public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exists in list of timetables: %1$s";
+    public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exist in list of timetables: %1$s";
 
     private final StudentSemester studentSemester;
 

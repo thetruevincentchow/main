@@ -1,20 +1,24 @@
 package seedu.planner.model.time;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public enum Semester {
     ONE("Semester 1"),
     TWO("Semester 2"),
     SPECIAL_ONE("Special Semester 1"),
     SPECIAL_TWO("Special Semester 2");
 
-    public static final String MESSAGE_CONSTRAINTS = "Semester can be one of the following: "
-        + Semester.values().toString();
-    private String name;
+    public static final String MESSAGE_CONSTRAINTS = "Semester must be one of the following: "
+        + getConcatenatedString();
+    private final String fullName;
 
-    Semester(String name) {
-        this.name = name;
+    Semester(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getAction() {
-        return this.name;
+    private static String getConcatenatedString() {
+        return Arrays.stream(Semester.values()).map(Semester::toString)
+            .collect(Collectors.joining(", "));
     }
 }

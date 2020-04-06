@@ -7,7 +7,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
 import java.util.stream.Stream;
 
-import seedu.planner.commons.core.index.Index;
 import seedu.planner.logic.commands.timetable.TimeTableActiveCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
@@ -15,6 +14,7 @@ import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.time.DegreeYear;
 import seedu.planner.model.time.Semester;
 import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
@@ -53,19 +53,11 @@ public class TimeTableActiveCommandParser implements Parser<TimeTableActiveComma
                 TimeTableActiveCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-        Semester sem;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());
-            sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                TimeTableActiveCommand.MESSAGE_USAGE), pe);
-        }
+        final DegreeYear year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());
+        final Semester sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
 
         SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year
-        StudentSemester studentSemester = new StudentSemester(semesterYear, index.getOneBased());
+        StudentSemester studentSemester = new StudentSemester(semesterYear, year.getYear());
         return new TimeTableActiveCommand(studentSemester);
     }
 }
