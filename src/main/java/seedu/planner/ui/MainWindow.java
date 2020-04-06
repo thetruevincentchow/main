@@ -22,6 +22,7 @@ import seedu.planner.logic.Logic;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
 
 /**
  * The Main Window. Provides the basic application layout containing

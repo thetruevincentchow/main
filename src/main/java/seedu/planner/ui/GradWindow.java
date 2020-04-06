@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.planner.ui;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.ReadOnlyPlanner;
-import seedu.address.model.graduation.GraduationRequirement;
-import seedu.address.model.student.Student;
+import seedu.planner.model.ReadOnlyPlanner;
+import seedu.planner.model.graduation.GraduationRequirement;
+import seedu.planner.model.student.Student;
 
 
 
