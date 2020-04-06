@@ -23,9 +23,6 @@ import seedu.planner.model.time.StudentSemester;
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Display average grade of active student.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);

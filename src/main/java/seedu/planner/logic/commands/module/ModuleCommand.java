@@ -10,9 +10,9 @@ public abstract class ModuleCommand extends Command {
     public static final String COMMAND_WORD = "module";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ":\n"
+        + ": Manage enrollments of the currently active student and timetable\n"
         + "Subcommands: add, remove, list, grade\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
+        + "Example: " + getQualifiedCommand("add") + " CS2030";
 
 
     /**

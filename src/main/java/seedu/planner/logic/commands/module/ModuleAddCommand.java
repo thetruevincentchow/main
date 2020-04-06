@@ -1,7 +1,6 @@
 package seedu.planner.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
@@ -22,6 +21,7 @@ public class ModuleAddCommand extends ModuleCommand {
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Adds the module to list of enrolled modules.\n"
+        + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";

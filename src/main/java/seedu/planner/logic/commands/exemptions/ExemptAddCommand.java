@@ -16,11 +16,9 @@ import seedu.planner.model.module.ModuleCode;
 public class ExemptAddCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + "' command not implemented yet";
-
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Adds the module to list of exempted modules.\n"
+        + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to exemption list: %1$s";

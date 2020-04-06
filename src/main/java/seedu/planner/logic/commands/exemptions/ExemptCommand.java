@@ -10,9 +10,9 @@ public abstract class ExemptCommand extends Command {
     public static final String COMMAND_WORD = "exempt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ":\n"
+        + ": Manage exemptions of the currently active student\n"
         + "Subcommands: add, remove, list\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2101";
+        + "Example: " + getQualifiedCommand("add") + " CS2101";
 
 
     /**

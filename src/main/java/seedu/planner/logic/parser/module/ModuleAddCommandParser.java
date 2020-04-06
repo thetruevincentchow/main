@@ -1,9 +1,11 @@
 package seedu.planner.logic.parser.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.planner.logic.commands.module.ModuleAddCommand;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
@@ -18,11 +20,12 @@ public class ModuleAddCommandParser implements Parser<ModuleAddCommand> {
     public ModuleAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        try {
-            ModuleCode moduleCode = new ModuleCode(args);
-            return new ModuleAddCommand(moduleCode);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ModuleAddCommand.MESSAGE_USAGE));
         }
+
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(args);
+        return new ModuleAddCommand(moduleCode);
     }
 }

@@ -11,9 +11,9 @@ public abstract class TimeTableCommand extends Command {
     public static final String COMMAND_WORD = "timetable";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Modifies the timetable of the currently active student.\n"
+        + ": Manage timetables of the currently active student\n"
         + "Subcommands: add remove active\n"
-        + "Example: " + COMMAND_WORD + " active year/1 sem/ONE";
+        + "Example: " + getQualifiedCommand("active") + " year/1 sem/ONE";
 
 
     /**

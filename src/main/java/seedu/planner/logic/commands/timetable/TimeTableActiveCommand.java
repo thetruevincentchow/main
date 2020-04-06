@@ -22,8 +22,8 @@ public class TimeTableActiveCommand extends TimeTableCommand {
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
         + ": Sets the active timetable of the active student.\n"
         + "Parameters: "
-        + "[" + PREFIX_STUDENT_YEAR + "YEAR] "
-        + "[" + PREFIX_STUDENT_SEM + "SEMESTER] \n"
+        + PREFIX_STUDENT_YEAR + "YEAR "
+        + PREFIX_STUDENT_SEM + "SEMESTER\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " year/1 sem/ONE";
 
     public static final String MESSAGE_ACTIVE_TIMETABLE_SUCCESS = "Set semester as active: %1$s";

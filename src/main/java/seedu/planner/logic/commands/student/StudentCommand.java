@@ -10,9 +10,9 @@ public abstract class StudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ":\n"
-        + "Subcommands: add, remove, active, grade\n"
-        + "Example: " + COMMAND_WORD + " active 1";
+        + ": Manage students in the planner\n"
+        + "Subcommands: add, remove, list, active, grade\n"
+        + "Example: " + getQualifiedCommand("active") + " 1";
 
 
     /**
