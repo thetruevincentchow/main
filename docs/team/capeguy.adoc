@@ -1,0 +1,80 @@
+= Lau Jun Hao Benjamin - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: NUS Module Planner
+
+---
+
+== Overview
+
+The NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. With NUSModPlnr, module planning has never been easier!
+
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 250+ kLoC.
+
+== Summary of contributions
+
+* *Major feature*: Importing of all modules that NUS has to offering, made available using the NUSMods.
+** What it does: Allows the user to view the list of all the modules offered by NUS, including details such as Faculty, Workload, Description, Module Credits and which semesters it is offered in.
+** Justification: This feature improves the product significantly because a user can view actual accurate data of the modules currently being offered by NUS, with the latest data available.
+** Highlights: This feature forms the basis of most of the logic for this application, and is used by various other models such as GraduationRequirements, Programmes, and Timetable. The implementation was a significant amount of effort in order to build the foundations for other models and logic controllers to make use of. Having real life data helps make the application more helpful for the user, as compared to using a dummy system or one that requires users to input module details by themselves.
+** Credits: NUSMods for providing the data and API.
+
+* *Major feature*: Handled the storage and JSON serialisation mechanism for all models to maintain the state of the application consistent throughout different runs.
+** What it does: allows the user use the application offline, and has it's state saved and restored upon every launch of the app. It can also allow for moving of the data across computers by moving the relevant JSON files along with the executable.
+** Justification: This feature improves the product usability significantly because a user can come back to the app across multiple stretches of time and will still be able to pick up where the user left off - a very practical scenario of a Student who wants to update his records after every semester.
+** Highlights: This enhancement greatly affects the overall usability of the the application and existing commands and changes to models will require modification in order to ensure that the data is stored and loaded correctly. The implementation required an in-depth analysis of how different model come together. The implementation too was challenging as it required content changes from the additions of models.
+** Credits: The original JSON Storage code used in Address Book Level 3
+
+* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+
+* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+
+* *Other contributions*:
+
+** Project management:
+*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+** Enhancements to existing features:
+*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+** Documentation:
+*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
+*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+** Tools:
+*** Integrated a third party library (Natty) to the project (https://github.com[#42])
+*** Integrated a new Github plugin (CircleCI) to the team repo
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=delete]
+
+include::../UserGuide.adoc[tag=dataencryption]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=undoredo]
+
+include::../DeveloperGuide.adoc[tag=dataencryption]
+
+
+== PROJECT: PowerPointLabs
+
+---
+
+_{Optionally, you may include other projects in your portfolio.}_
