@@ -344,7 +344,6 @@ Example:
 The following commands below are part of the application's *Module Management*, which allow you manage the modules of your academic plan.
 
 Do note that you can click on the modules to see the module description.
-
 When managing your <<module-management,modules>>, you will be able to see the *Module View Screen* (_Figure 2. below_). 
 
 .Home Screen View
