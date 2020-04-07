@@ -19,7 +19,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DEGREE_YEAR =
-        "Year must be a non-negative unsigned integer, from 2000 to 3000.";
+        "Year must be a non-negative unsigned integer, from 1 to 6, representing your current year of study.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -47,7 +47,7 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
         } else {
             int yearInt = Integer.parseInt(trimmedYear);
-            if (yearInt < 2000 || yearInt > 3000) {
+            if (yearInt < 0 || yearInt > 6) {
                 throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
             }
         }
