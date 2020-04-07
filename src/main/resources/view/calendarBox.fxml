@@ -387,7 +387,8 @@
                      <children>
                         <Label fx:id="f4" text="f4" />
                      </children>
-                  </AnchorPane><AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  </AnchorPane>
+                  <AnchorPane fx:id="af5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                   <children>
                      <Label fx:id="f5" text="f5"  />
                   </children>

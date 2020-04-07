@@ -1,10 +1,8 @@
 package seedu.planner.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +11,6 @@ import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.LessonDataImporter;
-import seedu.planner.model.module.ModuleCode;
 
 /**
  * An UI component that displays information of a {@code Timetable}.
@@ -372,19 +369,280 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     /**
-     * Todo once timetable can be seen
+     * Constructor for CalendarBox class
      */
-    public void setCalendar(ReadOnlyPlanner planner) {
-        ObservableList<ModuleCode> mod = planner.getEnrolledModulesList();
-        ArrayList<ModuleCode> codes = new ArrayList<>();
-        List<Lesson> lessonsMod = new ArrayList<>();
-        for (int i = 0; i < mod.size(); i++) {
-            lessonsMod = lessonDataImporter.run(mod.get(i).toString());
-            System.out.println(lessonsMod.get(1).getStartTime());
-        }
-
+    public CalendarBox() {
+        super(FXML);
+        dayTime.setText("Day / Time");
+        m1.setText("");
+        m2.setText("");
+        m3.setText("");
+        m4.setText("");
+        m5.setText("");
+        m6.setText("");
+        m7.setText("");
+        m8.setText("");
+        m9.setText("");
+        m10.setText("");
+        m11.setText("");
+        m12.setText("");
+        t1.setText("");
+        t2.setText("");
+        t3.setText("");
+        t4.setText("");
+        t5.setText("");
+        t6.setText("");
+        t7.setText("");
+        t8.setText("");
+        t9.setText("");
+        t10.setText("");
+        t11.setText("");
+        t12.setText("");
+        w1.setText("");
+        w2.setText("");
+        w3.setText("");
+        w4.setText("");
+        w5.setText("");
+        w6.setText("");
+        w7.setText("");
+        w8.setText("");
+        w9.setText("");
+        w10.setText("");
+        w11.setText("");
+        w12.setText("");
+        th1.setText("");
+        th2.setText("");
+        th3.setText("");
+        th4.setText("");
+        th5.setText("");
+        th6.setText("");
+        th7.setText("");
+        th8.setText("");
+        th9.setText("");
+        th10.setText("");
+        th11.setText("");
+        th12.setText("");
+        f1.setText("");
+        f2.setText("");
+        f3.setText("");
+        f4.setText("");
+        f5.setText("");
+        f6.setText("");
+        f7.setText("");
+        f8.setText("");
+        f9.setText("");
+        f10.setText("");
+        f11.setText("");
+        f12.setText("");
     }
 
+    /**
+     * Todo once timetable can be seen
+     */
+    public void setCalendar(List<Lesson> lessons) {
+        for (int i = 0; i < lessons.size(); i++) {
+            String type = "";
+            if (lessons.get(i).getLessonType().contains("Sectional Teaching")) {
+                type = "SEC";
+            } else {
+                type = lessons.get(i).getLessonType();
+            }
+            String startTime = lessons.get(i).getStartTime();
+            String endTime = lessons.get(i).getEndTime();
+            String day = lessons.get(i).getDay();
+            if (day.contains("Monday")) {
+                if (startTime.startsWith("08")) {
+                    am1.setStyle("-fx-background-color: #FF4500;");
+                    m1.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    am2.setStyle("-fx-background-color: #FF4500;");
+                    m2.setText(type);
+                } else if (startTime.startsWith("10")) {
+                    am3.setStyle("-fx-background-color: #FF4500;");
+                    m3.setText(type);
+                } else if (startTime.startsWith("11")) {
+                    am4.setStyle("-fx-background-color: #FF4500;");
+                    m4.setText(type);
+                } else if (startTime.startsWith("12")) {
+                    am5.setStyle("-fx-background-color: #FF4500;");
+                    m5.setText(type);
+                } else if (startTime.startsWith("13")) {
+                    am6.setStyle("-fx-background-color: #FF4500;");
+                    m6.setText(type);
+                } else if (startTime.startsWith("14")) {
+                    am7.setStyle("-fx-background-color: #FF4500;");
+                    m7.setText(type);
+                } else if (startTime.startsWith("15")) {
+                    am8.setStyle("-fx-background-color: #FF4500;");
+                    m8.setText(type);
+                } else if (startTime.startsWith("16")) {
+                    am9.setStyle("-fx-background-color: #FF4500;");
+                    m9.setText(type);
+                } else if (startTime.startsWith("17")) {
+                    am10.setStyle("-fx-background-color: #FF4500;");
+                    m10.setText(type);
+                } else if (startTime.startsWith("18")) {
+                    am11.setStyle("-fx-background-color: #FF4500;");
+                    m11.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    am12.setStyle("-fx-background-color: #FF4500;");
+                    m12.setText(type);
+                }
+            } else if (day.contains("Tuesday")) {
+                if (startTime.startsWith("08")) {
+                    at1.setStyle("-fx-background-color: #FF4500;");
+                    t1.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    at2.setStyle("-fx-background-color: #FF4500;");
+                    t2.setText(type);
+                } else if (startTime.startsWith("10")) {
+                    at3.setStyle("-fx-background-color: #FF4500;");
+                    t3.setText(type);
+                } else if (startTime.startsWith("11")) {
+                    at4.setStyle("-fx-background-color: #FF4500;");
+                    t4.setText(type);
+                } else if (startTime.startsWith("12")) {
+                    at5.setStyle("-fx-background-color: #FF4500;");
+                    t5.setText(type);
+                } else if (startTime.startsWith("13")) {
+                    at6.setStyle("-fx-background-color: #FF4500;");
+                    t6.setText(type);
+                } else if (startTime.startsWith("14")) {
+                    at7.setStyle("-fx-background-color: #FF4500;");
+                    t7.setText(type);
+                } else if (startTime.startsWith("15")) {
+                    at8.setStyle("-fx-background-color: #FF4500;");
+                    t8.setText(type);
+                } else if (startTime.startsWith("16")) {
+                    at9.setStyle("-fx-background-color: #FF4500;");
+                    t9.setText(type);
+                } else if (startTime.startsWith("17")) {
+                    at10.setStyle("-fx-background-color: #FF4500;");
+                    t10.setText(type);
+                } else if (startTime.startsWith("18")) {
+                    at11.setStyle("-fx-background-color: #FF4500;");
+                    t11.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    at12.setStyle("-fx-background-color: #FF4500;");
+                    t12.setText(type);
+                }
+            } else if (day.contains("Wednesday")) {
+                if (startTime.startsWith("08")) {
+                    aw1.setStyle("-fx-background-color: #FF4500;");
+                    w1.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    aw2.setStyle("-fx-background-color: #FF4500;");
+                    w2.setText(type);
+                } else if (startTime.startsWith("10")) {
+                    aw3.setStyle("-fx-background-color: #FF4500;");
+                    w3.setText(type);
+                } else if (startTime.startsWith("11")) {
+                    aw4.setStyle("-fx-background-color: #FF4500;");
+                    w4.setText(type);
+                } else if (startTime.startsWith("12")) {
+                    aw5.setStyle("-fx-background-color: #FF4500;");
+                    w5.setText(type);
+                } else if (startTime.startsWith("13")) {
+                    aw6.setStyle("-fx-background-color: #FF4500;");
+                    w6.setText(type);
+                } else if (startTime.startsWith("14")) {
+                    aw7.setStyle("-fx-background-color: #FF4500;");
+                    w7.setText(type);
+                } else if (startTime.startsWith("15")) {
+                    aw8.setStyle("-fx-background-color: #FF4500;");
+                    w8.setText(type);
+                } else if (startTime.startsWith("16")) {
+                    aw9.setStyle("-fx-background-color: #FF4500;");
+                    w9.setText(type);
+                } else if (startTime.startsWith("17")) {
+                    aw10.setStyle("-fx-background-color: #FF4500;");
+                    w10.setText(type);
+                } else if (startTime.startsWith("18")) {
+                    aw11.setStyle("-fx-background-color: #FF4500;");
+                    w11.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    aw12.setStyle("-fx-background-color: #FF4500;");
+                    w12.setText(type);
+                }
+            } else if (day.contains("Thursday")) {
+                if (startTime.startsWith("08")) {
+                    ath1.setStyle("-fx-background-color: #FF4500;");
+                    th1.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    ath2.setStyle("-fx-background-color: #FF4500;");
+                    th2.setText(type);
+                } else if (startTime.startsWith("10")) {
+                    ath3.setStyle("-fx-background-color: #FF4500;");
+                    th3.setText(type);
+                } else if (startTime.startsWith("11")) {
+                    ath4.setStyle("-fx-background-color: #FF4500;");
+                    th4.setText(type);
+                } else if (startTime.startsWith("12")) {
+                    ath5.setStyle("-fx-background-color: #FF4500;");
+                    th5.setText(type);
+                } else if (startTime.startsWith("13")) {
+                    ath6.setStyle("-fx-background-color: #FF4500;");
+                    th6.setText(type);
+                } else if (startTime.startsWith("14")) {
+                    ath7.setStyle("-fx-background-color: #FF4500;");
+                    th7.setText(type);
+                } else if (startTime.startsWith("15")) {
+                    ath8.setStyle("-fx-background-color: #FF4500;");
+                    th8.setText(type);
+                } else if (startTime.startsWith("16")) {
+                    ath9.setStyle("-fx-background-color: #FF4500;");
+                    th9.setText(type);
+                } else if (startTime.startsWith("17")) {
+                    ath10.setStyle("-fx-background-color: #FF4500;");
+                    th10.setText(type);
+                } else if (startTime.startsWith("18")) {
+                    ath11.setStyle("-fx-background-color: #FF4500;");
+                    th11.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    ath12.setStyle("-fx-background-color: #FF4500;");
+                    th12.setText(type);
+                }
+            } else if (day.contains("Friday")) {
+                if (startTime.startsWith("08")) {
+                    af1.setStyle("-fx-background-color: #FF4500;");
+                    f1.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    af2.setStyle("-fx-background-color: #FF4500;");
+                    f2.setText(type);
+                } else if (startTime.startsWith("10")) {
+                    af3.setStyle("-fx-background-color: #FF4500;");
+                    f3.setText(type);
+                } else if (startTime.startsWith("11")) {
+                    af4.setStyle("-fx-background-color: #FF4500;");
+                    f4.setText(type);
+                } else if (startTime.startsWith("12")) {
+                    af5.setStyle("-fx-background-color: #FF4500;");
+                    f5.setText(type);
+                } else if (startTime.startsWith("13")) {
+                    af6.setStyle("-fx-background-color: #FF4500;");
+                    f6.setText(type);
+                } else if (startTime.startsWith("14")) {
+                    af7.setStyle("-fx-background-color: #FF4500;");
+                    f7.setText(type);
+                } else if (startTime.startsWith("15")) {
+                    af8.setStyle("-fx-background-color: #FF4500;");
+                    f8.setText(type);
+                } else if (startTime.startsWith("16")) {
+                    af9.setStyle("-fx-background-color: #FF4500;");
+                    f9.setText(type);
+                } else if (startTime.startsWith("17")) {
+                    af10.setStyle("-fx-background-color: #FF4500;");
+                    f10.setText(type);
+                } else if (startTime.startsWith("18")) {
+                    af11.setStyle("-fx-background-color: #FF4500;");
+                    f11.setText(type);
+                } else if (startTime.startsWith("09")) {
+                    af12.setStyle("-fx-background-color: #FF4500;");
+                    f12.setText(type);
+                }
+            }
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

@@ -13,22 +13,30 @@ public class LessonDataImporter {
 
     private static List<Lesson> lessons = new ArrayList<>();
 
-    public static List<Lesson> run(String modCode) {
+    public static List<Lesson> run(String modCode, int sem) {
         Lesson lesson;
         String fileName = "";
+        String finalText = "";
+        int startIndex;
+        int endIndex;
         try {
             fileName = "json/{0}.json".replace("{0}", modCode);
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             String text = new Scanner(Main.class.getClassLoader().getResourceAsStream(fileName),
                     "UTF-8").useDelimiter("\\A").next();
-            int startIndex = text.indexOf("timetable") + 12;
-            int endIndex = text.indexOf("examDate") - 3;
-            String finalText = text.substring(startIndex, endIndex);
+            startIndex = text.indexOf("semester\":1") + 24;
+            endIndex = text.indexOf("examDate") - 2;
+            if (sem == 1) {
+                finalText = text.substring(startIndex, endIndex);
+            } else {
+                startIndex = text.indexOf("semester\":2") + 24;
+                String sem2String = text.substring(startIndex, text.length());
 
-            char st = '[';
-            char en = ']';
-            finalText = st + finalText + en;
+                endIndex = sem2String.indexOf("examDate") - 2;
+                finalText = sem2String.substring(0, endIndex);
+            }
             System.out.println(finalText);
+
             Optional<JsonSerializableLesson[]> optionalLesson = JsonUtil.readJsonString(finalText,
                     JsonSerializableLesson[].class);
             if (optionalLesson.isPresent()) {
