@@ -19,7 +19,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DEGREE_YEAR =
-        "Year must be a non-negative unsigned integer, from 2000 to 3000.";
+            "Year must be a non-negative unsigned integer, from 1 to 6, representing your current year of study.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -47,7 +47,7 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
         } else {
             int yearInt = Integer.parseInt(trimmedYear);
-            if (yearInt < 2000 || yearInt > 3000) {
+            if (yearInt < 0 || yearInt > 6) {
                 throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
             }
         }
@@ -72,8 +72,7 @@ public class ParserUtil {
     public static Semester parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         try {
-            final Semester semesterEnum = Semester.valueOf(semester);
-            return semesterEnum;
+            return Semester.valueOf(semester);
         } catch (IllegalArgumentException e) {
             throw new ParseException(Semester.MESSAGE_CONSTRAINTS);
         }
@@ -82,8 +81,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         try {
-            final Name modelName = new Name(name);
-            return modelName;
+            return new Name(name);
         } catch (IllegalArgumentException e) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -92,8 +90,7 @@ public class ParserUtil {
     public static Major parseMajor(String major) throws ParseException {
         requireNonNull(major);
         try {
-            final Major modelMajor = new Major(major);
-            return modelMajor;
+            return new Major(major);
         } catch (IllegalArgumentException e) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
@@ -102,8 +99,7 @@ public class ParserUtil {
     public static LetterGrade parseLetterGrade(String letterGrade) throws ParseException {
         requireNonNull(letterGrade);
         try {
-            final LetterGrade modelLetterGrade = LetterGrade.fromInputName(letterGrade);
-            return modelLetterGrade;
+            return LetterGrade.fromInputName(letterGrade);
         } catch (IllegalArgumentException e) {
             throw new ParseException(LetterGrade.MESSAGE_CONSTRAINTS);
         }

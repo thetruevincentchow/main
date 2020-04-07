@@ -41,14 +41,8 @@ class JsonSerializablePlanner {
      */
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
         activeStudentIndex = source.getActiveStudentIndex();
-        /*
-        if (source.getActiveStudent() == null) {
-            activeStudentIndex = -1;
-        } else {
-            activeStudentIndex = new JsonAdaptedStudent(source.getActiveStudent());
-        }
-         */
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+
     }
 
     /**
