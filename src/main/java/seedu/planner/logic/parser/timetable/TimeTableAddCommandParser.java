@@ -5,6 +5,7 @@ import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.timetable.TimeTableAddCommand;
@@ -41,9 +42,6 @@ public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
     public TimeTableAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        // NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the
-        // preamble
-        // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM,
             PREFIX_STUDENT_YEAR);
 
@@ -51,12 +49,14 @@ public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableAddCommand.MESSAGE_USAGE));
         }
-
-        final DegreeYear year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());
-        final Semester sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
-
-        SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year
-        StudentSemester studentSemester = new StudentSemester(semesterYear, year.getYear());
-        return new TimeTableAddCommand(studentSemester);
+        try {
+            final DegreeYear year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());
+            final Semester sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
+            SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year
+            StudentSemester studentSemester = new StudentSemester(semesterYear, year.getYear());
+            return new TimeTableAddCommand(studentSemester);
+        } catch (NoSuchElementException ex) {
+            throw new ParseException("Invalid Semester.");
+        }
     }
 }

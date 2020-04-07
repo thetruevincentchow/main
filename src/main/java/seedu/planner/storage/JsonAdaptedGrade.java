@@ -24,6 +24,10 @@ public class JsonAdaptedGrade {
     }
 
     public Grade toModelType() throws IllegalValueException {
-        return new Grade(LetterGrade.valueOf(letterGrade), isSu);
+        try {
+            return new Grade(LetterGrade.fromInputName(letterGrade), isSu);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalValueException("Invalid Grade: " + letterGrade);
+        }
     }
 }
