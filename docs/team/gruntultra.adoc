@@ -17,6 +17,7 @@ The NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the
 ** Added in panel to show Graduation Requirements
 ** Added in a list panel to show modules
 ** Interactable module list to see lesson schedule
+* *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=gruntultra[RepoSense Report here]!
 
 == Contributions to the User Guide
 
