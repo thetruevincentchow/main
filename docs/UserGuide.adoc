@@ -157,6 +157,10 @@ image::StudentList.png[width="600", align="left"]
 
 You can use this command to add a <<student-management,student>> to the student list.
 
+[NOTE]
+
+You may not add multiple students with the same name.
+
 Format: `student add n/NAME major/MAJOR`
 
 Example:
