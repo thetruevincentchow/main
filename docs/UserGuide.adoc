@@ -50,10 +50,11 @@ This *User Guide* is designed to bring you through the following features:
 
 . Viewing Help
 . Creating a New Student
-. Declaring a Major
+. Declaring a Specialisations and Focus Areas
 . Viewing and Adding Modules
 . Viewing, Adding and Selecting Timetables
 . Managing and Viewing Grades
+. Viewing your Graduation Requirements
 . Exiting the Application
 ====
 
@@ -101,7 +102,7 @@ Before you dive into the commands themselves, do familiarise yourself with how t
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you (e.g. in `student add n/NAME major/MAJOR`, `NAME` is a parameter which can be used as `student add n/John Doe major/CS`).
-* Items in square brackets are optional (e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`).
+* Items in square brackets are optional (e.g `module grade CS2103T [grade/GRADE]` can be used as `module grade CS2103T grade/A+` or as `module grade CS2103T`).
 * Items with `…`​ after them can be used multiple times including zero times (e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc).
 * Parameters can be in any order (e.g. if the command specifies `n/NAME major/MAJOR`, `major/MAJOR n/NAME` is also acceptable).
 ====
@@ -115,11 +116,11 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 * `MODULE_CODE` - a code for a module in NUS
 * `INDEX` - a index number of an item listed
 ** Must be a positive integer
-* `NAME` - a name of a plan
-** Must be alphanumeric, possibly with spaces
+* `NAME` - a name of a entity
+** Must be alphanumeric, spaces are allowed
 * `SEM` - an academic semester
 ** Must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`
-* `YEAR` - a year number of your degree (e.g. year 1, 2, ...)
+* `YEAR` - a year of study (e.g. Year 1, 2, 3, 4...)
 ** Must be a non-negative integer
 * `GRADE` a letter grade for a module
 ** Must be one of the following: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `W`, `EXE`
