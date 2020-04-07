@@ -29,7 +29,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=capeguy[RepoSense Report here]!
 
 * *Other contributions*:
 
