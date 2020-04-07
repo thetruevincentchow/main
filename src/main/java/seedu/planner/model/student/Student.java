@@ -177,17 +177,13 @@ public class Student {
 
     public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
-        try {
-            for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
-                    .getTerminalGraduationRequirementList()) {
-                if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
-                    FocusAreaGraduationRequirement focusAreaGraduationRequirement =
-                            (FocusAreaGraduationRequirement) graduationRequirement;
-                    focusAreaGraduationRequirement.setSpecialisation(specialisation);
-                }
+        for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
+                .getTerminalGraduationRequirementList()) {
+            if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
+                FocusAreaGraduationRequirement focusAreaGraduationRequirement =
+                        (FocusAreaGraduationRequirement) graduationRequirement;
+                focusAreaGraduationRequirement.setSpecialisation(specialisation);
             }
-        } catch (NullPointerException ex) {
-            return;
         }
     }
 
