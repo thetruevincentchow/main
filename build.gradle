@@ -67,7 +67,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'NUS_Mod_Plnr.jar'
+    archiveName = 'nusmodplnr.jar'
 
     destinationDir = file("${buildDir}/jar/")
 }
