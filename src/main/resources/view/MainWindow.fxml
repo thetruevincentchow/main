@@ -14,6 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="NUS Mod Planner" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/nus_mod_planner.png" />
@@ -39,7 +42,7 @@
                 </MenuBar>
             <SplitPane dividerPositions="0.5" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="200.0">
               <items>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="gradPlaceholder" prefHeight="150.0" prefWidth="200.0" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -65,6 +68,9 @@
                 </AnchorPane>
 
                 <VBox fx:id="moduleList" minHeight="-Infinity" minWidth="340" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <HBox fx:id="searchBar" minHeight="-Infinity" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="searchBox"></TextField><Button fx:id="searchButton" text="Search" onMouseClicked="#searchMod"></Button>
+                    </HBox>
                     <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>

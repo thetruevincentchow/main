@@ -1,14 +1,20 @@
 package seedu.planner.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.planner.model.module.Module;
+
 
 /**
  * An UI component that displays information of a {@code Module}.
@@ -83,19 +89,20 @@ public class ModuleCard extends UiPart<Region> {
     public void showDetails() {
 
         String moduleBuilder = "Module: " + module.getTitle() + "  " + module.getModuleTitle()
-                + "\n\n" + "Department: " + module.getDepartment() + "\n\n" + "Description: " + module.getDescription();
+                + "\n\n" + "Department: " + module.getDepartment() + "\n\n" + "Description: " + module.getDescription()
+                + "\n\n" + "Pre Req: " + module.getPrerequisite();
         Label moduleDetails = new Label(moduleBuilder);
+        moduleDetails.setTextFill(Color.rgb(255, 255, 255));
         moduleDetails.setWrapText(true);
         StackPane secondaryLayout = new StackPane();
         secondaryLayout.getChildren().add(moduleDetails);
-
+        secondaryLayout.setBackground(new Background(new BackgroundFill(Color.rgb(60, 62, 63), CornerRadii.EMPTY,
+                Insets.EMPTY)));
         Scene secondScene = new Scene(secondaryLayout, 500, 500);
-        secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
         // New window (Stage)
         Stage newWindow = new Stage();
         newWindow.setTitle(code.getText());
         newWindow.setScene(secondScene);
-
         newWindow.show();
     }
 }

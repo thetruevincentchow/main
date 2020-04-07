@@ -1,12 +1,16 @@
 package seedu.planner.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +22,7 @@ import seedu.planner.logic.Logic;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.logic.parser.exceptions.ParseException;
+import seedu.planner.model.module.Module;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private CalendarBox calendarBox;
     private HelpWindow helpWindow;
+    private GradWindow gradWindow;
     private int colorTrack = 1;
 
     @FXML
@@ -52,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane calendarBoxPlaceholder;
 
     @FXML
+    private StackPane gradPlaceholder;
+
+    @FXML
     private Button lanchCalendar;
 
     @FXML
@@ -59,6 +68,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private TextField searchBox;
+
+    @FXML
+    private Button searchButton;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -121,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        gradWindow = new GradWindow(logic.getPlanner());
+        gradPlaceholder.getChildren().add(gradWindow.getRoot());
 
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
@@ -238,5 +255,20 @@ public class MainWindow extends UiPart<Stage> {
         newWindow.setTitle("Calendar");
         newWindow.setScene(secondScene);
         newWindow.show();
+    }
+
+    /**
+     * Searches Module.
+     */
+    @FXML
+    private void searchMod() {
+        String searchCriteria = searchBox.getText();
+        ObservableList<Module> tempSearch = logic.getFilteredModuleList();
+        if (!searchCriteria.isEmpty()) {
+            tempSearch = tempSearch.stream().filter(mod -> mod.getModuleCode().value.contains(searchCriteria)
+                    || mod.getModuleTitle().contains(searchCriteria))
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        }
+        moduleListPanel.setSearch(tempSearch);
     }
 }
