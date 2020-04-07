@@ -1,0 +1,80 @@
+= Muhammad Danish - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: NUS Module Planner
+
+---
+
+== Overview
+
+The *NUS Module Planner* (_NUSModPlnr_) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. **With NUSModPlnr, module planning has never been easier!**
+
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 250+ kLoC.
+
+My main contributions are the implementation of the Graduation Requirements interpretation and checking, as well as, managing the Issue Tracker and Releases.
+
+== Summary of contributions
+
+* *Major enhancement*: added *Graduation Requirement implementations and associated commands*.
+** What it does: This feature allows students to ensure their Graduation Requirements are correct as of the NUS Website.
+** Justification: This is a core feature, as the ability to ensure that modules are added and fulfil the criteria of a student's graduation requirements is monumental to their module planning.
+** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+** Credits: This feature was implemented with existing library support of the Java 11 bundle.
+
+* *Minor enhancement*: added and modified a significant amount of the Test Cases and Unit Tests for the NUS Module Planner.
+
+* *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=danamic[RepoSense Report here]!
+
+* *Other contributions*:
+
+** Project management:
+*** Managed releases `v1.0` - `v1.4` (4 Releases) on GitHub
+
+//[FOR DRAFT CHANGES]
+//** Enhancements to existing features:
+//*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+//*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+//** Documentation:
+//*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+//** Community:
+//*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+//*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+//*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
+//*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+//** Tools:
+//*** Integrated a third party library (Natty) to the project (https://github.com[#42])
+//*** Integrated a new Github plugin (CircleCI) to the team repo
+//
+//_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide [IN DRAFT]
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=delete]
+
+include::../UserGuide.adoc[tag=dataencryption]
+
+== Contributions to the Developer Guide [IN DRAFT]
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=undoredo]
+
+include::../DeveloperGuide.adoc[tag=dataencryption]
+
+
+== PROJECT: Granado-Espada-For-SEA
+
+---
+
+Worked on the Korean to English (SEA) locationisation of the MMORPG, _Granado Espada_.
+
+A link to the link:https://github.com/DANamic/Granado-Espada-for-SEA[repo can be found here]!
