@@ -27,8 +27,8 @@ public abstract class Programme {
         while (!buffer.isEmpty()) {
             GraduationRequirement graduationRequirement = buffer.removeFirst();
             if (graduationRequirement instanceof CompoundGraduationRequirement) {
-                List<GraduationRequirement> childGraduationRequirements =
-                        ((CompoundGraduationRequirement) graduationRequirement).getGraduationRequirementList();
+                List<GraduationRequirement> childGraduationRequirements = ((CompoundGraduationRequirement)
+                    graduationRequirement).getGraduationRequirementList();
                 if (childGraduationRequirements != null) {
                     buffer.addAll(childGraduationRequirements);
                 }
