@@ -150,8 +150,8 @@ public class ModelManager implements Model {
         return planner.getActiveStudent();
     }
 
-    public void setActiveStudent(Student editedStudent) {
-        planner.setActiveStudent(editedStudent);
+    public void replaceActiveStudent(Student editedStudent) {
+        planner.replaceActiveStudent(editedStudent);
     }
 
     public void activateStudent(Student student) {

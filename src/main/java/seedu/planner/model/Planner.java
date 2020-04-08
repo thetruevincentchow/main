@@ -227,7 +227,7 @@ public class Planner implements ReadOnlyPlanner {
      *
      * @params editedStudent Student to copy for replacement.
      */
-    public void setActiveStudent(Student student) {
+    public void replaceActiveStudent(Student student) {
         requireAllNonNull(student, getActiveStudent());
         students.setStudent(getActiveStudent(), student);
     }

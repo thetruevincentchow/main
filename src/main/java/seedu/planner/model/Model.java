@@ -54,7 +54,7 @@ public interface Model {
 
     Student getActiveStudent();
 
-    void setActiveStudent(Student editedStudent);
+    void replaceActiveStudent(Student editedStudent);
 
     void activateStudent(Student student);
 
