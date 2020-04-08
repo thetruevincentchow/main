@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.Module;

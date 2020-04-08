@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.planner.Main;
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.commons.util.JsonUtil;
