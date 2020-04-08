@@ -92,6 +92,7 @@ public interface Model {
 
     boolean hasExemptedModule(ModuleCode moduleCode);
 
+    //@@author gruntultra
     void addLesson(Lesson lesson);
 
     List<Lesson> getLessons();
@@ -99,4 +100,9 @@ public interface Model {
     void removeLesson(Lesson removedLesson);
 
     boolean hasLesson(Lesson lesson);
+    //@@author
+
+    //@@author thetruevincentchow
+    boolean hasSemester(StudentSemester studentSemester);
+    //@@author
 }

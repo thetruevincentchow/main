@@ -106,6 +106,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSemester(StudentSemester studentSemester) {
+        return planner.hasSemester(studentSemester);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

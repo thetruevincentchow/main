@@ -76,6 +76,8 @@ public class ModuleAddCommand extends ModuleCommand {
 
         // Check if module is duplicate in active timetable
         // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
+        // NOTE: Multiple enrollments of the same module code in different timetables is intended behaviour,
+        //       since you can retake modules under some circumstances.
         if (model.hasEnrollment(moduleCode)) {
             throw new CommandException(generateDuplicateMessage(moduleCode));
         }

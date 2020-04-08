@@ -53,7 +53,7 @@ public class TimeTableActiveCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        if (!model.getPlanner().hasSemester(studentSemester)) {
+        if (!model.hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));
         }
 

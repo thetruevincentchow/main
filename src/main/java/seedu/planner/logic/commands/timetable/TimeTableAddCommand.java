@@ -53,9 +53,7 @@ public class TimeTableAddCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        // TODO: validate semester
-
-        if (model.getPlanner().hasSemester(studentSemester)) {
+        if (model.hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_EXISTING_SEMESTER, studentSemester));
         }
 
