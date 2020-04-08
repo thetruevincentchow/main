@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.planner.model.util.SampleDataUtil.getSamplePlanner;
 import static seedu.planner.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -134,7 +135,7 @@ public class PlannerTest {
 
         @Override
         public List<Lesson> getLessons() {
-            return null;
+            return new ArrayList<>();
         }
     }
 
