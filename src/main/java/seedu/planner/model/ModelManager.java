@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
 import seedu.planner.model.grades.Grade;
+import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Enrollment;
@@ -212,5 +214,21 @@ public class ModelManager implements Model {
             throw new NullPointerException();
         }
         return path;
+    }
+
+    public void addLesson(Lesson lesson) {
+        planner.addLesson(lesson);
+    }
+
+    public List<Lesson> getLessons() {
+        return planner.getActiveStudent().getLesson();
+    }
+
+    public void removeLesson(Lesson lesson) {
+        planner.getActiveStudent().removeLesson(lesson);
+    }
+
+    public boolean hasLesson(Lesson lesson) {
+        return planner.hasLesson(lesson);
     }
 }

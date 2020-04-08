@@ -1,0 +1,32 @@
+package seedu.planner.logic.parser.lessons;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.planner.commons.core.index.Index;
+import seedu.planner.logic.commands.lessons.LessonRemoveCommand;
+import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.ParserUtil;
+import seedu.planner.logic.parser.exceptions.ParseException;
+
+public class LessonRemoveCommandParser implements Parser<LessonRemoveCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns an EditCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public LessonRemoveCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(args);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonRemoveCommand.MESSAGE_USAGE),
+                    pe);
+        }
+
+        return new LessonRemoveCommand(index);
+    }
+}

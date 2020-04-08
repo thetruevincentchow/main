@@ -116,6 +116,7 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 * `MODULE_CODE` - a code for a module in NUS
 * `INDEX` - a index number of an item listed
 ** Must be a positive integer
+* `LESSON_NUMBER` - a number for the class number for a module
 * `NAME` - a name of a entity
 ** Must be alphanumeric, spaces are allowed
 * `SEM` - an academic semester
@@ -143,6 +144,56 @@ Format: `help`
 When you are done using the application, you can exit the program with the `exit` command.
 
 Format: `exit`
+
+[[module-interface-and-search]]
+=== Module Interface and Search
+
+When the application is first launched, you can see all the modules available to you in NUS. You can scroll through all the modules
+to find the desirable module to take for the semester.
+
+You can see the *Module Panel Screen* (_Figure X. below_).
+
+.Module Panel View
+image::ModulePanel.png[width="600", align="left"]
+
+==== Viewing a module information
+
+You can click on any of the modules to see the module description. It will launch a separate screen to show you the details
+
+Here is the *Module Description Screen* (_Figure X. below_).
+
+.Module Description View
+image::ModuleDescription.png[width="600", align="left"]
+
+==== Searching for a module
+
+You can use the search bar to search for any module based on their module code or module name. Click on the search button to begin the search.
+
+Here is the *Search Screen* (_Figure X. below_).
+
+.Search View
+image::Search.png[width="600", align="left"]
+
+
+[[calendar-interface]]
+=== Calendar Interface
+
+The application has a calendar feature to see the timetable schedule. Once a lesson has been added, it will show up in calendar after pressing the launch calendar button.
+
+You can see the *Launch Calendar Button* (_Figure X. below_).
+
+.Launch Calendar
+image::Calendar.png[width="600", align="left"]
+
+
+==== Viewing the Calendar Schedule
+
+There are two ways to view the Calendar. You can click on the launch calendar to see the lessons that you have added. Another way is to click on the semester button in the module description page to see the lessons available.
+
+You can see the *Calendar Schedule* (_Figure X. below_).
+
+.Calendar Schedule
+image::CalSchedule.png[width="600", align="left"]
 
 [[student-management]]
 === Student Management
@@ -413,6 +464,50 @@ Example:
 
 * `exempt list`
 
+[[lesson-management]]
+=== Lesson Management
+
+The following commands below are part of the application's *Lesson Management*, which allows you manage the lessons for the academic planning. You are highly encouraged to use this *Lesson Management* feature to explore different academic plans.
+
+When managing lessons, you will be able to see the *Lesson View Screen* (_Figure 3. below_).
+
+.Lesson List View
+image::LessonList.png[width="600", align="left"]
+
+==== Adding a Lesson: `lessons add`
+
+You can use this command to add a <<lesson-management,lesson>> to the lesson list. You can see <<module-interface-and-search,modules>> on the modules panel screen to see what lessons are available.
+
+[NOTE]
+
+You may not add multiple lesson with the same class number.
+
+Format: `lessons add m/MODULE lesson/LESSON_NUMBER sem/SEM`
+
+Example:
+
+* `lessons add m/CS1231 lesson/10 sem/ONE`
+
+==== Removing a Lesson: `lessons remove`
+
+You can use this command to remove the <<lesson-management,lesson>> with the number `INDEX` from the lesson list.
+
+Format: `lesson remove INDEX`
+
+Example:
+
+* `lesson remove 1`
+
+==== Listing lessons: `lessons list`
+
+You can use this command to list all the <<lesson-management,lesson>>  of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+
+Format: `lessons list`
+
+Example:
+
+* `lessons list`
+
 === Saving Your Data
 
 NUS Module Planner data is saved to the hard disk automatically after any command that changes the data. +
@@ -435,6 +530,12 @@ This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
+
+*Q*: Why is there alphabets beside the lesson number in the calendar? +
+*A*: NUS provides a alphabet code to each lesson type. Type in the lesson number without the lesson number for the lesson management section.
+
+*Q*: Why is the lessons not shifted for each timetable? +
+*A*: Lessons is tagged to the active students so you can always see what lesson you took from the previous semesters.
 
 [TIP]
 If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!

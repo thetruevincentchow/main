@@ -17,4 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MINOR = new Prefix("minor/");
     public static final Prefix PREFIX_STUDENT_YEAR = new Prefix("year/");
     public static final Prefix PREFIX_STUDENT_SEM = new Prefix("sem/");
+
+    public static final Prefix PREFIX_LESSON = new Prefix("lesson/");
+    public static final Prefix PREFIX_MODULE = new Prefix("m/");
 }

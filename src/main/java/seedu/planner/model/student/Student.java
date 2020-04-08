@@ -19,6 +19,7 @@ import seedu.planner.model.grades.CumulativeGrade;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
 import seedu.planner.model.graduation.GraduationRequirement;
+import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueModuleCodeList;
 import seedu.planner.model.programmes.DegreeProgramme;
@@ -40,6 +41,7 @@ public class Student {
     private Degrees degrees;
     private Major major;
     private GenericSpecialisation specialisation;
+    private List<Lesson> lessons;
 
 
     public Student() {
@@ -62,6 +64,7 @@ public class Student {
         this.major = major;
         this.timeTableMap = timeTableMap;
         exemptedModules.forEach(this.exemptedModules::add);
+        this.lessons = new ArrayList<>();
     }
 
     public Name getName() {
@@ -86,6 +89,10 @@ public class Student {
 
     public TimeTableMap getTimeTableMap() {
         return timeTableMap;
+    }
+
+    public List<Lesson> getLesson() {
+        return lessons;
     }
 
     public boolean addDegrees(DegreeProgramme degree) {
@@ -218,5 +225,15 @@ public class Student {
         moduleCodeSet.addAll(getAllEnrolledModules());
         moduleCodeSet.addAll(getExemptedModules());
         return moduleCodeSet.stream().collect(Collectors.toList());
+    }
+
+    public void addLessons(Lesson lesson) {
+        lessons.add(lesson);
+    }
+
+    public void removeLesson(Lesson lesson) {
+        if (lessons.contains(lesson)) {
+            lessons.remove(lesson);
+        }
     }
 }
