@@ -45,7 +45,6 @@ public class Student {
         this(null, null);
     }
 
-    // TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
     public Student(Name name, Major major) {
         requireAllNonNull(name);
         this.name = name;
@@ -100,13 +99,22 @@ public class Student {
             return false;
         }
 
+        /**
+         * NOTE: (@code specialisation) are not compared because (@ocde GenericSpecialisation#equal())
+         * and its subclasses are not implemented.
+         */
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName());
+        return otherStudent.getName().equals(getName())
+            && otherStudent.getMajor().equals(getMajor())
+            && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
+        /**
+         * NOTE: (@code specialisation) are not hashed because (@ocde GenericSpecialisation#hashCode())
+         * and its subclasses are not implemented.
+         */
         return Objects.hash(name, major, timeTableMap, exemptedModules);
     }
 
@@ -118,8 +126,8 @@ public class Student {
         return builder.toString();
     }
 
-    public boolean isSameStudent(Student student) {
-        return this.equals(student);
+    public boolean isSameStudent(Student other) {
+        return this.name.equals(other.name);
     }
 
     public TimeTable getTimeTable(StudentSemester activeSemester) {

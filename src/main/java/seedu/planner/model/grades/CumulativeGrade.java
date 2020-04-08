@@ -1,5 +1,6 @@
 package seedu.planner.model.grades;
 
+import java.util.Objects;
 import java.util.OptionalDouble;
 
 public class CumulativeGrade {
@@ -81,5 +82,26 @@ public class CumulativeGrade {
 
     public Object getTotalSuCredits() {
         return totalSuCredits;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CumulativeGrade that = (CumulativeGrade) o;
+        return numSu == that.numSu
+            && totalCredits == that.totalCredits
+            && Double.compare(that.totalGradePoints, totalGradePoints) == 0
+            && totalGradedCredits == that.totalGradedCredits
+            && totalSuCredits == that.totalSuCredits;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numSu, totalCredits, totalGradePoints, totalGradedCredits, totalSuCredits);
     }
 }
