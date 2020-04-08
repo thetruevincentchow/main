@@ -182,8 +182,8 @@ The application has a calendar feature to see the timetable schedule. Once a les
 
 You can see the *Launch Calendar Button* (_Figure X. below_).
 
-.Launch Calendar
-image::Calendar.png[width="600", align="left"]
+.Launch Calendar Button
+image::CalendarButton.png[width="600", align="left"]
 
 
 ==== Viewing the Calendar Schedule
