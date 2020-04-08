@@ -64,12 +64,10 @@ class JsonSerializablePlanner {
         if (0 <= activeStudentIndex && activeStudentIndex < students.size()) {
             // TODO: ensure `activeStudent.toModelType()` can be used in `Planner#activateStudent`
             JsonAdaptedStudent jsonActiveStudent = students.get(activeStudentIndex);
-            //planner.activateStudent(jsonActiveStudent.toModelType());
 
             Student activeStudent = planner.getEqualStudent(jsonActiveStudent.toModelType());
             planner.activateStudent(activeStudent);
         }
-
 
 
         return planner;

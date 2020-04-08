@@ -12,6 +12,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Enrollment;
+import seedu.planner.model.util.ModuleUtil;
 
 /**
  * Adds a module to the selected timetable.
@@ -80,7 +81,7 @@ public class ModuleAddCommand extends ModuleCommand {
         }
 
         // Check if module exists in module database
-        Module module = model.getPlanner().getModules().getModule(moduleCode);
+        Module module = ModuleUtil.getModuleWithCode(moduleCode);
         if (module == null) {
             throw new CommandException(generateModuleDoesNotExists(moduleCode));
         }

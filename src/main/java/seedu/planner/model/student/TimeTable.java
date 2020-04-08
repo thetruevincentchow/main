@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueEnrollmentList;
+import seedu.planner.model.student.exceptions.EnrollmentNotFoundException;
 
 public class TimeTable {
     private UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
@@ -34,7 +35,7 @@ public class TimeTable {
                 return enrollment;
             }
         }
-        throw new NullPointerException(String.format("Key %s does not exist", moduleCode));
+        throw new EnrollmentNotFoundException();
     }
 
     public UniqueEnrollmentList getEnrollments() {

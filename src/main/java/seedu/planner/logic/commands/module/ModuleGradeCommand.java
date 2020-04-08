@@ -14,6 +14,7 @@ import seedu.planner.model.grades.Grade;
 import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
+import seedu.planner.model.util.ModuleUtil;
 
 
 /**
@@ -100,13 +101,15 @@ public class ModuleGradeCommand extends ModuleCommand {
         }
 
         // Check if module exists in module database
-        Module module = model.getPlanner().getModules().getModule(moduleCode);
+        Module module = ModuleUtil.getModuleWithCode(moduleCode);
         if (module == null) {
             throw new CommandException(generateModuleInvalidMessage(moduleCode));
         }
 
         // Check if module is duplicate in active timetable
         // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
+        // NOTE: Multiple enrollments of the same module code in different timetables is intended behaviour,
+        //       since you can retake modules under some circumstances.
         if (!model.hasEnrollment(moduleCode)) {
             throw new CommandException(generateModuleNotEnrolledMessage(moduleCode));
         }
