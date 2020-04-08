@@ -47,5 +47,13 @@ public interface ReadOnlyPlanner {
 
     ObservableList<ModuleCode> getExemptedModulesList();
 
+    //@@author gruntultra
     List<Lesson> getLessons();
+    //@@author
+
+    //@@author thetruevincentchow
+    boolean hasActiveTimeTable();
+
+    boolean hasActiveStudent();
+    //@@author
 }

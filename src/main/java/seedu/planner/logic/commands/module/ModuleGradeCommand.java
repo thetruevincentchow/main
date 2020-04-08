@@ -7,7 +7,6 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_GRADE;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
@@ -57,16 +56,15 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         requireNonNull(model);
 
         // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        if (model.getActiveTimeTable() == null) {
+        if (!model.hasActiveTimeTable()) {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
         // Check if module exists in module database
-        Module module = ModuleUtil.getModuleWithCode(moduleCode);
-        if (module == null) {
+        if (!ModuleUtil.hasModuleWithCode(moduleCode)) {
             throw new CommandException(generateModuleInvalidMessage(moduleCode));
         }
 

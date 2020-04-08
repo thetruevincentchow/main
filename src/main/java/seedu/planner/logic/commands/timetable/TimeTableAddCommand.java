@@ -9,7 +9,6 @@ import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.student.Student;
 import seedu.planner.model.time.StudentSemester;
 
 
@@ -48,8 +47,8 @@ public class TimeTableAddCommand extends TimeTableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student activeStudent = model.getActiveStudent();
-        if (activeStudent == null) {
+        // Check if active student exists
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 

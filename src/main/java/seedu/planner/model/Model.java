@@ -104,5 +104,9 @@ public interface Model {
 
     //@@author thetruevincentchow
     boolean hasSemester(StudentSemester studentSemester);
+
+    boolean hasActiveTimeTable();
+
+    boolean hasActiveStudent();
     //@@author
 }

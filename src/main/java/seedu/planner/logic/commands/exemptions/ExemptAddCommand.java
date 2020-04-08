@@ -7,7 +7,6 @@ import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
@@ -38,7 +37,7 @@ public class ExemptAddCommand extends ExemptCommand {
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateModuleDoesNotExists(ModuleCode moduleCode) {
+    private String generateModuleDoesNotExist(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
     }
 
@@ -64,11 +63,8 @@ public class ExemptAddCommand extends ExemptCommand {
         requireNonNull(model);
 
         // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
-        }
-        if (model.getActiveTimeTable() == null) {
-            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
         // Check if module is present in exempted modules list
@@ -77,9 +73,8 @@ public class ExemptAddCommand extends ExemptCommand {
         }
 
         // Check if module exists in module database
-        Module module = ModuleUtil.getModuleWithCode(moduleCode);
-        if (module == null) {
-            throw new CommandException(generateModuleDoesNotExists(moduleCode));
+        if (!ModuleUtil.hasModuleWithCode(moduleCode)) {
+            throw new CommandException(generateModuleDoesNotExist(moduleCode));
         }
 
         model.addExemptedModule(moduleCode);

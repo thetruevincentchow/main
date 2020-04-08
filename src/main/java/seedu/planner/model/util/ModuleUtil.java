@@ -20,6 +20,11 @@ public class ModuleUtil {
         }
         return null;
     }
+
+    public static boolean hasModuleWithCode(ModuleCode moduleCode) {
+        return getModuleWithCode(moduleCode) != null;
+    }
+
     public static Module[] getSampleModules() {
         return SampleDataUtil.getSampleModules();
     }

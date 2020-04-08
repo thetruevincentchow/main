@@ -53,7 +53,7 @@ public class ExemptRemoveCommand extends ExemptCommand {
         requireNonNull(model);
 
         // Check if active student exists
-        if (model.getActiveStudent() == null) {
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 

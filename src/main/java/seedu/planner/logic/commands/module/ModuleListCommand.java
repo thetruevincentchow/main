@@ -45,10 +45,10 @@ public class ModuleListCommand extends ModuleCommand {
         requireNonNull(model);
 
         // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        if (model.getActiveTimeTable() == null) {
+        if (!model.hasActiveTimeTable()) {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 

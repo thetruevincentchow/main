@@ -44,12 +44,9 @@ public class ExemptListCommand extends ExemptCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        // Check if active student exists
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
-        }
-        if (model.getActiveTimeTable() == null) {
-            throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
         return new CommandResult(generateSuccessMessage(model.getExemptedModulesList()));

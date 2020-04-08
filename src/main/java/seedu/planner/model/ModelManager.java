@@ -111,6 +111,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasActiveTimeTable() {
+        return planner.hasActiveTimeTable();
+    }
+
+    @Override
+    public boolean hasActiveStudent() {
+        return planner.hasActiveStudent();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

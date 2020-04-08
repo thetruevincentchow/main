@@ -181,6 +181,16 @@ public class Planner implements ReadOnlyPlanner {
         return getActiveStudent().getExemptedModules();
     }
 
+    @Override
+    public boolean hasActiveTimeTable() {
+        return isValidActiveStudentIndex() && getActiveTimeTable() != null;
+    }
+
+    @Override
+    public boolean hasActiveStudent() {
+        return isValidActiveStudentIndex();
+    }
+
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
         moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
