@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javafx.util.Pair;
-
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.student.TimeTableMap;
