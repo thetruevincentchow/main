@@ -6,6 +6,8 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.planner.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.planner.logic.commands.module.ModuleGradeCommand;
+import seedu.planner.logic.commands.module.ModuleGradeSetCommand;
+import seedu.planner.logic.commands.module.ModuleGradeViewCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
@@ -36,9 +38,9 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
             String letterGradeString = argMultimap.getValue(PREFIX_GRADE).get();
             LetterGrade letterGrade = ParserUtil.parseLetterGrade(letterGradeString);
-            return new ModuleGradeCommand(moduleCode, letterGrade);
+            return new ModuleGradeSetCommand(moduleCode, letterGrade);
         } else {
-            return new ModuleGradeCommand(moduleCode);
+            return new ModuleGradeViewCommand(moduleCode);
         }
     }
 }
