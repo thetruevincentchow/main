@@ -104,4 +104,13 @@ public class ParserUtil {
             throw new ParseException(LetterGrade.MESSAGE_CONSTRAINTS);
         }
     }
+
+    public static String parseLessonNumber(String lessonNumber) throws ParseException {
+        requireNonNull(lessonNumber);
+        try {
+            return lessonNumber;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException("Lessons Should be a number");
+        }
+    }
 }

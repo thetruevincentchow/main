@@ -114,7 +114,7 @@ public class ModuleCard extends UiPart<Region> {
                 sem1Lesson.setCalendar(lessons);
                 StackPane secondaryLayout = new StackPane();
                 secondaryLayout.getChildren().add(sem1Lesson.getRoot());
-                Scene secondScene = new Scene(secondaryLayout, 1360, 300);
+                Scene secondScene = new Scene(secondaryLayout, 1360, 400);
                 secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
                 Stage newWindow = new Stage();
                 newWindow.setTitle("Semester 1");
@@ -132,7 +132,7 @@ public class ModuleCard extends UiPart<Region> {
                 sem2Lesson.setCalendar(lessons);
                 StackPane secondaryLayout = new StackPane();
                 secondaryLayout.getChildren().add(sem2Lesson.getRoot());
-                Scene secondScene = new Scene(secondaryLayout, 1360, 300);
+                Scene secondScene = new Scene(secondaryLayout, 1360, 400);
                 secondScene.getStylesheets().add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
                 Stage newWindow = new Stage();
                 newWindow.setTitle("Semester 2");

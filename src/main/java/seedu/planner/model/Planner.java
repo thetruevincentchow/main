@@ -9,6 +9,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.grades.Grade;
+import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.ModuleDataImporter;
@@ -351,5 +352,21 @@ public class Planner implements ReadOnlyPlanner {
 
     public boolean hasExemptedModule(ModuleCode moduleCode) {
         return getExemptedModulesList().contains(moduleCode);
+    }
+
+    public void addLesson(Lesson lesson) {
+        requireActiveStudentNonNull();
+        getActiveStudent().addLessons(lesson);
+    }
+
+    public List<Lesson> getLessons() {
+        requireActiveStudentNonNull();
+        return getActiveStudent().getLesson();
+    }
+
+    public boolean hasLesson(Lesson lesson) {
+        requireActiveStudentNonNull();
+        return getActiveStudent().getLesson().contains(lesson);
+
     }
 }

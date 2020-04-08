@@ -8,6 +8,7 @@ import static seedu.planner.testutil.Assert.assertThrows;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.grades.Grade;
+import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueModuleList;
@@ -127,6 +129,11 @@ public class PlannerTest {
 
         @Override
         public ObservableList<ModuleCode> getExemptedModulesList() {
+            return null;
+        }
+
+        @Override
+        public List<Lesson> getLessons() {
             return null;
         }
     }
