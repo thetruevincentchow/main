@@ -39,7 +39,12 @@ public class StudentRemoveCommand extends StudentCommand {
     private String generateSuccessMessage(Student removedStudent) {
         return String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, removedStudent);
     }
-
+    /**
+     * Executes {@code StudentRemoveCommand}
+     * @param model {@code Model} which the command should operate on
+     * @return {@code CommandResult} produced from executing the command
+     * @throws CommandException when an exception occurred while executing the command
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

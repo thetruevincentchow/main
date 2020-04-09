@@ -71,6 +71,12 @@ public class ParserUtil {
         return new ModuleCode(trimmedName);
     }
 
+    /**
+     * Parses a {@code String semester} into a {@code Semester}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Semester} is invalid.
+     */
     public static Semester parseSemester(String semester) throws ParseException {
         requireNonNull(semester);
         try {
@@ -80,6 +86,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Name} is invalid.
+     */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         try {
@@ -89,6 +101,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String major} into a {@code Major}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Major} is invalid.
+     */
     public static Major parseMajor(String major) throws ParseException {
         requireNonNull(major);
         try {
@@ -98,6 +116,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String letterGrade} into a {@code LetterGrade}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code LetterGrade} is invalid.
+     */
     public static LetterGrade parseLetterGrade(String letterGrade) throws ParseException {
         requireNonNull(letterGrade);
         try {
@@ -108,6 +132,12 @@ public class ParserUtil {
     }
 
     //@@author gruntultra
+    /**
+     * Parses a {@code String lessonNumber} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String} is invalid.
+     */
     public static String parseLessonNumber(String lessonNumber) throws ParseException {
         requireNonNull(lessonNumber);
         try {
@@ -116,7 +146,6 @@ public class ParserUtil {
             throw new ParseException("Lessons Should be a number");
         }
     }
-    //@@author
 
     //@@author thetruevincentchow
     /**

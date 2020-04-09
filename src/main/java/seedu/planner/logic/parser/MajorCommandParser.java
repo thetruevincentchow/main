@@ -12,7 +12,9 @@ import seedu.planner.logic.commands.major.MajorSetCommand;
 import seedu.planner.logic.commands.major.MajorStatusCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Helper class to parse input for {@code MajorCommand}
+ */
 public class MajorCommandParser implements Parser<MajorCommand> {
     /**
      * Used for initial separation of command word and args.

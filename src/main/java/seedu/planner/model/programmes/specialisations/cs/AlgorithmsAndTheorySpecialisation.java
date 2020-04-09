@@ -4,8 +4,16 @@ import java.util.ArrayList;
 
 import seedu.planner.model.module.ModuleCode;
 
+/**
+ * Class to represent the Algorithms and Theory Specialisation for Computer Science Degree Programme, specifying the
+ * primaries and electives which are associated with the specialisation.
+ */
 public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
 
+    /**
+     * Default constructor for {@code AlgorithmsAndTheorySpecialisation} specifying the {@code ModuleCode} for primaries
+     * and electives
+     */
     public AlgorithmsAndTheorySpecialisation() {
         setName("Algorithms And Theory");
         primaries = new ArrayList<>();
@@ -31,9 +39,13 @@ public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
         electives.add(new ModuleCode("CS5330"));
     }
 
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
     public String toString() {
         return "Algorithms And Theory";
     }
-
 
 }

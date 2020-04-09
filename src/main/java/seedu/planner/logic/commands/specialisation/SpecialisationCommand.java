@@ -2,6 +2,9 @@ package seedu.planner.logic.commands.specialisation;
 
 import seedu.planner.logic.commands.Command;
 
+/**
+ * Base command for subcommands involving queries about specialisations.
+ */
 public abstract class SpecialisationCommand extends Command {
 
     public static final String COMMAND_WORD = "specialisation";
