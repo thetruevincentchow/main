@@ -10,8 +10,9 @@ import seedu.planner.model.Model;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
+//@@author thetruevincentchow
 /**
- * Adds a module to the selected timetable.
+ * Adds a module to the list of exempted modules of the selected student.
  */
 public class ExemptAddCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "add";
@@ -34,8 +35,7 @@ public class ExemptAddCommand extends ExemptCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution error message due to the given (@code moduleCode) being invalid.
      */
     private String generateModuleDoesNotExist(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
@@ -43,16 +43,16 @@ public class ExemptAddCommand extends ExemptCommand {
 
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution error message due to the given (@code moduleCode) already being present
+     * in the list of exempted modules of the selected student.
      */
     private String generateDuplicateMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_ALREADY_EXISTS, moduleCode.value);
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for adding the (@code moduleCode)
+     * to the list of exempted modules of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
@@ -81,3 +81,4 @@ public class ExemptAddCommand extends ExemptCommand {
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }
+//@@author

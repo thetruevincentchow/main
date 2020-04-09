@@ -12,6 +12,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.time.StudentSemester;
 
 
+//@@author thetruevincentchow
 /**
  * Adds a timetable to the currently selected student's timetable list.
  */
@@ -36,8 +37,8 @@ public class TimeTableAddCommand extends TimeTableCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for adding an empty timetable
+     * with the given (@code semesterYear) to the currently selected student's list of timetables.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
         return String.format(MESSAGE_ADD_TIMETABLE_SUCCESS, semesterYear);
@@ -61,3 +62,4 @@ public class TimeTableAddCommand extends TimeTableCommand {
         return new CommandResult(generateSuccessMessage(studentSemester));
     }
 }
+//@@author

@@ -10,6 +10,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.module.ModuleCode;
 
 
+//@@author thetruevincentchow
 /**
  * Lists modules enrolled in the selected timetable.
  */
@@ -23,8 +24,8 @@ public class ModuleListCommand extends ModuleCommand {
     public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable:\n%1$s";
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for listing the enrollments for
+     * the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ObservableList<ModuleCode> codes) {
         StringBuffer sb = new StringBuffer();
@@ -55,3 +56,4 @@ public class ModuleListCommand extends ModuleCommand {
         return new CommandResult(generateSuccessMessage(model.getEnrolledModuleCodes()));
     }
 }
+//@@author

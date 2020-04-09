@@ -12,6 +12,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.student.Student;
 
 
+//@@author thetruevincentchow
 /**
  * Removes a student from the student list.
  */
@@ -33,8 +34,7 @@ public class StudentRemoveCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for removing the (@removedStudent) from the list of students.
      */
     private String generateSuccessMessage(Student removedStudent) {
         return String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, removedStudent);
@@ -56,3 +56,4 @@ public class StudentRemoveCommand extends StudentCommand {
         return new CommandResult(generateSuccessMessage(removedStudent));
     }
 }
+//@@author

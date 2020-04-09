@@ -5,13 +5,18 @@ import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_SUBCOMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.planner.logic.commands.exemptions.ExemptAddCommand;
 import seedu.planner.logic.commands.exemptions.ExemptCommand;
 import seedu.planner.logic.commands.exemptions.ExemptListCommand;
-import seedu.planner.logic.commands.module.ModuleAddCommand;
-import seedu.planner.logic.commands.module.ModuleRemoveCommand;
+import seedu.planner.logic.commands.exemptions.ExemptRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+//@@author thetruevincentchow
+
+/**
+ * Parses sub-commands of the "exempt" command and creates a new ExemptCommand object
+ */
 public class ExemptCommandParser implements Parser<ExemptCommand> {
     /**
      * Used for initial separation of command word and args.
@@ -36,10 +41,10 @@ public class ExemptCommandParser implements Parser<ExemptCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case ModuleAddCommand.COMMAND_WORD:
+        case ExemptAddCommand.COMMAND_WORD:
             return new ExemptAddCommandParser().parse(arguments);
 
-        case ModuleRemoveCommand.COMMAND_WORD:
+        case ExemptRemoveCommand.COMMAND_WORD:
             return new ExemptRemoveCommandParser().parse(arguments);
 
         case ExemptListCommand.COMMAND_WORD:
@@ -50,3 +55,4 @@ public class ExemptCommandParser implements Parser<ExemptCommand> {
         }
     }
 }
+//@@author

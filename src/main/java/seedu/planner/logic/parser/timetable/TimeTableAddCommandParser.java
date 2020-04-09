@@ -17,13 +17,14 @@ import seedu.planner.model.time.Semester;
 import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
+//@@author thetruevincentchow
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new TimeTableAddCommand object
  */
 public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TimeTableAddCommand
+     * and returns an TimeTableAddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -46,3 +47,4 @@ public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
         return new TimeTableAddCommand(studentSemester);
     }
 }
+//@@author

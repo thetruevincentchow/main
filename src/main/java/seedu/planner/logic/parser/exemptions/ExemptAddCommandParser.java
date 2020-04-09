@@ -9,10 +9,14 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
+//@@author thetruevincentchow
+/**
+ * Parses input arguments and creates a new ExemptAddCommand object
+ */
 public class ExemptAddCommandParser implements Parser<ExemptAddCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the ModuleAddCommand
-     * and returns a ModuleAddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ExemptAddCommand
+     * and returns a ExemptAddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -29,3 +33,4 @@ public class ExemptAddCommandParser implements Parser<ExemptAddCommand> {
         return new ExemptAddCommand(moduleCode);
     }
 }
+//@@author

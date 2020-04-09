@@ -3,6 +3,12 @@ package seedu.planner.model.grades;
 import java.util.Objects;
 import java.util.OptionalDouble;
 
+
+//@@author thetruevincentchow
+/**
+ * Accumulates grade statistics of individual (@code Grade) and (@code credits).
+ * Calculates Cumulative Average Point (CAP) and other statistics from inputs.
+ */
 public class CumulativeGrade {
     protected int numSu;
     protected int totalCredits;
@@ -37,7 +43,6 @@ public class CumulativeGrade {
 
     /**
      * Accumulates module credits and the S/U to the counter.
-     *
      * @param credits Number of credits
      */
     private void accumulateSu(int credits) {
@@ -56,6 +61,11 @@ public class CumulativeGrade {
         totalCredits += credits;
     }
 
+    /**
+     * Accumulates module credits and a grade.
+     * @param credits Number of credits
+     * @param grade Grade of module
+     */
     public void accumulate(Grade grade, int credits) {
         if (grade.isSu || grade.letterGrade.isSu) {
             accumulateSu(credits);
@@ -64,6 +74,12 @@ public class CumulativeGrade {
         }
     }
 
+    /**
+     * Returns Cumulative Average Point (CAP) of accumulated grades.
+     * This excludes modules which are declared S/U.
+     * If there were no graded modules accumulated, then returns a (@code OptionalDouble.empty())
+     * @return Cumulative Average Point
+     */
     public OptionalDouble getAverage() {
         if (totalGradedCredits > 0) {
             return OptionalDouble.of(totalGradePoints / (double) totalGradedCredits);
@@ -72,15 +88,24 @@ public class CumulativeGrade {
         }
     }
 
+    /**
+     * Returns total number of credits taken, including S/U credits.
+     */
     public int getTotalCredits() {
         return totalCredits;
     }
 
+    /**
+     * Returns total number of graded credits taken. This excludes S/U credits.
+     */
     public int getTotalGradedCredits() {
         return totalGradedCredits;
     }
 
-    public Object getTotalSuCredits() {
+    /**
+     * Returns total number of S/U credits taken. This excludes graded credits.
+     */
+    public int getTotalSuCredits() {
         return totalSuCredits;
     }
 
@@ -105,3 +130,4 @@ public class CumulativeGrade {
         return Objects.hash(numSu, totalCredits, totalGradePoints, totalGradedCredits, totalSuCredits);
     }
 }
+//@@author

@@ -11,6 +11,7 @@ import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.ModuleCode;
 
 
+//@@author thetruevincentchow
 /**
  * Displays the grade of a module in the selected timetable.
  */
@@ -50,3 +51,4 @@ public class ModuleGradeViewCommand extends ModuleGradeCommand {
         }
     }
 }
+//@@author

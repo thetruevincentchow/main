@@ -6,6 +6,12 @@ import java.util.Arrays;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
+//@@author thetruevincentchow
+/**
+ * Enumeration for a letter grade.
+ * Note that exercising the S/U option is distinct from a mandatory CS/CU grade,
+ * or other ungraded letters which do not affect grade points.
+ */
 public enum LetterGrade {
     A_PLUS(5.0, "A+"),
     A(5.0, "A"),
@@ -47,6 +53,13 @@ public enum LetterGrade {
             .collect(Collectors.joining(", "));
     }
 
+    /**
+     * Returns a (@code LetterGrade) given a user-friendly (@code letterGrade).
+     * Examples of (@code letterGrade) are "A+", "A-", "EXE".
+     * Usage of this method is preferred for handling user input.
+     * @param letterGrade User-friendly letter grade
+     * @return LetterGrade object
+     */
     public static LetterGrade fromInputName(String letterGrade) {
         requireAllNonNull(letterGrade);
         for (LetterGrade grade : LetterGrade.values()) {
@@ -62,3 +75,4 @@ public enum LetterGrade {
         return inputName;
     }
 }
+//@@author

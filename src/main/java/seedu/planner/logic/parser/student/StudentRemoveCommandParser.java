@@ -9,15 +9,15 @@ import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
-
+//@@author thetruevincentchow
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new StudentRemoveCommand object
  */
 public class StudentRemoveCommandParser implements Parser<StudentRemoveCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StudentRemoveCommand
+     * and returns an StudentRemoveCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -35,3 +35,4 @@ public class StudentRemoveCommandParser implements Parser<StudentRemoveCommand> 
         return new StudentRemoveCommand(index);
     }
 }
+//@@author

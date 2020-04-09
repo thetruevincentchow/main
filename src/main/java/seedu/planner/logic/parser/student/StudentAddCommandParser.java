@@ -22,14 +22,14 @@ import seedu.planner.model.student.Student;
 import seedu.planner.model.student.TimeTableMap;
 import seedu.planner.model.util.SampleDataUtil;
 
-
+//@@author thetruevincentchow
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new StudentAddCommand object
  */
 public class StudentAddCommandParser implements Parser<StudentAddCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StudentAddCommand
+     * and returns an StudentAddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -56,3 +56,4 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         return new StudentAddCommand(student);
     }
 }
+//@@author

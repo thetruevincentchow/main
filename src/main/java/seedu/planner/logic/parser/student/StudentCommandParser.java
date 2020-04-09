@@ -14,6 +14,10 @@ import seedu.planner.logic.commands.student.StudentRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+//@@author thetruevincentchow
+/**
+ * Parses sub-commands of the "student" command and creates a new StudentCommand object
+ */
 public class StudentCommandParser implements Parser<StudentCommand> {
     /**
      * Used for initial separation of command word and args.
@@ -58,3 +62,4 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         }
     }
 }
+//@@author

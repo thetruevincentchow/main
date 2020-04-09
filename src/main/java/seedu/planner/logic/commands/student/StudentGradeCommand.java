@@ -17,6 +17,8 @@ import seedu.planner.model.student.Student;
 import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.time.StudentSemester;
 
+
+//@@author thetruevincentchow
 /**
  * Lists the grade of the currently selected student.
  */
@@ -32,8 +34,8 @@ public class StudentGradeCommand extends StudentCommand {
         + "Grade for each module:\n%6$s";
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for listing the grades and statistics of the
+     * specified (@code activeStudent).
      */
     private String generateSuccessMessage(Student activeStudent, CumulativeGrade cumulativeGrade) {
         OptionalDouble gradeValue = cumulativeGrade.getAverage();
@@ -85,3 +87,4 @@ public class StudentGradeCommand extends StudentCommand {
         return new CommandResult(generateSuccessMessage(activeStudent, cumulativeGrade));
     }
 }
+//@@author

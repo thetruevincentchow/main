@@ -3,6 +3,7 @@ package seedu.planner.logic.commands.timetable;
 import seedu.planner.logic.commands.Command;
 
 
+//@@author thetruevincentchow
 /**
  * Base command for subcommands involving queries about timetables.
  */
@@ -25,3 +26,4 @@ public abstract class TimeTableCommand extends Command {
         return COMMAND_WORD + " " + subCommand;
     }
 }
+//@@author

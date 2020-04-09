@@ -2,6 +2,8 @@ package seedu.planner.logic.commands.student;
 
 import seedu.planner.logic.commands.Command;
 
+
+//@@author thetruevincentchow
 /**
  * Base command for subcommands involving queries about students.
  */
@@ -24,3 +26,4 @@ public abstract class StudentCommand extends Command {
         return COMMAND_WORD + " " + subCommand;
     }
 }
+//@@author

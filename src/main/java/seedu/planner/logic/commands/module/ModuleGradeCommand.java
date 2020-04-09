@@ -11,8 +11,9 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
 
+//@@author thetruevincentchow
 /**
- * Sets the grade of a module in the selected timetable.
+ * Base class for operations on the grade of an enrollment in the selected timetable.
  */
 public abstract class ModuleGradeCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "grade";
@@ -43,7 +44,6 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         return String.format(MESSAGE_MODULE_INVALID, moduleCode.value);
     }
 
-
     /**
      * Generates a command execution error message due to the given (@code moduleCode) being absent from
      * the active student.
@@ -52,6 +52,10 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         return String.format(MESSAGE_MODULE_NOT_ENROLLED, moduleCode.value);
     }
 
+    /**
+     * Validate that a student and timetable are selected, and that the requested (@code moduleCode)
+     * is valid and is enrolled in the current timetable.
+     */
     protected void validate(Model model) throws CommandException {
         requireNonNull(model);
 
@@ -77,3 +81,4 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         }
     }
 }
+//@@author

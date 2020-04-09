@@ -9,6 +9,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.student.Student;
 
 
+//@@author thetruevincentchow
 /**
  * Lists all students in the student list.
  */
@@ -22,8 +23,7 @@ public class StudentListCommand extends StudentCommand {
     public static final String MESSAGE_SUCCESS = "Listed students in student list:\n%1$s";
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for listing the students in the planner.
      */
     private String generateSuccessMessage(ObservableList<Student> students) {
         StringBuffer sb = new StringBuffer();
@@ -51,3 +51,4 @@ public class StudentListCommand extends StudentCommand {
         return new CommandResult(generateSuccessMessage(lastShownList));
     }
 }
+//@@author

@@ -13,6 +13,10 @@ import seedu.planner.logic.commands.module.ModuleRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+//@@author thetruevincentchow
+/**
+ * Parses sub-commands of the "module" command and creates a new ModuleCommand object
+ */
 public class ModuleCommandParser implements Parser<ModuleCommand> {
     /**
      * Used for initial separation of command word and args.
@@ -54,3 +58,4 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         }
     }
 }
+//@@author

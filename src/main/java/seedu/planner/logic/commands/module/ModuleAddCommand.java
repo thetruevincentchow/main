@@ -14,6 +14,8 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Enrollment;
 import seedu.planner.model.util.ModuleUtil;
 
+
+//@@author thetruevincentchow
 /**
  * Adds a module to the selected timetable.
  */
@@ -38,8 +40,7 @@ public class ModuleAddCommand extends ModuleCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution error message due to the given (@code moduleCode) being invalid.
      */
     private String generateModuleDoesNotExists(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
@@ -47,16 +48,16 @@ public class ModuleAddCommand extends ModuleCommand {
 
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution error message due to the given (@code moduleCode) already being present
+     * in the selected timetable of the selected student.
      */
     private String generateDuplicateMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_ALREADY_EXISTS, moduleCode.value);
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for adding the given (@code moduleCode)
+     * to the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
@@ -93,3 +94,4 @@ public class ModuleAddCommand extends ModuleCommand {
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }
+//@@author

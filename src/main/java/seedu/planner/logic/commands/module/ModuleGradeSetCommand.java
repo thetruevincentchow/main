@@ -11,6 +11,7 @@ import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.ModuleCode;
 
 
+//@@author thetruevincentchow
 /**
  * Sets the grade of a module in the selected timetable.
  */
@@ -44,3 +45,4 @@ public class ModuleGradeSetCommand extends ModuleGradeCommand {
         return new CommandResult(generateSetGradeSuccessMessage(moduleCode, letterGrade));
     }
 }
+//@@author

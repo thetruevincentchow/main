@@ -16,10 +16,14 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.ModuleCode;
 
+//@@author thetruevincentchow
+/**
+ * Parses input arguments and creates a new ModuleGradeCommand object
+ */
 public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
-     * and returns a DeclareMajorCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ModuleGradeCommand
+     * and returns a ModuleGradeCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -44,3 +48,4 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
         }
     }
 }
+//@@author

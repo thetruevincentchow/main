@@ -8,6 +8,11 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueEnrollmentList;
 import seedu.planner.model.student.exceptions.EnrollmentNotFoundException;
 
+//@@author thetruevincentchow
+/**
+ * Represents a timetable for a semester.
+ * A (@code TimeTable) stores (@code Enrollment)s, where each enrollment must have a different module code.
+ */
 public class TimeTable {
     private UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
 
@@ -73,3 +78,4 @@ public class TimeTable {
         }
     }
 }
+//@@author
