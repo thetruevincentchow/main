@@ -10,10 +10,15 @@ import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
 import seedu.planner.model.graduation.SingleGraduationRequirement;
 import seedu.planner.model.graduation.WildcardGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
+import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
 
 public class ComputerScienceProgramme extends DegreeProgramme {
 
     public ComputerScienceProgramme(Model model) { // TODO: Load from JSON or XML
+        GenericCsSpecialisation specialisation = null;
+        if (model != null) {
+            specialisation = (GenericCsSpecialisation) model.getActiveStudent().getSpecialisation();
+        }
         graduationRequirementList = new ArrayList<>();
         graduationRequirementList.add(new CompoundGraduationRequirement("University Level Requirements",
             20, new ArrayList<>(Arrays.asList(
@@ -39,7 +44,7 @@ public class ComputerScienceProgramme extends DegreeProgramme {
                     ))),
                 new CompoundGraduationRequirement("Computer Science Breadth and Depth", 44,
                     new ArrayList<>(Arrays.asList(
-                        new FocusAreaGraduationRequirement(model),
+                        new FocusAreaGraduationRequirement(specialisation),
                         new CompoundGraduationRequirement("Computer Systems Team Project", 8,
                             new ArrayList<>(Arrays.asList(
                                 new SingleGraduationRequirement(new ModuleCode("CS3203")),

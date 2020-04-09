@@ -44,6 +44,12 @@ public class StudentAddCommand extends StudentCommand {
         return String.format(MESSAGE_ADD_STUDENT_SUCCESS, addedStudent);
     }
 
+    /**
+     * Executes {@code StudentAddCommand}
+     * @param model {@code Model} which the command should operate on
+     * @return {@code CommandResult} produced from executing the command
+     * @throws CommandException when an exception occurred while executing the command
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

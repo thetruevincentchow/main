@@ -74,6 +74,12 @@ public class StudentGradeCommand extends StudentCommand {
             sb.toString());
     }
 
+    /**
+     * Executes {@code StudentGradeCommand}
+     * @param model {@code Model} which the command should operate on
+     * @return {@code CommandResult} produced from executing the command
+     * @throws CommandException when an exception occurred while executing the command
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

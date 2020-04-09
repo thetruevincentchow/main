@@ -55,18 +55,24 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Creates an Planner using the UniqueStudentList in the {@code toBeCopied}.
+     * Creates an Planner using an empty {@code UniqueStudentList}
      */
     public Planner() {
         students = new UniqueStudentList();
         loadModules();
     }
 
+    /**
+     * Creates an Planner from an existing {@code ReadOnlyPlanner}
+     */
     public Planner(ReadOnlyPlanner planner) {
         this();
         resetData(planner);
     }
 
+    /**
+     * Loads list of {@code Module} using {@code ModuleDataImporter}
+     */
     private void loadModules() {
         if (modules.isEmpty()) {
             System.out.println("Loading modules. This might take awhile...");
@@ -78,20 +84,38 @@ public class Planner implements ReadOnlyPlanner {
         }
     }
 
+    /**
+     * Returns the {@code UniqueModuleList}
+     *
+     * @return The {@code UniqueModuleList}
+     */
     public UniqueModuleList getModules() {
         return modules;
     }
 
-
-    public boolean addStudent(Student student) {
+    /**
+     * Adds a {@code Student} to the {@code Planner}
+     *
+     * @param student {@code Student} to added to the {@code Planner}
+     */
+    public void addStudent(Student student) {
         students.add(student);
-        return true;
     }
 
+    /**
+     * Sets the list of {@code Student} to be set for the {@code Planner}
+     *
+     * @param students list of {@code Student} to be set for the {@code Planner}
+     */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
 
+    /**
+     * Sets or Resets the current active {@code Student}
+     *
+     * @param target Index to be set as the active {@code Student}
+     */
     public void resetActiveStudent(Student target) {
         if (target == null) {
             activeStudentIndex = -1;
@@ -100,29 +124,49 @@ public class Planner implements ReadOnlyPlanner {
         }
     }
 
-    public boolean resetData(ReadOnlyPlanner planner) {
+    /**
+     * Resets the current data in the {@code Planner} to a given {@code ReadOnlyPlanner}
+     *
+     * @param planner {@code ReadOnlyPlanner} to have data reset to
+     */
+    public void resetData(ReadOnlyPlanner planner) {
         setStudents(planner.getStudentList());
         resetActiveStudent(planner.getActiveStudent());
         activeSemester = planner.getActiveSemester();
-        return true;
     }
 
+    /**
+     * Returns if the {@code Planner} contains a given {@code Student}
+     *
+     * @param student {@code Student} to be checked if exists in {@code Planner}
+     * @return boolean | True if {@code Student} exists in {@code Planner}, False if {@code Student} does not exists in
+     * {@code Planner}
+     */
     public boolean hasStudent(Student student) {
         return students.contains(student);
     }
 
+    /**
+     * Returns if the {@code Planner} contains a given {@code Module}
+     *
+     * @param module {@code Module} to be checked if exists in {@code Planner}
+     * @return boolean | True if {@code Module} exists in {@code Planner}, False if {@code Module} does not exists in
+     * {@code Planner}
+     */
     public boolean hasModule(Module module) {
         return modules.contains(module);
     }
 
-
-    public boolean addModule(Module module) {
+    /**
+     * Adds a {@code Module} to the {@code Planner}
+     *
+     * @param module {@code Module} to added to the {@code Planner}
+     */
+    public void addModule(Module module) {
         modules.add(module);
-        return true;
     }
 
-    // TODO: Replace `ModuleCode` with`Enrollment`.
-    //      Currently we can query with `ModuleCode` and add `Enrollment`.
+    // TODO: Replace `ModuleCode` with`Enrollment` Currently we can query with `ModuleCode` and add `Enrollment`.
     public boolean hasEnrollment(ModuleCode moduleCode) {
         TimeTable timeTable = getActiveTimeTable();
         return timeTable.hasModuleCode(moduleCode);
@@ -144,38 +188,70 @@ public class Planner implements ReadOnlyPlanner {
         enrollment.setGrade(Optional.of(grade));
     }
 
-    public boolean addEnrollment(Enrollment enrollment) {
+    public void addEnrollment(Enrollment enrollment) {
         getActiveTimeTable().addEnrollment(enrollment);
-        return true;
     }
 
-    public boolean removeEnrollment(ModuleCode moduleCode) {
+    public void removeEnrollment(ModuleCode moduleCode) {
         getActiveTimeTable().removeModuleCode(moduleCode);
-        return true;
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Student} in the {@code Planner}
+     *
+     * @return an {@code ObservableList} of {@code Student} in the {@code Planner}
+     */
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner}
+     *
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner}
+     */
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in
+     *
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in
+     */
     public ObservableList<ModuleCode> getEnrolledModulesList() {
         return getActiveStudent().getAllEnrolledModules();
     }
 
+    /**
+     * Gets the current active {@code StudentSemester}
+     *
+     * @return The current active {@code StudentSemester}
+     */
     @Override
     public StudentSemester getActiveSemester() {
         return activeSemester;
     }
 
+    /**
+     * Gets the current active student index
+     *
+     * @return The current active student index
+     */
     @Override
     public int getActiveStudentIndex() {
         return activeStudentIndex;
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} is
+     * exempted from
+     *
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * exempted from
+     */
     @Override
     public ObservableList<ModuleCode> getExemptedModulesList() {
         return getActiveStudent().getExemptedModules();
@@ -191,12 +267,26 @@ public class Planner implements ReadOnlyPlanner {
         return isValidActiveStudentIndex();
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in for the active {@code TimeTable}
+     *
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in for the active {@code TimeTable}
+     */
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
         moduleCodes.addAll(getActiveTimeTable().getModuleCodes());
         return moduleCodes;
     }
 
+    /**
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in
+     *
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
+     * enrolled in
+     */
     public ObservableList<ModuleCode> getAllEnrolledModuleCodes() {
         return getActiveStudent().getAllEnrolledModules();
     }
@@ -235,7 +325,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Replaces the currently active student with the student given by (@code editedStudent).
      *
-     * @params editedStudent Student to copy for replacement.
+     * @param student Student to copy for replacement.
      */
     public void replaceActiveStudent(Student student) {
         requireAllNonNull(student, getActiveStudent());
@@ -350,8 +440,8 @@ public class Planner implements ReadOnlyPlanner {
         }
         Planner planner = (Planner) o;
         return activeStudentIndex == planner.activeStudentIndex
-            && Objects.equals(activeSemester, planner.activeSemester)
-            && students.equals(planner.students);
+                && Objects.equals(activeSemester, planner.activeSemester)
+                && students.equals(planner.students);
     }
 
     @Override

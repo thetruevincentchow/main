@@ -7,27 +7,45 @@ import seedu.planner.model.graduation.SingleGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 
+/**
+ * Abstract class to represent specialisations for Computer Science Degree Programmes
+ */
 public abstract class GenericCsSpecialisation extends GenericSpecialisation {
 
+    /**
+     * List of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     */
     protected List<ModuleCode> primaries;
+    /**
+     * List of {@code ModuleCode} which are valid Electives for a given Specialisation
+     */
     protected List<ModuleCode> electives;
 
+    /**
+     * Returns the list of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     *
+     * @return The list of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     */
     public List<ModuleCode> getPrimaries() {
         return primaries;
     }
 
-    public void setPrimaries(List<ModuleCode> primaries) {
-        this.primaries = primaries;
-    }
-
+    /**
+     * Returns the list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     *
+     * @return The list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     */
     public List<ModuleCode> getElectives() {
         return electives;
     }
 
-    public void setElectives(List<ModuleCode> electives) {
-        this.electives = electives;
-    }
-
+    /**
+     * Returns a boolean representing if the {@code GenericCsSpecialisation} has its primaries fulfilled,
+     * given a list of {@code ModuleCode}
+     *
+     * @param moduleCodes List of {@code ModuleCode}
+     * @return True if fulfilled. False otherwise.
+     */
     public boolean arePrimariesFulfilled(List<ModuleCode> moduleCodes) {
         int minModules = 3;
         int minimum4kModules = 1;
@@ -53,6 +71,13 @@ public abstract class GenericCsSpecialisation extends GenericSpecialisation {
         return modules >= minModules && current4kModules >= minimum4kModules;
     }
 
+    /**
+     * Returns a boolean representing if the {@code GenericCsSpecialisation} has its electives fulfilled,
+     * given a list of {@code ModuleCode}
+     *
+     * @param moduleCodes List of {@code ModuleCode}
+     * @return True if fulfilled. False otherwise.
+     */
     public boolean areElectivesFulfilled(List<ModuleCode> moduleCodes) {
         int minModules = 0;
         int modules = 0;
@@ -68,6 +93,13 @@ public abstract class GenericCsSpecialisation extends GenericSpecialisation {
         return modules >= minModules;
     }
 
+    /**
+     * Returns a boolean representing if the {@code GenericCsSpecialisation} has its primaries and electives fulfilled,
+     * given a list of {@code ModuleCode}
+     *
+     * @param moduleCodes List of {@code ModuleCode}
+     * @return True if fulfilled. False otherwise.
+     */
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
         return arePrimariesFulfilled(moduleCodes) && areElectivesFulfilled(moduleCodes);
     }
