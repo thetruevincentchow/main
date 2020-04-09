@@ -2,6 +2,7 @@ package seedu.planner.logic.commands.module;
 
 import seedu.planner.logic.commands.Command;
 
+//@@author thetruevincentchow
 /**
  * Base command for subcommands involving queries about modules.
  */
@@ -24,3 +25,4 @@ public abstract class ModuleCommand extends Command {
         return COMMAND_WORD + " " + subCommand;
     }
 }
+//@@author

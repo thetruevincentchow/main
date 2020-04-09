@@ -106,6 +106,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSemester(StudentSemester studentSemester) {
+        return planner.hasSemester(studentSemester);
+    }
+
+    @Override
+    public boolean hasActiveTimeTable() {
+        return planner.hasActiveTimeTable();
+    }
+
+    @Override
+    public boolean hasActiveStudent() {
+        return planner.hasActiveStudent();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -150,8 +165,8 @@ public class ModelManager implements Model {
         return planner.getActiveStudent();
     }
 
-    public void setActiveStudent(Student editedStudent) {
-        planner.setActiveStudent(editedStudent);
+    public void replaceActiveStudent(Student editedStudent) {
+        planner.replaceActiveStudent(editedStudent);
     }
 
     public void activateStudent(Student student) {

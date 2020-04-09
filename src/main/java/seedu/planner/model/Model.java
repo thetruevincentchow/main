@@ -54,7 +54,7 @@ public interface Model {
 
     Student getActiveStudent();
 
-    void setActiveStudent(Student editedStudent);
+    void replaceActiveStudent(Student editedStudent);
 
     void activateStudent(Student student);
 
@@ -92,6 +92,7 @@ public interface Model {
 
     boolean hasExemptedModule(ModuleCode moduleCode);
 
+    //@@author gruntultra
     void addLesson(Lesson lesson);
 
     List<Lesson> getLessons();
@@ -99,4 +100,13 @@ public interface Model {
     void removeLesson(Lesson removedLesson);
 
     boolean hasLesson(Lesson lesson);
+    //@@author
+
+    //@@author thetruevincentchow
+    boolean hasSemester(StudentSemester studentSemester);
+
+    boolean hasActiveTimeTable();
+
+    boolean hasActiveStudent();
+    //@@author
 }

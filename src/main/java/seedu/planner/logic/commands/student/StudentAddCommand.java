@@ -11,6 +11,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.student.Student;
 
 
+//@@author thetruevincentchow
 /**
  * Sets a student to the student list.
  */
@@ -37,8 +38,7 @@ public class StudentAddCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for adding the (@addedStudent) to the list of students.
      */
     private String generateSuccessMessage(Student addedStudent) {
         return String.format(MESSAGE_ADD_STUDENT_SUCCESS, addedStudent);
@@ -56,3 +56,4 @@ public class StudentAddCommand extends StudentCommand {
         return new CommandResult(generateSuccessMessage(student));
     }
 }
+//@@author

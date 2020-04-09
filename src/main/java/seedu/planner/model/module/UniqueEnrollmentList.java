@@ -10,12 +10,14 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.model.module.exceptions.DuplicateModuleException;
+import seedu.planner.model.module.exceptions.ModuleNotFoundException;
 import seedu.planner.model.student.Enrollment;
 
 /**
- * A list of ModuleCode that enforces uniqueness between its elements and does not allow nulls.
- * A module code is considered unique by comparing using {@code ModuleCode#equals(Object)}.
- * As such, adding, updating and removal of module codes uses (@code ModuleCode#equals(Object)).
+ * A list of Enrollment that enforces uniqueness between its elements and does not allow nulls.
+ * An enrollment is considered unique by comparing using {@code Enrollment#equals(Object)}.
+ * As such, adding, updating and removal of enrollments uses (@code Enrollment#equals(Object)).
  * <p>
  * Supports a minimal set of list operations.
  */
@@ -40,7 +42,7 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
     public void add(Enrollment toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
     }
@@ -50,16 +52,16 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
      * {@code target} must exist in the list.
      * The module identity of {@code editedModuleCode} must not be the same as another existing module in the list.
      */
-    public void setModuleCode(Enrollment target, Enrollment editedEnrollment) {
+    public void setEnrollment(Enrollment target, Enrollment editedEnrollment) {
         requireAllNonNull(target, editedEnrollment);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            // throw new ModuleNotFoundException(); TODO
+            throw new ModuleNotFoundException();
         }
 
         if (!target.equals(editedEnrollment) && contains(editedEnrollment)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
 
         internalList.set(index, editedEnrollment);
@@ -72,7 +74,7 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
     public void remove(Enrollment toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            // throw new ModuleNotFoundException(); TODO
+            throw new ModuleNotFoundException();
         }
     }
 
@@ -88,7 +90,7 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
     public void setEnrollments(List<Enrollment> enrollments) {
         requireAllNonNull(enrollments);
         if (!enrollmentsAreUnique(enrollments)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
 
         internalList.setAll(enrollments);

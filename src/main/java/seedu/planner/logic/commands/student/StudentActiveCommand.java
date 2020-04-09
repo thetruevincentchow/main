@@ -12,6 +12,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.student.Student;
 
 
+//@@author thetruevincentchow
 /**
  * Sets the currently selected student in the student list.
  */
@@ -33,8 +34,7 @@ public class StudentActiveCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for selecting the given (@code student).
      */
     private String generateSuccessMessage(Student student) {
         return String.format(MESSAGE_ACTIVE_STUDENT_SUCCESS, student);
@@ -56,3 +56,4 @@ public class StudentActiveCommand extends StudentCommand {
         return new CommandResult(generateSuccessMessage(student));
     }
 }
+//@@author

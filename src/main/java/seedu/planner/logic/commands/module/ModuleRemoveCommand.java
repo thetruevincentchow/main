@@ -10,6 +10,7 @@ import seedu.planner.model.Model;
 import seedu.planner.model.module.ModuleCode;
 
 
+//@@author thetruevincentchow
 /**
  * Removes a module from the selected timetable.
  */
@@ -33,16 +34,16 @@ public class ModuleRemoveCommand extends ModuleCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution error message due to the given (@code moduleCode) being absent
+     * from the selected timetable of the selected student.
      */
     private String generateFailureMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_NOT_EXISTS, moduleCode.value);
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for removing the given (@code moduleCode)
+     * from the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
@@ -53,10 +54,10 @@ public class ModuleRemoveCommand extends ModuleCommand {
         requireNonNull(model);
 
         // Check if active student and timetable exists
-        if (model.getActiveStudent() == null) {
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        if (model.getActiveTimeTable() == null) {
+        if (!model.hasActiveTimeTable()) {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
 
@@ -70,3 +71,4 @@ public class ModuleRemoveCommand extends ModuleCommand {
         return new CommandResult(generateSuccessMessage(moduleCode));
     }
 }
+//@@author

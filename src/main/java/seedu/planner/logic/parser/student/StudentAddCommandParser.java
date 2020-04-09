@@ -4,17 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.planner.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.planner.logic.commands.student.StudentAddCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
-import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Major;
@@ -23,23 +22,14 @@ import seedu.planner.model.student.Student;
 import seedu.planner.model.student.TimeTableMap;
 import seedu.planner.model.util.SampleDataUtil;
 
-
+//@@author thetruevincentchow
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new StudentAddCommand object
  */
 public class StudentAddCommandParser implements Parser<StudentAddCommand> {
-
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StudentAddCommand
+     * and returns an StudentAddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -66,3 +56,4 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         return new StudentAddCommand(student);
     }
 }
+//@@author

@@ -5,14 +5,19 @@ import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_SUBCOMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.planner.logic.commands.student.StudentRemoveCommand;
 import seedu.planner.logic.commands.timetable.TimeTableActiveCommand;
 import seedu.planner.logic.commands.timetable.TimeTableAddCommand;
 import seedu.planner.logic.commands.timetable.TimeTableCommand;
 import seedu.planner.logic.commands.timetable.TimeTableListCommand;
+import seedu.planner.logic.commands.timetable.TimeTableRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+//@@author thetruevincentchow
+
+/**
+ * Parses sub-commands of the "timetable" command and creates a new TimeTableCommand object
+ */
 public class TimeTableCommandParser implements Parser<TimeTableCommand> {
     /**
      * Used for initial separation of command word and args.
@@ -37,7 +42,7 @@ public class TimeTableCommandParser implements Parser<TimeTableCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case StudentRemoveCommand.COMMAND_WORD:
+        case TimeTableRemoveCommand.COMMAND_WORD:
             return new TimeTableRemoveCommandParser().parse(arguments);
 
         case TimeTableAddCommand.COMMAND_WORD:
@@ -54,3 +59,4 @@ public class TimeTableCommandParser implements Parser<TimeTableCommand> {
         }
     }
 }
+//@@author

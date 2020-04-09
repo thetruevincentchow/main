@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.model.module.exceptions.DuplicateModuleException;
+import seedu.planner.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * A list of ModuleCode that enforces uniqueness between its elements and does not allow nulls.
@@ -37,7 +39,7 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     public void add(ModuleCode toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
     }
@@ -52,11 +54,11 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            // throw new ModuleNotFoundException(); TODO
+            throw new ModuleNotFoundException();
         }
 
         if (!target.equals(editedModuleCode) && contains(editedModuleCode)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
 
         internalList.set(index, editedModuleCode);
@@ -69,7 +71,7 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     public void remove(ModuleCode toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            // throw new ModuleNotFoundException(); TODO
+            throw new ModuleNotFoundException();
         }
     }
 
@@ -85,7 +87,7 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     public void setModules(List<ModuleCode> modules) {
         requireAllNonNull(modules);
         if (!modulesAreUnique(modules)) {
-            // throw new DuplicateModuleException(); TODO
+            throw new DuplicateModuleException();
         }
 
         internalList.setAll(modules);

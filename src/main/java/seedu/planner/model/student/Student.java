@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +21,6 @@ import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueModuleCodeList;
-import seedu.planner.model.programmes.DegreeProgramme;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 import seedu.planner.model.time.StudentSemester;
 
@@ -38,7 +36,6 @@ public class Student {
     public final UniqueModuleCodeList exemptedModules = new UniqueModuleCodeList();
     // Identity fields
     private Name name;
-    private Degrees degrees;
     private Major major;
     private GenericSpecialisation specialisation;
     private List<Lesson> lessons;
@@ -48,11 +45,9 @@ public class Student {
         this(null, null);
     }
 
-    // TODO: add `degrees` field in `JsonAdaptedStudent` and remove this constructor
     public Student(Name name, Major major) {
         requireAllNonNull(name);
         this.name = name;
-        this.degrees = null;
         this.major = major;
         this.timeTableMap = new TimeTableMap();
     }
@@ -60,7 +55,6 @@ public class Student {
     public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules) {
         requireAllNonNull(name, major, timeTableMap);
         this.name = name;
-        this.degrees = null;
         this.major = major;
         this.timeTableMap = timeTableMap;
         exemptedModules.forEach(this.exemptedModules::add);
@@ -83,10 +77,6 @@ public class Student {
         this.major = major;
     }
 
-    public Degrees getDegrees() {
-        return degrees;
-    }
-
     public TimeTableMap getTimeTableMap() {
         return timeTableMap;
     }
@@ -94,12 +84,6 @@ public class Student {
     public List<Lesson> getLesson() {
         return lessons;
     }
-
-    public boolean addDegrees(DegreeProgramme degree) {
-        this.degrees.addDegree(degree);
-        return true;
-    }
-
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -115,14 +99,22 @@ public class Student {
             return false;
         }
 
+        /**
+         * NOTE: (@code specialisation) are not compared because (@ocde GenericSpecialisation#equal())
+         * and its subclasses are not implemented.
+         */
         Student otherStudent = (Student) other;
-        // TODO: initialize and compare `degrees`
-        return otherStudent.getName().equals(getName());
+        return otherStudent.getName().equals(getName())
+            && otherStudent.getMajor().equals(getMajor())
+            && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
+        /**
+         * NOTE: (@code specialisation) are not hashed because (@ocde GenericSpecialisation#hashCode())
+         * and its subclasses are not implemented.
+         */
         return Objects.hash(name, major, timeTableMap, exemptedModules);
     }
 
@@ -134,8 +126,8 @@ public class Student {
         return builder.toString();
     }
 
-    public boolean isSameStudent(Student student) {
-        return this.equals(student);
+    public boolean isSameStudent(Student other) {
+        return this.name.equals(other.name);
     }
 
     public TimeTable getTimeTable(StudentSemester activeSemester) {
@@ -199,7 +191,6 @@ public class Student {
         for (Enrollment enrollment : getAllEnrollments()) {
             Optional<Grade> optionalGrade = enrollment.getGrade();
             if (optionalGrade.isPresent()) {
-                OptionalDouble gradePoint = enrollment.getGradePoint();
                 cumulativeGrade.accumulate(optionalGrade.get(), enrollment.getCredit());
             } else {
                 cumulativeGrade.accumulatePending(enrollment.getCredit());

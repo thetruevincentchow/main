@@ -133,10 +133,24 @@ public class PlannerTest {
             return null;
         }
 
+        //@@author gruntultra
         @Override
         public List<Lesson> getLessons() {
             return new ArrayList<>();
         }
+        //@@author
+
+        //@@author thetruevincentchow
+        @Override
+        public boolean hasActiveTimeTable() {
+            return false;
+        }
+
+        @Override
+        public boolean hasActiveStudent() {
+            return false;
+        }
+        //@@author
     }
 
 }

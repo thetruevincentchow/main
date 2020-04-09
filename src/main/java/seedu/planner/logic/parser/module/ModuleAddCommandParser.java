@@ -9,10 +9,14 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
+//@@author thetruevincentchow
+/**
+ * Parses input arguments and creates a new ModuleAddCommand object
+ */
 public class ModuleAddCommandParser implements Parser<ModuleAddCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
-     * and returns a DeclareMajorCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ModuleAddCommand
+     * and returns a ModuleAddCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -29,3 +33,4 @@ public class ModuleAddCommandParser implements Parser<ModuleAddCommand> {
         return new ModuleAddCommand(moduleCode);
     }
 }
+//@@author

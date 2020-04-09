@@ -9,10 +9,10 @@ import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.student.Student;
 import seedu.planner.model.time.StudentSemester;
 
 
+//@@author thetruevincentchow
 /**
  * Adds a timetable to the currently selected student's timetable list.
  */
@@ -37,8 +37,8 @@ public class TimeTableAddCommand extends TimeTableCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for adding an empty timetable
+     * with the given (@code semesterYear) to the currently selected student's list of timetables.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
         return String.format(MESSAGE_ADD_TIMETABLE_SUCCESS, semesterYear);
@@ -48,14 +48,12 @@ public class TimeTableAddCommand extends TimeTableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student activeStudent = model.getActiveStudent();
-        if (activeStudent == null) {
+        // Check if active student exists
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        // TODO: validate semester
-
-        if (model.getPlanner().hasSemester(studentSemester)) {
+        if (model.hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_EXISTING_SEMESTER, studentSemester));
         }
 
@@ -64,3 +62,4 @@ public class TimeTableAddCommand extends TimeTableCommand {
         return new CommandResult(generateSuccessMessage(studentSemester));
     }
 }
+//@@author

@@ -3,31 +3,27 @@ package seedu.planner.logic.parser.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_GRADE;
-
-import java.util.stream.Stream;
+import static seedu.planner.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.planner.logic.commands.module.ModuleGradeCommand;
+import seedu.planner.logic.commands.module.ModuleGradeSetCommand;
+import seedu.planner.logic.commands.module.ModuleGradeViewCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
-import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.grades.LetterGrade;
 import seedu.planner.model.module.ModuleCode;
 
+//@@author thetruevincentchow
+/**
+ * Parses input arguments and creates a new ModuleGradeCommand object
+ */
 public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
-     * and returns a DeclareMajorCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ModuleGradeCommand
+     * and returns a ModuleGradeCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -46,9 +42,10 @@ public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_GRADE)) {
             String letterGradeString = argMultimap.getValue(PREFIX_GRADE).get();
             LetterGrade letterGrade = ParserUtil.parseLetterGrade(letterGradeString);
-            return new ModuleGradeCommand(moduleCode, letterGrade);
+            return new ModuleGradeSetCommand(moduleCode, letterGrade);
         } else {
-            return new ModuleGradeCommand(moduleCode);
+            return new ModuleGradeViewCommand(moduleCode);
         }
     }
 }
+//@@author

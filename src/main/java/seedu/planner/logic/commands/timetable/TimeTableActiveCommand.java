@@ -9,12 +9,12 @@ import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
-import seedu.planner.model.student.Student;
 import seedu.planner.model.time.StudentSemester;
 
 
+//@@author thetruevincentchow
 /**
- * Sets a timetable as the currently selected timetable in the currently selected student's timetable list.
+ * Sets a timetable as the currently selected timetable from the currently selected student's timetable list.
  */
 public class TimeTableActiveCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "active";
@@ -37,8 +37,8 @@ public class TimeTableActiveCommand extends TimeTableCommand {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for selecting the timetable with the given (@code semesterYear)
+     * for the currently selected student.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
         return String.format(MESSAGE_ACTIVE_TIMETABLE_SUCCESS, semesterYear);
@@ -48,12 +48,12 @@ public class TimeTableActiveCommand extends TimeTableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Student activeStudent = model.getActiveStudent();
-        if (activeStudent == null) {
+        // Check if active student exists
+        if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        if (!model.getPlanner().hasSemester(studentSemester)) {
+        if (!model.hasSemester(studentSemester)) {
             throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));
         }
 
@@ -62,3 +62,4 @@ public class TimeTableActiveCommand extends TimeTableCommand {
         return new CommandResult(generateSuccessMessage(studentSemester));
     }
 }
+//@@author

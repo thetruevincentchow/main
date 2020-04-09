@@ -3,6 +3,10 @@ package seedu.planner.model.grades;
 import java.util.Objects;
 import java.util.OptionalDouble;
 
+/**
+ * Encapsulates a grade and the option to exercise S/U.
+ * This correctly handles CS/CU grades (which are not counted as exercising the S/U option voluntarily).
+ */
 public class Grade {
     public final LetterGrade letterGrade;
     public final boolean isSu;

@@ -1,5 +1,7 @@
 package seedu.planner.model.time;
 
+import java.util.Objects;
+
 import seedu.planner.commons.core.index.Index;
 
 public class DegreeYear {
@@ -26,5 +28,10 @@ public class DegreeYear {
         return other == this // short circuit if same object
             || (other instanceof DegreeYear // instanceof handles nulls
             && year == ((DegreeYear) other).year); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year);
     }
 }

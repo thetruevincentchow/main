@@ -12,6 +12,7 @@ import seedu.planner.model.student.Student;
 import seedu.planner.model.time.StudentSemester;
 
 
+//@@author thetruevincentchow
 /**
  * Lists all timetables in the currently selected student's timetable list.
  */
@@ -25,8 +26,8 @@ public class TimeTableListCommand extends TimeTableCommand {
     public static final String MESSAGE_SUCCESS = "Listed semesters for the active student (%1$s):\n%2$s";
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message for listing the timetables of
+     * the currently selected student.
      */
     private String generateSuccessMessage(Student activeStudent, List<StudentSemester> semesters) {
         return String.format(MESSAGE_SUCCESS, activeStudent, semesters);
@@ -41,7 +42,7 @@ public class TimeTableListCommand extends TimeTableCommand {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
 
-        // TODO: check there is an active timetable
         return new CommandResult(generateSuccessMessage(activeStudent, activeStudent.getStudentSemesters()));
     }
 }
+//@@author

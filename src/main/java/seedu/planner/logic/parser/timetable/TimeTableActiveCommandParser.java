@@ -4,37 +4,27 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
-
-import java.util.stream.Stream;
+import static seedu.planner.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.planner.logic.commands.timetable.TimeTableActiveCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
-import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.time.DegreeYear;
 import seedu.planner.model.time.Semester;
 import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
+//@@author thetruevincentchow
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new TimeTableActiveCommand object
  */
 public class TimeTableActiveCommandParser implements Parser<TimeTableActiveCommand> {
-
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TimeTableActiveCommand
+     * and returns an TimeTableActiveCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -61,3 +51,4 @@ public class TimeTableActiveCommandParser implements Parser<TimeTableActiveComma
         return new TimeTableActiveCommand(studentSemester);
     }
 }
+//@@author

@@ -2,6 +2,8 @@ package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.stream.Stream;
+
 import seedu.planner.commons.core.index.Index;
 import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
@@ -36,10 +38,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code zeroBasedYear} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code year} into a {@code DegreeYear} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified degree year is invalid.
      */
     public static DegreeYear parseYear(String year) throws ParseException {
         String trimmedYear = year.trim();
@@ -105,6 +107,7 @@ public class ParserUtil {
         }
     }
 
+    //@@author gruntultra
     public static String parseLessonNumber(String lessonNumber) throws ParseException {
         requireNonNull(lessonNumber);
         try {
@@ -113,4 +116,15 @@ public class ParserUtil {
             throw new ParseException("Lessons Should be a number");
         }
     }
+    //@@author
+
+    //@@author thetruevincentchow
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    //@@author
 }
