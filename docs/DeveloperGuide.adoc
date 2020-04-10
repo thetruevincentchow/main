@@ -269,24 +269,26 @@ The application has a *"Calendar Schedule"* window implemented to allow students
 
 There are two ways to view the Calendar. You can click on the launch calendar to see the lessons that you have added. Another way is to click on the semester button in the module description page to see the lessons available.
 
-The Calendar builds its UI based on 999 implemented components:
+The Calendar builds its UI based on this implemented components:
 
-* *METHOD ACTION NAME HERE* `method name here`
+* *Show Calendar* `setCalendar(List<Lesson> lessons)`
 
 _We will add more about how we implemented this further, and the design decisions made._
 
-.Calendar UI ??DIAGRAM??
-image::#INSERTDIAGRAM[align="center"]
+.Activity Diagram for launching Calendar
+image::CalendarActivityDiagram.png[align="center"]
+
+The Calendar populates each of the Label in the grid pane based on the list of `Lesson` provided by the planner.
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+* *Alternative 1 (Current implementation):* To build the table using scene builder with each labels being shaded to show the time
+** Pros: Every single UI component of the calendar is customizable, allowing for further modifications.
+** Cons: Tedious and duplicated code for each Label to be set a value.
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* Use another library jfxtras which has an i calendar API
+** Pros: Reduce the amount of work needed to create the component
+** Cons: Comes with bugs that scene builder is unable to support
 
 [[Implementation-Grade]]
 === Grade Management
@@ -362,9 +364,25 @@ The `Lesson` entities are automatically created and populated through the JSON d
 This coupling allows us to detect if a student tries to add duplicate `Lesson` entities and perform error handling or alternative advisement, where possible.
 
 .Class Diagram of `Lesson` Implementation
-image::#INSERTDIAGRAM[align="center"]
+image::LessonClassDiagram.png[align="center"]
 
-_We will add more about how we implemented this further, and the design decisions made._
+The attributes of the `Lesson` class are retrieved from the serialised JSON file.
+
+This implementation consist of 3 commands.
+
+* `LessonAdd` - Finds the lessons from the module and add it into the list of lessons for the active student.
+* `LessonList` - List down the lessons for the active student.
+* `LessonRemove` - Remove the lessons from the active student based on the provided index.
+
+===== Adding of Lesson
+The `LessonAddCommandParser` method is called and it will get the `ModuleCode` and `Semester` provided by the arguments. It will run the `LessonDataImporter` class run method to convert the json file to `Lesson` Object. This is then added to the active student on the planner.
+
+===== Listing of Lesson
+The `LessonListCommand` method is called and it will iterate through the list of `Lesson` that is associated with the active student in the planner.
+
+===== Deleting of Lesson
+The `LessonRemoveCommandParser` method is called and it will get the `Index` provided by the arguments. It will retrieve the list of `Lesson` and delete the object based on the index given.
+
 
 ==== Design Considerations
 
@@ -400,7 +418,7 @@ On First Launch, all the modules that are available in NUS (in accordance to NUS
 Students are able utilise the _"Search Bar"_ to search for any module based on the `module code` or `module name`. When given the query with the corresponding values, the following logic takes place:
 
 .Sequence Diagram for Module Search
-image::#INSERTDIAGRAM[align="center"]
+image::sequenceDiagramSearch.png[align="center"]
 
 If any results match the query enetered, they are populated into the *Search Screen* GUI for the user.
 
