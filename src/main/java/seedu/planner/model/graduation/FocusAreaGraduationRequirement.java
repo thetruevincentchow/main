@@ -91,7 +91,7 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
             }
             return sb.toString();
         } catch (Exception e) {
-            return "[X] Focus Area: Unknown (Please set your specialisation first!)";
+            return "[?] Focus Area: Unknown (Please set your specialisation first!)";
         }
     }
 

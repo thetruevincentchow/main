@@ -3,13 +3,20 @@ package seedu.planner.model.programmes;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import seedu.planner.model.Model;
 import seedu.planner.model.graduation.CompoundGraduationRequirement;
+import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
 import seedu.planner.model.graduation.SingleGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
+import seedu.planner.model.programmes.specialisations.is.GenericIsSpecialisation;
 
 public class InformationSystemsProgramme extends DegreeProgramme {
 
-    public InformationSystemsProgramme() { // TODO: Load from JSON or XML
+    public InformationSystemsProgramme(Model model) { // TODO: Load from JSON or XML
+        GenericIsSpecialisation specialisation = null;
+        if (model != null) {
+            specialisation = (GenericIsSpecialisation) model.getActiveStudent().getSpecialisation();
+        }
         graduationRequirementList = new ArrayList<>();
         graduationRequirementList.add(new CompoundGraduationRequirement("University Level Requirements",
             20, new ArrayList<>(Arrays.asList(
@@ -44,7 +51,7 @@ public class InformationSystemsProgramme extends DegreeProgramme {
                 new SingleGraduationRequirement(new ModuleCode("ST2334"))
             ))),
             new CompoundGraduationRequirement("Programme Electives", 24, new ArrayList<>(Arrays.asList(
-
+                new FocusAreaGraduationRequirement(specialisation)
             ))),
             new CompoundGraduationRequirement("Internship or Dissertation", 12,
                 new ArrayList<>(Arrays.asList(

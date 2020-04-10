@@ -329,7 +329,7 @@ image::ModulePanel.png[width="600", align="left"]
 
 ==== Viewing information on a specific module
 
-You can click on any of the modules to see the module description. It will launch a separate screen to show you the details
+You can click on any of the modules to see the module description. It will launch a separate screen to show you the details.
 
 Here is the *Module Description Screen* (_Figure X. below_).
 

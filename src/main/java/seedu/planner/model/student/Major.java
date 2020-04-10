@@ -41,7 +41,7 @@ public class Major {
         if (major.toUpperCase().equals("CS")) {
             this.degreeProgramme = new ComputerScienceProgramme(null);
         } else if (major.toUpperCase().equals("IS")) {
-            this.degreeProgramme = new InformationSystemsProgramme();
+            this.degreeProgramme = new InformationSystemsProgramme(null);
         }
         this.major = major;
     }
