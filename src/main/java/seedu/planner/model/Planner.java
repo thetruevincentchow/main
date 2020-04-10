@@ -373,10 +373,6 @@ public class Planner implements ReadOnlyPlanner {
     public TimeTable getActiveTimeTable() {
         requireAllNonNull(getActiveStudent());
 
-        if (activeSemester == null && !getActiveStudent().getTimeTableMap().isEmpty()) {
-            activateValidSemester();
-        }
-
         return getActiveStudent().getTimeTable(activeSemester);
     }
 

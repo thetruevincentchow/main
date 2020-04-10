@@ -49,7 +49,11 @@ public class JsonAdaptedStudentSemester {
         }*/
         final SemesterYear modelSemYear = semYear.toModelType();
 
-        final DegreeYear modelDegreeYear = new DegreeYear(degreeYear);
-        return new StudentSemester(modelSemYear, modelDegreeYear);
+        try {
+            final DegreeYear modelDegreeYear = new DegreeYear(degreeYear);
+            return new StudentSemester(modelSemYear, modelDegreeYear);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalValueException(DegreeYear.MESSAGE_CONSTRAINTS);
+        }
     }
 }

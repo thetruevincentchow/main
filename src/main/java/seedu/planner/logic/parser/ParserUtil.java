@@ -48,7 +48,7 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
         } else {
             int yearInt = Integer.parseInt(trimmedYear);
-            if (yearInt < 0 || yearInt > 6) {
+            if (yearInt < DegreeYear.MIN_VALUE || yearInt > DegreeYear.MAX_VALUE) { // Year 1 to 6 inclusive
                 throw new ParseException(MESSAGE_INVALID_DEGREE_YEAR);
             }
         }

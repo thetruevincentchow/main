@@ -119,8 +119,8 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ** Must be alphanumeric, spaces are allowed
 * `SEM` - an academic semester
 ** Must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`
-* `YEAR` - a year of study (e.g. Year 1, 2, 3, 4...)
-** Must be a non-negative integer
+* `YEAR` - a year of study (e.g. Year 1, 2, 3, 4, 5, 6)
+** Must be a non-negative integer from 1 to 6
 * `GRADE` a letter grade for a module
 ** Must be one of the following: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `W`, `EXE`
 ====
@@ -148,7 +148,7 @@ Format: `exit`
 
 The following commands below are part of the application's *Student Management*, which allow you manage the students _which include you_ for the academic planning. You are highly encouraged to use this *Student Management* feature to explore different academic plans.
 
-When managing students, you will be able to see the *Student View Screen* (_Figure 3. below_).
+When managing students, you will be able to see the *Student View Screen* (_Figure 2. below_).
 
 .Student List View
 image::StudentList.png[width="600", align="left"]
@@ -158,7 +158,6 @@ image::StudentList.png[width="600", align="left"]
 You can use this command to add a <<student-management,student>> to the student list.
 
 [NOTE]
-
 You may not add multiple students with the same name.
 
 Format: `student add n/NAME major/MAJOR`
@@ -171,6 +170,16 @@ Example:
 
 You can use this command to remove the <<student-management,student>> with the number `INDEX` from the student list.
 
+[NOTE]
+When you use this command on the same student as the student you are currently selecting (see the <<student-active-command,`student active`>> command),
+the timetable you have currently selected (see the <<timetable-active-command,`timetable active`>> command) will be deselected (if a timetable was selected).
+
+[NOTE]
+To work on another student's timetable, first use the  <<student-active-command,`student active`>> command to select a student, then
+use the <<timetable-active-command,`timetable active`>> command to select another timetable. +
+You may see the list of students using the <<student-list-command,`student list`>> command, and
+the list of timetables of a selected student has using the <<timetable-list-command,`timetable list`>> command.
+
 Format: `student remove INDEX`
 
 Example:
@@ -182,12 +191,18 @@ Example:
 
 You can use this command to select the <<student-management,student>> with the number `INDEX` from the student list.
 
+[NOTE]
+When you use this command, any timetable you have selected (see the <<timetable-active-command,`timetable active`>> command) will be deselected.
+To work on the newly selected student's timetable, use the <<timetable-active-command,`timetable active`>> command to select a timetable. +
+You may see the list of timetables the selected student has using the <<timetable-list-command,`timetable list`>> command.
+
 Format: `student active INDEX`
 
 Example:
 
 * `student active 1`
 
+[[student-list-command]]
 ==== Viewing the student list: `student list`
 
 You can use this command to display a numbered list of students in the student list (if populated).
@@ -241,7 +256,7 @@ Examples:
 
 The following commands below are part of the application's *Timetable Management*, which allow you manage the timetables of your academic plan.
 
-When managing your <<timetable-management,timetable>>, you will be able to see the *Timetable View Screen* (_Figure 4. below_).
+When managing your <<timetable-management,timetable>>, you will be able to see the *Timetable View Screen* (_Figure 3. below_).
 
 .Timetable List View
 image::TimeTableList.png[width="600", align="left"]
@@ -254,11 +269,9 @@ All the following commands require a <<student-management,student>> to be select
 You can use this command to add a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
 [NOTE]
-This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>.
-[TIP]
-While any non-negative degree year for the `YEAR` parameter is allowed (e.g. 0, 1, 999999999), try to use reasonable values for your academic planning.
-[TIP]
-The `YEAR` parameter can take the value of `0`. You can use this to add modules you have taken before entering NUS which you do not want to mark as exempt (using the <<exempt-add-command,`exempt add`>> command).
+This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
+The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
+The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
 
 Format: `timetable add year/YEAR sem/SEM`
 
@@ -270,6 +283,11 @@ Example:
 
 You can use this command to remove a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
+[NOTE]
+This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
+The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
+The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
+
 Format: `timetable remove year/YEAR sem/SEM`
 
 Example:
@@ -280,12 +298,19 @@ Example:
 ==== Selecting a timetable: `timetable active`
 
 You can use this command to select a <<timetable-management,timetable>> of the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+
+[NOTE]
+This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
+The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
+The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
+
 Format: `timetable active year/YEAR sem/SEM`
 
 Example:
 
 * `timetable active year/2 sem/ONE`
 
+[[timetable-list-command]]
 ==== Viewing the timetable list: `timetable list`
 
 You can use this command to list all the <<timetable-management,timetables>>  of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
@@ -468,6 +493,11 @@ Example:
 
 The following commands below are part of the application's *Grade Management*, which allow you to manage and view your grades to see modules affected in your academic plan.
 
+[TIP]
+The same module can be added into multiple timetables of the same student. Therefore, each enrollment (one per semester) of the same module can have a separate grade. +
+For example, it is possible for you to enroll in the module `CS2040` during `year/1 sem/ONE` and then `year/1 sem/TWO`. +
+You may refer to <<timetable-management,*Timetable Management*>> to see how you can use timetables.
+
 ==== Managing a module's grade: `module grade`
 
 You can use this command to display the <<grade-management,grade>> of the specified module.
@@ -494,10 +524,19 @@ Example:
 
 ==== Viewing a student's grade: `student grade`
 
-You can use this command to display  the cumulative grade of the selected student (see the <<student-active-command,`student active`>> command).
+You can use this command to display the <<cap,Cumulative Average Point>> of the selected student (see the <<student-active-command,`student active`>> command). +
+Other statistics such as the number of modules declared as <<su,Satisfactory/Unsatisfactory>> are also shown. +
+You may also see a list of modules taken and their grades.
 
 [NOTE]
 This command requires a student to be selected (using the <<student-active-command,`student active`>> command).
+[TIP]
+Use the <<module-grade-command,`module grade`>> command to set the grade of modules in the currently selected timetable of a student.
+[TIP]
+The same module can be added into multiple timetables of the same student. Refer to <<timetable-management,*Timetable Management*>> to see how you can use timetables.
+[TIP]
+Use this command to be informed of your academic progress and to plan ahead for difficult modules.
+
 
 Format: `student grade`
 
@@ -571,6 +610,12 @@ Refers to one of academic specialisations students can optionally read in NUS.
 
 [[timetable]] Timetable::
 Refers to the module timetable that students will go for classes in NUS.
+
+[[cap]] Cumulative Average Point::
+Refers to the average grade points of all modules taken, weighted by the number of module credits for each counted module.
+
+[[su]] Satisfactory/Unsatisfactory::
+Refers to a module not being assigned grade points, and thus not affecting a student's Cumulative Average Point.
 
 == Command & Features Summary
 

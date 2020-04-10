@@ -6,7 +6,7 @@ import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
 /**
- * A utility class containing a list of {@code Index} objects to be used in tests.
+ * A utility class containing a list of {@code StudentSemester} objects to be used in tests.
  */
 public class TypicalStudentSemesters {
     public static final StudentSemester YEAR_1_SEM_ONE = new StudentSemester(new SemesterYear(Semester.ONE), 1);
