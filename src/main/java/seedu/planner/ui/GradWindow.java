@@ -27,26 +27,29 @@ public class GradWindow extends UiPart<Region> {
 
     public GradWindow(ReadOnlyPlanner planner) {
         super(FXML);
+        setGrad(planner);
+    }
+
+    public void setGrad(ReadOnlyPlanner planner) {
         if (planner.getStudentList().size() == 0) {
             graduationStatus.setText("No Active Student Detected");
         } else {
-            Student firstStudent = planner.getStudentList().get(0);
+            Student activeStudent = planner.getActiveStudent();
             graduationStatus.setStyle("-fx-font: 24 arial; -fx-text-fill: white;");
-            graduationStatus.setText("Graduation Requirement for " + firstStudent.getName());
-            List<GraduationRequirement> gradRequire = firstStudent.getMajor().getGraduationRequirements();
+            graduationStatus.setText("Graduation Requirement for " + activeStudent.getName());
+            List<GraduationRequirement> gradRequire = activeStudent.getMajor().getGraduationRequirements();
             StringBuffer sb = new StringBuffer();
             boolean isFirst = true;
             for (GraduationRequirement graduationRequirement : gradRequire) {
                 if (!isFirst) {
                     sb.append("\n");
                 }
-                sb.append(graduationRequirement.getString(firstStudent.getAllEnrolledModules()));
+                sb.append(graduationRequirement.getString(activeStudent.getAllEnrolledModules()));
             }
             info.setStyle("-fx-font: 16 arial; -fx-text-fill: white;");
             info.setText(sb.toString());
 
         }
-
     }
 
     /**
