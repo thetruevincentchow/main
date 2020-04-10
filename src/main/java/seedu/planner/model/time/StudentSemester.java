@@ -5,11 +5,15 @@ import java.util.Objects;
 
 public class StudentSemester implements Comparable<StudentSemester> {
     protected final SemesterYear semYear;
-    protected final int degreeYear;
+    protected final DegreeYear degreeYear;
 
-    public StudentSemester(SemesterYear semYear, int degreeYear) {
+    public StudentSemester(SemesterYear semYear, DegreeYear degreeYear) {
         this.semYear = semYear;
         this.degreeYear = degreeYear;
+    }
+
+    public StudentSemester(SemesterYear semYear, int degreeYear) {
+        this(semYear, new DegreeYear(degreeYear));
     }
 
     public SemesterYear getSemesterYear() {
@@ -17,7 +21,7 @@ public class StudentSemester implements Comparable<StudentSemester> {
     }
 
     public int getDegreeYear() {
-        return degreeYear;
+        return degreeYear.getYear();
     }
 
     @Override
@@ -31,13 +35,13 @@ public class StudentSemester implements Comparable<StudentSemester> {
             return false;
         } else {
             return semYear.equals(((StudentSemester) other).semYear)
-                && degreeYear == ((StudentSemester) other).degreeYear;
+                && degreeYear.equals(((StudentSemester) other).degreeYear);
         }
     }
 
     @Override
     public String toString() {
-        return String.format("Year %d, %s", degreeYear, semYear);
+        return String.format("Year %d, %s", degreeYear.getYear(), semYear);
     }
 
     @Override

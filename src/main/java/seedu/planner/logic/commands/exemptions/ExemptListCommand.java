@@ -2,6 +2,8 @@ package seedu.planner.logic.commands.exemptions;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
@@ -50,6 +52,22 @@ public class ExemptListCommand extends ExemptCommand {
         }
 
         return new CommandResult(generateSuccessMessage(model.getExemptedModulesList()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
     }
 }
 //@@author

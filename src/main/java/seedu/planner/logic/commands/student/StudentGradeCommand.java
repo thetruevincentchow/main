@@ -3,6 +3,7 @@ package seedu.planner.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -91,6 +92,22 @@ public class StudentGradeCommand extends StudentCommand {
 
         CumulativeGrade cumulativeGrade = activeStudent.getCumulativeGrade();
         return new CommandResult(generateSuccessMessage(activeStudent, cumulativeGrade));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
     }
 }
 //@@author

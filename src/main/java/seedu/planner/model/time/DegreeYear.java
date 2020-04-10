@@ -5,6 +5,9 @@ import java.util.Objects;
 import seedu.planner.commons.core.index.Index;
 
 public class DegreeYear {
+    public static final String MESSAGE_CONSTRAINTS =
+        "Year must be a non-negative unsigned integer, from 1 to 6, representing your current year of study.";
+
     private int year;
 
     /**

@@ -2,6 +2,8 @@ package seedu.planner.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -55,6 +57,22 @@ public class StudentListCommand extends StudentCommand {
         ObservableList<Student> lastShownList = model.getStudentList();
 
         return new CommandResult(generateSuccessMessage(lastShownList));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
     }
 }
 //@@author

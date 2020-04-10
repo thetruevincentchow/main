@@ -43,7 +43,7 @@ public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
         final Semester sem = ParserUtil.parseSemester(argMultimap.getValue(PREFIX_STUDENT_SEM).get());
 
         SemesterYear semesterYear = new SemesterYear(sem, 0); // TODO: input academic year
-        StudentSemester studentSemester = new StudentSemester(semesterYear, year.getYear());
+        StudentSemester studentSemester = new StudentSemester(semesterYear, year);
         return new TimeTableAddCommand(studentSemester);
     }
 }

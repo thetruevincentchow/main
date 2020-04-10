@@ -20,8 +20,7 @@ import seedu.planner.model.time.Semester;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DEGREE_YEAR =
-            "Year must be a non-negative unsigned integer, from 1 to 6, representing your current year of study.";
+    public static final String MESSAGE_INVALID_DEGREE_YEAR = DegreeYear.MESSAGE_CONSTRAINTS;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
