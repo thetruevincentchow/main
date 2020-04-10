@@ -8,11 +8,11 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.planner.commons.util.ModuleDataImporterUtil;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
-import seedu.planner.model.module.ModuleDataImporter;
 import seedu.planner.model.module.UniqueModuleList;
 import seedu.planner.model.student.Enrollment;
 import seedu.planner.model.student.Student;
@@ -76,7 +76,7 @@ public class Planner implements ReadOnlyPlanner {
     private void loadModules() {
         if (modules.isEmpty()) {
             System.out.println("Loading modules. This might take awhile...");
-            List<Module> modulesToImport = ModuleDataImporter.run();
+            List<Module> modulesToImport = ModuleDataImporterUtil.run();
             System.out.println("Done!");
             if (modulesToImport != null) {
                 modulesToImport.forEach(x -> modules.add(x));
@@ -336,6 +336,7 @@ public class Planner implements ReadOnlyPlanner {
      * Activates the given {@code student}. Any active semester will be deactivated.
      * If {@code student} is {@code null}, then the active student (if any) will be deactivated.
      * Only one {@link Student} may be active at a time.
+     *
      * @param student Student to activate
      */
     public void activateStudent(Student student) {

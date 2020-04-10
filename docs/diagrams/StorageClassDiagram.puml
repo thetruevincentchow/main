@@ -11,14 +11,30 @@ Interface PlannerStorage <<Interface>>
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonPlannerStorage
+Class JsonAdaptedGrade #green
+Class JsonAdaptedModuleCode #green
+Class JsonAdaptedStudent #green
+Class JsonAdaptedStudentSemester #green
+Class JsonAdaptedTimeTable #green
+Class JsonAdaptedTimeTableMap #green
+Class JsonAdaptedTimeTablePair #green
+Class JsonSerializableStudent #green
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> PlannerStorage
+JsonAdaptedGrade o.. JsonSerializableStudent
+JsonAdaptedModuleCode o.. JsonSerializableStudent
+JsonAdaptedStudent o.. JsonSerializableStudent
+JsonAdaptedStudentSemester o.. JsonSerializableStudent
+JsonAdaptedTimeTable o.. JsonSerializableStudent
+JsonAdaptedTimeTableMap o.. JsonSerializableStudent
+JsonAdaptedTimeTablePair o.. JsonSerializableStudent
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonPlannerStorage .left.|> PlannerStorage
-JsonPlannerStorage .down.> JsonSerializablePlannerStorage
-JsonSerializablePlannerStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonPlannerStorage .up.|> PlannerStorage
+
+JsonSerializablePlannerStorage -up|> JsonPlannerStorage
+
+JsonSerializablePlannerStorage .right.> JsonSerializableStudent
 @enduml

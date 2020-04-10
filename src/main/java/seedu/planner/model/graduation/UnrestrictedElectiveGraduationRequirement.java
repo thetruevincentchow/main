@@ -26,7 +26,7 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
      * @return True if fulfilled. False otherwise.
      */
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
-        return false;
+        return true;
     }
 
     /**
@@ -46,6 +46,6 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
      * @return A String representation of the {@code UnrestrictedElectiveGraduationRequirement} object
      */
     public String getString(List<ModuleCode> moduleCodes) {
-        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] Unrestricted Elective\n";
+        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] Unrestricted Electives\n";
     }
 }

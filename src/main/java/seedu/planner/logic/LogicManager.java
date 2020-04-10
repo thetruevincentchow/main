@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.util.ModuleDataImporterUtil;
 import seedu.planner.logic.commands.Command;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -15,7 +16,6 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.Model;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.module.Module;
-import seedu.planner.model.module.ModuleDataImporter;
 import seedu.planner.storage.Storage;
 
 /**
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        ModuleDataImporter moduleDataImporter = new ModuleDataImporter();
+        ModuleDataImporterUtil moduleDataImporter = new ModuleDataImporterUtil();
         return moduleDataImporter.getFilteredModuleList();
     }
 
