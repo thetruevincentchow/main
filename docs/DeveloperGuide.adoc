@@ -3,9 +3,9 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
-:toclevels: 3
+:toclevels: 2
 :sectnums:
-:sectnumlevels: 4
+:sectnumlevels: 6
 :sectlinks:
 :sectanchors:
 :imagesDir: images
@@ -20,7 +20,14 @@ endif::[]
 
 By: `Team AY1920S2-CS2103T-W13-4`      Since: `Feb 2020`      Licence: `MIT`
 
-== Setting up
+== Before You Begin
+
+Welcome to the *Developer Guide* for the NUS Module Planner! Unlike the *User Guide* that has been ordered in the flow for a user, this guide has been ordered lexicographically (specifically for _Implementation_) to assist you in finding the features and their implementations faster.
+
+[TIP]
+As usual, if you have questions, feature suggestions or bugs to report, feel free to open an issue in our *Issue Tracker* on GitHub!
+
+== Setting Up
 
 Refer to the guide <<SettingUp#, here>>.
 
@@ -76,7 +83,7 @@ image::ArchitectureSequenceDiagram.png[]
 The sections below give more details of each component.
 
 [[Design-Ui]]
-=== UI component
+=== UI Component
 
 .Structure of the UI Component
 image::UiClassDiagram.png[]
@@ -93,7 +100,7 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 [[Design-Logic]]
-=== Logic component
+=== Logic Component
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
@@ -116,29 +123,22 @@ image::DeleteSequenceDiagram.png[]
 NOTE: The lifeline for `StudentRemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 [[Design-Model]]
-=== Model component
+=== Model Component
 
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/planner/model/PlannerModel.java[`PlannerModel.java`]
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/Planner.java[`Planner.java`]
 
-The `PlannerModel`,
+The `Planner`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Planner data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-////
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Planner`, which `Person` can reference. This would allow `Planner` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
-////
-
 [[Design-Storage]]
-=== Storage component
+=== Storage Component
 
 .Structure of the Storage Component
 image::StorageClassDiagram.png[]
@@ -151,190 +151,222 @@ The `Storage` component,
 * can save the Planner data in json format and read it back.
 
 [[Design-Commons]]
-=== Common classes
+=== Common Classes
 
 Classes used by multiple components are in the `seedu.planner.commons` package.
 
+[[Implementation]]
 == Implementation
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes our implementation and design decision details of the features in the NUS Module Planner. As a reminder, they have been ordered laconically for easier search and reference.
 
-=== Declaration Implementation
-==== Declare Major
+[[Implementation-Calendar]]
+=== Calendar View
 
-The `declare major` command associates an existing `Major` entity (with all associated values) provided by the user.
+The application has a *"Calendar Schedule"* window implemented to allow students to see their timetable and lesson schedules. Once a lesson has been added, will they be visible in this window upon launch by the `Launch Calendar` button.
 
-It is appended with the tag `MAJOR`.
+==== Calendar UI Implementation
 
-[NOTE]
-`Major` entities are automatically created and populated through the JSON data received from NUSMods.
+There are two ways to view the Calendar. You can click on the launch calendar to see the lessons that you have added. Another way is to click on the semester button in the module description page to see the lessons available.
 
-===== Current Implementation
+The Calendar builds its UI based on 999 implemented components:
 
-`MajorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MajorSetCommand` is parsed using `MajorCommandParser` to split the user input into relevant fields.
+* *METHOD ACTION NAME HERE* `method name here`
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+_We will add more about how we implemented this further, and the design decisions made._
 
-image::sequenceDiagram3.1.1.png[]
+.Calendar UI ??DIAGRAM??
+image::#INSERTDIAGRAM[align="center"]
 
-Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+==== Design Considerations
 
-. User enters the command. `MajorCommandParser` will associate the specified `Major` object (if it exists).
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-[NOTE]
-As of this time, `Student` entities can only be associated in a 1-1 relationship with a `Major` entity.
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-===== Design Considerations
-====== Aspect: How `MajorSetCommand` Executes
+[[Implementation-Grade]]
+=== Grade Management
 
-==== Declare Minor
+_This section will be updated soon!_
 
-The `declare minor` command associates an existing `Minor` entity (with all associated values) provided by the user.
+==== Grade Implementation
 
-It is appended with the tag `MINOR`.
+_This section will be updated soon!_
 
-[NOTE]
-`Minor` entities are automatically created and populated through the JSON data received from NUSMods.
+==== Design Considerations
 
-===== Current Implementation
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-`MinorSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `MinorSetCommand` is parsed using `MinorCommandParser` to split the user input into relevant fields.
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+[[Implementation-GradReq]]
+=== Graduation Requirements Features
 
-image::sequenceDiagram3.1.2.png[]
+The *Graduation Requirements* feature is what allows students to ensure that their academic plan and corresponding modules are assisting them towards fulfilling their own criteria to graduate.
 
-Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+==== Degree Management
 
-. User enters the command. `MinorCommandParser` will associate the specified `Minor` object (if it exists).
+The Graduation Requirements are made up of 2 implemented components:
 
-[NOTE]
-As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Minor` entity.
+* *Declaration of Major:* `major set`
+* *Declaration of Specialisation:* `specialisation set`
 
-===== Design Considerations
-====== Aspect: How `MinorSetCommand` Executes
+The `Major` and `Specialisation` entities are automatically created and populated through the JSON data received from NUSMods. Furthermore, `Student` entities can only be associated in a _1-0..1_ relationship with a `Specialisation` entity.
 
-==== Declare Track
+The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when either a *Major* or *Specialisation* is being set:
 
-The `declare track` command associates an existing `Track` entity (with all associated values) provided by the user.
+.Sequence Diagram for Degree Management (i.e. Handling of `Major` or `Specialisation`)
+image::#INSERTDIAGRAM[align="center"]
 
-It is appended with the tag `ACTION` and `TRACK`.
+==== Verification of Graduation
 
-[NOTE]
-`Track` entities are automatically created and populated through the JSON data received from NUSMods.
+Once the *Major* and *Specialisation* (if any), or a *Student* is set, the following logic is used to verify if the student's *Graduation Rquirements* are being met, as modules are managed:
 
-===== Current Implementation
+. Retrival of the main base of the `Graduation Requirements` based on the `Major` of the `Student` entity.
+. Matching of the sub `Graduation Requirements` (which can come in the form of _"Focus Areas", "Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to), of the `Specialisation` given and compiled.
+. Thereafter, the corresponding `Module` entities that have been added will be verified against the compiled `Graduation Requirements`.
+. Finally, requirements that are met, are checked or crossed accordingly - which is displayed in the left-panel of the GUI.
 
-`TrackSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TrackSetCommand` is parsed using `TrackCommandParser` to split the user input into relevant fields.
+The flow of how the `Graduation Requirements` is put together with information from `Major` and `Specialisation` can be found in the below class diagram:
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+.Class Diagram of Graduation Requirements Implementation
+image::#INSERTDIAGRAM[align="center"]
 
-image::sequenceDiagram3.1.3.png[]
+==== Design Considerations
 
-Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-. User enters the command. `TrackCommandParser` will associate the specified `Minor` object (if it exists).
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-[NOTE]
-As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Track` entity.
+[[Implementation-Lesson]]
+=== Lesson Features
 
-===== Design Considerations
-====== Aspect: How `TrackSetCommand` Executes
+The *Lesson Feature* allows students to manage the their respective lessons for the academic planning. When managing lessons, they are rendered in a *Lesson View Screen* in the GUI.
 
-==== Declare Specialisation
+==== Lesson Implementation
 
-The `declare spec` command associates an existing `Specialisation` entity (with all associated values) provided by the user.
+The `Lesson` entities are automatically created and populated through the JSON data received from NUSMods. Furthermore, `Lesson` entities are coupled to `Module` entities in a _*..1_ relationship.
 
-It is appended with the tag `ACTION` and `SPEC`.
+This coupling allows us to detect if a student tries to add duplicate `Lesson` entities and perform error handling or alternative advisement, where possible.
 
-[NOTE]
-`Specialisation` entities are automatically created and populated through the JSON data received from NUSMods.
+.Class Diagram of `Lesson` Implementation
+image::#INSERTDIAGRAM[align="center"]
 
-===== Current Implementation
+_We will add more about how we implemented this further, and the design decisions made._
 
-`SpecialisationSetCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `SpecialisationSetCommand` is parsed using `SpecialisationCommandParser` to split the user input into relevant fields.
+==== Design Considerations
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-image::sequenceDiagram3.1.4.png[]
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-Given below is an example usage scenario and how the `declare` mechanism behaves at each step:
+[[Implementation-Module]]
+=== Module Features & Database
 
-. User enters the command. `SpecialisationCommandParser` will associate the specified `Specialisation` object (if it exists).
+Bulk of the sections (of <<Implementation>>) and features throughout, require interaction with the `Module` entities. *Modules* form the majority of what students will need to interact with, as these are the classes they must take and clear, in order to graduate.
 
-[NOTE]
-As of this time, `Student` entities can only be associated in a 1-0..1 relationship with a `Specialisation` entity.
+==== Module Implementation
 
-===== Design Considerations
-====== Aspect: How `SpecialisationSetCommand` Executes
+The `Module` entities are automatically created and populated through the JSON data received from NUSMods. The following class diagram below shows all the values that the `Module` entity stores or is associated with:
 
-=== Module Implementation
-==== Add Module
+.Class Diagram of `Module` Implementation
+image::#INSERTDIAGRAM[align="center"]
 
-The `module add` command associates an existing `Module` entity (with all associated values) provided by the user.
+Additionally, `Module` entities can be marked as `exempted` which allow Students to declare in the application, that will get the module credits associated, without having to declare taking it or associate a `Grade`.
 
-It is appended with the tag `MODULE_CODE`.
+[[Implementation-Module-Search]]
+==== Module Search
 
-[NOTE]
-`Module` entities are automatically created and populated through the JSON data received from NUSMods.
+On First Launch, all the modules that are available in NUS (in accordance to NUSMods data) is populated into the *Module Panel Screen*. This allows a student to select modules and view the corresponding module descriptions and details.
 
-===== Current Implementation
+Students are able utilise the _"Search Bar"_ to search for any module based on the `module code` or `module name`. When given the query with the corresponding values, the following logic takes place:
 
-`ModuleAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleAddCommand` is parsed using `ModuleAddCommandParser` to split the user input into relevant fields.
+.Sequence Diagram for Module Search
+image::#INSERTDIAGRAM[align="center"]
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+If any results match the query enetered, they are populated into the *Search Screen* GUI for the user.
 
-image::sequenceDiagram3.2.1.png[]
+==== Design Considerations
 
-Given below is an example usage scenario and how the `add` mechanism behaves at each step:
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-. User enters the command. `ModuleAddCommandParser` will associate the specified `Module` object (if it exists).
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-===== Design Considerations
-====== Aspect: How `ModuleAddCommand` Executes
+[[Implementation-PlannerModel]]
+=== Planner Model
 
-==== Remove Module
+_This section will be updated soon!_
 
-The `module remove` command disassociates a `Module` entity (with all associated values) when instructed by the user.
+==== Design Considerations
 
-It is appended with the tag `MODULE_CODE`.
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-===== Current Implementation
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-`ModuleRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleRemoveCommand` is parsed using `ModuleRemoveCommandParser` to parse the action.
+[[Implementation-Student]]
+=== Student Features
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+_This section will be updated soon!_
 
-image::sequenceDiagram3.2.2.png[]
+==== Student Management
 
-Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
+_This section will be updated soon!_
 
-. User enters the command. `ModuleRemoveCommandParser` will disassociate the specified `Module` object (if it exists), along with its associated values.
+==== Design Considerations
 
-===== Design Considerations
-====== Aspect: How `ModuleRemoveCommand` Executes
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-==== List Modules
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-The `module list` command lists all `Module` entities.
+[[Implementation-Timetable]]
+=== Timetable Features
 
-===== Current Implementation
+_This section will be updated soon!_
 
-`ModuleListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `ModuleListCommand` is parsed using `ModuleCommandParser` to get the command input.
+==== Timetable Management
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
+_This section will be updated soon!_
 
-image::sequenceDiagram3.2.3.png[]
+==== Design Considerations
 
-Given below is an example usage scenario and how the `list` mechanism behaves at each step:
+* *Alternative 1:*
+** Pros:
+** Cons:
 
-. User enters the command. `ModuleCommandParser` will list all `Module` objects (if any exists).
+* *Alternative 2:*
+** Pros:
+** Cons:
 
-[NOTE]
-When appended with `exempted` (i.e. `module list exempted`) the command lists all `Module` entities that have been marked as exempted.
-
-===== Design Considerations
-====== Aspect: How `ModuleListCommand` Executes
+////
+[PLEASE REMOVE ALL OF THIS UNCOMMENTED INFORMATION ONCE YOU ARE FINISHED REFERENCING AND NO LONGER NEED IT.]
 
 === Student Implementation
 ==== Add Student
@@ -362,9 +394,6 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 .. If it is the first time, a `Student` object will be created using `StudentAddCommand`.
 . User enters the command. `StudentAddCommandParser` will create a `Student` object, which can contain `name`, `major`, `timetable` and/or `degrees`.
 
-===== Design Considerations
-====== Aspect: How `StudentAddCommand` Executes
-
 ==== Remove Student
 
 The `student remove` command destroys a `Student` entity (with all associated values) when instructed by the user.
@@ -382,9 +411,6 @@ image::StudentRemoveSequenceDiagram.png[]
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
 . User enters the command. `StudentRemoveCommandParser` will destroy the specified `Student` object (if it exists), along with its associated values.
-
-===== Design Considerations
-====== Aspect: How `StudentRemoveCommand` Executes
 
 ==== Active Student
 
@@ -404,9 +430,6 @@ Given below is an example usage scenario and how the `active` mechanism behaves 
 
 . User enters the command. `StudentActiveCommandParser` will select the specified `Student` object (if it exists), by the specified index.
 
-===== Design Considerations
-====== Aspect: How `StudentActiveCommand` Executes
-
 ==== List Students
 
 The `student list` command lists all `Student` entities.
@@ -422,9 +445,6 @@ image::StudentListSequenceDiagram.png[]
 Given below is an example usage scenario and how the `list` mechanism behaves at each step:
 
 . User enters the command. `StudentCommandParser` will list all `Student` objects (if any exists).
-
-===== Design Considerations
-====== Aspect: How `StudentListCommand` Executes
 
 === Timetable Implementation
 ==== Add Timetable
@@ -450,9 +470,6 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 .. If it is the first time, a `TimeTable` object will be created using `TimeTableAddCommand`.
 . User enters the command. `TimeTableAddCommandParser` will create a `TimeTable` object, which can contain `enrollments`.
 
-===== Design Considerations
-====== Aspect: How `TimeTableAddCommand` Executes
-
 ==== Remove TimeTable
 
 The `timetable remove` command destroys a `TimeTable` entity (with all associated values) when instructed by the user.
@@ -470,9 +487,6 @@ image::TimeTableRemoveSequenceDiagram.png[]
 Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
 
 . User enters the command. `TimeTableRemoveCommandParser` will destroy the specified `TimeTable` object (if it exists), along with its associated values.
-
-===== Design Considerations
-====== Aspect: How `TimeTableRemoveCommand` Executes
 
 ==== Active TimeTable
 
@@ -492,9 +506,6 @@ Given below is an example usage scenario and how the `active` mechanism behaves 
 
 . User enters the command. `TimeTableActiveCommandParser` will select the specified `TimeTable` object (if it exists), by the specified index.
 
-===== Design Considerations
-====== Aspect: How `TimeTableActiveCommand` Executes
-
 ==== List Timetables
 
 The `timetable list` command lists all `TimeTable` entities.
@@ -511,14 +522,30 @@ Given below is an example usage scenario and how the `list` mechanism behaves at
 
 . User enters the command. `TimeTableCommandParser` will list all `TimeTable` objects (if any exists).
 
-===== Design Considerations
-====== Aspect: How `TimeTableListCommand` Executes
+[PLEASE REMOVE ALL OF THIS UNCOMMENTED INFORMATION ONCE YOU ARE FINISHED REFERENCING AND NO LONGER NEED IT.]
+////
+
+== Backend & Debugging
+
+[[Backend-Configuration]]
+=== Configuration
+
+Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
+
+[[Backend-JSON]]
+=== JSON Handling & Live Data Management
+
+As mentioned in several sections (of <<Implementation>>) above, NUS Module Planner has the capability to pull live data for entities, such as, `Major` and `Module`, via *JSON*.
+
+*JSON* stands for _JavaScript Object Notation_ and is a lightweight format for storing and transporting data. We choose this syntax as it is "self-describing" and thus, easy to understand, while keeping our application size low.
+
+_We will add more about how we implemented JSON and how we get, format, read and store the data._
 
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
 
-* The logging level can be controlled using the `logLevel` setting in the configuration file (See <<Implementation-Configuration>>)
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See <<Backend-Configuration>>)
 * The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
 * Currently log messages are output through: `Console` and to a `.log` file.
 
@@ -529,10 +556,10 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-[[Implementation-Configuration]]
-=== Configuration
+[[Backend-SubCmd]]
+=== Sub-Commands
 
-Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
+_This section will be updated soon!_
 
 == Documentation
 
@@ -545,6 +572,19 @@ Refer to the guide <<Testing#, here>>.
 == Dev Ops
 
 Refer to the guide <<DevOps#, here>>.
+
+== Proposed Future Enhancements
+
+NUS Module Planner has a lot more potential to grow!
+
+
+Below are some of the other great features we think can be implemented in v2.0 onward:
+
+* *Module Viewer with Search* - Other than just searching for modules, search for their content instead, such as modules that deal with _Heat Transfer_ or _Geology_.
+* *Timetable Planner with Friends* - Instead of just viewing timetables of different students (_i.e. friends_) separately, be able to overlay them in one _"Timetable View"_, for easier group planning.
+* *Requirements Double-Upper* - Instead of just one `Major`, handle double `Major` programme students, or even those with Minors.
+* *Module Popularity Prediction* - Get and analyse historic data from NUSMods about module uptake, so that students do not have to plan for modules that would be overly subscribed.
+* *Support for Overseas Exchange and University Town College Programmes* - Be able to plan for special modules only offered in these programmes, if a student is enrolled in them.
 
 [appendix]
 == Product Scope
@@ -571,7 +611,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I ...
-|`* * *` |new user |see usage instructions |can refer to instructions when I forget how to use the App
 
 |`* * *` |freshman |declare what my major is |get the right graduation requirements to follow
 
@@ -634,61 +673,59 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 *MSS*
 
-1.  User requests to add a plan
-2.  User supplies plan name and plan major
-3.  Planner adds the plan
+. User requests to add a plan
+. User supplies plan name and plan major
+. Planner adds the plan
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
+
 * 2a. Any of the plan or major is missing or invalid
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 === Use Case: Delete Plan (UCA02)
 
 *MSS*
 
-1.  User requests to list plans
-2.  Planner shows a list of plans
-3.  User requests to delete a specific plan in the list
-4.  Planner deletes the plan
+. User requests to list plans
+. Planner shows a list of plans
+. User requests to delete a specific plan in the list
+. Planner deletes the plan
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The list is empty
 +
-Use case ends
+Use case ends.
 
 * 3a. The given index is invalid
 +
 [none]
 ** 3a1. Planner shows an error message
 +
-Use case resumes at step 2
+Use case resumes at step 2.
 
 === Use Case: Select Plan (UCA03)
 
 *MSS*
 
-1.  User requests to list plans
-2.  Planner shows a list of plans
-3.  User requests to select a specific plan in the list
-4.  Planner selects the plan as the active plan
+. User requests to list plans
+. Planner shows a list of plans
+. User requests to select a specific plan in the list
+. Planner selects the plan as the active plan
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The list is empty
 +
 Use case ends
@@ -698,35 +735,35 @@ Use case ends
 [none]
 ** 3a1. Planner shows an error message
 +
-Use case resumes at step 2
+Use case resumes at step 2.
 
 === Use Case: Add Timetable (UCB01)
 
 *MSS*
 
-1.  User [.underline]#selects a plan (UCA03)#
-2.  User requests to add a timetable
-3.  User specifies semester of the timetable
-4.  Planner adds the timetable to the active plan
+. User [.underline]#selects a plan (UCA03)#
+. User requests to add a timetable
+. User specifies semester of the timetable
+. Planner adds the timetable to the active plan
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
+
 * 2a. There is no plan currently selected
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 * 3a. The given semester is invalid
 +
 [none]
 ** 3a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 === Use Case: Delete Timetable (UCB02)
 
@@ -738,170 +775,160 @@ Use case ends
 4.  User specifies a corresponding semester for a timetable to delete
 5.  Planner deletes the timetable from the active plan
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. There is no plan currently selected
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 * 4a. The given semester is invalid
 +
 [none]
-** 3a1. Planner shows an error message
+** 4a1. Planner shows an error message
 +
-Use case ends
+Use case resumes at step 3.
 
 === Use Case: Select Timetable (UCB03)
 
 *MSS*
 
-1.  User [.underline]#selects a plan (UCA03)#
-2.  User requests to list timetables
-3.  Planner shows a list of timetables of the active plan
-4.  User requests to select a specific timetable in the list
-5.  Planner selects the timetable as the active timetable
+. User [.underline]#selects a plan (UCA03)#
+. User requests to list timetables
+. Planner shows a list of timetables of the active plan
+. User requests to select a specific timetable in the list
+. Planner selects the timetable as the active timetable
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The list is empty
 +
-Use case ends
+Use case ends.
 
 * 4a. The given semester is invalid
 +
 [none]
-** 3a1. Planner shows an error message
+** 4a1. Planner shows an error message
 +
-Use case resumes at step 3
+Use case resumes at step 3.
 
 === Use Case: Add Module (UCC01)
 
 *MSS*
 
-1.  User [.underline]#selects a timetable (UCB03)#
-2.  User requests to add a specified module
-3.  Planner adds the module to the active timetable
+. User [.underline]#selects a timetable (UCB03)#
+. User requests to add a specified module
+. Planner adds the module to the active timetable
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The given module is invalid
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
-[none]
 * 2b. The given module already exists in the timetable
 +
 [none]
 ** 2b1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 === Use Case: Delete Module (UCC02)
 
 *MSS*
 
-1.  User [.underline]#selects a timetable (UCB03)#
-2.  User requests to delete a specified module
-3.  Planner deletes the module from the active timetable
+. User [.underline]#selects a timetable (UCB03)#
+. User requests to delete a specified module
+. Planner deletes the module from the active timetable
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The given module is invalid
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
-[none]
 * 2b. The given module does not exist in the timetable
 +
 [none]
 ** 2b1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 === Use Case: List Grades (UCD01)
 
 *MSS*
 
-1.  User [.underline]#selects a plan (UCA03)#
-2.  User requests to list grades
-3.  Planner lists grades and statistics
+. User [.underline]#selects a plan (UCA03)#
+. User requests to list grades
+. Planner lists the total number of grades, and cumulative statistics
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The user requests to list all modules taken
+* 2a. The user requests to list all modules taken instead
 +
 [none]
-** 2a1. Planner lists all modules taken and their respective grades
+** 2a1. Planner lists all modules taken with their respective grades instead
 +
-Use case ends
+Use case ends.
 
 === Use Case: Set Module Grade (UCD02)
 
 *MSS*
 
-1.  User [.underline]#selects a timetable (UCB03)#
-2.  User requests to set the grade of a specified module
-3.  Planner sets the grade of the specified module
+. User [.underline]#selects a timetable (UCB03)#
+. User requests to set the grade of a specified module
+. Planner sets the grade of the specified module
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
-[none]
 * 2a. The given module is invalid
 +
 [none]
 ** 2a1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
-[none]
 * 2b. The given module does not exist in the timetable
 +
 [none]
 ** 2b1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
-[none]
 * 2c. The given grade is invalid
 +
 [none]
 ** 2c1. Planner shows an error message
 +
-Use case ends
+Use case ends.
 
 [appendix]
 == Non-Functional Requirements
 
-. The application should be able to run on all major operating systems (i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS).
-. The user should run the software with OpenJDK 11 (as per constraints).
-. The application should come prepackaged with pre-populated data (for offline use).
-. The application be able to hold up to 10 students and their respective module plans/enrollments without a noticeable sluggishness in performance for typical usage.
+. Should be able to run on all major operating systems (_i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS_), with `Java 11` (as per constraints).
+. Should come prepackaged with pre-populated NUSMods data (for offline use).
+. Should be able to accommodate any user (_i.e. Undergraduate Student_) from NUS.
+. Should be able to hold up to 10 students, and their respective module plans/enrollments without a noticeable sluggishness in performance for typical usage.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 [appendix]
@@ -911,17 +938,11 @@ Use case ends
 [[api]] API::
 Stands for "Application Programming Interface" which simplifies programming by abstracting the underlying implementation and only exposing objects or actions the developer needs.
 
-[[locale]] Locale::
-Stands for a setting on the user's computer that defines the user's language and region.
-
 [[mainstream-os]] Mainstream OS::
 References major operating systems (i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS).
 
 [[major]] Major::
 Refers to one of academic majors students read in NUS.
-
-[[minor]] Minor::
-Refers to one of academic minors students can optionally read in NUS.
 
 [[module]] Module::
 Refers to one of multiple academic modules students read in NUS.
@@ -929,14 +950,8 @@ Refers to one of multiple academic modules students read in NUS.
 [[MSS]] MSS::
 Stands for "Main Success Scenario" that describes the interaction for a given use case, which assumes that nothing goes wrong.
 
-[[nfr]] NFR::
-Stands for "Non-Functional Requirement(s)".
-
 [[nus]] NUS::
 Stands for "National University of Singapore", the university this application was developed for.
-
-[[puml]] PlantUML::
-Is a tool used to render diagrams used in this document.
 
 [[specialisation]] Specialisation::
 Refers to one of academic specialisations students can optionally read in NUS.
@@ -944,25 +959,20 @@ Refers to one of academic specialisations students can optionally read in NUS.
 [[timetable]] Timetable::
 Refers to the module timetable that students will go for classes in NUS.
 
-[[track]] Track::
-Refers to one of academic tracks students can optionally read in NUS.
-
 [appendix]
 == Product Survey
 
-*Product Name*
-
-Author: ...
+link:https://github.com/eugenecys/NUS-Module-Planner[*NUS Module Planner by @eugenecys (via Microsoft Excel Sheet)*]
 
 Pros:
 
-* ...
-* ...
+* Available for offline use
+* Highly-personalisable, with freedom to arrange modules and semesters wherever
 
 Cons:
 
-* ...
-* ...
+* Relies on another third-party application (_i.e. Microsoft Excel_) to run
+* Extremely tedious to use, and requires some knowledge as a _Microsoft Excel_ power user
 
 [appendix]
 == Instructions for Manual Testing
