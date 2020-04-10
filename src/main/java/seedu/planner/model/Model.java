@@ -58,9 +58,13 @@ public interface Model {
 
     void activateStudent(Student student);
 
+    void activateValidStudent();
+
     void addStudent(Student student);
 
     void removeStudent(Student student);
+
+    List<StudentSemester> getStudentSemesters();
 
     ObservableList<ModuleCode> getEnrolledModuleCodes();
 

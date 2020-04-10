@@ -22,7 +22,7 @@ import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
 /**
- * Contains utility methods for populating {@code Planner} with sample data.
+ * Contains utility methods for populating {@link Planner} with sample data.
  */
 public class SampleDataUtil {
     public static Module[] getSampleModules() {
@@ -36,7 +36,7 @@ public class SampleDataUtil {
         Planner samplePlanner = new Planner();
         Student student = SampleDataUtil.getSampleStudent();
         samplePlanner.addStudent(student);
-        samplePlanner.activateStudent(student); // TODO: allow serialization of planner with no active student
+        samplePlanner.activateStudent(student);
         return samplePlanner;
     }
 
@@ -59,9 +59,8 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a non-empty (@code TimeTableMap) which (@code Student) can immediately use.
-     *
-     * @return Non-empty (@code TimeTableMap)
+     * Returns a non-empty {@link TimeTable}.
+     * @return Non-empty {@link TimeTable}.
      */
     public static TimeTable getSampleTimeTable() {
         TimeTable timeTable = new TimeTable();

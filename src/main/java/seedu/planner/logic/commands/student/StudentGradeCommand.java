@@ -35,7 +35,7 @@ public class StudentGradeCommand extends StudentCommand {
 
     /**
      * Generates a command execution success message for listing the grades and statistics of the
-     * specified (@code activeStudent).
+     * specified {@code activeStudent}.
      */
     private String generateSuccessMessage(Student activeStudent, CumulativeGrade cumulativeGrade) {
         OptionalDouble gradeValue = cumulativeGrade.getAverage();

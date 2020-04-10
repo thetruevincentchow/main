@@ -5,6 +5,8 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Objects;
+
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -38,7 +40,7 @@ public class StudentAddCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message for adding the (@addedStudent) to the list of students.
+     * Generates a command execution success message for adding the {@code addedStudent} to the list of students.
      */
     private String generateSuccessMessage(Student addedStudent) {
         return String.format(MESSAGE_ADD_STUDENT_SUCCESS, addedStudent);
@@ -60,6 +62,23 @@ public class StudentAddCommand extends StudentCommand {
         model.addStudent(student);
 
         return new CommandResult(generateSuccessMessage(student));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StudentAddCommand that = (StudentAddCommand) o;
+        return student.equals(that.student);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(student);
     }
 }
 //@@author

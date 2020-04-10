@@ -3,6 +3,8 @@ package seedu.planner.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.core.index.Index;
@@ -34,7 +36,7 @@ public class StudentRemoveCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message for removing the (@removedStudent) from the list of students.
+     * Generates a command execution success message for removing the {@code removedStudent} from the list of students.
      */
     private String generateSuccessMessage(Student removedStudent) {
         return String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, removedStudent);
@@ -52,13 +54,30 @@ public class StudentRemoveCommand extends StudentCommand {
         ObservableList<Student> lastShownList = model.getStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student removedStudent = lastShownList.get(index.getZeroBased());
         model.removeStudent(removedStudent);
 
         return new CommandResult(generateSuccessMessage(removedStudent));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StudentRemoveCommand that = (StudentRemoveCommand) o;
+        return index.equals(that.index);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
     }
 }
 //@@author

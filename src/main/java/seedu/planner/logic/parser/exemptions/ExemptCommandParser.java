@@ -13,7 +13,6 @@ import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
-
 /**
  * Parses sub-commands of the "exempt" command and creates a new ExemptCommand object
  */

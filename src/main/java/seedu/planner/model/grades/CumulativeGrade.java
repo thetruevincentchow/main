@@ -6,7 +6,7 @@ import java.util.OptionalDouble;
 
 //@@author thetruevincentchow
 /**
- * Accumulates grade statistics of individual (@code Grade) and (@code credits).
+ * Accumulates grade statistics of individual {@link Grade} and {@code credits}.
  * Calculates Cumulative Average Point (CAP) and other statistics from inputs.
  */
 public class CumulativeGrade {
@@ -77,7 +77,7 @@ public class CumulativeGrade {
     /**
      * Returns Cumulative Average Point (CAP) of accumulated grades.
      * This excludes modules which are declared S/U.
-     * If there were no graded modules accumulated, then returns a (@code OptionalDouble.empty())
+     * If there were no graded modules accumulated, then returns a {@code OptionalDouble.empty()}
      * @return Cumulative Average Point
      */
     public OptionalDouble getAverage() {

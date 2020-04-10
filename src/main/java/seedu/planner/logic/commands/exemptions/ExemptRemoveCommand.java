@@ -3,6 +3,8 @@ package seedu.planner.logic.commands.exemptions;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -34,7 +36,7 @@ public class ExemptRemoveCommand extends ExemptCommand {
     }
 
     /**
-     * Generates a command execution error message due to the given (@code moduleCode) being absent
+     * Generates a command execution error message due to the given {@code moduleCode} being absent
      * from the in the list of exempted modules of the selected student.
      */
     private String generateFailureMessage(ModuleCode moduleCode) {
@@ -42,7 +44,7 @@ public class ExemptRemoveCommand extends ExemptCommand {
     }
 
     /**
-     * Generates a command execution success message for removing the given (@code moduleCode)
+     * Generates a command execution success message for removing the given {@code moduleCode}
      * from the list of exempted modules of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
@@ -65,6 +67,23 @@ public class ExemptRemoveCommand extends ExemptCommand {
 
         model.removeExemptedModule(moduleCode);
         return new CommandResult(generateSuccessMessage(moduleCode));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ExemptRemoveCommand that = (ExemptRemoveCommand) o;
+        return moduleCode.equals(that.moduleCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode);
     }
 }
 //@@author

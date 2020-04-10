@@ -18,7 +18,7 @@ public class Grade {
 
     /**
      * The grade point of the letter grade. This ranges from 0.0 to 5.0.
-     * This does not account the S/U declaration (@code isSu).
+     * This does not account the S/U declaration {@code isSu}.
      *
      * @return Grade point of letter grade
      */

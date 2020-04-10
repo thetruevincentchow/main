@@ -5,6 +5,8 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
+import java.util.Objects;
+
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -27,7 +29,6 @@ public class TimeTableActiveCommand extends TimeTableCommand {
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " year/1 sem/ONE";
 
     public static final String MESSAGE_ACTIVE_TIMETABLE_SUCCESS = "Set semester as active: %1$s";
-    public static final String MESSAGE_INVALID_SEMESTER = "Semester does not exist in list of timetables: %1$s";
 
     private final StudentSemester studentSemester;
 
@@ -37,7 +38,7 @@ public class TimeTableActiveCommand extends TimeTableCommand {
     }
 
     /**
-     * Generates a command execution success message for selecting the timetable with the given (@code semesterYear)
+     * Generates a command execution success message for selecting the timetable with the given {@code semesterYear}
      * for the currently selected student.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
@@ -54,12 +55,29 @@ public class TimeTableActiveCommand extends TimeTableCommand {
         }
 
         if (!model.hasSemester(studentSemester)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SEMESTER, studentSemester));
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SEMESTER, studentSemester));
         }
 
         model.activateSemester(studentSemester);
 
         return new CommandResult(generateSuccessMessage(studentSemester));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TimeTableActiveCommand that = (TimeTableActiveCommand) o;
+        return studentSemester.equals(that.studentSemester);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentSemester);
     }
 }
 //@@author

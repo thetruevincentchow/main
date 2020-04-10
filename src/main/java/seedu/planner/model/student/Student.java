@@ -22,11 +22,12 @@ import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueModuleCodeList;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
+import seedu.planner.model.student.exceptions.SemesterKeyNotFoundException;
 import seedu.planner.model.time.StudentSemester;
 
 /**
- * Represents a Student in the planner book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Student in the planner.
+ * Guarantees: details are present and not null, field values are validated. Mutable.
  */
 public class Student {
 
@@ -100,7 +101,8 @@ public class Student {
         }
 
         /**
-         * NOTE: (@code specialisation) are not compared because (@ocde GenericSpecialisation#equal())
+         * NOTE: {@code specialisation} and {@code lessons} are not compared because
+         * {@code GenericSpecialisation#equal()} and {@code Lesson#equal()}
          * and its subclasses are not implemented.
          */
         Student otherStudent = (Student) other;
@@ -112,7 +114,8 @@ public class Student {
     @Override
     public int hashCode() {
         /**
-         * NOTE: (@code specialisation) are not hashed because (@ocde GenericSpecialisation#hashCode())
+         * NOTE: {@code specialisation} and {@code lessons} are not hashed because
+         * {@code GenericSpecialisation#hashCode()} and {@code Lesson#hashCode()}
          * and its subclasses are not implemented.
          */
         return Objects.hash(name, major, timeTableMap, exemptedModules);
@@ -140,18 +143,24 @@ public class Student {
 
     public void removeTimeTable(StudentSemester keyToRemove) {
         if (!timeTableMap.containsKey(keyToRemove)) {
-            throw new IllegalArgumentException("Semester does not exist in timetable list");
+            throw new SemesterKeyNotFoundException();
         }
         timeTableMap.remove(keyToRemove);
     }
 
+    /**
+     * Returns a sorted list of {@code StudentSemester} for the timetables of the student.
+     * {@link StudentSemester}s are sorted with the order given by {@link StudentSemester::compareTo}.
+     * @return Sorted list of semesters of timetables.
+     */
     public List<StudentSemester> getStudentSemesters() {
-        return new ArrayList<>(timeTableMap.keySet());
+        List<StudentSemester> studentSemesters = new ArrayList<>(timeTableMap.keySet());
+        studentSemesters.sort(StudentSemester::compareTo);
+        return studentSemesters;
     }
 
     /**
-     * Returns a list mof (@code ModuleCode) taken across all timetables.
-     *
+     * Returns a list of {@link ModuleCode} taken across all timetables.
      * @return List of all modules enrolled.
      */
     public ObservableList<ModuleCode> getAllEnrolledModules() {

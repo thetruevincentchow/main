@@ -3,6 +3,8 @@ package seedu.planner.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import seedu.planner.commons.core.Messages;
 import seedu.planner.commons.core.index.Index;
@@ -34,7 +36,7 @@ public class StudentActiveCommand extends StudentCommand {
     }
 
     /**
-     * Generates a command execution success message for selecting the given (@code student).
+     * Generates a command execution success message for selecting the given {@code student}.
      */
     private String generateSuccessMessage(Student student) {
         return String.format(MESSAGE_ACTIVE_STUDENT_SUCCESS, student);
@@ -53,13 +55,30 @@ public class StudentActiveCommand extends StudentCommand {
         ObservableList<Student> lastShownList = model.getStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student student = lastShownList.get(index.getZeroBased());
         model.activateStudent(student);
 
         return new CommandResult(generateSuccessMessage(student));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StudentActiveCommand that = (StudentActiveCommand) o;
+        return index.equals(that.index);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
     }
 }
 //@@author

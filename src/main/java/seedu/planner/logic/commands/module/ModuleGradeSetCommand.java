@@ -3,6 +3,8 @@ package seedu.planner.logic.commands.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -29,8 +31,8 @@ public class ModuleGradeSetCommand extends ModuleGradeCommand {
     }
 
     /**
-     * Generates a command execution success message for setting the enrollment with the given (@code moduleCode)
-     * to have the specified (@code grade).
+     * Generates a command execution success message for setting the enrollment with the given {@code moduleCode}
+     * to have the specified {@code grade}.
      */
     private String generateSetGradeSuccessMessage(ModuleCode moduleCode, LetterGrade grade) {
         return String.format(MESSAGE_SET_GRADE_SUCCESS, moduleCode.value, grade);
@@ -43,6 +45,23 @@ public class ModuleGradeSetCommand extends ModuleGradeCommand {
 
         model.setModuleGrade(moduleCode, new Grade(letterGrade, false));
         return new CommandResult(generateSetGradeSuccessMessage(moduleCode, letterGrade));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModuleGradeSetCommand that = (ModuleGradeSetCommand) o;
+        return letterGrade == that.letterGrade;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(letterGrade);
     }
 }
 //@@author

@@ -38,7 +38,6 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
 
         // NOTE: the concatenation " " is a workaround for `ArgumentTokenizer` treating the first argument as the
         // preamble
-        // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_MAJOR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR)

@@ -173,6 +173,10 @@ public class ModelManager implements Model {
         planner.activateStudent(student);
     }
 
+    public void activateValidStudent() {
+        planner.activateValidStudent();
+    }
+
     public void addStudent(Student student) {
         requireAllNonNull(student);
         planner.addStudent(student);
@@ -181,6 +185,10 @@ public class ModelManager implements Model {
     public void removeStudent(Student student) {
         requireAllNonNull(student);
         planner.removeStudent(student);
+    }
+
+    public List<StudentSemester> getStudentSemesters() {
+        return planner.getActiveStudent().getStudentSemesters();
     }
 
     public ObservableList<ModuleCode> getEnrolledModuleCodes() {

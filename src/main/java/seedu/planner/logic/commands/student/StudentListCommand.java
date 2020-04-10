@@ -26,20 +26,20 @@ public class StudentListCommand extends StudentCommand {
      * Generates a command execution success message for listing the students in the planner.
      */
     private String generateSuccessMessage(ObservableList<Student> students) {
-        StringBuffer sb = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
         boolean isFirst = true;
         for (int i = 0; i < students.size(); ++i) {
             Student student = students.get(i);
             if (!isFirst) {
-                sb.append("\n");
+                buffer.append("\n");
             }
-            sb.append(i + 1);
-            sb.append(": ");
-            sb.append(student);
+            buffer.append(i + 1);
+            buffer.append(": ");
+            buffer.append(student);
             isFirst = false;
         }
 
-        return String.format(MESSAGE_SUCCESS, sb.length() == 0 ? "[None]" : sb.toString());
+        return String.format(MESSAGE_SUCCESS, buffer.length() == 0 ? "[None]" : buffer.toString());
     }
 
     /**

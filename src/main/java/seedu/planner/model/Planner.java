@@ -323,7 +323,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Replaces the currently active student with the student given by (@code editedStudent).
+     * Replaces the currently active student with the student given by {@code editedStudent}.
      *
      * @param student Student to copy for replacement.
      */
@@ -332,7 +332,19 @@ public class Planner implements ReadOnlyPlanner {
         students.setStudent(getActiveStudent(), student);
     }
 
+    /**
+     * Activates the given {@code student}. Any active semester will be deactivated.
+     * If {@code student} is {@code null}, then the active student (if any) will be deactivated.
+     * Only one {@link Student} may be active at a time.
+     * @param student Student to activate
+     */
     public void activateStudent(Student student) {
+        if (student == null) {
+            activeStudentIndex = -1;
+            activeSemester = null;
+            return;
+        }
+
         if (!students.contains(student)) {
             throw new StudentNotFoundException();
         }
@@ -381,12 +393,6 @@ public class Planner implements ReadOnlyPlanner {
             throw new TimeTableEmptyException();
         }
         activeSemester = getActiveStudent().getTimeTableMap().keySet().iterator().next();
-    }
-
-    public void removeTimeTable(StudentSemester keyToRemove) {
-        requireActiveStudentNonNull();
-        requireAllNonNull(keyToRemove);
-        getActiveStudent().removeTimeTable(keyToRemove);
     }
 
     public boolean hasSemester(StudentSemester semester) {

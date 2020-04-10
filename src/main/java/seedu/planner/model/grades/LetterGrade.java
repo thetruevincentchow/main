@@ -31,6 +31,7 @@ public enum LetterGrade {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Letter grades must be one of the following: " + getConcatenatedString();
+    private static final String INVALID_INPUT_NAME = "Invalid input name for LetterGrade: %1$s";
 
     public final OptionalDouble points;
     public final boolean isSu;
@@ -54,11 +55,11 @@ public enum LetterGrade {
     }
 
     /**
-     * Returns a (@code LetterGrade) given a user-friendly (@code letterGrade).
-     * Examples of (@code letterGrade) are "A+", "A-", "EXE".
+     * Returns a {@link LetterGrade} given a user-friendly {@code letterGrade} string.
+     * Examples of {@code letterGrade} are "A+", "A-", "EXE".
      * Usage of this method is preferred for handling user input.
      * @param letterGrade User-friendly letter grade
-     * @return LetterGrade object
+     * @return {@link LetterGrade} object
      */
     public static LetterGrade fromInputName(String letterGrade) {
         requireAllNonNull(letterGrade);
@@ -67,7 +68,7 @@ public enum LetterGrade {
                 return grade;
             }
         }
-        throw new IllegalArgumentException(String.format("Invalid input name for LetterGrade: %1$s", letterGrade));
+        throw new IllegalArgumentException(String.format(INVALID_INPUT_NAME, letterGrade));
     }
 
     @Override

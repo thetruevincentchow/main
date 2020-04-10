@@ -23,7 +23,7 @@ public class TimeTableListCommand extends TimeTableCommand {
         + ": List the timetables of the active student.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
-    public static final String MESSAGE_SUCCESS = "Listed semesters for the active student (%1$s):\n%2$s";
+    public static final String MESSAGE_SUCCESS = "Listed semesters for the selected student (%1$s):\n%2$s";
 
     /**
      * Generates a command execution success message for listing the timetables of

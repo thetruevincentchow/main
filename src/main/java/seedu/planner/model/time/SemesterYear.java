@@ -2,9 +2,8 @@ package seedu.planner.model.time;
 
 import java.util.Objects;
 
-public class SemesterYear {
+public class SemesterYear implements Comparable<SemesterYear> {
     public static final String MESSAGE_CONSTRAINTS = "Semester year should be valid.";
-    // TODO: figure out required constraints
 
     protected final Semester sem;
     // TODO: support academic year in Student operations
@@ -12,6 +11,10 @@ public class SemesterYear {
     public SemesterYear(Semester sem, int academicYear) {
         this.sem = sem;
         // this.academicYear = academicYear;
+    }
+
+    public SemesterYear(Semester sem) {
+        this.sem = sem;
     }
 
     public Semester getSemester() {
@@ -48,5 +51,10 @@ public class SemesterYear {
     public String toString() {
         return String.format("%s", sem.getFullName());
         // return String.format("AY %d/%d %s", academicYear, academicYear+1, sem.toString());
+    }
+
+    @Override
+    public int compareTo(SemesterYear other) {
+        return sem.compareTo(other.sem);
     }
 }
