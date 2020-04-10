@@ -90,7 +90,7 @@ image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g. `CalendarBox`, `CommandBox`, `GradWindow`, `ModuleCard`, `ModuleListPanel`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/planner/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -111,7 +111,7 @@ link:{repoURL}/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `PlannerParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a Student).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -124,8 +124,8 @@ NOTE: The lifeline for `StudentRemoveCommandParser` should end at the destroy ma
 
 [[Design-Model]]
 === Model Component
-
 .Structure of the Model Component
+==== Planner Model
 image::ModelClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/Planner.java[`Planner.java`]
@@ -133,15 +133,113 @@ image::ModelClassDiagram.png[]
 The `Planner`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Planner data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Planner data such as the list of `Student`, `Module`
+* store an index for the currently active `Student`
+* store an index for the currently active `Semester`
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+==== Student Model
+image::ModelStudent.png[]
+
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/student/Student.java[`Student.java`]
+
+The `Student`,
+
+* stores a `Name` object that represents the Student's Name
+* stores a `Major` object that represents the Student's Major
+* stores a `Enrollment` object that represents the Student's Name
+* stores a `TimeTableMap` object that represents the Student's TimeTables
+* stores a `GenericSpecialisation` object that represents the Student's Specialisation
+* stores a `List<Lesson>` object that represents the Student's currently selected Lessons
+
+==== Module Model
+image::ModelModule.png[]
+
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/module/Module.java[`Module.java`]
+
+The `Module`,
+
+* stores a `ModuleCode` object that represents the Module's Module Code. This is used as the key identifier between modules.
+* stores a `List<SemesterData>` object that represents the Semester-specific data of the Module, such as Exam Dates, Exam Duration and Timetable.
+* stores other `String` objects that represents the various other attributes of the Module such as:
+** `acadYear` representing Academic Year
+** `preclusion` representing Precluded Modules
+** `description` representing Module Description
+** `title` representing Module Title
+** `department` representing Module department
+** `faculty` representing Module faculty
+** `workload` representing Module workload
+** `prerequisite` representing Module prerequisites
+** `moduleCredit` representing Module Credits
+** `prereqTree` representing Module prerequisite tree
+
+
+*API* : link:{repoURL}/src/main/java/seedu/planner/commons/util/ModuleDataImporterUtil.java[`ModuleDataImporterUtil.java`]
+
+The `ModuleDataImportUtil`,
+
+* is a helper class used to load Modules from a JSON file downloaded from NUSMods API
+* handles the conversion of Modules from JSON format to `Module` objects using `JsonSerializableModule` and `JsonAdaptedModule`
+* loads `SemesterData` into each `Module`
+
+==== Graduation Models
+image::ModelPackageGraduation.png[]
+
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/[`Graduation Package`]
+
+The `Graduation` package,
+
+* contains a list of `GraduationRequirement` classes that represents the Modules which are required to be taken by Student in order to Graduate.
+* contains an `AggregationType` class
+
+==== Graduation Requirement Model
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/GraduationRequirement.java[`GraduationRequirement.java`]
+
+The `GraduationRequirement` interface,
+
+* provides the interface of all implementations of `GraduationRequirement`
+* provides a helper function `getStatusIcon` to display a tick or cross depending on whether the `GraduationRequirement` is fulfilled or not.
+
+==== Single Graduation Requirement Model
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/SingleGraduationRequirement.java[`SingleGraduationRequirement.java`]
+
+The `SingleGraduationRequirement` class,
+
+* is an implementation of the interface `GraduationRequirement`
+* acts as a basic `GraduationRequirement` containing only a single `Module`
+
+==== Compound Graduation Requirement Model
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/CompoundGraduationRequirement.java[`CompoundGraduationRequirement.java`]
+
+The `CompoundGraduationRequirement` class,
+
+* is an implementation of the interface `GraduationRequirement`
+* contains a list of `GraduationRequirement` objects
+* contains an `AggregationType` enum to represent how to calculate fulfillment of the `CompoundGraduationRequirement` object
+* acts as a aggregator of `GraduationRequirement` representing requirements where a Student needs to complete a group of modules in certain ways such as:
+** any module can be completed or
+** all modules must be completed or
+** completed modules must be within a specified list
+** add up to a certain amount of Module Credits
+
+==== Specialisation Graduation Requirement Model
+*API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/SpecialisationGraduationRequirement.java[`SpecialisationGraduationRequirement.java`]
+
+The `SpecialisationGraduationRequirement` class,
+
+* is an implementation of the interface `GraduationRequirement`
+* contains a list of `GraduationRequirement` objects to represent a Specialisation's primary modules
+* contains a list of `GraduationRequirement` objects to represent a Specialisation's elective modules
+* handles the calculation of fulfillment for the `SpecialisationGraduationRequirement` object based on `Major` and primary and elective modules
+
 
 [[Design-Storage]]
 === Storage Component
 
 .Structure of the Storage Component
-image::StorageClassDiagram.png[]
+image::StorageDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/storage/Storage.java[`Storage.java`]
 
@@ -149,6 +247,8 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Planner data in json format and read it back.
+* consists of various JSON implementations of Models
+* handles the saving and loading of Models to provide stateful behaviour in the application
 
 [[Design-Commons]]
 === Common Classes
@@ -231,7 +331,7 @@ image::#INSERTDIAGRAM[align="center"]
 Once the *Major* and *Specialisation* (if any), or a *Student* is set, the following logic is used to verify if the student's *Graduation Rquirements* are being met, as modules are managed:
 
 . Retrival of the main base of the `Graduation Requirements` based on the `Major` of the `Student` entity.
-. Matching of the sub `Graduation Requirements` (which can come in the form of _"Focus Areas", "Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to), of the `Specialisation` given and compiled.
+. Matching of the sub `Graduation Requirements` (which can come in the form of _"Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to), of the `Specialisation` given and compiled.
 . Thereafter, the corresponding `Module` entities that have been added will be verified against the compiled `Graduation Requirements`.
 . Finally, requirements that are met, are checked or crossed accordingly - which is displayed in the left-panel of the GUI.
 
@@ -279,14 +379,16 @@ _We will add more about how we implemented this further, and the design decision
 [[Implementation-Module]]
 === Module Features & Database
 
-Bulk of the sections (of <<Implementation>>) and features throughout, require interaction with the `Module` entities. *Modules* form the majority of what students will need to interact with, as these are the classes they must take and clear, in order to graduate.
+Bulk of the sections (of <<Implementation>>) and features throughout, require heavy interaction with the `Module` entities. *Modules* form the majority of what students will need to interact with, as these are the classes they must take and clear, in order to graduate.
 
 ==== Module Implementation
 
 The `Module` entities are automatically created and populated through the JSON data received from NUSMods. The following class diagram below shows all the values that the `Module` entity stores or is associated with:
 
 .Class Diagram of `Module` Implementation
-image::#INSERTDIAGRAM[align="center"]
+image::ModuleClassDiagram.png[align="center"]
+
+The attributes of the `Module` class are retrieved from the serialised JSON file.
 
 Additionally, `Module` entities can be marked as `exempted` which allow Students to declare in the application, that will get the module credits associated, without having to declare taking it or associate a `Grade`.
 
@@ -927,7 +1029,7 @@ Use case ends.
 
 . Should be able to run on all major operating systems (_i.e. Windows 10, macOS Catalina, and Ubuntu 18.04 LTS_), with `Java 11` (as per constraints).
 . Should come prepackaged with pre-populated NUSMods data (for offline use).
-. Should be able to accommodate any user (_i.e. Undergraduate Student_) from NUS.
+. Should be able to accommodate any Computer Science or Information System Undergraduate Students from NUS.
 . Should be able to hold up to 10 students, and their respective module plans/enrollments without a noticeable sluggishness in performance for typical usage.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
