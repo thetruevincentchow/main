@@ -7,11 +7,11 @@ import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
 
 /**
- * Class that implements {@code GraduationRequirement}, specific for CS Focus Areas. Accounts for each Focus Area's
+ * Class that implements {@code GraduationRequirement}, specific for CS Focus Areas. Accounts for each Specialisation's
  * primaries
  */
 
-public class FocusAreaGraduationRequirement extends GraduationRequirement {
+public class SpecialisationGraduationRequirement extends GraduationRequirement {
 
     /**
      * {@code GenericSpecialisation} object to store the current {@code Specialisation} to be used for fulfillment
@@ -24,7 +24,7 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
      *
      * @param specialisation Specialisation to be used for fulfillment calculation
      */
-    public FocusAreaGraduationRequirement(GenericSpecialisation specialisation) {
+    public SpecialisationGraduationRequirement(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
     }
 
@@ -72,7 +72,7 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
             StringBuilder sb = new StringBuilder()
                     .append("[")
                     .append(getStatusIcon(specialisation.isFulfilled(moduleCodes)))
-                    .append("] " + "Focus Area: ")
+                    .append("] " + "Specialisation: ")
                     .append(specialisation.getName())
                     .append("\n    [")
                     .append(
@@ -91,7 +91,7 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
             }
             return sb.toString();
         } catch (Exception e) {
-            return "[?] Focus Area: Unknown (Please set your specialisation first!)";
+            return "[?] Specialisation: Unknown (Please set your specialisation first!)";
         }
     }
 
@@ -102,6 +102,6 @@ public class FocusAreaGraduationRequirement extends GraduationRequirement {
      */
     @Override
     public String toString() {
-        return "[?] " + "Focus Area: " + specialisation.getName();
+        return "[?] " + "Specialisation: " + specialisation.getName();
     }
 }

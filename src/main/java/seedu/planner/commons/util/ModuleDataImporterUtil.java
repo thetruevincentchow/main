@@ -1,6 +1,5 @@
-package seedu.planner.model.module;
+package seedu.planner.commons.util;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,20 +9,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.Main;
 import seedu.planner.commons.exceptions.IllegalValueException;
-import seedu.planner.commons.util.JsonUtil;
+import seedu.planner.model.module.JsonSerializableModule;
+import seedu.planner.model.module.Module;
 
-
-public class ModuleDataImporter {
+/**
+ * Helper Class to import Module data from a JSON file retrieved from NUS Mods API
+ */
+public class ModuleDataImporterUtil {
 
     private static final String DOWNLOAD_URL = "https://api.nusmods.com/v2/{0}/moduleInfo.json";
-    private static final String[] acadYears = new String[] {
+    private static final String[] acadYears = new String[]{
         "2019-2020",
         "2018-2019"
     };
     private static List<Module> modules = new ArrayList<>();
 
     public static List<Module> run() {
-        File file;
         Module module;
         String fileName = "";
         for (String acadYear : acadYears) {
@@ -31,9 +32,9 @@ public class ModuleDataImporter {
                 fileName = "json/moduleInfo_{0}.json".replace("{0}", acadYear);
                 ClassLoader loader = Thread.currentThread().getContextClassLoader();
                 String text = new Scanner(Main.class.getClassLoader().getResourceAsStream(fileName),
-                    "UTF-8").useDelimiter("\\A").next();
+                        "UTF-8").useDelimiter("\\A").next();
                 Optional<JsonSerializableModule[]> optionalModules = JsonUtil.readJsonString(text,
-                    JsonSerializableModule[].class);
+                        JsonSerializableModule[].class);
                 if (optionalModules.isPresent()) {
                     JsonSerializableModule[] moduleArray = optionalModules.get();
                     for (JsonSerializableModule m : moduleArray) {

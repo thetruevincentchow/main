@@ -6,8 +6,8 @@ import java.util.Arrays;
 import seedu.planner.model.Model;
 import seedu.planner.model.graduation.AggregationType;
 import seedu.planner.model.graduation.CompoundGraduationRequirement;
-import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
 import seedu.planner.model.graduation.SingleGraduationRequirement;
+import seedu.planner.model.graduation.SpecialisationGraduationRequirement;
 import seedu.planner.model.graduation.WildcardGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
@@ -44,7 +44,7 @@ public class ComputerScienceProgramme extends DegreeProgramme {
                     ))),
                 new CompoundGraduationRequirement("Computer Science Breadth and Depth", 44,
                     new ArrayList<>(Arrays.asList(
-                        new FocusAreaGraduationRequirement(specialisation),
+                        new SpecialisationGraduationRequirement(specialisation),
                         new CompoundGraduationRequirement("Computer Systems Team Project", 8,
                             new ArrayList<>(Arrays.asList(
                                 new SingleGraduationRequirement(new ModuleCode("CS3203")),

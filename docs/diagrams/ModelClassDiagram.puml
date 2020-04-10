@@ -13,7 +13,7 @@ Class ReadOnlyPlanner
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Interface ReadOnlyUserPrefs <<Interface>>
 
 Package Person {
 Class Person

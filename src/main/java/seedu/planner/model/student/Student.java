@@ -16,8 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.model.grades.CumulativeGrade;
 import seedu.planner.model.grades.Grade;
-import seedu.planner.model.graduation.FocusAreaGraduationRequirement;
 import seedu.planner.model.graduation.GraduationRequirement;
+import seedu.planner.model.graduation.SpecialisationGraduationRequirement;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.module.UniqueModuleCodeList;
@@ -107,8 +107,8 @@ public class Student {
          */
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-            && otherStudent.getMajor().equals(getMajor())
-            && otherStudent.getTimeTableMap().equals(getTimeTableMap());
+                && otherStudent.getMajor().equals(getMajor())
+                && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
     @Override
@@ -151,6 +151,7 @@ public class Student {
     /**
      * Returns a sorted list of {@code StudentSemester} for the timetables of the student.
      * {@link StudentSemester}s are sorted with the order given by {@link StudentSemester::compareTo}.
+     *
      * @return Sorted list of semesters of timetables.
      */
     public List<StudentSemester> getStudentSemesters() {
@@ -161,6 +162,7 @@ public class Student {
 
     /**
      * Returns a list of {@link ModuleCode} taken across all timetables.
+     *
      * @return List of all modules enrolled.
      */
     public ObservableList<ModuleCode> getAllEnrolledModules() {
@@ -187,10 +189,10 @@ public class Student {
         this.specialisation = specialisation;
         for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
                 .getTerminalGraduationRequirementList()) {
-            if (graduationRequirement instanceof FocusAreaGraduationRequirement) {
-                FocusAreaGraduationRequirement focusAreaGraduationRequirement =
-                        (FocusAreaGraduationRequirement) graduationRequirement;
-                focusAreaGraduationRequirement.setSpecialisation(specialisation);
+            if (graduationRequirement instanceof SpecialisationGraduationRequirement) {
+                SpecialisationGraduationRequirement specialisationGraduationRequirement =
+                        (SpecialisationGraduationRequirement) graduationRequirement;
+                specialisationGraduationRequirement.setSpecialisation(specialisation);
             }
         }
     }
