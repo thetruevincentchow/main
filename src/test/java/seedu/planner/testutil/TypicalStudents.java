@@ -15,8 +15,8 @@ import seedu.planner.model.student.Student;
  */
 public class TypicalStudents {
 
-    public static final Student ALICE = new StudentBuilder().withName(new Name("Alice")).build();
-    public static final Student BOB = new StudentBuilder().withName(new Name("Bob")).build();
+    public static final Student ALICE = new StudentBuilder().withName(new Name("Alice")).withMajor("CS").build();
+    public static final Student BOB = new StudentBuilder().withName(new Name("Bob")).withMajor("IS").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

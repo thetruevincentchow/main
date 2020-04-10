@@ -46,8 +46,8 @@ public class Student {
         this(null, null);
     }
 
-    public Student(Name name, Major major) {
-        requireAllNonNull(name);
+    public Student(Name name, Major major) throws NullPointerException {
+        requireAllNonNull(name, major);
         this.name = name;
         this.major = major;
         this.timeTableMap = new TimeTableMap();
@@ -67,6 +67,7 @@ public class Student {
     }
 
     public void setName(Name name) {
+        requireAllNonNull(name);
         this.name = name;
     }
 
