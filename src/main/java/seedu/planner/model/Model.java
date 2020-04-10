@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.planner.commons.core.GuiSettings;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.Lesson;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Enrollment;
 import seedu.planner.model.student.Student;
