@@ -3,6 +3,7 @@ package seedu.planner.logic.commands.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import seedu.planner.commons.core.Messages;
@@ -40,7 +41,7 @@ public class ModuleAddCommand extends ModuleCommand {
     }
 
     /**
-     * Generates a command execution error message due to the given (@code moduleCode) being invalid.
+     * Generates a command execution error message due to the given {@code moduleCode} being invalid.
      */
     private String generateModuleDoesNotExists(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
@@ -48,7 +49,7 @@ public class ModuleAddCommand extends ModuleCommand {
 
 
     /**
-     * Generates a command execution error message due to the given (@code moduleCode) already being present
+     * Generates a command execution error message due to the given {@code moduleCode} already being present
      * in the selected timetable of the selected student.
      */
     private String generateDuplicateMessage(ModuleCode moduleCode) {
@@ -56,7 +57,7 @@ public class ModuleAddCommand extends ModuleCommand {
     }
 
     /**
-     * Generates a command execution success message for adding the given (@code moduleCode)
+     * Generates a command execution success message for adding the given {@code moduleCode}
      * to the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
@@ -92,6 +93,23 @@ public class ModuleAddCommand extends ModuleCommand {
         Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
         model.addEnrollment(enrollment);
         return new CommandResult(generateSuccessMessage(moduleCode));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModuleAddCommand that = (ModuleAddCommand) o;
+        return moduleCode.equals(that.moduleCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode);
     }
 }
 //@@author

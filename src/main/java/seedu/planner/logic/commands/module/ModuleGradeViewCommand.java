@@ -2,6 +2,7 @@ package seedu.planner.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import seedu.planner.logic.commands.CommandResult;
@@ -23,7 +24,7 @@ public class ModuleGradeViewCommand extends ModuleGradeCommand {
     }
 
     /**
-     * Generates a command execution success message for displaying the enrollment with the given (@code moduleCode)
+     * Generates a command execution success message for displaying the enrollment with the given {@code moduleCode}
      * with a pending grade.
      */
     private String generateViewGradeSuccessMessage(ModuleCode moduleCode) {
@@ -31,8 +32,8 @@ public class ModuleGradeViewCommand extends ModuleGradeCommand {
     }
 
     /**
-     * Generates a command execution success message for displaying the enrollment with the given (@code moduleCode)
-     * with a (@code grade).
+     * Generates a command execution success message for displaying the enrollment with the given {@code moduleCode}
+     * with a {@code grade}.
      */
     private String generateViewGradeSuccessMessage(ModuleCode moduleCode, Grade grade) {
         return String.format(MESSAGE_VIEW_GRADE_SUCCESS, moduleCode.value, grade);
@@ -49,6 +50,23 @@ public class ModuleGradeViewCommand extends ModuleGradeCommand {
         } else {
             return new CommandResult(generateViewGradeSuccessMessage(moduleCode));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ModuleGradeViewCommand that = (ModuleGradeViewCommand) o;
+        return moduleCode.equals(that.moduleCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moduleCode);
     }
 }
 //@@author

@@ -17,7 +17,7 @@ import seedu.planner.model.student.Enrollment;
 /**
  * A list of Enrollment that enforces uniqueness between its elements and does not allow nulls.
  * An enrollment is considered unique by comparing using {@code Enrollment#equals(Object)}.
- * As such, adding, updating and removal of enrollments uses (@code Enrollment#equals(Object)).
+ * As such, adding, updating and removal of enrollments uses {@code Enrollment#equals(Object)}.
  * <p>
  * Supports a minimal set of list operations.
  */

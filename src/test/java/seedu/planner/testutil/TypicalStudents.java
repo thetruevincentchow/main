@@ -1,5 +1,7 @@
 package seedu.planner.testutil;
 
+import static seedu.planner.testutil.TypicalTimeTables.getTypicalTimeTableMap;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,7 @@ import seedu.planner.model.student.Name;
 import seedu.planner.model.student.Student;
 
 /**
- * A utility class containing a list of {@code Module} objects to be used in tests.
+ * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalStudents {
 
@@ -28,6 +30,19 @@ public class TypicalStudents {
         Planner planner = new Planner();
         for (Student student : getTypicalStudents()) {
             planner.addStudent(student);
+        }
+        return planner;
+    }
+
+    /**
+     * Returns an {@code Planner} with all the typical students.
+     */
+    public static Planner getTypicalPlannerWithTimeTables() {
+        Planner planner = new Planner();
+        for (Student student : getTypicalStudents()) {
+            planner.addStudent(new StudentBuilder(student)
+                .withTimeTableMap(getTypicalTimeTableMap())
+                .build());
         }
         return planner;
     }

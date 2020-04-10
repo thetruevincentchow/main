@@ -38,14 +38,14 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
     }
 
     /**
-     * Generates a command execution error message due to the given (@code moduleCode) being invalid.
+     * Generates a command execution error message due to the given {@code moduleCode} being invalid.
      */
     private String generateModuleInvalidMessage(ModuleCode moduleCode) {
         return String.format(MESSAGE_MODULE_INVALID, moduleCode.value);
     }
 
     /**
-     * Generates a command execution error message due to the given (@code moduleCode) being absent from
+     * Generates a command execution error message due to the given {@code moduleCode} being absent from
      * the active student.
      */
     private String generateModuleNotEnrolledMessage(ModuleCode moduleCode) {
@@ -53,7 +53,7 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
     }
 
     /**
-     * Validate that a student and timetable are selected, and that the requested (@code moduleCode)
+     * Validate that a student and timetable are selected, and that the requested {@code moduleCode}
      * is valid and is enrolled in the current timetable.
      */
     protected void validate(Model model) throws CommandException {

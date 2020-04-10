@@ -26,7 +26,7 @@ public abstract class SpecialisationCommand extends Command {
 
 
     /**
-     * Returns the (@code COMMAND_NAME) concatenated with the name of the input (@code subCommand).
+     * Returns the {@code COMMAND_NAME} concatenated with the name of the input {@code subCommand}.
      * @param subCommand
      * @return Qualified name
      */

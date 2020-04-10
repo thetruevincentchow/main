@@ -5,6 +5,8 @@ import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_YEAR;
 
+import java.util.Objects;
+
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -38,7 +40,7 @@ public class TimeTableAddCommand extends TimeTableCommand {
 
     /**
      * Generates a command execution success message for adding an empty timetable
-     * with the given (@code semesterYear) to the currently selected student's list of timetables.
+     * with the given {@code semesterYear} to the currently selected student's list of timetables.
      */
     private String generateSuccessMessage(StudentSemester semesterYear) {
         return String.format(MESSAGE_ADD_TIMETABLE_SUCCESS, semesterYear);
@@ -60,6 +62,23 @@ public class TimeTableAddCommand extends TimeTableCommand {
         model.addSemesterTimeTable(studentSemester);
 
         return new CommandResult(generateSuccessMessage(studentSemester));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TimeTableAddCommand that = (TimeTableAddCommand) o;
+        return studentSemester.equals(that.studentSemester);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentSemester);
     }
 }
 //@@author

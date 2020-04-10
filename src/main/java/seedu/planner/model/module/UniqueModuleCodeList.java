@@ -14,7 +14,7 @@ import seedu.planner.model.module.exceptions.ModuleNotFoundException;
 /**
  * A list of ModuleCode that enforces uniqueness between its elements and does not allow nulls.
  * A module code is considered unique by comparing using {@code ModuleCode#equals(Object)}.
- * As such, adding, updating and removal of module codes uses (@code ModuleCode#equals(Object)).
+ * As such, adding, updating and removal of module codes uses {@code ModuleCode#equals(Object)}.
  * <p>
  * Supports a minimal set of list operations.
  */

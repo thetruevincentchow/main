@@ -3,6 +3,7 @@ package seedu.planner.logic.commands.timetable;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.CommandResult;
@@ -23,7 +24,7 @@ public class TimeTableListCommand extends TimeTableCommand {
         + ": List the timetables of the active student.\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
-    public static final String MESSAGE_SUCCESS = "Listed semesters for the active student (%1$s):\n%2$s";
+    public static final String MESSAGE_SUCCESS = "Listed semesters for the selected student (%1$s):\n%2$s";
 
     /**
      * Generates a command execution success message for listing the timetables of
@@ -43,6 +44,22 @@ public class TimeTableListCommand extends TimeTableCommand {
         }
 
         return new CommandResult(generateSuccessMessage(activeStudent, activeStudent.getStudentSemesters()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
     }
 }
 //@@author

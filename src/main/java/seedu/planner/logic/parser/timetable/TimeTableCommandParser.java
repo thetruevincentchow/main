@@ -2,15 +2,13 @@ package seedu.planner.logic.parser.timetable;
 
 import static seedu.planner.commons.core.Messages.MESSAGE_UNKNOWN_SUBCOMMAND;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import seedu.planner.logic.commands.timetable.TimeTableActiveCommand;
 import seedu.planner.logic.commands.timetable.TimeTableAddCommand;
 import seedu.planner.logic.commands.timetable.TimeTableCommand;
 import seedu.planner.logic.commands.timetable.TimeTableListCommand;
 import seedu.planner.logic.commands.timetable.TimeTableRemoveCommand;
 import seedu.planner.logic.parser.Parser;
+import seedu.planner.logic.parser.SubCommandSplitter;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
@@ -20,11 +18,6 @@ import seedu.planner.logic.parser.exceptions.ParseException;
  */
 public class TimeTableCommandParser implements Parser<TimeTableCommand> {
     /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+) ?(?<arguments>.*)");
-
-    /**
      * Parses user subcommand input into command for execution.
      *
      * @param userInput user subcommand input string
@@ -33,13 +26,10 @@ public class TimeTableCommandParser implements Parser<TimeTableCommand> {
      */
     @Override
     public TimeTableCommand parse(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_UNKNOWN_SUBCOMMAND, TimeTableCommand.MESSAGE_USAGE));
-        }
+        SubCommandSplitter subCommandSplitter = new SubCommandSplitter(userInput, TimeTableCommand.MESSAGE_USAGE);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String commandWord = subCommandSplitter.getCommand();
+        final String arguments = subCommandSplitter.getSubCommand();
 
         switch (commandWord) {
         case TimeTableRemoveCommand.COMMAND_WORD:

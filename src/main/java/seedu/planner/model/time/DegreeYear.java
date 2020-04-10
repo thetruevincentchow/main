@@ -5,6 +5,12 @@ import java.util.Objects;
 import seedu.planner.commons.core.index.Index;
 
 public class DegreeYear {
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 6;
+    public static final String MESSAGE_CONSTRAINTS = String.format(
+        "Year must be a non-negative unsigned integer, from %1$s to %2$s, representing your current year of study.",
+        MIN_VALUE, MAX_VALUE);
+
     private int year;
 
     /**
@@ -12,7 +18,7 @@ public class DegreeYear {
      * {@link Index#fromOneBased(int)}.
      */
     public DegreeYear(int year) {
-        if (year < 0) {
+        if (year < MIN_VALUE || year > MAX_VALUE) {
             throw new IndexOutOfBoundsException();
         }
 
