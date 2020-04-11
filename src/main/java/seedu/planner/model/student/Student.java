@@ -162,6 +162,15 @@ public class Student {
     }
 
     /**
+     * Returns {@code true} if the student has a timetable with the specified {@code studentSemester}
+     * @param studentSemester {@link StudentSemester} of a timetable
+     * @return {@code true} if the student has a timetable with the specified {@code studentSemester}
+     */
+    public boolean hasStudentSemester(StudentSemester studentSemester) {
+        return timeTableMap.containsKey(studentSemester);
+    }
+
+    /**
      * Returns a list of {@link ModuleCode} taken across all timetables.
      *
      * @return List of all modules enrolled.

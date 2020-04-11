@@ -36,6 +36,14 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
     }
 
     /**
+     * Returns true if the list contains no elements.
+     * @return {@code true} the list contains no elements
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
      * Adds a module to the list.
      * The module must not already exist in the list.
      */

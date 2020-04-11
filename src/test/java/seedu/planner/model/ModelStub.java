@@ -116,6 +116,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public StudentSemester getActiveSemester() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public TimeTable getActiveTimeTable() {
         throw new AssertionError("This method should not be called.");
     }
@@ -137,6 +142,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void resetModuleGrade(ModuleCode moduleCode) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -77,6 +77,8 @@ public interface Model {
 
     void activateSemester(StudentSemester studentSemester);
 
+    StudentSemester getActiveSemester();
+
     TimeTable getActiveTimeTable();
 
     void addSemesterTimeTable(StudentSemester studentSemester);
@@ -86,6 +88,8 @@ public interface Model {
     Optional<Grade> getModuleGrade(ModuleCode moduleCode);
 
     void setModuleGrade(ModuleCode moduleCode, Grade grade);
+
+    void resetModuleGrade(ModuleCode moduleCode);
 
     void setPlanner(Planner planner);
 

@@ -2,7 +2,6 @@ package seedu.planner.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -31,7 +30,7 @@ public class StudentGradeCommand extends StudentCommand {
         + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Grade of active student %1$s: %2$s\n"
-        + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs are declared S/U.\n"
+        + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs exercise S/U option.\n"
         + "Grade for each module:\n%6$s";
 
     /**
@@ -41,29 +40,33 @@ public class StudentGradeCommand extends StudentCommand {
     private String generateSuccessMessage(Student activeStudent, CumulativeGrade cumulativeGrade) {
         OptionalDouble gradeValue = cumulativeGrade.getAverage();
 
-        StringBuffer sb = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
 
-        for (Map.Entry<StudentSemester, TimeTable> entry : activeStudent.getTimeTableMap().entrySet()) {
-            StudentSemester sem = entry.getKey();
-            TimeTable timeTable = entry.getValue();
+        for (StudentSemester sem : activeStudent.getStudentSemesters()) {
+            TimeTable timeTable = activeStudent.getTimeTable(sem);
 
-            sb.append("\n");
-            sb.append(sem.toString());
+            buffer.append("\n");
+            buffer.append(sem.toString());
 
             for (Enrollment enrollment : timeTable.getEnrollments()) {
-                sb.append("\n");
-                sb.append(enrollment.getModuleCode().value);
-                sb.append(String.format(" (%d MCs): ", enrollment.getCredit()));
+                buffer.append("\n");
+                buffer.append(enrollment.getModuleCode().value);
+                buffer.append(String.format(" (%d MCs): ", enrollment.getCredit()));
 
                 Optional<Grade> optionalGrade = enrollment.getGrade();
                 if (optionalGrade.isPresent()) {
-                    sb.append(optionalGrade.get().toString());
+                    buffer.append(optionalGrade.get().toString());
                 } else {
-                    sb.append("Pending");
+                    buffer.append("Pending");
                 }
             }
 
-            sb.append("\n");
+            if (timeTable.isEmpty()) {
+                buffer.append("\n");
+                buffer.append("[None]");
+            }
+
+            buffer.append("\n");
         }
 
         return String.format(MESSAGE_SUCCESS,
@@ -72,7 +75,7 @@ public class StudentGradeCommand extends StudentCommand {
             cumulativeGrade.getTotalCredits(),
             cumulativeGrade.getTotalGradedCredits(),
             cumulativeGrade.getTotalSuCredits(),
-            sb.toString());
+            buffer.toString());
     }
 
     /**

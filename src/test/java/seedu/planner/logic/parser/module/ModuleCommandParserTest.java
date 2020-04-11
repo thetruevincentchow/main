@@ -28,7 +28,9 @@ class ModuleCommandParserTest {
 
         assertParseSuccess(parser, "grade  CS2040", new ModuleGradeViewCommand(new ModuleCode("CS2040")));
         assertParseSuccess(parser, "grade  CS2040  grade/A-", new ModuleGradeSetCommand(new ModuleCode("CS2040"),
-            LetterGrade.A_MINUS));
+            LetterGrade.A_MINUS, false));
+        assertParseSuccess(parser, "grade  CS2040  su/A-", new ModuleGradeSetCommand(new ModuleCode("CS2040"),
+            LetterGrade.A_MINUS, true));
     }
 
     @Test
