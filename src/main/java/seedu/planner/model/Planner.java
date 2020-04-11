@@ -383,9 +383,9 @@ public class Planner implements ReadOnlyPlanner {
         return getActiveStudent().getTimeTable(activeSemester);
     }
 
-    public void setActiveTimeTable(TimeTable timeTable) {
+    public void replaceActiveTimeTable(TimeTable timeTable) {
         requireAllNonNull(getActiveStudent());
-        getActiveStudent().setTimeTable(activeSemester, timeTable);
+        getActiveStudent().replaceTimeTable(activeSemester, timeTable);
     }
 
     private void activateValidSemester() {
@@ -417,7 +417,7 @@ public class Planner implements ReadOnlyPlanner {
             throw new DuplicateSemesterKeyException();
         }
 
-        getActiveStudent().setTimeTable(studentSemester, new TimeTable());
+        getActiveStudent().replaceTimeTable(studentSemester, new TimeTable());
     }
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {

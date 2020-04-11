@@ -42,11 +42,7 @@ public class Student {
     private List<Lesson> lessons;
 
 
-    public Student() {
-        this(null, null);
-    }
-
-    public Student(Name name, Major major) throws NullPointerException {
+    public Student(Name name, Major major) {
         requireAllNonNull(name, major);
         this.name = name;
         this.major = major;
@@ -138,7 +134,7 @@ public class Student {
         return timeTableMap.get(activeSemester);
     }
 
-    public void setTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
+    public void replaceTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
         timeTableMap.put(activeSemester, timeTable);
     }
 
