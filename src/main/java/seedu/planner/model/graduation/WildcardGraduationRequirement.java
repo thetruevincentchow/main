@@ -1,8 +1,11 @@
 package seedu.planner.model.graduation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javafx.util.Pair;
 import seedu.planner.model.module.ModuleCode;
 
 /**
@@ -50,13 +53,13 @@ public class WildcardGraduationRequirement extends GraduationRequirement {
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
+    public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
         for (ModuleCode moduleCode : moduleCodes) {
             if (Pattern.matches(regex, moduleCode.value)) {
-                return true;
+                return new Pair<> (true, new ArrayList<>(Arrays.asList(moduleCode)));
             }
         }
-        return false;
+        return new Pair<>(false, null);
     }
 
     /**
@@ -67,9 +70,9 @@ public class WildcardGraduationRequirement extends GraduationRequirement {
      */
     public String getString(List<ModuleCode> moduleCodes) {
         if (!label.equals("")) {
-            return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] [" + label + "] " + name + "\n";
+            return "[" + getStatusIcon(isFulfilled(moduleCodes).getKey()) + "] [" + label + "] " + name + "\n";
         }
-        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] " + name + "\n";
+        return "[" + getStatusIcon(isFulfilled(moduleCodes).getKey()) + "] " + name + "\n";
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.planner.model.graduation;
 
 import java.util.List;
 
+import javafx.util.Pair;
 import seedu.planner.model.module.ModuleCode;
 
 /**
@@ -16,7 +17,7 @@ public abstract class GraduationRequirement {
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public abstract boolean isFulfilled(List<ModuleCode> moduleCodes);
+    public abstract Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes);
 
     /**
      * Helper function to return a tick or cross icon to represent if a graduation has been fulfilled
@@ -42,4 +43,6 @@ public abstract class GraduationRequirement {
      * @return A String representation of the {@code GraduationRequirement} object
      */
     public abstract String getString(List<ModuleCode> moduleCodes);
+
+
 }

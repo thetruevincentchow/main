@@ -47,7 +47,7 @@ public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
      * @return The Name of the specialisation
      */
     public String getName() {
-        return name;
+        return NAME;
     }
 
     /**
@@ -56,7 +56,7 @@ public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
      * @return The Name of the specialisation
      */
     public String toString() {
-        return "Algorithms And Theory";
+        return getName();
     }
 
     /**

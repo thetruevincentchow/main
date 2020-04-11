@@ -2,6 +2,7 @@ package seedu.planner.model.graduation;
 
 import java.util.List;
 
+import javafx.util.Pair;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 
@@ -43,9 +44,9 @@ public class SpecialisationGraduationRequirement extends GraduationRequirement {
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
+    public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
         if (specialisation == null) {
-            return false;
+            return new Pair<>(false, null);
         }
         return specialisation.isFulfilled(moduleCodes);
     }
@@ -70,12 +71,12 @@ public class SpecialisationGraduationRequirement extends GraduationRequirement {
         try {
             StringBuilder sb = new StringBuilder()
                     .append("[")
-                    .append(getStatusIcon(specialisation.isFulfilled(moduleCodes)))
+                    .append(getStatusIcon(specialisation.isFulfilled(moduleCodes).getKey()))
                     .append("] " + "Specialisation: ")
                     .append(specialisation.getName())
                     .append("\n    [")
                     .append(
-                            getStatusIcon((specialisation).arePrimariesFulfilled(moduleCodes))
+                            getStatusIcon((specialisation).arePrimariesFulfilled(moduleCodes).getKey())
                     )
                     .append("] Primaries");
             for (ModuleCode primaries : (getSpecialisation()).getPrimaries()) {
@@ -83,7 +84,7 @@ public class SpecialisationGraduationRequirement extends GraduationRequirement {
             }
             sb.append("\n    [")
                     .append(getStatusIcon((specialisation)
-                            .areElectivesFulfilled(moduleCodes)))
+                            .areElectivesFulfilled(moduleCodes).getKey()))
                     .append("] Electives");
             for (ModuleCode electives : (getSpecialisation()).getElectives()) {
                 sb.append("\n        ").append(new SingleGraduationRequirement(electives).getString(moduleCodes));
