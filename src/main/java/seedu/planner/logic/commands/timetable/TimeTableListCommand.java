@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -31,7 +32,11 @@ public class TimeTableListCommand extends TimeTableCommand {
      * the currently selected student.
      */
     private String generateSuccessMessage(Student activeStudent, List<StudentSemester> semesters) {
-        return String.format(MESSAGE_SUCCESS, activeStudent, semesters);
+        if (semesters.isEmpty()) {
+            return String.format(MESSAGE_SUCCESS, activeStudent, "[None]");
+        } else {
+            return String.format(MESSAGE_SUCCESS, activeStudent, StringUtil.wrapCollection(semesters));
+        }
     }
 
     @Override
