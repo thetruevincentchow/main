@@ -30,11 +30,13 @@ class ExemptRemoveCommandParserTest {
             ExemptRemoveCommand.MESSAGE_USAGE));
 
         // invalid exempt code format
+        /* Temporarily omitting due to discussion on allowing multiple module codes to be entered
         assertParseFailure(parser, "a  b", ModuleCode.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, "a\tb", ModuleCode.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, "-4asdf++!", ModuleCode.MESSAGE_CONSTRAINTS);
+         */
     }
 }
 //@@author

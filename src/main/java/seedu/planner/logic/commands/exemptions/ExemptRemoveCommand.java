@@ -3,6 +3,9 @@ package seedu.planner.logic.commands.exemptions;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.planner.commons.core.Messages;
@@ -27,12 +30,17 @@ public class ExemptRemoveCommand extends ExemptCommand {
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Removed the module from exemptions list: %1$s";
     public static final String MESSAGE_ADD_MODULE_NOT_EXISTS = "Module does not exist in exemptions list: %1$s";
 
-    private final ModuleCode moduleCode;
+    private final List<ModuleCode> moduleCodes;
 
     public ExemptRemoveCommand(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
+        this.moduleCodes = Arrays.asList(moduleCode);
+    }
 
-        this.moduleCode = moduleCode;
+    public ExemptRemoveCommand(List<ModuleCode> moduleCodes) {
+        requireAllNonNull(moduleCodes);
+        this.moduleCodes = new ArrayList<>();
+        this.moduleCodes.addAll(moduleCodes);
     }
 
     /**
@@ -59,14 +67,17 @@ public class ExemptRemoveCommand extends ExemptCommand {
         if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
+        List<String> messages = new ArrayList<>();
+        for (ModuleCode moduleCode : moduleCodes) {
+            // Check if module is present in exempted modules list
+            if (!model.hasExemptedModule(moduleCode)) {
+                throw new CommandException(generateFailureMessage(moduleCode));
+            }
 
-        // Check if module is present in exempted modules list
-        if (!model.hasExemptedModule(moduleCode)) {
-            throw new CommandException(generateFailureMessage(moduleCode));
+            model.removeExemptedModule(moduleCode);
+            messages.add(generateSuccessMessage(moduleCode));
         }
-
-        model.removeExemptedModule(moduleCode);
-        return new CommandResult(generateSuccessMessage(moduleCode));
+        return new CommandResult(String.join("\n", messages));
     }
 
     @Override
@@ -78,12 +89,12 @@ public class ExemptRemoveCommand extends ExemptCommand {
             return false;
         }
         ExemptRemoveCommand that = (ExemptRemoveCommand) o;
-        return moduleCode.equals(that.moduleCode);
+        return moduleCodes.equals(that.moduleCodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleCode);
+        return Objects.hash(moduleCodes);
     }
 }
 //@@author
