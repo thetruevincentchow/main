@@ -5,6 +5,7 @@ import java.util.List;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
+import seedu.planner.model.programmes.specialisations.is.GenericIsSpecialisation;
 
 /**
  * Class that implements {@code GraduationRequirement}, specific for CS Focus Areas. Accounts for each Specialisation's
@@ -76,17 +77,17 @@ public class SpecialisationGraduationRequirement extends GraduationRequirement {
                     .append(specialisation.getName())
                     .append("\n    [")
                     .append(
-                            getStatusIcon(((GenericCsSpecialisation) specialisation).arePrimariesFulfilled(moduleCodes))
+                            getStatusIcon((specialisation).arePrimariesFulfilled(moduleCodes))
                     )
                     .append("] Primaries");
-            for (ModuleCode primaries : ((GenericCsSpecialisation) getSpecialisation()).getPrimaries()) {
+            for (ModuleCode primaries : (getSpecialisation()).getPrimaries()) {
                 sb.append("\n        ").append(new SingleGraduationRequirement(primaries).getString(moduleCodes));
             }
             sb.append("\n    [")
-                    .append(getStatusIcon(((GenericCsSpecialisation) specialisation)
+                    .append(getStatusIcon((specialisation)
                             .areElectivesFulfilled(moduleCodes)))
                     .append("] Electives");
-            for (ModuleCode electives : ((GenericCsSpecialisation) getSpecialisation()).getElectives()) {
+            for (ModuleCode electives : (getSpecialisation()).getElectives()) {
                 sb.append("\n        ").append(new SingleGraduationRequirement(electives).getString(moduleCodes));
             }
             return sb.toString();
