@@ -31,7 +31,7 @@ public class GradWindow extends UiPart<Region> {
     }
 
     public void setGrad(ReadOnlyPlanner planner) {
-        if (planner.getStudentList().size() == 0) {
+        if (!planner.hasActiveStudent()) {
             graduationStatus.setText("No Active Student Detected");
         } else {
             Student activeStudent = planner.getActiveStudent();
