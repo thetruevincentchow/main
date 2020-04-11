@@ -62,6 +62,13 @@ public class Student {
         this.lessons = new ArrayList<>();
     }
 
+
+    public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules, GenericSpecialisation specialisation) {
+        this(name, major, timeTableMap, exemptedModules);
+        // this.specialisation = specialisation;
+        setSpecialisation(specialisationsour);
+    }
+
     public Name getName() {
         return name;
     }

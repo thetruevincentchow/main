@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ComputerSecuritySpecialisation extends GenericCsSpecialisation {
 
+    public final static String name = "Computer Security";
     /**
      * Default constructor for {@code ComputerSecuritySpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public ComputerSecuritySpecialisation() {
-        setName("Computer Security");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -45,8 +45,8 @@ public class ComputerSecuritySpecialisation extends GenericCsSpecialisation {
      *
      * @return The Name of the specialisation
      */
-    public String toString() {
-        return this.getName();
+    public String getName() {
+        return name;
     }
 
     /**

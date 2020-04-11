@@ -15,7 +15,7 @@ public abstract class GenericSpecialisation {
     /**
      * Name of {@code GenericSpecialisation}
      */
-    private String name;
+    protected static String name;
 
     private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
 
@@ -37,9 +37,7 @@ public abstract class GenericSpecialisation {
      *
      * @return the Name of {@code GenericSpecialisation}
      */
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
 
     /**
      * Sets the Name of {@code GenericSpecialisation}
@@ -146,6 +144,6 @@ public abstract class GenericSpecialisation {
      * @return A String Representation of {@code GenericSpecialisation}
      */
     public String toString() {
-        return name;
+        return getName();
     }
 }

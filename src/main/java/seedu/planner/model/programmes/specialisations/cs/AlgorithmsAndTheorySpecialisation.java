@@ -11,12 +11,13 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
 
+    public final static String name = "Algorithms And Theory";
+
     /**
      * Default constructor for {@code AlgorithmsAndTheorySpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public AlgorithmsAndTheorySpecialisation() {
-        setName("Algorithms And Theory");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -38,6 +39,15 @@ public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
         electives.add(new ModuleCode("CS5237"));
         electives.add(new ModuleCode("CS5238"));
         electives.add(new ModuleCode("CS5330"));
+    }
+
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
+    public String getName() {
+        return name;
     }
 
     /**
