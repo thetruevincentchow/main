@@ -5,6 +5,9 @@ import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.planner.logic.commands.module.ModuleRemoveCommand;
@@ -16,7 +19,9 @@ class ModuleRemoveCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsRemoveCommand() {
-        assertParseSuccess(parser, "CS2040", new ModuleRemoveCommand(new ModuleCode("CS2040")));
+        List<ModuleCode> moduleCodes = new ArrayList<>();
+        moduleCodes.add(new ModuleCode("CS2040"));
+        assertParseSuccess(parser, "CS2040", new ModuleRemoveCommand(moduleCodes));
     }
 
     @Test

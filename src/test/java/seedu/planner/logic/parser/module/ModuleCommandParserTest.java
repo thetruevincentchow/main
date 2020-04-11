@@ -6,6 +6,9 @@ import static seedu.planner.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.planner.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.planner.logic.commands.module.ModuleAddCommand;
@@ -22,9 +25,11 @@ class ModuleCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        assertParseSuccess(parser, "add CS2040", new ModuleAddCommand(new ModuleCode("CS2040")));
+        List<ModuleCode> moduleCodes = new ArrayList<>();
+        moduleCodes.add(new ModuleCode("CS2040"));
+        assertParseSuccess(parser, "add CS2040", new ModuleAddCommand(moduleCodes));
 
-        assertParseSuccess(parser, "remove  CS2040", new ModuleRemoveCommand(new ModuleCode("CS2040")));
+        assertParseSuccess(parser, "remove  CS2040", new ModuleRemoveCommand(moduleCodes));
 
         assertParseSuccess(parser, "grade  CS2040", new ModuleGradeViewCommand(new ModuleCode("CS2040")));
         assertParseSuccess(parser, "grade  CS2040  grade/A-", new ModuleGradeSetCommand(new ModuleCode("CS2040"),
