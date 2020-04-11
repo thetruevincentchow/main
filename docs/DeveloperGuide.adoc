@@ -36,8 +36,10 @@ Refer to the guide <<SettingUp#, here>>.
 [[Design-Architecture]]
 === Architecture
 
+[.text-center]
 .Architecture Diagram
-image::ArchitectureDiagram.png[]
+
+image::ArchitectureDiagram.png[align="center"]
 
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -70,7 +72,7 @@ Each of the four components
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
 .Class Diagram of the Logic Component
-image::LogicClassDiagram.png[]
+image::LogicClassDiagram.png[align="center"]
 
 [discrete]
 ==== How the architecture components interact with each other
@@ -78,7 +80,7 @@ image::LogicClassDiagram.png[]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `student remove 1`.
 
 .Component interactions for `student remove 1` command
-image::ArchitectureSequenceDiagram.png[]
+image::ArchitectureSequenceDiagram.png[align="center"]
 
 The sections below give more details of each component.
 
@@ -86,7 +88,7 @@ The sections below give more details of each component.
 === UI Component
 
 .Structure of the UI Component
-image::UiClassDiagram.png[]
+image::UiClassDiagram.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/ui/Ui.java[`Ui.java`]
 
@@ -104,7 +106,7 @@ The `UI` component,
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
-image::LogicClassDiagram.png[]
+image::LogicClassDiagram.png[align="center"]
 
 *API* :
 link:{repoURL}/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
@@ -118,7 +120,7 @@ link:{repoURL}/src/main/java/seedu/planner/logic/Logic.java[`Logic.java`]
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("student remove 1")` API call.
 
 .Interactions Inside the Logic Component for the `student remove 1` Command
-image::DeleteSequenceDiagram.png[]
+image::DeleteSequenceDiagram.png[align="center"]
 
 NOTE: The lifeline for `StudentRemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -126,7 +128,7 @@ NOTE: The lifeline for `StudentRemoveCommandParser` should end at the destroy ma
 === Model Component
 .Structure of the Model Component
 ==== Planner Model
-image::ModelClassDiagram.png[]
+image::ModelClassDiagram.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/Planner.java[`Planner.java`]
 
@@ -141,7 +143,8 @@ The `Planner`,
 * does not depend on any of the other three components.
 
 ==== Student Model
-image::ModelStudent.png[]
+.Student Class Diagram
+image::ModelStudent.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/student/Student.java[`Student.java`]
 
@@ -155,7 +158,8 @@ The `Student`,
 * stores a `List<Lesson>` object that represents the Student's currently selected Lessons
 
 ==== Module Model
-image::ModelModule.png[]
+.Module Class Diagram
+image::ModelModule.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/module/Module.java[`Module.java`]
 
@@ -185,7 +189,8 @@ The `ModuleDataImportUtil`,
 * loads `SemesterData` into each `Module`
 
 ==== Graduation Models
-image::ModelPackageGraduation.png[]
+.Graduation Package Class Diagram
+image::ModelPackageGraduation.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/[`Graduation Package`]
 
@@ -209,6 +214,7 @@ The `SingleGraduationRequirement` class,
 
 * is an implementation of the interface `GraduationRequirement`
 * acts as a basic `GraduationRequirement` containing only a single `Module`
+* determines if the `SingleGraduationRequirement` is fulfilled by checking if the `Student` has enrolled in the specified `Module`
 
 ==== Compound Graduation Requirement Model
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/CompoundGraduationRequirement.java[`CompoundGraduationRequirement.java`]
@@ -223,6 +229,7 @@ The `CompoundGraduationRequirement` class,
 ** all modules must be completed or
 ** completed modules must be within a specified list
 ** add up to a certain amount of Module Credits
+* determines if the `CompoundGraduationRequirement` is fulfilled by checking if the `Student` has fulfilled the internal list of `GraduationRequirement` stored in the `CompoundGraduationRequirement`, with checks based on the `AggregationType` specified.
 
 ==== Specialisation Graduation Requirement Model
 *API* : link:{repoURL}/src/main/java/seedu/planner/model/graduation/SpecialisationGraduationRequirement.java[`SpecialisationGraduationRequirement.java`]
@@ -239,7 +246,7 @@ The `SpecialisationGraduationRequirement` class,
 === Storage Component
 
 .Structure of the Storage Component
-image::StorageDiagram.png[]
+image::StorageDiagram.png[align="center"]
 
 *API* : link:{repoURL}/src/main/java/seedu/planner/storage/Storage.java[`Storage.java`]
 
@@ -323,17 +330,31 @@ The Graduation Requirements are made up of 2 implemented components:
 
 The `Major` and `Specialisation` entities are automatically created and populated through the JSON data received from NUSMods. Furthermore, `Student` entities can only be associated in a _1-0..1_ relationship with a `Specialisation` entity.
 
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when either a *Major* or *Specialisation* is being set:
+The following high-level sequence diagrams illustrates the interactions between the `Ui`, `Logic` & `Model` components when either a *Major* or *Specialisation* is being set:
 
-.Sequence Diagram for Degree Management (i.e. Handling of `Major` or `Specialisation`)
-image::#INSERTDIAGRAM[align="center"]
+.Sequence Diagram for `Major` being set, with respect to `MainWindow` from `Ui`, `Logic` & `Model`
+image::sequenceDiagramMajorSetLogicModelStorage.png[align="center"]
 
-==== Verification of Graduation
+.Sequence Diagram for `Major` being set with respect to the `MajorSetCommand`
+image::sequenceDiagramMajorSet.png[align="center"]
 
-Once the *Major* and *Specialisation* (if any), or a *Student* is set, the following logic is used to verify if the student's *Graduation Rquirements* are being met, as modules are managed:
+.Sequence Diagram for `Specialisation` being set (e.g. `AlgorithmsAndTheorySpecialisation`) with regards to `SpecialisationSetCommand`
+image::sequenceDiagramSpecialisationSet.png[align="center"]
 
-. Retrival of the main base of the `Graduation Requirements` based on the `Major` of the `Student` entity.
-. Matching of the sub `Graduation Requirements` (which can come in the form of _"Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to), of the `Specialisation` given and compiled.
+==== Verification of Graduation Requirement Fulfilment
+
+Once the *Major* and *Specialisation* (if any), or a *Student* is set, the following logic is used to verify if the `Student` 's `GraduationRequirements` are being met, based on the list of `Module` which which the `Student` has enrolled in:
+
+. Retrieval of the main base of the `GraduationRequirement` based on the `Major` and ultimately `DegreeProgram` of the `Student`.
+. Retrieval of the list of `Module` which the `Student` has enrolled in.
+. Passing in of the list of enrolled `Module` into each `GraduationRequirement` and determining if the `GraduationRequirement` has been met.
+.. The modelling of the actual *Graduation Requirements* of NUS CS and IS undergraduate students are accomplished by making use of the various implementations of `GraduationRequirement` such as
+... `CompoundGraduationRequirement` for groups of `Module` s which a `Student` is allowed to choose from, with certain conditions for fulfilment such as:
+.... Minimum number of Module
+.... Minimum number of Module Credits
+.... At least a specified number of Modules with 4000-level or above
+... `SpecialisationGraduationRequirement` for _"Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to).
+... `WildcardGraduationRequirement` for Requirements that need to be fulfilled from a fixed pool of `Module` s which have `ModuleCode` s starting with certain characters (such as GEH, GES, GET)
 . Thereafter, the corresponding `Module` entities that have been added will be verified against the compiled `Graduation Requirements`.
 . Finally, requirements that are met, are checked or crossed accordingly - which is displayed in the left-panel of the GUI.
 
@@ -344,13 +365,13 @@ image::#INSERTDIAGRAM[align="center"]
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+* *Alternative 1 (Current Implementation):* Model real life graduation requirements in an OOP-manner with a different class for different types of requirements containing different logic determining the fulfilment of the graduation requirement, each inheriting from a base class to allow for polymorphism.
+** Pros: Well Structured and separates actual requirements from the model by creating classes that provide the logic needed for fulfilment calculation.
+** Cons: Each Programme will have to construct it's own combination of the various implementations `GraduationRequirement` to model actual graduation requirements.
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* Implement each `DegreeProgram` 's graduation requirement as a class on it's own.
+** Pros: Each `DegreeProgram` can have the flexibility of customising fulfilment logic.
+** Cons: Duplicate codes due to many classes may have the same fulfilment logic, but different data.
 
 [[Implementation-Lesson]]
 === Lesson Features

@@ -23,7 +23,26 @@ My main contributions are the implementation of the Graduation Requirements inte
 ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 ** Credits: This feature was implemented with existing library support of the Java 11 bundle.
 
+* *Major enhancement*: Implemented Major and Major Set Command, for Users who wish to change their Student's Major retroactively
+** What it does: This feature allows students to change their Major, with CS and IS Majors currently supported
+** Justification:
+** Highlights:
+** Credits:
+
+* *Major enhancement*: Worked with @Capeguy to ensure Modules Loaded from JSON files contained the right information to be used for the application
+** What it does:
+** Justification:
+** Highlights:
+** Credits:
+
+* *Major feature*: Co-Developed the foundational code for Planner and associated classes for all other advanced features to be built upon.
+** What it does: allows the other developers to work around a baseline formed around the framework provided by AddressBook-Level3.
+** Justification: This initial refactoring of AddressBook to Planner is important and needs to be done synchronously and before other portions of code can be developed as this forms the basis of which other features rely on.
+** Highlights: This feature blocks the entire application development and needed to be completed fast so as not to impede progress of other team members. As this was a lot to do at once, I have had the help of @Capeguy and @gruntultra in order to push this foundational code out.
+** Credits: The original code from AddressBook-Level3, @Capeguy, @gruntultra
+
 * *Minor enhancement*: added and modified a significant amount of the Test Cases and Unit Tests for the NUS Module Planner.
+* *Minor enhancement*: created helper classes to faciliate easier testing of models such as TypicalModule and ModuleBuilder
 
 * *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=danamic[RepoSense Report here]!
 

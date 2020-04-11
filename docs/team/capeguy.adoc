@@ -16,18 +16,34 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 == Summary of contributions
 
 * *Major feature*: Importing of all modules that NUS has to offering, made available using the NUSMods.
-** What it does: Allows the user to view the list of all the modules offered by NUS, including details such as Faculty, Workload, Description, Module Credits and which semesters it is offered in.
+** What it does: Allows the user to view the list of all the modules offered by NUS, including details such as Faculty, Workload, Description, Module Credits and in which semesters it is offered.
 ** Justification: This feature improves the product significantly because a user can view actual accurate data of the modules currently being offered by NUS, with the latest data available.
 ** Highlights: This feature forms the basis of most of the logic for this application, and is used by various other models such as GraduationRequirements, Programmes, and Timetable. The implementation was a significant amount of effort in order to build the foundations for other models and logic controllers to make use of. Having real life data helps make the application more helpful for the user, as compared to using a dummy system or one that requires users to input module details by themselves.
 ** Credits: NUSMods for providing the data and API.
 
-* *Major feature*: Handled the storage and JSON serialisation mechanism for all models to maintain the state of the application consistent throughout different runs.
-** What it does: allows the user use the application offline, and has it's state saved and restored upon every launch of the app. It can also allow for moving of the data across computers by moving the relevant JSON files along with the executable.
-** Justification: This feature improves the product usability significantly because a user can come back to the app across multiple stretches of time and will still be able to pick up where the user left off - a very practical scenario of a Student who wants to update his records after every semester.
-** Highlights: This enhancement greatly affects the overall usability of the the application and existing commands and changes to models will require modification in order to ensure that the data is stored and loaded correctly. The implementation required an in-depth analysis of how different model come together. The implementation too was challenging as it required content changes from the additions of models.
-** Credits: The original JSON Storage code used in Address Book Level 3
+* *Major feature*: Handled the storage and JSON serialisation mechanism for all models to maintain a consistent state throughout multiple runs of the application.
+** What it does: Allows the user to use the application offline, and have its state saved and restored upon every launch of the app. It can also allow for moving of the data across devices by moving the relevant JSON files along with the executable.
+** Justification: This feature improves the product usability significantly because a user can come back to the app across multiple stretches of time and will still be able to pick up where they left off - a very practical scenario of a Student who wants to update his records after every semester.
+** Highlights: This enhancement greatly affects the overall usability of the application and existing commands and changes to models will require modification in order to ensure that the data is stored and loaded correctly. The implementation required an in-depth analysis of how different models come together. The implementation was challenging as well, as it required content changes from the additions of models.
+** Credits: The original JSON Storage code used in Address Book Level 3.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Major feature*: Co-Developed GraduationRequirements and DegreeProgramme with @DANamic modelled after actual graduation requirements of NUS Computer Science and Information Systems undergraduate students to support complex fulfilment logic.
+** What it does: Allows the users to determine if he/she has fulfilled individual graduation requirements based on his/her enrolled modules.
+** Justification: This feature improves the product usability significantly by allowing users to view the modules that he/she is required to take in order to fulfil certain graduation requirements.
+** Highlights: This feature *is the core feature* of the entire application, and is the very purpose of what the application aims to achieve - to allow students to better plan their modules better across semesters.
+
+* *Major feature*: Co-Developed Specialisations with @DANamic, which is modelled after actual specialisations of NUS Computer Science and Information Systems undergraduate students to support further complex fulfilment logic between Primary and Elective modules.
+** What it does: Allows the users to determine if he/she has fulfilled specialisations based on his/her enrolled modules.
+** Justification: This feature improves the product usability significantly by allowing users to view the modules he/she is required to take in order to fulfil certain specialisations.
+** Highlights: This feature *is another core feature* of the entire application, complementing GraduationRequirements in order to model a Student's constraints as accurately as possible.
+
+* *Major feature*: Co-Developed the foundational code for Planner and associated classes for all other advanced features to be built upon.
+** What it does: Allows other developers to work with a baseline formed around the framework provided by AddressBook-Level3.
+** Justification: This initial refactoring of AddressBook to Planner is important and needs to be done synchronously and before other portions of code can be developed as this forms the basis of which other features rely on.
+** Highlights: This feature blocks the entire application development and needed to be completed fast, as it would have impeded the progress of my team members. As this was a lot to do at once, I have had the help of @DANamic and @gruntultra in order to push this foundational code out.
+** Credits: The original code from AddressBook-Level3, @DANamic, @gruntultra
+
+* *Minor enhancement*: Created helper classes to facilitate easier testing of models such as TypicalStudent and StudentBuilder.
 
 * *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=capeguy[RepoSense Report here]!
 
@@ -53,7 +69,6 @@ _{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
@@ -71,7 +86,6 @@ include::../UserGuide.adoc[tag=dataencryption]
 include::../DeveloperGuide.adoc[tag=undoredo]
 
 include::../DeveloperGuide.adoc[tag=dataencryption]
-
 
 == PROJECT: PowerPointLabs
 
