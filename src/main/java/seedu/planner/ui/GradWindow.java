@@ -11,7 +11,9 @@ import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.student.Student;
 
 
-
+/**
+ * The UI component that is responsible for updating graduation requirements.
+ */
 public class GradWindow extends UiPart<Region> {
 
     private static final String FXML = "GradView.fxml";
