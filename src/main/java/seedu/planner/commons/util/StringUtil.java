@@ -6,11 +6,13 @@ import static seedu.planner.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
+    public static final int MAX_COLUMNS = 60;
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -85,5 +87,45 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Wraps a comma-separated list of collection elements according to a maximum column count.
+     *
+     * @param elements   {@link Collection} of elements
+     * @param maxColumns Maximum length per line
+     * @return Wrapped comma-separated element string
+     */
+    public static String wrapCollection(Collection elements, int maxColumns) {
+        StringBuffer allLines = new StringBuffer();
+        StringBuffer currentLine = new StringBuffer();
+
+        int count = 0;
+        for (Object element : elements) {
+            count++;
+            String representation = element.toString() + (count < elements.size() ? ", " : "");
+            if (currentLine.length() > 0 && representation.length() + currentLine.length() > maxColumns) {
+                allLines.append(currentLine.toString()).append("\n");
+                currentLine = new StringBuffer();
+            }
+            currentLine.append(representation);
+        }
+
+        if (currentLine.length() > 0) {
+            allLines.append(currentLine.toString());
+        }
+
+        return allLines.toString();
+    }
+
+    /**
+     * Wraps a comma-separated list of collection elements according to the maximum column count given by {@code
+     * MAX_COLUMNS}.
+     *
+     * @param elements {@link Collection} of elements
+     * @return Wrapped comma-separated element string
+     */
+    public static String wrapCollection(Collection elements) {
+        return wrapCollection(elements, MAX_COLUMNS);
     }
 }

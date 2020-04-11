@@ -8,6 +8,8 @@ import java.util.OptionalDouble;
  * This correctly handles CS/CU grades (which are not counted as exercising the S/U option voluntarily).
  */
 public class Grade {
+    public static final String MESSAGE_PENDING = "Pending";
+
     public final LetterGrade letterGrade;
     public final boolean isSu;
 

@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -30,17 +31,11 @@ public class ModuleListCommand extends ModuleCommand {
      * the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ObservableList<ModuleCode> codes) {
-        StringBuffer sb = new StringBuffer();
-        boolean isFirst = true;
-        for (ModuleCode moduleCode : codes) {
-            if (!isFirst) {
-                sb.append(", ");
-            }
-            sb.append(moduleCode.value);
-            isFirst = false;
+        if (codes.isEmpty()) {
+            return String.format(MESSAGE_SUCCESS, "[None]");
+        } else {
+            return String.format(MESSAGE_SUCCESS, StringUtil.wrapCollection(codes));
         }
-
-        return String.format(MESSAGE_SUCCESS, codes.isEmpty() ? "[None]" : sb.toString());
     }
 
     @Override

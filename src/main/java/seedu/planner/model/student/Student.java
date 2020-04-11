@@ -42,11 +42,7 @@ public class Student {
     private List<Lesson> lessons;
 
 
-    public Student() {
-        this(null, null);
-    }
-
-    public Student(Name name, Major major) throws NullPointerException {
+    public Student(Name name, Major major) {
         requireAllNonNull(name, major);
         this.name = name;
         this.major = major;
@@ -138,7 +134,7 @@ public class Student {
         return timeTableMap.get(activeSemester);
     }
 
-    public void setTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
+    public void replaceTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
         timeTableMap.put(activeSemester, timeTable);
     }
 
@@ -159,6 +155,15 @@ public class Student {
         List<StudentSemester> studentSemesters = new ArrayList<>(timeTableMap.keySet());
         studentSemesters.sort(StudentSemester::compareTo);
         return studentSemesters;
+    }
+
+    /**
+     * Returns {@code true} if the student has a timetable with the specified {@code studentSemester}
+     * @param studentSemester {@link StudentSemester} of a timetable
+     * @return {@code true} if the student has a timetable with the specified {@code studentSemester}
+     */
+    public boolean hasStudentSemester(StudentSemester studentSemester) {
+        return timeTableMap.containsKey(studentSemester);
     }
 
     /**

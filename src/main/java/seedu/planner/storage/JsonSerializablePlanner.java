@@ -12,6 +12,7 @@ import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.Planner;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.student.Student;
+import seedu.planner.model.time.StudentSemester;
 
 /**
  * An Immutable Planner that is serializable to JSON format.
@@ -22,6 +23,7 @@ class JsonSerializablePlanner {
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
 
     private final int activeStudentIndex;
+    private final JsonAdaptedStudentSemester activeSemester;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -29,8 +31,10 @@ class JsonSerializablePlanner {
      */
     @JsonCreator
     public JsonSerializablePlanner(@JsonProperty("activeStudentIndex") int activeStudentIndex,
+                                   @JsonProperty("activeSemester") JsonAdaptedStudentSemester activeSemester,
                                    @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.activeStudentIndex = activeStudentIndex;
+        this.activeSemester = activeSemester;
         this.students.addAll(students);
     }
 
@@ -41,6 +45,14 @@ class JsonSerializablePlanner {
      */
     public JsonSerializablePlanner(ReadOnlyPlanner source) {
         activeStudentIndex = source.getActiveStudentIndex();
+
+        StudentSemester modelActiveSemester = source.getActiveSemester();
+        if (modelActiveSemester == null) {
+            activeSemester = null;
+        } else {
+            activeSemester = new JsonAdaptedStudentSemester(modelActiveSemester);
+        }
+
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
 
     }
@@ -67,6 +79,13 @@ class JsonSerializablePlanner {
 
             Student activeStudent = planner.getEqualStudent(jsonActiveStudent.toModelType());
             planner.activateStudent(activeStudent);
+
+            if (activeSemester != null) {
+                StudentSemester modelActiveSemester = activeSemester.toModelType();
+                if (activeStudent.hasStudentSemester(modelActiveSemester)) {
+                    planner.activateSemester(modelActiveSemester);
+                }
+            }
         }
 
 

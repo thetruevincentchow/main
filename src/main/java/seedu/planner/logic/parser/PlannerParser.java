@@ -10,6 +10,7 @@ import seedu.planner.logic.commands.ClearCommand;
 import seedu.planner.logic.commands.Command;
 import seedu.planner.logic.commands.ExitCommand;
 import seedu.planner.logic.commands.HelpCommand;
+import seedu.planner.logic.commands.StatusCommand;
 import seedu.planner.logic.commands.exemptions.ExemptCommand;
 import seedu.planner.logic.commands.lessons.LessonCommand;
 import seedu.planner.logic.commands.major.MajorCommand;
@@ -60,6 +61,9 @@ public class PlannerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case StatusCommand.COMMAND_WORD:
+            return new StatusCommand();
 
         case StudentCommand.COMMAND_WORD:
             return new StudentCommandParser().parse(arguments);

@@ -34,6 +34,14 @@ public class TimeTable {
         return enrollments.contains(enrollment);
     }
 
+    /**
+     * Returns true if the timetable contains no enrollments.
+     * @return {@code true} the timetable contains no enrollments
+     */
+    public boolean isEmpty() {
+        return enrollments.isEmpty();
+    }
+
     public Enrollment getEnrollment(ModuleCode moduleCode) {
         for (Enrollment enrollment : enrollments) {
             if (enrollment.getModuleCode().equals(moduleCode)) {

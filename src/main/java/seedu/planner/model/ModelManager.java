@@ -212,6 +212,11 @@ public class ModelManager implements Model {
         planner.activateSemester(studentSemester);
     }
 
+    @Override
+    public StudentSemester getActiveSemester() {
+        return planner.getActiveSemester();
+    }
+
     public TimeTable getActiveTimeTable() {
         return planner.getActiveTimeTable();
     }
@@ -230,6 +235,10 @@ public class ModelManager implements Model {
 
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         planner.setModuleGrade(moduleCode, grade);
+    }
+
+    public void resetModuleGrade(ModuleCode moduleCode) {
+        planner.resetModuleGrade(moduleCode);
     }
 
     public Path setPlannerFilePath(Path path) {

@@ -188,6 +188,11 @@ public class Planner implements ReadOnlyPlanner {
         enrollment.setGrade(Optional.of(grade));
     }
 
+    public void resetModuleGrade(ModuleCode moduleCode) {
+        Enrollment enrollment = getEnrollment(moduleCode);
+        enrollment.setGrade(Optional.empty());
+    }
+
     public void addEnrollment(Enrollment enrollment) {
         getActiveTimeTable().addEnrollment(enrollment);
     }
@@ -293,6 +298,7 @@ public class Planner implements ReadOnlyPlanner {
 
     public void activateValidStudent() {
         activeStudentIndex = -1;
+        activeSemester = null;
         if (!students.isEmpty()) {
             activeStudentIndex = 0;
         }
@@ -377,14 +383,14 @@ public class Planner implements ReadOnlyPlanner {
         return getActiveStudent().getTimeTable(activeSemester);
     }
 
-    public void setActiveTimeTable(TimeTable timeTable) {
+    public void replaceActiveTimeTable(TimeTable timeTable) {
         requireAllNonNull(getActiveStudent());
-        getActiveStudent().setTimeTable(activeSemester, timeTable);
+        getActiveStudent().replaceTimeTable(activeSemester, timeTable);
     }
 
     private void activateValidSemester() {
         requireActiveStudentNonNull();
-        requireAllNonNull(activeStudentIndex);
+        requireAllNonNull(getActiveStudent());
 
         if (getActiveStudent().getTimeTableMap().isEmpty()) {
             throw new TimeTableEmptyException();
@@ -411,7 +417,7 @@ public class Planner implements ReadOnlyPlanner {
             throw new DuplicateSemesterKeyException();
         }
 
-        getActiveStudent().setTimeTable(studentSemester, new TimeTable());
+        getActiveStudent().replaceTimeTable(studentSemester, new TimeTable());
     }
 
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
