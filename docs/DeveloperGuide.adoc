@@ -33,6 +33,8 @@ Refer to the guide <<SettingUp#, here>>.
 
 == Design
 
+// tag::design-architecture[]
+
 [[Design-Architecture]]
 === Architecture
 
@@ -84,6 +86,8 @@ image::ArchitectureSequenceDiagram.png[align="center"]
 
 The sections below give more details of each component.
 
+// end::design-architecture[]
+
 [[Design-Ui]]
 === UI Component
 
@@ -100,6 +104,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+// tag::design-logic[]
 
 [[Design-Logic]]
 === Logic Component
@@ -123,6 +128,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 image::DeleteSequenceDiagram.png[align="center"]
 
 NOTE: The lifeline for `StudentRemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+// end::design-logic[]
 
 // tag::design-model[]
 
@@ -266,6 +272,7 @@ Additional details on how certain Models were stored in JSON format is available
 
 // end::design-storage[]
 
+// tag::design-common[]
 [[Design-Commons]]
 === Common Classes
 
@@ -325,6 +332,7 @@ _This section will be updated soon!_
 ** Pros:
 ** Cons:
 
+// tag::feature-graduation-requirement[]
 [[Implementation-GradReq]]
 === Graduation Requirements Features
 
@@ -359,18 +367,18 @@ Once the *Major* and *Specialisation* (if any), or a *Student* is set, the follo
 . Passing in of the list of enrolled `Module` into each `GraduationRequirement` and determining if the `GraduationRequirement` has been met.
 .. The modelling of the actual *Graduation Requirements* of NUS CS and IS undergraduate students are accomplished by making use of the various implementations of `GraduationRequirement` such as
 ... `CompoundGraduationRequirement` for groups of `Module` s which a `Student` is allowed to choose from, with certain conditions for fulfilment such as:
-.... Minimum number of Module
+.... Minimum number of Modules
 .... Minimum number of Module Credits
-.... At least a specified number of Modules with 4000-level or above
+.... Minimum number of Modules that must be 4000-level or above
 ... `SpecialisationGraduationRequirement` for _"Specialisations" or "Tracks"_ depending on the terminology of the respective faculty that the `Major` belongs to).
-... `WildcardGraduationRequirement` for Requirements that need to be fulfilled from a fixed pool of `Module` s which have `ModuleCode` s starting with certain characters (such as GEH, GES, GET)
+... `WildcardGraduationRequirement` for Requirements that need to be fulfilled from a fixed pool of `Module` s which have `ModuleCode` s starting with certain characters (_e.g. GEH, GES, GET_)
 . Thereafter, the corresponding `Module` entities that have been added will be verified against the compiled `Graduation Requirements`.
 . Finally, requirements that are met, are checked or crossed accordingly - which is displayed in the left-panel of the GUI.
 
 The flow of how the `Graduation Requirements` is put together with information from `Major` and `Specialisation` can be found in the below class diagram:
 
-.Class Diagram of Graduation Requirements Implementation
-image::#INSERTDIAGRAM[align="center"]
+.Extended Class Diagram of Graduation Requirements Implementation
+image::GraduationRequirementsCD-expanded.png[align="center"]
 
 ==== Design Considerations
 
@@ -381,6 +389,7 @@ image::#INSERTDIAGRAM[align="center"]
 * *Alternative 2:* Implement each `DegreeProgram` 's graduation requirement as a class on it's own.
 ** Pros: Each `DegreeProgram` can have the flexibility of customising fulfilment logic.
 ** Cons: Duplicate codes due to many classes may have the same fulfilment logic, but different data.
+// end::feature-graduation-requirement[]
 
 [[Implementation-Lesson]]
 === Lesson Features
@@ -692,14 +701,14 @@ As mentioned in several sections (of <<Implementation>>) above, NUS Module Plann
 
 *Jackson* is a standard JSON library for Java that contains a suite of data-processing tools, including JSON parsers and generators. Jackson is used for the JSON-related operations mentioned below.
 
-The original schema of the JSON file came from NUSMods via version 2 of their API available link:http://nusmods.com/api/v2[here]. The endpoints we used were:
+The original schema of the JSON file came from NUSMods via version 2 of their API available link:http://nusmods.com/api/v2[here]. The endpoints we used are:
 
 * `/{acadYear}/moduleInfo.json`
 * `/{acadYear}/modules/{moduleCode}.json`
 
 The Academic Year (`acadYear`) used is: `2019/2020`.
 
-From the JSON responses of the above API endpoints, we created several classes to help convert the JSON representation of the object into a working Java Object that the application can use, as well as the other direction which is used to stored the current state of the `Planner` in a JSON file.
+From the JSON responses of the above API endpoints, we created several classes to help convert the JSON representation of the object into a working *Java Object* that the application can use, as well as the other direction which is used to stored the current state of the `Planner` in a JSON file.
 
 Such classes include:
 
@@ -708,12 +717,12 @@ Such classes include:
 * `JsonSerializablePlanner`
 * `JsonSerializableSemesterData`
 
-The `ModuleDataImporterUtil` is used to parsed the raw JSON files containing Module information and convert them into `JsonSerializableModule` objects which contain various attributes such as a list of `JsonSerializableSemesterData`.
+The `ModuleDataImporterUtil` is used to parse the raw JSON files containing `Module` information and convert them into `JsonSerializableModule` objects which contain various attributes such as a list of `JsonSerializableSemesterData`.
 
 .Sequence Diagram for a `run` operation in `ModuleDataImporterUtil`
 image::sequenceDiagramModuleDataImporterUtil.png[align="center"]
 
-The `LessonDataImporter` is used to parsed the raw JSON files containing Module-specific Lesson information and convert them into `JsonSerializableModule` objects which contain various attributes such as a list of `JsonSerializableLesson`.
+The `LessonDataImporter` is used to parse the raw JSON files containing `Module`-specific Lesson information and convert them into `JsonSerializableModule` objects which contain various attributes such as a list of `JsonSerializableLesson`.
 
 .Sequence Diagram for a `run` operation in `LessonDataImporter`
 image::sequenceDiagramLessonDataImporterUtil.png[align="center"]
@@ -733,9 +742,12 @@ The following classes are used to convert objects of various classes (such as Mo
 * `JsonAdaptedTimeTableMap`
 * `JsonAdaptedTimeTablePair`
 
-When saving the `Planner`, `JsonSerializablePlanner` is used to stored all the various attributes of the `Planner` in a JSON-compatible format, such as list of `Student`, currently active `Student` index, currently active `SemesterYear`.
+When saving the `Planner`, `JsonSerializablePlanner` is used to store all the various attributes of the `Planner` in a JSON-compatible format, such as list of `Student` objects, currently active `Student` index, and currently active `SemesterYear`.
 
 // end::backend-json[]
+
+// tag::logging[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -750,6 +762,8 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `WARNING` : Can continue, but with caution
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
+
+// end::logging[]
 
 [[Backend-SubCmd]]
 === Sub-Commands
@@ -809,6 +823,7 @@ Below are some of the other great features we think can be implemented in v2.0 o
 // end::appendix-product-scope[]
 
 [appendix]
+// tag::user-stories[]
 == User Stories
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
@@ -866,6 +881,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |current undergraduate student |see which pathways would be more challenging (i.e. Level 3K, 4K, 5K modules) |can choose a better course pathway in terms of maximising GPA/fulfilling course requirements
 
 |`*` |freshman |set preferences (e.g. ‘free’ days/only after 12 PM) in order to automatically organise the timetable |have an efficient and personalised timetable
+
+// end::user-stories[]
 
 |=======================================================================
 
@@ -1207,11 +1224,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list.
 .. Test case: `student add name/Alice major/CS` +
-   Expected: Plan is added to the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+Expected: Plan is added to the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `student add major/CS` +
-   Expected: No plan is added. Error details are shown in the status message. Status bar remains the same.
+Expected: No plan is added. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `student add`, `student add name/` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Deleting a Plan
 
@@ -1219,11 +1236,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list. At least one plan should be listed.
 .. Test case: `student remove 1` +
-   Expected: First plan is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+Expected: First plan is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `student remove 0` +
-   Expected: No plan is deleted. Error details are shown in the status message. Status bar remains the same.
+Expected: No plan is deleted. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `student remove`, `student remove x` (where x is larger than the list size), `student remove text` (where `text` is not a whole number) +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Selecting a Plan
 
@@ -1231,11 +1248,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list. At least one plan should be listed.
 .. Test case: `student active 1` +
-   Expected: Plan is selected as the active plan. Details of the selected plan are shown in the status message. Timestamp in the status bar is updated.
+Expected: Plan is selected as the active plan. Details of the selected plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `student active 0` +
-   Expected: No plan is selected. Error details are shown in the status message. Status bar remains the same.
+Expected: No plan is selected. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `student active`, `student active xyz` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Adding a Timetable
 
@@ -1243,17 +1260,17 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Plan should be empty.
 .. Test case: `timetable add year/1 sem/ONE` +
-   Expected: Timetable is added to the plan. Details of the added timetable are shown in the status message. Timestamp in the status bar is updated.
+Expected: Timetable is added to the plan. Details of the added timetable are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `timetable add year/1 sem/THREE` +
-   Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
+Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `timetable add`, `timetable add year/` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 . Adding a timetable while a plan is selected with an existing timetable of the same semester
 
 .. Prerequisites: Select a plan using the `student active` command. Add a timetable using the `timetable add year/1 sem/ONE` command
 .. Test case: `timetable add year/1 sem/ONE` +
-   Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
+Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
 
 === Deleting a Timetable
 
@@ -1261,11 +1278,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Then list timetables with `timetable list`. At least one timetable should be listed.
 .. Test case: `timetable remove year/YEAR sem/SEM` (where `YEAR` and `SEM` are the year and semester of one of the listed timetables, respectively). +
-   Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `timetable remove` +
-   Expected: No timetable is deleted. Error details are shown in the status message. Status bar remains the same.
+Expected: No timetable is deleted. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `timetable remove year sem`, `timetable remove year/x` (where x is larger than the list size), `timetable remove text` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Selecting a Timetable
 
@@ -1273,11 +1290,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Then list timetables with `timetable list`. At least one timetable should be listed.
 .. Test case: `timetable active year/YEAR sem/SEM` (where `YEAR` and `SEM` are the year and semester of one of the listed timetables, respectively). +
-   Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
+Expected: Specified timetable is deleted from the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `timetable active` +
-   Expected: No timetable is selected. Error details are shown in the status message. Status bar remains the same.
+Expected: No timetable is selected. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `timetable active year sem`, `timetable active year/x` (where x is larger than the list size), `timetable active text` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Adding a Module
 
@@ -1285,17 +1302,17 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable.
 .. Test case: `module add CS2040` +
-   Expected: Module is added to the timetable. Details of the added module are shown in the status message. Timestamp in the status bar is updated.
+Expected: Module is added to the timetable. Details of the added module are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `module add text` +
-   Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
+Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `module add`, +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 . Adding a module while a timetable is selected with the same module existing in the same timetable
 
 .. Prerequisites: Select a timetable using the `timetable active` command. Add a module using the `module add CS2040` command
 .. Test case: `module add CS2040` +
-   Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
+Expected: No module is added. Error details are shown in the status message. Status bar remains the same.
 
 === Deleting a Module
 
@@ -1303,11 +1320,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
 .. Test case: `module remove MODULE_CODE` (where `MODULE_CODE` is one of the listed modules). +
-   Expected: Specified module is deleted from the list. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+Expected: Specified module is deleted from the list. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `module remove` +
-   Expected: No module is deleted. Error details are shown in the status message. Status bar remains the same.
+Expected: No module is deleted. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `module remove text` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Setting the Grade of a Module
 
@@ -1315,11 +1332,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
 .. Test case: `module grade MODULE_CODE grade/A` (where `MODULE_CODE` is one of the listed modules). +
-   Expected: Grade of specified module is updated. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+Expected: Grade of specified module is updated. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `module grade` +
-   Expected: Module grade is not updated. Error details are shown in the status message. Status bar remains the same.
+Expected: Module grade is not updated. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `module grade text` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Viewing the Grade of a Module
 
@@ -1327,11 +1344,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a timetable using the `timetable active` command. A timetable will be set as the active timetable. Then list modules with `module list`. At least one module should be listed.
 .. Test case: `module grade MODULE_CODE` (where `MODULE_CODE` is one of the listed modules). +
-   Expected: Grade of specified module is displayed. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
+Expected: Grade of specified module is displayed. Details of the deleted timetable are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `module grade` +
-   Expected: Module grade is not displayed. Error details are shown in the status message. Status bar remains the same.
+Expected: Module grade is not displayed. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `module grade text` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 === Viewing the Grades of a Plan
 
@@ -1339,7 +1356,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
 .. Test case: `student grade` +
-   Expected: Selected student's grades are listed in the status message.
+Expected: Selected student's grades are listed in the status message.
 
 === Viewing the Graduation Requirements of a Plan
 
@@ -1347,7 +1364,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
 .. Test case: `major status` +
-   Expected: Selected student's graduation requirements are listed in the status message.
+Expected: Selected student's graduation requirements are listed in the status message.
 
 === Setting the Specialisation of a Plan
 
@@ -1355,11 +1372,11 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan.
 .. Test case: `specialisation set algo` +
-   Expected: Selected student's specialisation is updated. Details of the new specialisation are shown in the status message. Timestamp in the status bar is updated.
+Expected: Selected student's specialisation is updated. Details of the new specialisation are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `specialisation set abcdefg` +
-   Expected: Selected student's specialisation is not updated. Error details are shown in the status message. Status bar remains the same.
+Expected: Selected student's specialisation is not updated. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `specialisation set` +
-   Expected: Similar to previous.
+Expected: Similar to previous.
 
 
 === Saving Data
@@ -1371,8 +1388,8 @@ These instructions only provide a starting point for testers to work on; testers
 ////
 
 .. Test case: Delete the file named `planner.json` in the `data` folder, relative to the path of the jar file.
-   Launch the app by double-clicking the jar file. +
-   Expected: Shows the GUI with a set of sample plans.
+Launch the app by double-clicking the jar file. +
+Expected: Shows the GUI with a set of sample plans.
 .. Test case: Edit the file named `planner.json` in the `data` folder such that it is no longer valid JSON.
-   This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
-   Expected: Shows the GUI with a set of sample plans.
+This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
+Expected: Shows the GUI with a set of sample plans.
