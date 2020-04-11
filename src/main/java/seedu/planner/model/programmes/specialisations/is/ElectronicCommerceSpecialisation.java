@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
 
-    public final static String name = "Electronic Commerce";
+    public static final String NAME = "Electronic Commerce";
     /**
      * Default constructor for {@code ElectronicCommerceSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

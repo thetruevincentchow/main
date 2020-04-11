@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class AlgorithmsAndTheorySpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Algorithms And Theory";
+    public static final String NAME = "Algorithms And Theory";
 
     /**
      * Default constructor for {@code AlgorithmsAndTheorySpecialisation} specifying the {@code ModuleCode} for primaries

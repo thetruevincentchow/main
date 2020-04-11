@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class FinancialTechnologySpecialisation extends GenericIsSpecialisation {
 
-    public final static String name = "Financial Technology";
+    public static final String NAME = "Financial Technology";
     /**
      * Default constructor for {@code FinancialTechnologySpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

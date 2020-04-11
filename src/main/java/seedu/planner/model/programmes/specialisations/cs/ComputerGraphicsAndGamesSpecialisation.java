@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ComputerGraphicsAndGamesSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Computer Graphics And Games";
+    public static final String NAME = "Computer Graphics And Games";
     /**
      * Default constructor for {@code ComputerGraphicsAndGamesSpecialisation} specifying the {@code ModuleCode} for
      * primaries and electives

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
+import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 import seedu.planner.model.programmes.specialisations.cs.AlgorithmsAndTheorySpecialisation;
@@ -35,6 +36,7 @@ import seedu.planner.model.student.TimeTableMap;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+    public static final String INVALID_SPECIALISATION = "Invalid Specialisation: %s";
 
     public final JsonAdaptedTimeTableMap timeTableMap;
     public final List<JsonAdaptedModuleCode> exemptedModules;
@@ -113,46 +115,47 @@ class JsonAdaptedStudent {
         GenericSpecialisation modelSpecialisation = null;
         if (specialisation != null) {
             switch (specialisation) {
-                case AlgorithmsAndTheorySpecialisation.name:
-                    modelSpecialisation = new AlgorithmsAndTheorySpecialisation();
-                    break;
-                case ArtificialIntelligenceSpecialisation.name:
-                    modelSpecialisation = new ArtificialIntelligenceSpecialisation();
-                    break;
-                case ComputerGraphicsAndGamesSpecialisation.name:
-                    modelSpecialisation = new ComputerGraphicsAndGamesSpecialisation();
-                    break;
-                case ComputerSecuritySpecialisation.name:
-                    modelSpecialisation = new ComputerSecuritySpecialisation();
-                    break;
-                case DatabaseSystemsSpecialisation.name:
-                    modelSpecialisation = new DatabaseSystemsSpecialisation();
-                    break;
-                case MultimediaInformationRetrievalSpecialisation.name:
-                    modelSpecialisation = new MultimediaInformationRetrievalSpecialisation();
-                    break;
-                case NetworkingAndDistributedSystemsSpecialisation.name:
-                    modelSpecialisation = new NetworkingAndDistributedSystemsSpecialisation();
-                    break;
-                case ParallelComputingSpecialisation.name:
-                    modelSpecialisation = new ParallelComputingSpecialisation();
-                    break;
-                case ProgrammingLanguagesSpecialisation.name:
-                    modelSpecialisation = new ProgrammingLanguagesSpecialisation();
-                    break;
-                case SoftwareEngineeringSpecialisation.name:
-                    modelSpecialisation = new SoftwareEngineeringSpecialisation();
-                    break;
-                case DigitalInnovationSpecialisation.name:
-                    modelSpecialisation = new DigitalInnovationSpecialisation();
-                    break;
-                case ElectronicCommerceSpecialisation.name:
-                    modelSpecialisation = new ElectronicCommerceSpecialisation();
-                    break;
-                case FinancialTechnologySpecialisation.name:
-                    modelSpecialisation = new FinancialTechnologySpecialisation();
-                    break;
-
+            case AlgorithmsAndTheorySpecialisation.NAME:
+                modelSpecialisation = new AlgorithmsAndTheorySpecialisation();
+                break;
+            case ArtificialIntelligenceSpecialisation.NAME:
+                modelSpecialisation = new ArtificialIntelligenceSpecialisation();
+                break;
+            case ComputerGraphicsAndGamesSpecialisation.NAME:
+                modelSpecialisation = new ComputerGraphicsAndGamesSpecialisation();
+                break;
+            case ComputerSecuritySpecialisation.NAME:
+                modelSpecialisation = new ComputerSecuritySpecialisation();
+                break;
+            case DatabaseSystemsSpecialisation.NAME:
+                modelSpecialisation = new DatabaseSystemsSpecialisation();
+                break;
+            case MultimediaInformationRetrievalSpecialisation.NAME:
+                modelSpecialisation = new MultimediaInformationRetrievalSpecialisation();
+                break;
+            case NetworkingAndDistributedSystemsSpecialisation.NAME:
+                modelSpecialisation = new NetworkingAndDistributedSystemsSpecialisation();
+                break;
+            case ParallelComputingSpecialisation.NAME:
+                modelSpecialisation = new ParallelComputingSpecialisation();
+                break;
+            case ProgrammingLanguagesSpecialisation.NAME:
+                modelSpecialisation = new ProgrammingLanguagesSpecialisation();
+                break;
+            case SoftwareEngineeringSpecialisation.NAME:
+                modelSpecialisation = new SoftwareEngineeringSpecialisation();
+                break;
+            case DigitalInnovationSpecialisation.NAME:
+                modelSpecialisation = new DigitalInnovationSpecialisation();
+                break;
+            case ElectronicCommerceSpecialisation.NAME:
+                modelSpecialisation = new ElectronicCommerceSpecialisation();
+                break;
+            case FinancialTechnologySpecialisation.NAME:
+                modelSpecialisation = new FinancialTechnologySpecialisation();
+                break;
+            default:
+                throw new ParseException(String.format(INVALID_SPECIALISATION, specialisation));
             }
         }
 

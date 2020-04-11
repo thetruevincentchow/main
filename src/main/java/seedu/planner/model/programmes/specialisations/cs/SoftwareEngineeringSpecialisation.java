@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class SoftwareEngineeringSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Software Engineering";
+    public static final String NAME = "Software Engineering";
     /**
      * Default constructor for {@code SoftwareEngineeringSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class NetworkingAndDistributedSystemsSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Networking and Distributed Systems";
+    public static final String NAME = "Networking and Distributed Systems";
     /**
      * Default constructor for {@code NetworkingAndDistributedSystemsSpecialisation} specifying the {@code ModuleCode}
      * for primaries and electives

@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ComputerSecuritySpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Computer Security";
+    public static final String NAME = "Computer Security";
     /**
      * Default constructor for {@code ComputerSecuritySpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

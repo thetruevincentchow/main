@@ -63,10 +63,11 @@ public class Student {
     }
 
 
-    public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules, GenericSpecialisation specialisation) {
+    public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules,
+                   GenericSpecialisation specialisation) {
         this(name, major, timeTableMap, exemptedModules);
         // this.specialisation = specialisation;
-        setSpecialisation(specialisationsour);
+        setSpecialisation(specialisation);
     }
 
     public Name getName() {

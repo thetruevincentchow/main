@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class DigitalInnovationSpecialisation extends GenericIsSpecialisation {
 
-    public final static String name = "Digital Innovation";
+    public static final String NAME = "Digital Innovation";
     /**
      * Default constructor for {@code DigitalInnovationSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

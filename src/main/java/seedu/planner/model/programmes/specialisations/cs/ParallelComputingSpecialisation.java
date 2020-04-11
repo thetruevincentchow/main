@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ParallelComputingSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Parallel Computing";
+    public static final String NAME = "Parallel Computing";
     /**
      * Default constructor for {@code ParallelComputingSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

@@ -17,8 +17,6 @@ public abstract class GenericSpecialisation {
      */
     protected static String name;
 
-    private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
-
     protected int minPrimaryModules = 3;
     protected int minPrimary4kModules = 1;
     protected int minElectiveModules = 0;
@@ -31,6 +29,10 @@ public abstract class GenericSpecialisation {
      * List of {@code ModuleCode} which are valid Electives for a given Specialisation
      */
     protected List<ModuleCode> electives;
+
+    private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
+
+
 
     /**
      * Returns the Name of {@code GenericSpecialisation}

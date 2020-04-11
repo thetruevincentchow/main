@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class MultimediaInformationRetrievalSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Multimedia Information Retrieval";
+    public static final String NAME = "Multimedia Information Retrieval";
     /**
      * Default constructor for {@code MultimediaInformationRetrievalSpecialisation} specifying the {@code ModuleCode}
      * for primaries and electives

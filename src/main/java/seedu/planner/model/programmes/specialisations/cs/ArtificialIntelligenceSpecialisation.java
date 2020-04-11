@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ArtificialIntelligenceSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Artificial Intelligence";
+    public static final String NAME = "Artificial Intelligence";
     /**
      * Default constructor for {@code ArtificialIntelligenceSpecialisation} specifying the {@code ModuleCode} for
      * primaries and electives

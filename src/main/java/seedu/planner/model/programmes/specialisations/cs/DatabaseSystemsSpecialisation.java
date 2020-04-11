@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class DatabaseSystemsSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Database Systems";
+    public static final String NAME = "Database Systems";
     /**
      * Default constructor for {@code DatabaseSystemsSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives

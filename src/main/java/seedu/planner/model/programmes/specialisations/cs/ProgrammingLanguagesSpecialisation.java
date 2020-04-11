@@ -11,7 +11,7 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ProgrammingLanguagesSpecialisation extends GenericCsSpecialisation {
 
-    public final static String name = "Programming Languages";
+    public static final String NAME = "Programming Languages";
     /**
      * Default constructor for {@code ProgrammingLanguagesSpecialisation} specifying the {@code ModuleCode} for
      * primaries and electives
