@@ -1,7 +1,10 @@
 package seedu.planner.model.graduation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javafx.util.Pair;
 import seedu.planner.model.module.ModuleCode;
 
 /**
@@ -51,8 +54,11 @@ public class SingleGraduationRequirement extends GraduationRequirement {
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
-        return moduleCodes.contains(moduleCode);
+    public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
+        if (moduleCodes.contains(moduleCode)) {
+            return new Pair<>(true, new ArrayList<>(Arrays.asList(moduleCode)));
+        }
+        return new Pair<>(false, null);
     }
 
     /**
@@ -62,7 +68,15 @@ public class SingleGraduationRequirement extends GraduationRequirement {
      * @return A String representation of the {@code SingleGraduationRequirement} object
      */
     public String getString(List<ModuleCode> moduleCodes) {
-        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] " + moduleCode.toString();
+        return "[" + getStatusIcon(isFulfilled(moduleCodes).getKey()) + "] " + moduleCode.toString();
+    }
+
+    public List<ModuleCode> getFulfilledModules(List<ModuleCode> moduleCodes) {
+        List<ModuleCode> fulfilledModules = new ArrayList<>();
+        if (isFulfilled(moduleCodes).getKey()) {
+            fulfilledModules.add(moduleCode);
+        }
+        return fulfilledModules;
     }
 
     /**

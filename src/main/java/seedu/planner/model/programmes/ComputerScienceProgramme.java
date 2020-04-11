@@ -8,6 +8,7 @@ import seedu.planner.model.graduation.AggregationType;
 import seedu.planner.model.graduation.CompoundGraduationRequirement;
 import seedu.planner.model.graduation.SingleGraduationRequirement;
 import seedu.planner.model.graduation.SpecialisationGraduationRequirement;
+import seedu.planner.model.graduation.UnrestrictedElectiveGraduationRequirement;
 import seedu.planner.model.graduation.WildcardGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
@@ -64,7 +65,7 @@ public class ComputerScienceProgramme extends DegreeProgramme {
                                         new SingleGraduationRequirement(new ModuleCode("CP3202")),
                                         new SingleGraduationRequirement(new ModuleCode("CP3107")),
                                         new SingleGraduationRequirement(new ModuleCode("CP3110"))
-                                    ))),
+                                    )), AggregationType.AT_LEAST_MC),
                                 new SingleGraduationRequirement(new ModuleCode("IS4010")),
                                 new SingleGraduationRequirement(new ModuleCode("TR3202"))
                             )), AggregationType.ANY)
@@ -80,10 +81,57 @@ public class ComputerScienceProgramme extends DegreeProgramme {
                         new SingleGraduationRequirement(new ModuleCode("MA1521")),
                         new SingleGraduationRequirement(new ModuleCode("MA1101R")),
                         new SingleGraduationRequirement(new ModuleCode("ST2334")),
-                        new CompoundGraduationRequirement("One Science Module", 4, null)
-                    )))
+                        new CompoundGraduationRequirement("One Science Module", 4,
+                            new ArrayList<>(Arrays.asList(
+                                new SingleGraduationRequirement(new ModuleCode("CM1121")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1131")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1417")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1102")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1105")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1106")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1301")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1306")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1141")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1142")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1143")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1144")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1221")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1222")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1432")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1111")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1191")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1401")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1402")),
+                                new SingleGraduationRequirement(new ModuleCode("CM1501")),
+                                new SingleGraduationRequirement(new ModuleCode("LSM1303")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1421")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1431")),
+                                new SingleGraduationRequirement(new ModuleCode("PC1433"))
+                            )), AggregationType.ANY
+                        )
+                    ))
+                )
             ))));
-        graduationRequirementList.add(new CompoundGraduationRequirement("Unrestricted Electives", 32,
-            null));
+        graduationRequirementList.add(new UnrestrictedElectiveGraduationRequirement(32));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,6 +42,15 @@ public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
     }
 
     /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
+    public String toString() {
+        return getName();
+    }
+
+    /**
      * Returns the hash of the current Specialisation
      * @return Hash of the current Specialisation
      */

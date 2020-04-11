@@ -103,7 +103,7 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
      * @param specialisation {@code GenericSpecialisation} to be used for setting the specialisation of the
      *                       active {@code Student}
      */
-    public void setSpecialisation(GenericSpecialisation specialisation) {
+    public void setSpecialisation (GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
     }
 
@@ -129,43 +129,43 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
                 switch (input) {
                 case "1":
                 case "at":
-                    setSpecialisation(new AlgorithmsAndTheorySpecialisation());
+                    specialisation = new AlgorithmsAndTheorySpecialisation();
                     break;
                 case "2":
                 case "ai":
-                    setSpecialisation(new ArtificialIntelligenceSpecialisation());
+                    specialisation = new ArtificialIntelligenceSpecialisation();
                     break;
                 case "3":
                 case "cgg":
-                    setSpecialisation(new ComputerGraphicsAndGamesSpecialisation());
+                    specialisation = new ComputerGraphicsAndGamesSpecialisation();
                     break;
                 case "4":
                 case "cs":
-                    setSpecialisation(new ComputerSecuritySpecialisation());
+                    specialisation = new ComputerSecuritySpecialisation();
                     break;
                 case "5":
                 case "ds":
-                    setSpecialisation(new DatabaseSystemsSpecialisation());
+                    specialisation = new DatabaseSystemsSpecialisation();
                     break;
                 case "6":
                 case "mir":
-                    setSpecialisation(new MultimediaInformationRetrievalSpecialisation());
+                    specialisation = new MultimediaInformationRetrievalSpecialisation();
                     break;
                 case "7":
                 case "nds":
-                    setSpecialisation(new NetworkingAndDistributedSystemsSpecialisation());
+                    specialisation = new NetworkingAndDistributedSystemsSpecialisation();
                     break;
                 case "8":
                 case "pc":
-                    setSpecialisation(new ParallelComputingSpecialisation());
+                    specialisation = new ParallelComputingSpecialisation();
                     break;
                 case "9":
                 case "pl":
-                    setSpecialisation(new ProgrammingLanguagesSpecialisation());
+                    specialisation = new ProgrammingLanguagesSpecialisation();
                     break;
                 case "10":
                 case "se":
-                    setSpecialisation(new SoftwareEngineeringSpecialisation());
+                    specialisation = new SoftwareEngineeringSpecialisation();
                     break;
                 default:
                     throw new CommandException(INVALID_SPECIALISATION + CS_SPECIALISATION_EXAMPLES);
@@ -175,15 +175,15 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
                 switch (input) {
                 case "1":
                 case "di":
-                    setSpecialisation(new DigitalInnovationSpecialisation());
+                    specialisation = new DigitalInnovationSpecialisation();
                     break;
                 case "2":
                 case "ec":
-                    setSpecialisation(new ElectronicCommerceSpecialisation());
+                    specialisation = new ElectronicCommerceSpecialisation();
                     break;
                 case "3":
                 case "ft":
-                    setSpecialisation(new FinancialTechnologySpecialisation());
+                    specialisation = new FinancialTechnologySpecialisation();
                     break;
                 default:
                     throw new CommandException(INVALID_SPECIALISATION + IS_SPECIALISATION_EXAMPLES);
@@ -195,7 +195,6 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
         }
-
         activeStudent.setSpecialisation(specialisation);
         return new CommandResult(String.format(MESSAGE_SUCCESS, specialisation.toString()));
     }

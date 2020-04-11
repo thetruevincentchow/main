@@ -81,7 +81,7 @@ public class ParserUtil {
     public static List<ModuleCode> parseModuleCodes(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedName = moduleCode.trim();
-        String[] moduleCodeStrings = trimmedName.split(" ");
+        String[] moduleCodeStrings = trimmedName.split("\\s+");
         List<ModuleCode> moduleCodes = new ArrayList<>();
         for (String moduleCodeString : moduleCodeStrings) {
             moduleCodes.add(parseModuleCode(moduleCodeString));

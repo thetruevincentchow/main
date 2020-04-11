@@ -38,7 +38,16 @@ public class ParallelComputingSpecialisation extends GenericCsSpecialisation {
      * @return The Name of the specialisation
      */
     public String getName() {
-        return name;
+        return NAME;
+    }
+
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
+    public String toString() {
+        return getName();
     }
 
     /**
