@@ -89,6 +89,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [TIP]
 These steps are recommended only if you have experience in setting up the application for first time use, or already have a saved file you would like to continue working with.
 
+// tag::feature-preamble[]
+
 == Features
 
 These are the key features that are part of the NUSModPlnr!
@@ -126,6 +128,8 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 ====
 
 Let's begin!
+
+// end::feature-preamble[]
 
 === Main Navigation
 
@@ -370,6 +374,8 @@ Here is the *Search Screen* (_Figure X. below_).
 .Search View
 image::Search.png[width="600", align="left"]
 
+// tag::module-management[]
+
 [[module-management]]
 === Module Management
 The following commands below are part of the application's *Module Management*, which allow you manage the modules of your academic plan.
@@ -444,6 +450,10 @@ Example:
 
 * `exempt list`
 
+// end::module-management[]
+
+// tag::lesson-management[]
+
 [[lesson-management]]
 === Lesson Management
 
@@ -487,6 +497,8 @@ Format: `lessons list`
 Example:
 
 * `lessons list`
+
+// end::lesson-management[]
 
 [[grade-management]]
 === Grade Management

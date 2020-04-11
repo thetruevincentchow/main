@@ -9,7 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.Main;
 import seedu.planner.commons.exceptions.IllegalValueException;
-import seedu.planner.model.module.JsonSerializableModule;
+import seedu.planner.storage.JsonSerializableModule;
 import seedu.planner.model.module.Module;
 
 /**

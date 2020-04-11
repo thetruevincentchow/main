@@ -17,7 +17,7 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Lesson;
-import seedu.planner.model.module.LessonDataImporter;
+import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.time.Semester;
 
@@ -51,7 +51,7 @@ public class LessonAddCommandParser implements Parser<LessonAddCommand> {
         } else {
             semNo = 2;
         }
-        LessonDataImporter lessonDataImporter = new LessonDataImporter();
+        LessonDataImporterUtil lessonDataImporter = new LessonDataImporterUtil();
         List<Lesson> lessons = lessonDataImporter.run(moduleCode.toString(), semNo);
         Lesson selectedLesson = new Lesson();
         for (int i = 0; i < lessons.size(); i++) {

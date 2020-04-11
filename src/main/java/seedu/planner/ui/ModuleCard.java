@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.planner.model.module.Lesson;
-import seedu.planner.model.module.LessonDataImporter;
+import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.model.module.Module;
 
 
@@ -168,7 +168,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     private void setLessonDetails(int sem) {
-        LessonDataImporter imp = new LessonDataImporter();
+        LessonDataImporterUtil imp = new LessonDataImporterUtil();
         lessons = imp.run(module.getModuleCode().toString(), sem);
     }
 }

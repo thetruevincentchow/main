@@ -1,4 +1,4 @@
-package seedu.planner.model.module;
+package seedu.planner.commons.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 import seedu.planner.Main;
 import seedu.planner.commons.util.JsonUtil;
+import seedu.planner.model.module.Lesson;
+import seedu.planner.storage.JsonSerializableLesson;
 
 
-public class LessonDataImporter {
+public class LessonDataImporterUtil {
 
     private static List<Lesson> lessons = new ArrayList<>();
 
