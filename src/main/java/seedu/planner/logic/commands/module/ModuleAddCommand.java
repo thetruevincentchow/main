@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,18 +35,17 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
-
     private final List<ModuleCode> moduleCodes;
+
+    public ModuleAddCommand(ModuleCode moduleCode) {
+        requireAllNonNull(moduleCode);
+        this.moduleCodes = Arrays.asList(moduleCode);
+    }
 
     public ModuleAddCommand(List<ModuleCode> moduleCodes) {
         requireAllNonNull(moduleCodes);
         this.moduleCodes = new ArrayList<>();
         this.moduleCodes.addAll(moduleCodes);
-    }
-
-    public ModuleAddCommand(ModuleCode moduleCode) {
-        requireAllNonNull(moduleCode);
-        this.moduleCodes = null; // moduleCode;
     }
 
     /**

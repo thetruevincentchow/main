@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,16 +32,15 @@ public class ModuleRemoveCommand extends ModuleCommand {
 
     private final List<ModuleCode> moduleCodes;
 
+    public ModuleRemoveCommand(ModuleCode moduleCode) {
+        requireAllNonNull(moduleCode);
+        this.moduleCodes = Arrays.asList(moduleCode);
+    }
+
     public ModuleRemoveCommand(List<ModuleCode> moduleCodes) {
         requireAllNonNull(moduleCodes);
         this.moduleCodes = new ArrayList<>();
         this.moduleCodes.addAll(moduleCodes);
-    }
-
-
-    public ModuleRemoveCommand(ModuleCode moduleCode) {
-        requireAllNonNull(moduleCode);
-        this.moduleCodes = null;
     }
 
     /**
