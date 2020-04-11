@@ -9,6 +9,7 @@ import static seedu.planner.logic.parser.CliSyntax.PREFIX_STUDENT_SEM;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.logic.commands.lessons.LessonAddCommand;
 import seedu.planner.logic.parser.ArgumentMultimap;
 import seedu.planner.logic.parser.ArgumentTokenizer;
@@ -17,7 +18,6 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.Prefix;
 import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.Lesson;
-import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.time.Semester;
 
@@ -26,6 +26,7 @@ public class LessonAddCommandParser implements Parser<LessonAddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
      * and returns a DeclareMajorCommand object for execution.

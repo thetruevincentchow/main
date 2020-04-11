@@ -1,11 +1,8 @@
 package seedu.planner.model.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.planner.model.Planner;
 import seedu.planner.model.module.Module;

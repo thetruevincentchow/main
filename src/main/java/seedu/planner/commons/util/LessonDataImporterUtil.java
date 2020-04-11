@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import seedu.planner.Main;
-import seedu.planner.commons.util.JsonUtil;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.storage.JsonSerializableLesson;
 

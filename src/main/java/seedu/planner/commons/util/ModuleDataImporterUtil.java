@@ -9,8 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.Main;
 import seedu.planner.commons.exceptions.IllegalValueException;
-import seedu.planner.storage.JsonSerializableModule;
 import seedu.planner.model.module.Module;
+import seedu.planner.storage.JsonSerializableModule;
 
 /**
  * Helper Class to import Module data from a JSON file retrieved from NUS Mods API

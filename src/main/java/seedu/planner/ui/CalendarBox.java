@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.module.Lesson;
-import seedu.planner.commons.util.LessonDataImporterUtil;
 
 /**
  * An UI component that displays information of a {@code Timetable}.
