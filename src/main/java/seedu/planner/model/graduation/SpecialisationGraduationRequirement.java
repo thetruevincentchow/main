@@ -4,8 +4,6 @@ import java.util.List;
 
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
-import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
-import seedu.planner.model.programmes.specialisations.is.GenericIsSpecialisation;
 
 /**
  * Class that implements {@code GraduationRequirement}, specific for CS Focus Areas. Accounts for each Specialisation's

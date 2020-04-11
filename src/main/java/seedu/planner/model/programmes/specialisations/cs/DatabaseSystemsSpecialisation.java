@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class DatabaseSystemsSpecialisation extends GenericCsSpecialisation {
 
+    public static final String NAME = "Database Systems";
     /**
      * Default constructor for {@code DatabaseSystemsSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public DatabaseSystemsSpecialisation() {
-        setName("Database Systems");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -37,8 +37,8 @@ public class DatabaseSystemsSpecialisation extends GenericCsSpecialisation {
      *
      * @return The Name of the specialisation
      */
-    public String toString() {
-        return this.getName();
+    public String getName() {
+        return name;
     }
 
     /**

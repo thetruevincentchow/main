@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class SoftwareEngineeringSpecialisation extends GenericCsSpecialisation {
 
+    public static final String NAME = "Software Engineering";
     /**
      * Default constructor for {@code SoftwareEngineeringSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public SoftwareEngineeringSpecialisation() {
-        setName("Software Engineering");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -40,8 +40,8 @@ public class SoftwareEngineeringSpecialisation extends GenericCsSpecialisation {
      *
      * @return The Name of the specialisation
      */
-    public String toString() {
-        return this.getName();
+    public String getName() {
+        return name;
     }
 
     /**

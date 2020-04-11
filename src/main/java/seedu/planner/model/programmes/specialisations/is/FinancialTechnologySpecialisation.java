@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class FinancialTechnologySpecialisation extends GenericIsSpecialisation {
 
+    public static final String NAME = "Financial Technology";
     /**
      * Default constructor for {@code FinancialTechnologySpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public FinancialTechnologySpecialisation() {
-        setName("Financial Technology");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -38,8 +38,8 @@ public class FinancialTechnologySpecialisation extends GenericIsSpecialisation {
      *
      * @return The Name of the specialisation
      */
-    public String toString() {
-        return this.getName();
+    public String getName() {
+        return name;
     }
 
     /**

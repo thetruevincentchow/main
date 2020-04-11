@@ -15,9 +15,7 @@ public abstract class GenericSpecialisation {
     /**
      * Name of {@code GenericSpecialisation}
      */
-    private String name;
-
-    private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
+    protected static String name;
 
     protected int minPrimaryModules = 3;
     protected int minPrimary4kModules = 1;
@@ -32,14 +30,16 @@ public abstract class GenericSpecialisation {
      */
     protected List<ModuleCode> electives;
 
+    private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
+
+
+
     /**
      * Returns the Name of {@code GenericSpecialisation}
      *
      * @return the Name of {@code GenericSpecialisation}
      */
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
 
     /**
      * Sets the Name of {@code GenericSpecialisation}
@@ -146,6 +146,6 @@ public abstract class GenericSpecialisation {
      * @return A String Representation of {@code GenericSpecialisation}
      */
     public String toString() {
-        return name;
+        return getName();
     }
 }

@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ArtificialIntelligenceSpecialisation extends GenericCsSpecialisation {
 
+    public static final String NAME = "Artificial Intelligence";
     /**
      * Default constructor for {@code ArtificialIntelligenceSpecialisation} specifying the {@code ModuleCode} for
      * primaries and electives
      */
     public ArtificialIntelligenceSpecialisation() {
-        setName("Artificial Intelligence");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -45,8 +45,8 @@ public class ArtificialIntelligenceSpecialisation extends GenericCsSpecialisatio
      *
      * @return The Name of the specialisation
      */
-    public String toString() {
-        return this.getName();
+    public String getName() {
+        return name;
     }
 
     /**
