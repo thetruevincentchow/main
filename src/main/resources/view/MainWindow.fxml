@@ -40,7 +40,11 @@
                 </MenuBar>
             <SplitPane dividerPositions="0.5" maxHeight="-Infinity" minHeight="500" prefHeight="600.0" prefWidth="200.0">
               <items>
-                  <StackPane fx:id="gradPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane fx:id="gradPlaceholder" prefHeight="150.0" prefWidth="200.0">
+                      <padding>
+                          <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                  </StackPane>
                   <VBox  prefWidth="100.0">
                      <children>
                             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
