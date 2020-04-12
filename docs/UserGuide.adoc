@@ -74,6 +74,9 @@ This symbol and corresponding box has information that you may wish to take note
 
 [TIP]
 This symbol and corresponding box has tips from the team, which we think might be useful for you.
+
+[WARNING]
+This symbol and corresponding box has warnings which you might want to be aware of.
 ====
 
 // end::how-to[]
@@ -194,7 +197,7 @@ Example:
 
 You can use this command to remove the <<student-management,student>> with the number `INDEX` from the student list.
 
-[IMPORTANT]
+[WARNING]
 This command cannot be undone. Removing a student will permanently delete its data from the save file. +
 Be sure to remove your intended student by checking the list of students with the <<student-list-command,`student list`>> command.
 
@@ -314,7 +317,7 @@ Example:
 
 You can use this command to remove a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-[IMPORTANT]
+[WARNING]
 This command cannot be undone. Removing a timetable from the selected student will permanently delete its data from the save file. +
 Be sure to remove your intended timetable by checking the list of timetables with the <<student-list-command,`timetable list`>> command.
 
