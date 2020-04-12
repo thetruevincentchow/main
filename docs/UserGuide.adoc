@@ -77,7 +77,7 @@ This symbol and corresponding box has information that you may wish to take note
 This symbol and corresponding box has tips from the team, which we think might be useful for you.
 
 [WARNING]
-This symbol and corresponding box has warnings which you might want to be aware of.
+This symbol and corresponding box has warnings on possibly destructive commands or actions that cannot be undone.
 ====
 
 // end::how-to[]
@@ -175,6 +175,15 @@ Use the commands in <<student-management,*Student Management*>> to create and ma
 Use the commands in <<timetable-management,*Timetable Management*>> and <<module-management,*Module Management*>> to manage the timetables and modules that are displayed.
 
 Format: `status`
+
+==== Reset all settings and data: `clear`
+
+If you would like to start the NUS Module Planner from a clean slate, you can use the `clear` command.
+
+[WARNING]
+This command is irreversible and will erase all existing data! Please back up your data, should ever need to access it again.
+
+Format: `exit`
 
 [[student-management]]
 === Student Management
@@ -720,6 +729,7 @@ If you need more in-depth information on a specific command, you can kbd:[CTRL +
 * *Viewing help* : `help`
 * *Exiting the program* : `exit`
 * *Viewing your selections*: `status`
+* *Resetting all settings and data*: `clear`
 
 === Student Management
 
