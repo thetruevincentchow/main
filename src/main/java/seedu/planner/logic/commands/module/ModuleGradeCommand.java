@@ -24,7 +24,7 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         + "Otherwise, displays grade of module specified.\n"
         + "Parameters: "
         + "MODULE_CODE "
-        + "[" + PREFIX_GRADE + "GRADE]\n"
+        + "[" + PREFIX_GRADE + "GRADE] "
         + "[" + PREFIX_SU + "GRADE]\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030 grade/A";
 
