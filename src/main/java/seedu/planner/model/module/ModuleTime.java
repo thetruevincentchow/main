@@ -3,6 +3,9 @@ package seedu.planner.model.module;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+/**
+ * Class to represent the general timing of a {@code Module}
+ */
 public class ModuleTime {
     protected LocalTime startTime;
     protected LocalTime endTime;

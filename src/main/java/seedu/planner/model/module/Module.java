@@ -3,8 +3,10 @@ package seedu.planner.model.module;
 import java.util.List;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
-import seedu.planner.model.time.Semester;
 
+/**
+ * Class to represent a Module taken by a {@code Student}
+ */
 public class Module {
 
     private String acadYear;
@@ -85,30 +87,6 @@ public class Module {
     public List<SemesterData> getSemesterName() {
         return semesterData;
     }
-
-    public Semester convertSem(String semesterName) {
-        String convertedValue;
-        switch (semesterName) {
-        case "Semester 1":
-            convertedValue = "ONE";
-            break;
-        case "Semester 2":
-            convertedValue = "TWO";
-            break;
-        case "Special Semester 1":
-            convertedValue = "SPECIAL_ONE";
-            break;
-        case "Special Semester 2":
-            convertedValue = "SPECIAL_TWO";
-            break;
-        default:
-            convertedValue = "NULL";
-            break;
-        }
-        return Semester.valueOf(convertedValue);
-
-    }
-
 
     public String getAcadYear() {
         return acadYear;

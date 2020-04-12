@@ -13,9 +13,12 @@ import seedu.planner.model.graduation.WildcardGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.cs.GenericCsSpecialisation;
 
+/**
+ * Class to represent specialisations for Computer Science Degree Programme
+ */
 public class ComputerScienceProgramme extends DegreeProgramme {
 
-    public ComputerScienceProgramme(Model model) { // TODO: Load from JSON or XML
+    public ComputerScienceProgramme(Model model) {
         GenericCsSpecialisation specialisation = null;
         if (model != null) {
             specialisation = (GenericCsSpecialisation) model.getActiveStudent().getSpecialisation();

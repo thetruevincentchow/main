@@ -25,12 +25,20 @@ public class ModuleDataImporterUtil {
     };
     private static List<Module> modules = new ArrayList<>();
 
+    /**
+     * Adds a {@code Module} to the global repository of modules.
+     * @param module {@code Module} to be added.
+     */
     public static void addModule(Module module) {
         if (!modules.contains(module)) {
             modules.add(module);
         }
     }
 
+    /**
+     * Performs the conversion of modules stored in a JSON into a list of {@code Module} objects
+     * @return A list of {@code Module} objects
+     */
     public static List<Module> run() {
         Module module;
         String fileName = "";

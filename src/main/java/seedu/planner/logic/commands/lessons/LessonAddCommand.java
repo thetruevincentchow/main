@@ -10,6 +10,9 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Lesson;
 
+/**
+ * Command to add a {@code Lesson} from the active {@code Student}.
+ */
 public class LessonAddCommand extends LessonCommand {
 
     public static final String COMMAND_WORD = "add";

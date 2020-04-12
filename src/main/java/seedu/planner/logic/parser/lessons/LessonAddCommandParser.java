@@ -21,7 +21,10 @@ import seedu.planner.model.module.Lesson;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.time.Semester;
 
-public class LessonAddCommandParser implements Parser<LessonAddCommand> {
+/**
+ * Class to parse input for {@code LessonaDDCommand}.
+ */
+class LessonAddCommandParser implements Parser<LessonAddCommand> {
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

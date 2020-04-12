@@ -9,6 +9,9 @@ import seedu.planner.model.Model;
 import seedu.planner.model.student.Major;
 import seedu.planner.model.student.Student;
 
+/**
+ * Command to set the {@code Major} the active {@code Student}.
+ */
 public class MajorSetCommand extends MajorCommand {
     public static final String COMMAND_WORD = "set";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)

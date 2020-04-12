@@ -80,6 +80,11 @@ public abstract class GenericSpecialisation {
         return electives;
     }
 
+    /**
+     * Check if a given {@code ModuleCode} is Level 4000 or above
+     * @param moduleCode {@code ModuleCode} to be checked
+     * @return True if a given {@code ModuleCode} is Level 4000 or above, false otherwise
+     */
     public boolean is4kAndAbove(ModuleCode moduleCode) {
         ArrayList<Character> valid4kCharacters = new ArrayList<>();
         valid4kCharacters.add('4');

@@ -41,7 +41,11 @@ public class Student {
     private GenericSpecialisation specialisation;
     private List<Lesson> lessons;
 
-
+    /**
+     * Parameterised Constructor of {@code Student} with the given parameters
+     * @param name {@code Name} of {@code Student}
+     * @param major {@code Major} of {@code Student}
+     */
     public Student(Name name, Major major) {
         requireAllNonNull(name, major);
         this.name = name;
@@ -49,6 +53,13 @@ public class Student {
         this.timeTableMap = new TimeTableMap();
     }
 
+    /**
+     * Parameterised Constructor of {@code Student} with the given parameters
+     * @param name {@code Name} of {@code Student}
+     * @param major {@code Major} of {@code Student}
+     * @param timeTableMap {@code TimeTableMap} of {@code Student}
+     * @param exemptedModules List of {@code ModuleCode} representing the exempted {@code Modules} of {@code Student}
+     */
     public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules) {
         requireAllNonNull(name, major, timeTableMap);
         this.name = name;
@@ -58,35 +69,65 @@ public class Student {
         this.lessons = new ArrayList<>();
     }
 
-
+    /**
+     * Parameterised Constructor of {@code Student} with the given parameters
+     * @param name {@code Name} of {@code Student}
+     * @param major {@code Major} of {@code Student}
+     * @param timeTableMap {@code TimeTableMap} of {@code Student}
+     * @param exemptedModules List of {@code ModuleCode} representing the exempted {@code Modules} of {@code Student}
+     * @param specialisation {@code Specialisation} of {@code Student}
+     */
     public Student(Name name, Major major, TimeTableMap timeTableMap, List<ModuleCode> exemptedModules,
                    GenericSpecialisation specialisation) {
         this(name, major, timeTableMap, exemptedModules);
-        // this.specialisation = specialisation;
         setSpecialisation(specialisation);
     }
 
+    /**
+     * Gets the {@code Name} of the {@code Student}
+     * @return The {@code Name} of the {@code Student}
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Sets the {@code Name} of the {@code Student}
+     * @param name {@code Name} of the {@code Student} to be set
+     */
     public void setName(Name name) {
         requireAllNonNull(name);
         this.name = name;
     }
 
+    /**
+     * Gets the {@code Major} for the {@code Student}
+     * @return The {@code Major} for the {@code Student}
+     */
     public Major getMajor() {
         return major;
     }
 
+    /**
+     * Sets the {@code Major} for the {@code Student}
+     * @param major {@code Major} to be set
+     */
     public void setMajor(Major major) {
         this.major = major;
     }
 
+    /**
+     * Gets the {@code TimeTableMap} for the {@code Student}
+     * @return {@code TimeTableMap} for the {@code Student}
+     */
     public TimeTableMap getTimeTableMap() {
         return timeTableMap;
     }
 
+    /**
+     * Gets the list of {@code Lesson} for the {@code Student}
+     * @return List of {@code Lesson} for the {@code Student}
+     */
     public List<Lesson> getLesson() {
         return lessons;
     }
@@ -116,6 +157,10 @@ public class Student {
                 && otherStudent.getTimeTableMap().equals(getTimeTableMap());
     }
 
+    /**
+     * Returns the hashCode of the {@code Student} object
+     * @return The hashCode of the {@code Student} object
+     */
     @Override
     public int hashCode() {
         /**
@@ -126,6 +171,10 @@ public class Student {
         return Objects.hash(name, major, timeTableMap, exemptedModules);
     }
 
+    /**
+     * Returns the String Representation of the {@code Student} object
+     * @return The String Representation of the {@code Student} object
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -134,18 +183,37 @@ public class Student {
         return builder.toString();
     }
 
+    /**
+     * Checks if the current {@code Student} is the same as a specified {@code Student}
+     * @param other Another {@code Student} object
+     * @return True if the two {@code Student} objects are the same. False otherwise.
+     */
     public boolean isSameStudent(Student other) {
         return this.name.equals(other.name);
     }
 
+    /**
+     * Returns the given Timetable of a {@code Student} for a specified {@code StudentSemester}
+     * @param activeSemester {@code Semester} to be conferred
+     * @return {@code Timetable} of {@code Student} for the specified {@code StudentSemester}
+     */
     public TimeTable getTimeTable(StudentSemester activeSemester) {
         return timeTableMap.get(activeSemester);
     }
 
+    /**
+     * Replaces the active Timetable with a given TimeTable
+     * @param activeSemester {@code Semester} to be made active
+     * @param timeTable Timetable of the {@code Student}
+     */
     public void replaceTimeTable(StudentSemester activeSemester, TimeTable timeTable) {
         timeTableMap.put(activeSemester, timeTable);
     }
 
+    /**
+     * Removes a given TimeTable from a {@code Student}
+     * @param keyToRemove TimeTable to be removed
+     */
     public void removeTimeTable(StudentSemester keyToRemove) {
         if (!timeTableMap.containsKey(keyToRemove)) {
             throw new SemesterKeyNotFoundException();
@@ -187,6 +255,10 @@ public class Student {
         return allModules;
     }
 
+    /**
+     * Gets all {@code Enrollment} of the {@code Student}
+     * @return A list of {@code Enrollment} of the {@code Student}
+     */
     public ObservableList<Enrollment> getAllEnrollments() {
         ObservableList<Enrollment> allEnrollments = FXCollections.observableArrayList();
         for (TimeTable timeTable : timeTableMap.values()) {
@@ -195,10 +267,18 @@ public class Student {
         return allEnrollments;
     }
 
+    /**
+     * Gets the Specialisation of the {@code Student}
+     * @return The Specialisation of the {@code Student}
+     */
     public GenericSpecialisation getSpecialisation() {
         return specialisation;
     }
 
+    /**
+     * Sets the {@code Specialisation} of the {@code Student}
+     * @param specialisation Specialisation to be set
+     */
     public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
         for (GraduationRequirement graduationRequirement : this.major.getDegreeProgramme()
@@ -211,6 +291,10 @@ public class Student {
         }
     }
 
+    /**
+     * Returns the cumulative grade of a {@code Student}
+     * @return The cumulative grade of a {@code Student}
+     */
     public CumulativeGrade getCumulativeGrade() {
         CumulativeGrade cumulativeGrade = new CumulativeGrade();
         for (Enrollment enrollment : getAllEnrollments()) {
@@ -224,18 +308,34 @@ public class Student {
         return cumulativeGrade;
     }
 
+    /**
+     * Returns a list of exempted {@code Module}
+     * @return A list of exempted {@code Module}
+     */
     public ObservableList<ModuleCode> getExemptedModules() {
         return exemptedModules.asUnmodifiableObservableList();
     }
 
+    /**
+     * Adds a {@code Module} for exemption.
+     * @param moduleCode {@code ModuleCode} of a {@code Module} to be added for exemption
+     */
     public void addExemptedModule(ModuleCode moduleCode) {
         exemptedModules.add(moduleCode);
     }
 
+    /**
+     * Removes a {@code Module} from exemption.
+     * @param moduleCode {@code ModuleCode} of a {@code Module} to be removed from exemption
+     */
     public void removeExemptedModule(ModuleCode moduleCode) {
         exemptedModules.remove(moduleCode);
     }
 
+    /**
+     * Returns all the fulfilled and exempted {@code Module} of a {@code Student}
+     * @return All the fulfilled and exempted {@code Module} of a {@code Student}
+     */
     public List<ModuleCode> getAllFulfilledModules() {
         Set<ModuleCode> moduleCodeSet = new HashSet<>();
         moduleCodeSet.addAll(getAllEnrolledModules());
@@ -243,10 +343,18 @@ public class Student {
         return moduleCodeSet.stream().collect(Collectors.toList());
     }
 
+    /**
+     * Adds a given {@code Lesson} to a {@code Student}
+     * @param lesson {@code Lesson} to be added
+     */
     public void addLessons(Lesson lesson) {
         lessons.add(lesson);
     }
 
+    /**
+     * Removes a given {@code Lesson} to a {@code Student}
+     * @param lesson {@code Lesson} to be removed
+     */
     public void removeLesson(Lesson lesson) {
         if (lessons.contains(lesson)) {
             lessons.remove(lesson);

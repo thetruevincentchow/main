@@ -9,6 +9,9 @@ import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+/**
+ * Class to parse input for {@code LessonRemoveCommand}.
+ */
 public class LessonRemoveCommandParser implements Parser<LessonRemoveCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
