@@ -39,6 +39,8 @@ Do you want to keep track of your grades to better decide on which modules to en
 
 If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet intuitive way. NUSModPlnr is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+// tag::how-to[]
+
 == How To Use This User Guide
 
 NUSModPlnr is a timetable and enrollment management application, which help you add plans which consist of your degree programme and timetables for different semesters.
@@ -74,6 +76,10 @@ This symbol and corresponding box has information that you may wish to take note
 This symbol and corresponding box has tips from the team, which we think might be useful for you.
 ====
 
+// end::how-to[]
+
+// tag::quick-start[]
+
 == Quick Start
 
 If you are looking to jump right into the application, you can follow the below quick steps to get the application up and running:
@@ -89,7 +95,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [TIP]
 These steps are recommended only if you have experience in setting up the application for first time use, or already have a saved file you would like to continue working with.
 
-// tag::feature-preamble[]
+// end::quick-start[]
+
+// tag::feature-preamble
 
 == Features
 
@@ -233,6 +241,8 @@ Example:
 
 * `student list`
 
+// tag::feature-degree-management[]
+
 [[degree-management]]
 === Degree Management
 
@@ -270,6 +280,8 @@ Format: `major status`
 Examples:
 
 * `major status`
+
+// end::feature-degree-management[]
 
 [[timetable-management]]
 === Timetable Management
