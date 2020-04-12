@@ -25,7 +25,7 @@
                <Label fx:id="info" styleClass="cell_small_label" />
            </content>
              <padding>
-                 <Insets bottom="5" left="15" right="5" top="15" />
+                 <Insets bottom="5" left="7" right="5" top="5" />
              </padding>
          </ScrollPane>
         </VBox>
