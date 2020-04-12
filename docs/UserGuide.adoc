@@ -30,7 +30,7 @@ The *NUS Module Planner* (_NUSModPlnr_) is for Computer Science (CS) students at
 When starting up the application, you will be able to see the *Home Screen* (_Figure 1. below_).
 
 .Home Screen View
-image::Ui.png[width="600", align="left"]
+image::Ui.png[width="600", align="center"]
 
 Do you want to keep track of the modules you will be taking over multiple semesters? Do you want to easily create multiple plans of these multiple semesters?
 
@@ -43,6 +43,8 @@ If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet i
 // tag::how-to[]
 
 == How To Use This User Guide
+
+_(Danish wrote this section on "How To Use This User Guide" below.)_
 
 NUSModPlnr is a timetable and enrollment management application, which help you add plans which consist of your degree programme and timetables for different semesters.
 
@@ -86,6 +88,8 @@ This symbol and corresponding box has warnings on possibly destructive commands 
 
 == Quick Start
 
+_(Danish adapted this section on "Quick Start" below.)_
+
 If you are looking to jump right into the application, you can follow the below quick steps to get the application up and running:
 
 .  Ensure you have Java `11` or above installed in your Computer.
@@ -105,6 +109,8 @@ These steps are recommended only if you have experience in setting up the applic
 
 == Features
 
+_(Benjamin wrote the preamble of "Features" below.)_
+
 These are the key features that are part of the NUSModPlnr!
 
 [TIP]
@@ -115,7 +121,6 @@ Before you dive into the commands themselves, do familiarise yourself with how t
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you (e.g. in `student add n/NAME major/MAJOR`, `NAME` is a parameter which can be used as `student add n/John Doe major/CS`).
 * Items in square brackets are optional (e.g `module grade CS2103T [grade/GRADE]` can be used as `module grade CS2103T grade/A+` or as `module grade CS2103T`).
-//* Items with `…`​ after them can be used multiple times including zero times (e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc).
 * Items surrounded by `<` and `>` can be used any positive number of times (at least once, e.g. `<MODULE_CODE>` can be used as `CS2040` (1 time), `CS2040 CS2030 CS2103T` (3 times), etc).
 * Parameters can be in any order (e.g. if the command specifies `n/NAME major/MAJOR`, `major/MAJOR n/NAME` is also acceptable).
 ====
@@ -167,7 +172,7 @@ Format: `exit`
 You can use the `status` command to view your currently selected students and timetables. The figure below shows a possible result of the command.
 
 .Possible Result of Status Command
-image::StatusCommand.png[width="600", align="left"]
+image::StatusCommand.png[width="600", align="center"]
 
 [TIP]
 Use the commands in <<student-management,*Student Management*>> to create and manage students. +
@@ -259,6 +264,8 @@ Example:
 
 [[degree-management]]
 === Degree Management
+
+_(Danish wrote this section on "Degree Management" below.)_
 
 The following commands below are part of the application's *Degree Management*, which allow you to declare important details of your academic plan, such as your <<glossary,majors>> and <<glossary,specialisations>>.
 
@@ -375,13 +382,14 @@ Example:
 [[calendar-interface]]
 === Calendar Interface
 
+_(Hak Wee wrote this section on "Calendar Interface" below.)_
+
 The application has a calendar feature to see the timetable schedule. Once a lesson has been added, it will show up in calendar after pressing the launch calendar button.
 
 You can see the *Launch Calendar Button* (_Figure X. below_).
 
 .Launch Calendar Button
-image::CalendarButton.png[width="600", align="left"]
-
+image::CalendarButton.png[width="600", align="center"]
 
 ==== Viewing the "Calendar Schedule"
 
@@ -390,7 +398,7 @@ There are two ways to view the Calendar. You can click on the launch calendar to
 You can see the *Calendar Schedule* (_Figure X. below_).
 
 .Calendar Schedule
-image::CalSchedule.png[width="600", align="left"]
+image::CalSchedule.png[width="600", align="center"]
 
 // end::calendar-interface[]
 
@@ -399,13 +407,15 @@ image::CalSchedule.png[width="600", align="left"]
 [[module-interface-and-search]]
 === Module Interface and Search
 
+_(Hak Wee wrote this section on "Module Interface and Search" below.)_
+
 When the application is first launched, you can see all the modules available to you in NUS. You can scroll through all the modules
 to find the desirable module to take for the semester.
 
 You can see the *Module Panel Screen* (_Figure X. below_).
 
 .Module Panel View
-image::ModulePanel.png[width="600", align="left"]
+image::ModulePanel.png[width="600", align="center"]
 
 ==== Viewing information on a specific module
 
@@ -414,7 +424,7 @@ You can click on any of the modules to see the module description. It will launc
 Here is the *Module Description Screen* (_Figure X. below_).
 
 .Module Description View
-image::ModuleDescription.png[width="600", align="left"]
+image::ModuleDescription.png[width="600", align="center"]
 
 ==== Searching for a specific module
 
@@ -423,7 +433,7 @@ You can use the search bar to search for any module based on their module code o
 Here is the *Search Screen* (_Figure X. below_).
 
 .Search View
-image::Search.png[width="600", align="left"]
+image::Search.png[width="600", align="center"]
 
 // end::module-interface-and-search[]
 
@@ -431,13 +441,16 @@ image::Search.png[width="600", align="left"]
 
 [[module-management]]
 === Module Management
+
+_(Benjamin wrote this section on "Module Management" below.)_
+
 The following commands below are part of the application's *Module Management*, which allow you manage the modules of your academic plan.
 
 Do note that you can click on the modules to see the module description.
 When managing your <<module-management,modules>>, you will be able to see the *Module View Screen* (_Figure 2. below_).
 
 .Home Screen View
-image::ModuleList.png[width="600", align="left"]
+image::ModuleList.png[width="600", align="center"]
 
 [NOTE]
 All the following commands require a <<timetable-management,timetable>>  to be selected (using the <<timetable-active-command,`timetable active`>> command).
@@ -519,7 +532,7 @@ The following commands below are part of the application's *Lesson Management*, 
 When managing lessons, you will be able to see the *Lesson View Screen* (_Figure 3. below_).
 
 .Lesson List View
-image::LessonList.png[width="600", align="left"]
+image::LessonList.png[width="600", align="center"]
 
 ==== Adding a lesson: `lessons add`
 
@@ -642,6 +655,8 @@ Example:
 
 === Saving Your Data
 
+_(Benjamin adapted this section on "Saving Your Data" below.)_
+
 NUS Module Planner data is saved to the hard disk automatically after any command that changes the data. +
 
 There is no need to save manually.
@@ -658,7 +673,29 @@ _{Explain how the user can share their data files here!}_
 
 // tag::faq[]
 
+// tag::proposed-future-enhancements[]
+
+=== Proposed Future Enhancements
+
+_(Benjamin wrote this section on "Proposed Future Enhancements" below.)_
+
+NUS Module Planner has a lot more potential to grow!
+
+Below are some of the other great features we think can be implemented in v2.0 onward:
+
+* *Module Viewer with Search* - Other than just searching for modules, search for their content instead, such as modules that deal with _Heat Transfer_ or _Geology_.
+* *Timetable Planner with Friends* - Instead of just viewing timetables of different students (_i.e. friends_) separately, be able to overlay them in one _"Timetable View"_, for easier group planning.
+* *Requirements Double-Upper* - Instead of just one `Major`, handle double `Major` programme students, or even those with Minors.
+* *Module Popularity Prediction* - Get and analyse historic data from NUSMods about module uptake, so that students do not have to plan for modules that would be overly subscribed.
+* *Support for Overseas Exchange and University Town College Programmes* - Be able to plan for special modules only offered in these programmes, if a student is enrolled in them.
+* *Live Module Data* - Get the latest Module Data available from NUS Mods and plan your Semester before it starts.
+* *Module Data History* - View historical data on Module enrollments and decide if when you want to take a certain `Module`.
+
+// end::proposed-future-enhancements[]
+
 == FAQ
+
+_(Hak Wee populated this section on "FAQ" below.)_
 
 This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 
@@ -670,16 +707,16 @@ This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NUSModPlnr folder.
 
-=== Feature Specific
+=== Feature Specific Questions
 
 *Q*: Who can I add as students? +
 *A*: You can add yourself to track your degree progression, or add your friends as well, if you would like to sync your academic plan together.
 
-*Q*: Why is there alphabets beside the lesson number in the calendar? +
-*A*: NUS provides a alphabet code to each lesson type. Type in the lesson number without the lesson number for the lesson management section.
+*Q*: Why are there letters beside the lesson number in the calendar? +
+*A*: NUS assigns letter codes to each lesson type for their internal management. Nonetheless, you only need to type the lesson number when managing your lessons.
 
-*Q*: Why is the lessons not shifted for each timetable? +
-*A*: Lessons is tagged to the active students so you can always see what lesson you took from the previous semesters.
+*Q*: Why are the lessons not shifted for each respective timetable? +
+*A*: Lessons are tagged to the `Active Student`, to allow you to see historical data on all lessons you have taken in previous semesters.
 
 [TIP]
 If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!

@@ -1015,7 +1015,6 @@ Refer to the guide <<DevOps#, here>>.
 
 NUS Module Planner has a lot more potential to grow!
 
-
 Below are some of the other great features we think can be implemented in v2.0 onward:
 
 * *Module Viewer with Search* - Other than just searching for modules, search for their content instead, such as modules that deal with _Heat Transfer_ or _Geology_.
