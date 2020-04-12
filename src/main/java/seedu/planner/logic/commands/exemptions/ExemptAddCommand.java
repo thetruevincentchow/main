@@ -24,14 +24,14 @@ public class ExemptAddCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-            + ": Adds the module to list of exempted modules.\n"
-            + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
-            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
+        + ": Adds the module to list of exempted modules.\n"
+        + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
+        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_ADD_EXEMPTION_SUCCESS = "Added module to exemption list: %1$s";
     public static final String MESSAGE_ADD_EXEMPTION_ALREADY_EXISTS = "Module is already in exemption list: %1$s";
     public static final String MESSAGE_ADD_EXEMPTION_DUPLICATE_ALREADY_EXISTS = "Module appeared more than once in "
-            + "your command: %1$s";
+        + "your command: %1$s";
     public static final String MESSAGE_ADD_EXEMPTION_INVALID = "Module code does not exist: %1$s";
 
     private final List<ModuleCode> moduleCodes;

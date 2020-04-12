@@ -34,7 +34,7 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INSERT_ALREADY_EXISTS = "Module appeared more than once in your "
-            + "command: %1$s";
+        + "command: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
     private final List<ModuleCode> moduleCodes;

@@ -30,7 +30,7 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public static final String MESSAGE_REMOVE_MODULE_SUCCESS = "Removed module from timetable: %1$s";
     public static final String MESSAGE_REMOVE_MODULE_NOT_EXISTS = "Module does not exist in timetable: %1$s";
     public static final String MESSAGE_REMOVE_MODULE_DELETE_ALREADY_EXISTS = "Module appeared more than once in your "
-            + "command: %1$s";
+        + "command: %1$s";
 
     private final List<ModuleCode> moduleCodes;
 
