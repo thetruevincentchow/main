@@ -8,6 +8,9 @@ import java.util.OptionalDouble;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.ModuleCode;
 
+/**
+ * Class to repesent the Enrollment of a {@code Student} into a {@code Module} by use of the {@code ModuleCode}
+ */
 public class Enrollment {
     private ModuleCode code;
     private Optional<Grade> grade;

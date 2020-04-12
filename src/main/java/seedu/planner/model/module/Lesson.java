@@ -1,5 +1,8 @@
 package seedu.planner.model.module;
 
+/**
+ * Class to represent a Lesson that a {@code Student} has to attend for a given {@code Module}
+ */
 public class Lesson {
     private String classNo;
     private String startTime;

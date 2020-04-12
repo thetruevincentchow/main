@@ -12,6 +12,9 @@ import seedu.planner.logic.commands.lessons.LessonRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+/**
+ * Class to parse input for {@code LessonCommand}.
+ */
 public class LessonCommandParser implements Parser<LessonCommand> {
 
     /**

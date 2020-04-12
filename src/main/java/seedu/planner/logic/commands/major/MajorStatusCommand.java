@@ -10,6 +10,9 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.student.Student;
 
+/**
+ * Command to display the status of the active {@code Student} and his/her {@code Major}.
+ */
 public class MajorStatusCommand extends MajorCommand {
     public static final String COMMAND_WORD = "status";
 

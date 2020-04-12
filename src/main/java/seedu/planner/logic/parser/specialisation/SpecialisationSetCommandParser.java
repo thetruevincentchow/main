@@ -6,6 +6,9 @@ import seedu.planner.logic.commands.specialisation.SpecialisationSetCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+/**
+ * Class to parse input for {@code SpecialisationSetCommand}.
+ */
 public class SpecialisationSetCommandParser implements Parser<SpecialisationSetCommand> {
 
     public static final String INVALID_SPECIALISATION = "Invalid Specialisation";

@@ -9,11 +9,17 @@ import seedu.planner.Main;
 import seedu.planner.model.module.Lesson;
 import seedu.planner.storage.JsonSerializableLesson;
 
-
+/**
+ * Helper Class to import Lesson data from a JSON file retrieved from NUS Mods API
+ */
 public class LessonDataImporterUtil {
 
     private static List<Lesson> lessons = new ArrayList<>();
 
+    /**
+     * Performs the conversion of lessons stored in a JSON into a list of {@code Lesson} objects
+     * @return A list of {@code Lesson} objects
+     */
     public static List<Lesson> run(String modCode, int sem) {
         Lesson lesson;
         String fileName = "";

@@ -8,7 +8,9 @@ import seedu.planner.model.graduation.CompoundGraduationRequirement;
 import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 
-
+/**
+ * Abstract class to represent the Programme a Student is required to undergo in his/her course of study
+ */
 public abstract class Programme {
     protected String name;
     protected List<GraduationRequirement> graduationRequirementList;

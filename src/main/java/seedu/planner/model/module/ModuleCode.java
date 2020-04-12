@@ -5,6 +5,9 @@ import static seedu.planner.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
+/**
+ * Class to represent the Module Code of a {@code Module}
+ */
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =

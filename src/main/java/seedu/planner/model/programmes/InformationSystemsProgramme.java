@@ -11,9 +11,12 @@ import seedu.planner.model.graduation.UnrestrictedElectiveGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.is.GenericIsSpecialisation;
 
+/**
+ * Class to represent specialisations for Information Systems Degree Programme
+ */
 public class InformationSystemsProgramme extends DegreeProgramme {
 
-    public InformationSystemsProgramme(Model model) { // TODO: Load from JSON or XML
+    public InformationSystemsProgramme(Model model) {
         GenericIsSpecialisation specialisation = null;
         if (model != null) {
             specialisation = (GenericIsSpecialisation) model.getActiveStudent().getSpecialisation();

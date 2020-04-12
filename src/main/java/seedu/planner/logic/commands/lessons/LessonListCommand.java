@@ -9,6 +9,9 @@ import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
 import seedu.planner.model.module.Lesson;
 
+/**
+ * Command to list out the {@code Lesson} of the active {@code Student}.
+ */
 public class LessonListCommand extends LessonCommand {
     public static final String COMMAND_WORD = "list";
 

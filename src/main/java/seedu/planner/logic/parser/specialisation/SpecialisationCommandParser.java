@@ -12,6 +12,9 @@ import seedu.planner.logic.commands.specialisation.SpecialisationSetCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
+/**
+ * Class to parse input for {@code SpecialisationCommand}.
+ */
 public class SpecialisationCommandParser implements Parser<SpecialisationCommand> {
     /**
      * Used for initial separation of command word and args.

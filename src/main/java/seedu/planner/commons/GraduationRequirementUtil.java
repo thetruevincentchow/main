@@ -8,6 +8,10 @@ import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.student.Student;
 
+/**
+ * Utility class to help generate the String repesentation of a {@code Student}'s current progress in his/her
+ * Graduation Requirements.
+ */
 public class GraduationRequirementUtil {
 
     public static String getString(Student student) {

@@ -26,12 +26,18 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
+     * @param toCheck {@code ModuleCode} to check
+     * @return True if the list contains an equivalent module as the given argument. False otherwise.
      */
     public boolean contains(ModuleCode toCheck) {
         requireNonNull(toCheck);
         return internalList.containsKey(toCheck);
     }
-
+    /**
+     * Returns true if the list contains an equivalent module as the given argument.
+     * @param toCheck {@code Module} to check
+     * @return True if the list contains an equivalent module as the given argument. False otherwise.
+     */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
         return internalList.containsKey(toCheck.getModuleCode());
