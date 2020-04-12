@@ -11,26 +11,55 @@
 
 The NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. With NUSModPlnr, module planning has never been easier!
 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 250+ kLoC.
+
 == Summary of contributions
 
-* Major Enhancement: Added in the UI
-** Added in panel to show Graduation Requirements
-** Added in a list panel to show modules
-** Interactable module list to see lesson schedule
+* *Major feature*: Importing of all lessons for each module offered by NUS, made available using the NUSMods.
+** What it does: Allows the user to view the list of all the lessons offered by NUS for a given modules, including details such as class number, start time, end time, venue.
+** Justification: This feature improves the product significantly because a user can view actual accurate data of the lessons currently being offered by NUS for a given module, with the latest data available.
+** Highlights: This feature allows the calendar portion of the application to be filled up. As real life data was provided by NUSMods, there was no need to populate with fake data.
+** Credits: NUSMods for providing the data and API.
+
+* *Major feature*: Revamped the entire UI of the application.
+** What it does: Allows the user to use the application with an interface instead of a command line.
+** Justification: This feature allows the application to be more user friendly and also show information that would be deem hard to read through a command line.
+** Highlights: The calendar was build from scratch using grid panes and anchor panes.
+** Credits: SceneBuilder.
+
+* *Minor enhancement*: Added in panel to show Graduation Requirements by using the graduation requirements developed by https://github.com/DANamic[@DANamic] and https://github.com/Capeguy[@Capeguy].
+
+* *Minor enhancement*: Modified the module panel to display the modules as well as their information when clicked. It also provides the lesson details based on the calendar feature.
+
 * *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=gruntultra[RepoSense Report here]!
 
-== Contributions to the User Guide
+* *Other contributions*:
 
+** Project contributions:
+*** Contributed to releases `v1.0` - `v1.4` (5 releases) on GitHub
+** Documentation:
+*** Generated diagrams to enhance readability of Developer Guide
+*** Contributed to Features and Module Management sections of User Guide
+** Community:
+*** PRs reviewed: https://github.com/AY1920S2-CS2103T-W13-4/main/pull/197[#197]
+*** Reported bugs and suggestions for other teams in the class: https://github.com/gruntultra/ped/issues/1[#1], https://github.com/gruntultra/ped/issues/2[#2], https://github.com/gruntultra/ped/issues/3[#3], https://github.com/gruntultra/ped/issues/4[#4], https://github.com/gruntultra/ped/issues/5[#5], https://github.com/gruntultra/ped/issues/6[#6], https://github.com/gruntultra/ped/issues/7[#7], https://github.com/gruntultra/ped/issues/8[#8]
+
+*** Added in initial fxml files for the UI: https://github.com/AY1920S2-CS2103T-W13-4/main/pull/46/commits/bd9aa888b20b4e87344df7e23202de2344e286d4[#1]
+*** Fixed the calendar for bugs found during PE dry run: https://github.com/AY1920S2-CS2103T-W13-4/main/commit/1c31809f533f37a53d329efa0ca7aa232c90d233[#1]
+
+
+== Contributions to the User Guide
 
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
-include::../UserGuide.adoc[tag=module-management]
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=calendar-interface]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=module-interface-and-search]
+
+include::../UserGuide.adoc[tag=faq]
 
 == Contributions to the Developer Guide
 
@@ -38,13 +67,20 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=ui]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=calendar-implementation]
+
+include::../DeveloperGuide.adoc[tag=lessons-implementation]
+
+include::../DeveloperGuide.adoc[tag=search-implementation]
+
+These parts below are in collaboration with the team. https://github.com/Capeguy[@Capeguy],  https://github.com/DANamic[@DANamic] and https://github.com/thetruevincentchow[@thetruevincentchow]
+
+include::../DeveloperGuide.adoc[tag=appendix-use-case]
+
+include::../DeveloperGuide.adoc[tag=appendix-manual-testing]
 
 
-== PROJECT: PowerPointLabs
 
----
 
-_{Optionally, you may include other projects in your portfolio.}_

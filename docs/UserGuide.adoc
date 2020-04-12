@@ -356,6 +356,8 @@ Example:
 
 * `timetable list`
 
+// tag::calendar-interface[]
+
 [[calendar-interface]]
 === Calendar Interface
 
@@ -375,6 +377,10 @@ You can see the *Calendar Schedule* (_Figure X. below_).
 
 .Calendar Schedule
 image::CalSchedule.png[width="600", align="left"]
+
+// end::calendar-interface[]
+
+// tag::module-interface-and-search[]
 
 [[module-interface-and-search]]
 === Module Interface and Search
@@ -404,6 +410,8 @@ Here is the *Search Screen* (_Figure X. below_).
 
 .Search View
 image::Search.png[width="600", align="left"]
+
+// end::module-interface-and-search[]
 
 // tag::module-management[]
 
@@ -630,6 +638,8 @@ _{Explain how the user can share their data files here!}_
 ////
 // end::sharingdatafiles[]
 
+// tag::faq[]
+
 == FAQ
 
 This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
@@ -655,6 +665,8 @@ This provides a list of *Frequently Asked Questions (FAQ)* that you may have.
 
 [TIP]
 If you have questions, feel free to open an issue in our *Issue Tracker* on GitHub!
+
+// end::faq[]
 
 [[glossary]]
 == Glossary

@@ -88,6 +88,8 @@ The sections below give more details of each component.
 
 // end::design-architecture[]
 
+// tag::ui[]
+
 [[Design-Ui]]
 === UI Component
 
@@ -104,6 +106,9 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+// end::ui[]
+
 // tag::design-logic[]
 
 [[Design-Logic]]
@@ -283,6 +288,8 @@ Classes used by multiple components are in the `seedu.planner.commons` package.
 
 This section describes our implementation and design decision details of the features in the NUS Module Planner. As a reminder, they have been ordered laconically for easier search and reference.
 
+// tag::calendar-implementation[]
+
 [[Implementation-Calendar]]
 === Calendar View
 
@@ -312,6 +319,8 @@ The Calendar populates each of the Label in the grid pane based on the list of `
 * *Alternative 2:* Use another library jfxtras which has an i calendar API
 ** Pros: Reduce the amount of work needed to create the component
 ** Cons: Comes with bugs that scene builder is unable to support
+
+// end::calendar-implementation[]
 
 [[Implementation-Grade]]
 === Grade Management
@@ -391,6 +400,8 @@ image::GraduationRequirementsCD-expanded.png[align="center"]
 ** Cons: Duplicate codes due to many classes may have the same fulfilment logic, but different data.
 // end::feature-graduation-requirement[]
 
+// tag::lessons-implementation[]
+
 [[Implementation-Lesson]]
 === Lesson Features
 
@@ -425,13 +436,15 @@ The `LessonRemoveCommandParser` method is called and it will get the `Index` pro
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+* *Alternative 1 (Current Implementation):* Letting the users decide the lesson they want.
+** Pros: Allows for flexibility as it can reuse some of the code written for modules to adapt for lessons.
+** Cons: More checks are needed to ensure user do not key in invalid values
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* Hard code to take the first option of each lesson.
+** Pros: Easier logic for the developer. Less bugs to deal with.
+** Cons: Inconvenient for the user and does not allow the flexibility to choose the lesson that they want to take.
+
+// end::lessons-implementation[]
 
 [[Implementation-Module]]
 === Module Features & Database
@@ -449,6 +462,8 @@ The attributes of the `Module` class are retrieved from the serialised JSON file
 
 Additionally, `Module` entities can be marked as `exempted` which allow Students to declare in the application, that will get the module credits associated, without having to declare taking it or associate a `Grade`.
 
+// tag::search-implementation[]
+
 [[Implementation-Module-Search]]
 ==== Module Search
 
@@ -457,19 +472,21 @@ On First Launch, all the modules that are available in NUS (in accordance to NUS
 Students are able utilise the _"Search Bar"_ to search for any module based on the `module code` or `module name`. When given the query with the corresponding values, the following logic takes place:
 
 .Sequence Diagram for Module Search
-image::sequenceDiagramSearch.png[align="center"]
+image::searchSequenceDiagram.png[align="center"]
 
 If any results match the query enetered, they are populated into the *Search Screen* GUI for the user.
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+* *Alternative 1 (Current Implementation):* Using streams to collect the modules and search
+** Pros: Less mutability as the modules will not be accidentally modified.
+** Cons: Hard to debug when there is a bug.
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* Loop and search each modules.
+** Pros: Lightweight using a for loop.
+** Cons: Modules may be accidentally modified if it is not protected properly.
+
+// end::search-implementation[]
 
 [[Implementation-PlannerModel]]
 === Planner Model
@@ -886,6 +903,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
+// tag::appendix-use-case[]
+
 [appendix]
 == Use Cases
 
@@ -1144,6 +1163,60 @@ Use case ends.
 +
 Use case ends.
 
+=== Use Case: Add Lesson (UCE01)
+
+*MSS*
+
+. User [.underline]#selects a timetable (UCB03)#
+. User requests to add a specific lesson for a module
+. Planner adds the lesson to the active timetable
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The given module is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends.
+
+* 2b. The given lesson number is invalid
++
+[none]
+** 2b1. Planner shows an error message
++
+Use case ends.
+
+* 2c. The given semester is invalid
++
+[none]
+** 2c1. Planner shows an error message
++
+Use case ends.
+
+=== Use Case: Delete Lesson (UCE02)
+
+*MSS*
+
+. User [.underline]#selects a timetable (UCB03)#
+. User requests to delete a specified lesson
+. Planner deletes the lesson from the active timetable
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The given index is invalid
++
+[none]
+** 2a1. Planner shows an error message
++
+Use case ends.
+
+// end::appendix-use-case[]
+
 [appendix]
 == Non-Functional Requirements
 
@@ -1195,6 +1268,8 @@ Cons:
 
 * Relies on another third-party application (_i.e. Microsoft Excel_) to run
 * Extremely tedious to use, and requires some knowledge as a _Microsoft Excel_ power user
+
+// tag::appendix-manual-testing[]
 
 [appendix]
 == Instructions for Manual Testing
@@ -1378,6 +1453,54 @@ Expected: Selected student's specialisation is not updated. Error details are sh
 .. Other incorrect delete commands to try: `specialisation set` +
 Expected: Similar to previous.
 
+=== Adding a Lesson
+
+. Adding a lesson while a active student is selected
+
+.. Prerequisites: Set active student with command `student active`.
+.. Test case: `lessons add m/CS1231 lesson/10 sem/ONE` +
+Expected: Lesson is added to the active student timetable. Details of the added lessons are shown in the status message. Calendar is filled up to show the change.
+.. Test case: `lessons add text` +
+Expected: No lessons is added. Error details are shown in the status message. Status bar remains the same. Calendar remains the same.
+.. Other incorrect delete commands to try: `lessons add`, +
+Expected: Similar to previous.
+
+=== Removing a Lesson
+
+. Removing a lesson while a active student is selected
+
+.. Prerequisites: Set active student with command `student active` and at least one lesson is added.
+.. Test case: `lessons remove 1` +
+Expected: Lesson is moved from the active student timetable. Details of the removed lessons are shown in the status message. Calendar is updated to show the change.
+.. Test case: `lessons remove text` +
+Expected: No lessons is removed. Error details are shown in the status message. Status bar remains the same. Calendar remains the same.
+.. Other incorrect delete commands to try: `lessons remove`, +
+Expected: Similar to previous.
+
+=== Listing all Lesson
+
+. Listing all lessons while a active student is selected
+
+.. Prerequisites: Set active student with command `student active`.
+.. Test case: `lessons list` +
+Expected: Lesson is listed out in the status message. You can also launch calendar to see the bottom scroll pane which will have the same information as well.
+
+=== Viewing module information
+
+. Viewing the module information
+
+.. Prerequisites: Module has been successfully loaded.
+.. Test case: Click on any module in the module pane.
+Expected: A new window is opened to show the module information.
+
+=== Viewing lesson information for a module
+
+. Viewing the lesson information for a module
+
+.. Prerequisites: A module has been selected.
+.. Test case: Click on either of the semesters button on the module description page if applicable.
+Expected: A new window is opened to show the timetable containing the lesson information.
+
 
 === Saving Data
 
@@ -1393,3 +1516,5 @@ Expected: Shows the GUI with a set of sample plans.
 .. Test case: Edit the file named `planner.json` in the `data` folder such that it is no longer valid JSON.
 This can be done by deleting the last non-whitespace character in the file, which should be a curly closing bracket. +
 Expected: Shows the GUI with a set of sample plans.
+
+// end::appendix-manual-testing[]
