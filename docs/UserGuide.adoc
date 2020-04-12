@@ -323,13 +323,13 @@ You can use this command to add a <<timetable-management,timetable>> to the spec
 [NOTE]
 This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
 The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
-The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
+The `SEM` parameter must be one of the following: `1`, `2`, `st1`, `st2`.
 
 Format: `timetable add year/YEAR sem/SEM`
 
 Example:
 
-* `timetable add year/2 sem/ONE`
+* `timetable add year/2 sem/1`
 
 ==== Removing a timetable: `timetable remove`
 
@@ -342,13 +342,13 @@ Be sure to remove your intended timetable by checking the list of timetables wit
 [NOTE]
 This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
 The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
-The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
+The `SEM` parameter must be one of the following: `1`, `2`, `st1`, `st2`.
 
 Format: `timetable remove year/YEAR sem/SEM`
 
 Example:
 
-* `timetable remove year/2 sem/ONE`
+* `timetable remove year/2 sem/1`
 
 [[timetable-active-command]]
 ==== Selecting a timetable: `timetable active`
@@ -358,13 +358,13 @@ You can use this command to select a <<timetable-management,timetable>> of the s
 [NOTE]
 This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
 The `YEAR` parameter must be a valid degree year (from 1 to 6, inclusive). +
-The `SEM` parameter must be one of the following: `ONE`, `TWO`, `SPECIAL_ONE`, `SPECIAL_TWO`.
+The `SEM` parameter must be one of the following: `1`, `2`, `st1`, `st2`.
 
 Format: `timetable active year/YEAR sem/SEM`
 
 Example:
 
-* `timetable active year/2 sem/ONE`
+* `timetable active year/2 sem/1`
 
 [[timetable-list-command]]
 ==== Viewing the timetable list: `timetable list`
@@ -546,7 +546,7 @@ Format: `lessons add m/MODULE lesson/LESSON_NUMBER sem/SEM`
 
 Example:
 
-* `lessons add m/CS1231 lesson/10 sem/ONE`
+* `lessons add m/CS1231 lesson/10 sem/1`
 
 ==== Removing a lesson: `lessons remove`
 
@@ -578,7 +578,7 @@ The following commands below are part of the application's *Grade Management*, w
 
 [TIP]
 The same module can be added into multiple timetables of the same student. Therefore, each enrollment (one per semester) of the same module can have a separate grade. +
-For example, it is possible for you to enroll in the module `CS2040` during `year/1 sem/ONE` and then `year/1 sem/TWO`. +
+For example, it is possible for you to enroll in the module `CS2040` during `year/1 sem/1` and then `year/1 sem/2`. +
 You may refer to <<timetable-management,*Timetable Management*>> to see how you can use timetables.
 
 ==== Managing a module's grade: `module grade`
