@@ -3,7 +3,7 @@ package seedu.planner.model.module;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Class to represent the Module Credits of a {@code Module}
+ * Class to represent the Module Credits of a {@code Module}.
  */
 public class Credit {
     public static final String MESSAGE_CONSTRAINS = "Credits cannot be null";

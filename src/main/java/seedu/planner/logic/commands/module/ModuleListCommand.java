@@ -14,6 +14,7 @@ import seedu.planner.model.module.ModuleCode;
 
 
 //@@author thetruevincentchow
+
 /**
  * Lists modules enrolled in the selected timetable.
  */
@@ -21,8 +22,8 @@ public class ModuleListCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": List enrolled modules in the timetable.\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD);
+            + ": List enrolled modules in the timetable.\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Listed enrolled modules in timetable:\n%1$s";
 
@@ -58,10 +59,7 @@ public class ModuleListCommand extends ModuleCommand {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return true;
+        return o != null && getClass() == o.getClass();
     }
 
     @Override

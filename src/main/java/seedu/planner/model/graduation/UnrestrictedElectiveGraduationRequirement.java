@@ -8,15 +8,15 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
 /**
- * Class that implements {@code GraduationRequirement} to determine if it has fulfilled requirements
+ * Class that implements {@code GraduationRequirement} to determine if it has fulfilled requirements.
  */
 
 public class UnrestrictedElectiveGraduationRequirement extends GraduationRequirement {
 
     protected int minMc = 0;
+
     /**
-     * Default constructor of {@code UnrestrictedElectiveGraduationRequirement}
-     *
+     * Default constructor of {@code UnrestrictedElectiveGraduationRequirement}.
      */
     public UnrestrictedElectiveGraduationRequirement(int minMc) {
         this.minMc = minMc;
@@ -24,9 +24,9 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
 
     /**
      * Returns a boolean representing if the {@code UnrestrictedElectiveGraduationRequirement} is fulfilled, given a
-     * list of {@code ModuleCode}
+     * list of {@code ModuleCode}.
      *
-     * @param moduleCodes List of {@code ModuleCode}
+     * @param moduleCodes List of {@code ModuleCode}.
      * @return True if fulfilled. False otherwise.
      */
     public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
@@ -45,9 +45,9 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
     }
 
     /**
-     * Method to override the default {@code toString} function of {@code UnrestrictedElectiveGraduationRequirement}
+     * Method to override the default {@code toString} function of {@code UnrestrictedElectiveGraduationRequirement}.
      *
-     * @return String representation of {@code UnrestrictedElectiveGraduationRequirement}
+     * @return String representation of {@code UnrestrictedElectiveGraduationRequirement}.
      */
     @Override
     public String toString() {
@@ -55,18 +55,18 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
     }
 
     /**
-     * Returns a String representation of the {@code UnrestrictedElectiveGraduationRequirement} object
+     * Returns a String representation of the {@code UnrestrictedElectiveGraduationRequirement} object.
      *
-     * @param moduleCodes List of {@code ModuleCode}
-     * @return A String representation of the {@code UnrestrictedElectiveGraduationRequirement} object
+     * @param moduleCodes List of {@code ModuleCode}.
+     * @return A String representation of the {@code UnrestrictedElectiveGraduationRequirement} object.
      */
     public String getString(List<ModuleCode> moduleCodes) {
         StringBuilder sb = new StringBuilder();
         sb.append("[")
-            .append(getStatusIcon(isFulfilled(moduleCodes).getKey()))
-            .append("] [")
-            .append(minMc)
-            .append(" MCs] Unrestricted Electives\n");
+                .append(getStatusIcon(isFulfilled(moduleCodes).getKey()))
+                .append("] [")
+                .append(minMc)
+                .append(" MCs] Unrestricted Electives\n");
         for (ModuleCode moduleCode : moduleCodes) {
             sb.append("    [\u2713] ").append(moduleCode).append("\n");
         }

@@ -9,6 +9,7 @@ import seedu.planner.model.module.UniqueEnrollmentList;
 import seedu.planner.model.student.exceptions.EnrollmentNotFoundException;
 
 //@@author thetruevincentchow
+
 /**
  * Represents a timetable for a semester.
  * A {@code TimeTable} stores {@code Enrollment}s, where each enrollment must have a different module code.
@@ -16,7 +17,8 @@ import seedu.planner.model.student.exceptions.EnrollmentNotFoundException;
 public class TimeTable {
     private UniqueEnrollmentList enrollments = new UniqueEnrollmentList();
 
-    public TimeTable() { }
+    public TimeTable() {
+    }
 
     public TimeTable(List<Enrollment> enrollments) {
         enrollments.forEach(this.enrollments::add);
@@ -36,6 +38,7 @@ public class TimeTable {
 
     /**
      * Returns true if the timetable contains no enrollments.
+     *
      * @return {@code true} the timetable contains no enrollments
      */
     public boolean isEmpty() {
@@ -56,6 +59,10 @@ public class TimeTable {
         //return enrollments.asUnmodifiableObservableList(); // TODO: replace with ObservableList<Enrollment>
     }
 
+    public void setEnrollments(UniqueEnrollmentList enrollments) {
+        this.enrollments = enrollments;
+    }
+
     public List<ModuleCode> getModuleCodes() {
         return enrollments.stream().map(Enrollment::getModuleCode).collect(Collectors.toList());
     }
@@ -66,10 +73,6 @@ public class TimeTable {
 
     public void removeModuleCode(ModuleCode moduleCode) {
         enrollments.removeIf(enrollment -> enrollment.getModuleCode().equals(moduleCode));
-    }
-
-    public void setEnrollments(UniqueEnrollmentList enrollments) {
-        this.enrollments = enrollments;
     }
 
     @Override

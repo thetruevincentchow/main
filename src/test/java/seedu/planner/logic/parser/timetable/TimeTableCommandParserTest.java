@@ -28,7 +28,7 @@ class TimeTableCommandParserTest {
     public void parse_validAddCommand_success() {
         // whitespace in preamble, all fields present
         assertParseSuccess(parser, "add " + PREAMBLE_WHITESPACE + DEGREE_YEAR_DESC + SEM_DESC,
-            new TimeTableAddCommand(expectedSemester));
+                new TimeTableAddCommand(expectedSemester));
     }
 
     @Test
@@ -36,15 +36,15 @@ class TimeTableCommandParserTest {
         assertParseSuccess(parser, "remove " + SEM_DESC + DEGREE_YEAR_DESC,
                 new TimeTableRemoveCommand(expectedSemester));
         assertParseSuccess(parser, "remove " + PREAMBLE_WHITESPACE + SEM_DESC + DEGREE_YEAR_DESC,
-            new TimeTableRemoveCommand(expectedSemester));
+                new TimeTableRemoveCommand(expectedSemester));
     }
 
     @Test
     public void parse_validActiveCommand_success() {
         assertParseSuccess(parser, "active " + SEM_DESC + DEGREE_YEAR_DESC,
-            new TimeTableActiveCommand(expectedSemester));
+                new TimeTableActiveCommand(expectedSemester));
         assertParseSuccess(parser, "active " + PREAMBLE_WHITESPACE + SEM_DESC + DEGREE_YEAR_DESC,
-            new TimeTableActiveCommand(expectedSemester));
+                new TimeTableActiveCommand(expectedSemester));
     }
 
     @Test
@@ -53,7 +53,7 @@ class TimeTableCommandParserTest {
 
         // any text is allowed after "list "
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + "list" + " fajslkfjalk",
-            new TimeTableListCommand());
+                new TimeTableListCommand());
     }
 
     @Test
@@ -61,16 +61,16 @@ class TimeTableCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_UNKNOWN_SUBCOMMAND, TimeTableCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            TimeTableCommand.MESSAGE_USAGE));
+                TimeTableCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_subCommandInvalid_failure() {
         assertParseFailure(parser, INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            TimeTableCommand.MESSAGE_USAGE));
+                TimeTableCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            TimeTableCommand.MESSAGE_USAGE));
+                TimeTableCommand.MESSAGE_USAGE));
     }
 }
 //@@author

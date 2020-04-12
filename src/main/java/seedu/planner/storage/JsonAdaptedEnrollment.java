@@ -52,7 +52,7 @@ public class JsonAdaptedEnrollment {
      */
     public Enrollment toModelType() throws IllegalValueException {
         return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()),
-            credit);
+                credit);
     }
 
     public JsonAdaptedModuleCode getCode() {

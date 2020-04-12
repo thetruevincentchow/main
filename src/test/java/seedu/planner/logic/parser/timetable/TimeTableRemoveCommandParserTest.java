@@ -29,40 +29,40 @@ class TimeTableRemoveCommandParserTest {
 
         // whitespace in preamble, all fields present
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DEGREE_YEAR_DESC + SEM_DESC,
-            new TimeTableRemoveCommand(expectedSemester));
+                new TimeTableRemoveCommand(expectedSemester));
 
         // arguments swapped
         assertParseSuccess(parser, SEM_DESC + DEGREE_YEAR_DESC,
-            new TimeTableRemoveCommand(expectedSemester));
+                new TimeTableRemoveCommand(expectedSemester));
 
         // multiple prefixes
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DEGREE_YEAR_DESC + DEGREE_YEAR_DESC
-            + SEM_DESC, new TimeTableRemoveCommand(expectedSemester));
+                + SEM_DESC, new TimeTableRemoveCommand(expectedSemester));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         // empty arguments
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            TimeTableRemoveCommand.MESSAGE_USAGE));
+                TimeTableRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            TimeTableRemoveCommand.MESSAGE_USAGE));
+                TimeTableRemoveCommand.MESSAGE_USAGE));
 
         // semester not present
         assertParseFailure(parser, DEGREE_YEAR_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            TimeTableRemoveCommand.MESSAGE_USAGE));
+                TimeTableRemoveCommand.MESSAGE_USAGE));
 
         // degree year not present
         assertParseFailure(parser, SEM_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            TimeTableRemoveCommand.MESSAGE_USAGE));
+                TimeTableRemoveCommand.MESSAGE_USAGE));
 
         // semester prefix present but empty argument
         assertParseFailure(parser, PREFIX_STUDENT_SEM + " " + DEGREE_YEAR_DESC, Semester.MESSAGE_CONSTRAINTS);
 
         // degree year prefix present but empty argument
         assertParseFailure(parser, SEM_DESC + " " + PREFIX_STUDENT_YEAR + PREAMBLE_WHITESPACE,
-            DegreeYear.MESSAGE_CONSTRAINTS);
+                DegreeYear.MESSAGE_CONSTRAINTS);
 
         // name and major prefixes present but both have empty arguments
         assertParseFailure(parser, PREFIX_STUDENT_SEM + " " + PREFIX_STUDENT_YEAR, DegreeYear.MESSAGE_CONSTRAINTS);
@@ -72,11 +72,11 @@ class TimeTableRemoveCommandParserTest {
     public void parse_compulsoryFieldInvalid_failure() {
         // degree year invalid
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_TIMETABLE_YEAR_DESC,
-            DegreeYear.MESSAGE_CONSTRAINTS);
+                DegreeYear.MESSAGE_CONSTRAINTS);
 
         // semester invalid
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_TIMETABLE_SEM_DESC,
-            Semester.MESSAGE_CONSTRAINTS);
+                Semester.MESSAGE_CONSTRAINTS);
     }
 }
 //@@author

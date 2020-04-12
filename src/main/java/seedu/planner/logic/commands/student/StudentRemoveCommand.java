@@ -15,6 +15,7 @@ import seedu.planner.model.student.Student;
 
 
 //@@author thetruevincentchow
+
 /**
  * Removes a student from the student list.
  */
@@ -22,9 +23,9 @@ public class StudentRemoveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Removes the student from list of student profiles.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
+            + ": Removes the student from list of student profiles.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_REMOVE_STUDENT_SUCCESS = "Removed student: %1$s";
 
@@ -41,8 +42,10 @@ public class StudentRemoveCommand extends StudentCommand {
     private String generateSuccessMessage(Student removedStudent) {
         return String.format(MESSAGE_REMOVE_STUDENT_SUCCESS, removedStudent);
     }
+
     /**
-     * Executes {@code StudentRemoveCommand}
+     * Executes {@code StudentRemoveCommand}.
+     *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command
      * @throws CommandException when an exception occurred while executing the command

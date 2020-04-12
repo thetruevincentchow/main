@@ -25,7 +25,7 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
 
     private final ObservableList<Enrollment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Enrollment> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -37,6 +37,7 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
 
     /**
      * Returns true if the list contains no elements.
+     *
      * @return {@code true} the list contains no elements
      */
     public boolean isEmpty() {
@@ -119,8 +120,8 @@ public class UniqueEnrollmentList implements Iterable<Enrollment> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueEnrollmentList // instanceof handles nulls
-            && internalList.equals(((UniqueEnrollmentList) other).internalList));
+                || (other instanceof UniqueEnrollmentList // instanceof handles nulls
+                && internalList.equals(((UniqueEnrollmentList) other).internalList));
     }
 
     @Override

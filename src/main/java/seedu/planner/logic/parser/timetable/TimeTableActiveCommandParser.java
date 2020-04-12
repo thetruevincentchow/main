@@ -18,8 +18,9 @@ import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new TimeTableActiveCommand object
+ * Parses input arguments and creates a new TimeTableActiveCommand object.
  */
 public class TimeTableActiveCommandParser implements Parser<TimeTableActiveCommand> {
     /**
@@ -35,12 +36,12 @@ public class TimeTableActiveCommandParser implements Parser<TimeTableActiveComma
         // preamble
         // TODO: use ArgumentTokenizer for all subcommands
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM,
-            PREFIX_STUDENT_YEAR);
+                PREFIX_STUDENT_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR)
-            || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                TimeTableActiveCommand.MESSAGE_USAGE));
+                    TimeTableActiveCommand.MESSAGE_USAGE));
         }
 
         final DegreeYear year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_STUDENT_YEAR).get());

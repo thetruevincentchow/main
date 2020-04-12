@@ -14,7 +14,7 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 //@@author thetruevincentchow
 
 /**
- * Parses sub-commands of the "timetable" command and creates a new TimeTableCommand object
+ * Parses sub-commands of the "timetable" command and creates a new TimeTableCommand object.
  */
 public class TimeTableCommandParser implements Parser<TimeTableCommand> {
     /**

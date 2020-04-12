@@ -45,19 +45,19 @@ public class JsonSerializableModule {
      */
     @JsonCreator
     public JsonSerializableModule(
-        @JsonProperty("acadYear") String acadYear,
-        @JsonProperty("preclusion") String preclusion,
-        @JsonProperty("description") String description,
-        @JsonProperty("title") String title,
-        @JsonProperty("department") String department,
-        @JsonProperty("faculty") String faculty,
-        // @JsonProperty("workload") String workload,
-        @JsonProperty("prerequisite") String prerequisite,
-        @JsonProperty("moduleCredit") String moduleCredit,
-        @JsonProperty("moduleCode") String moduleCode,
-        @JsonProperty("semesterData") List<JsonSerializableSemesterData> semesterData,
-        @JsonProperty("prereqTree") String prereqTree,
-        @JsonProperty("fulfillRequirements") String fulfillRequirements
+            @JsonProperty("acadYear") String acadYear,
+            @JsonProperty("preclusion") String preclusion,
+            @JsonProperty("description") String description,
+            @JsonProperty("title") String title,
+            @JsonProperty("department") String department,
+            @JsonProperty("faculty") String faculty,
+            // @JsonProperty("workload") String workload,
+            @JsonProperty("prerequisite") String prerequisite,
+            @JsonProperty("moduleCredit") String moduleCredit,
+            @JsonProperty("moduleCode") String moduleCode,
+            @JsonProperty("semesterData") List<JsonSerializableSemesterData> semesterData,
+            @JsonProperty("prereqTree") String prereqTree,
+            @JsonProperty("fulfillRequirements") String fulfillRequirements
     ) {
         this.acadYear = acadYear;
         this.preclusion = preclusion;
@@ -74,6 +74,10 @@ public class JsonSerializableModule {
         this.fulfillRequirements = fulfillRequirements;
     }
 
+    public static String getMessageDuplicateModule() {
+        return MESSAGE_DUPLICATE_MODULE;
+    }
+
     /**
      * Converts this module into the model's {@code Module} object.
      *
@@ -81,24 +85,20 @@ public class JsonSerializableModule {
      */
     public Module toModelType() throws IllegalValueException {
         return new Module(
-            this.acadYear,
-            this.preclusion,
-            this.description,
-            this.title,
-            this.department,
-            this.faculty,
-            null, // this.workload,
-            this.prerequisite,
-            this.moduleCredit,
-            this.moduleCode.replaceAll("[^a-zA-Z0-9]", ""),
-            this.semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()), // this.semesterData,
-            this.prereqTree,
-            this.fulfillRequirements
+                this.acadYear,
+                this.preclusion,
+                this.description,
+                this.title,
+                this.department,
+                this.faculty,
+                null, // this.workload,
+                this.prerequisite,
+                this.moduleCredit,
+                this.moduleCode.replaceAll("[^a-zA-Z0-9]", ""),
+                this.semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()), // this.semesterData,
+                this.prereqTree,
+                this.fulfillRequirements
         );
-    }
-
-    public static String getMessageDuplicateModule() {
-        return MESSAGE_DUPLICATE_MODULE;
     }
 
     public String getAcadYear() {

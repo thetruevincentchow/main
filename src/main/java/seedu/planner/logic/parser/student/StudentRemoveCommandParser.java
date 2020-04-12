@@ -10,8 +10,9 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new StudentRemoveCommand object
+ * Parses input arguments and creates a new StudentRemoveCommand object.
  */
 public class StudentRemoveCommandParser implements Parser<StudentRemoveCommand> {
 
@@ -19,7 +20,7 @@ public class StudentRemoveCommandParser implements Parser<StudentRemoveCommand> 
      * Parses the given {@code String} of arguments in the context of the StudentRemoveCommand
      * and returns an StudentRemoveCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public StudentRemoveCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -29,7 +30,7 @@ public class StudentRemoveCommandParser implements Parser<StudentRemoveCommand> 
             index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentRemoveCommand.MESSAGE_USAGE),
-                pe);
+                    pe);
         }
 
         return new StudentRemoveCommand(index);

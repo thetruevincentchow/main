@@ -150,6 +150,7 @@ public class ParserUtil {
     }
 
     //@@author gruntultra
+
     /**
      * Parses a {@code String lessonNumber} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
@@ -167,6 +168,7 @@ public class ParserUtil {
     //@@author
 
     //@@author thetruevincentchow
+
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.

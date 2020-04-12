@@ -15,6 +15,7 @@ import seedu.planner.model.time.StudentSemester;
 
 
 //@@author thetruevincentchow
+
 /**
  * Lists all timetables in the currently selected student's timetable list.
  */
@@ -22,8 +23,8 @@ public class TimeTableListCommand extends TimeTableCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": List the timetables of the active student.\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD);
+            + ": List the timetables of the active student.\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Listed semesters for the selected student (%1$s):\n%2$s";
 
@@ -56,10 +57,7 @@ public class TimeTableListCommand extends TimeTableCommand {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return true;
+        return o != null && getClass() == o.getClass();
     }
 
     @Override

@@ -14,7 +14,7 @@ import seedu.planner.model.time.StudentSemester;
 
 
 /**
- * Unmodifiable view of an planner book
+ * Unmodifiable view of an planner book.
  */
 public interface ReadOnlyPlanner {
 

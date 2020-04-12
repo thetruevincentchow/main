@@ -12,6 +12,7 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 public class SpecialisationSetCommandParser implements Parser<SpecialisationSetCommand> {
 
     public static final String INVALID_SPECIALISATION = "Invalid Specialisation";
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeclareMajorCommand
      * and returns a SpecialisationSetCommand object for execution.

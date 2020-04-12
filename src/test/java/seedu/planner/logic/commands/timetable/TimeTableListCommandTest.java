@@ -28,6 +28,7 @@ import seedu.planner.testutil.TypicalStudents;
 import seedu.planner.testutil.TypicalTimeTables;
 
 //@@author thetruevincentchow
+
 /**
  * Contains integration tests (interaction with the Model) for TimeTableListCommand.
  */
@@ -38,13 +39,13 @@ public class TimeTableListCommandTest {
 
         TimeTableMap validTimeTableMap = TypicalTimeTables.getTypicalTimeTableMap();
         Student validStudent = new StudentBuilder(TypicalStudents.ALICE)
-            .withTimeTableMap(validTimeTableMap).build();
+                .withTimeTableMap(validTimeTableMap).build();
         planner.setStudents(Arrays.asList(validStudent));
         planner.activateStudent(validStudent);
 
 
         final String expectedFeedback = String.format(TimeTableListCommand.MESSAGE_SUCCESS,
-            validStudent, StringUtil.wrapCollection(validStudent.getStudentSemesters()));
+                validStudent, StringUtil.wrapCollection(validStudent.getStudentSemesters()));
 
         Model model = new ModelManager(planner, new UserPrefs());
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
@@ -76,11 +77,12 @@ public class TimeTableListCommandTest {
         TimeTableListCommand timeTableListCommand = new TimeTableListCommand();
 
         assertThrows(CommandException.class, () -> timeTableListCommand.execute(model),
-            Messages.MESSAGE_NO_STUDENT_ACTIVE);
+                Messages.MESSAGE_NO_STUDENT_ACTIVE);
     }
 
     /**
      * Returns a {@link TimeTableMap} containing empty timetables for the specified {@code semesters}.
+     *
      * @param semesters Any number of {@link StudentSemester}s
      * @return {@link TimeTableMap} with empty timetables for specified semesters
      */
@@ -95,13 +97,14 @@ public class TimeTableListCommandTest {
     /**
      * Returns a Model which stores a single {@link Student} with empty timetables for the specified {@code semesters}.
      * Ensures the student is active.
+     *
      * @param semesters Any number of {@link StudentSemester}s
      * @return {@link Model} with empty timetables for specified semesters
      */
     private Model modelWithStudentSemesters(StudentSemester... semesters) {
         TimeTableMap timeTableMap = timeTableMapWithSemesters(semesters);
         Student validStudent = new StudentBuilder(TypicalStudents.ALICE)
-            .withTimeTableMap(timeTableMap).build();
+                .withTimeTableMap(timeTableMap).build();
         Planner planner = new Planner();
         planner.setStudents(Arrays.asList(validStudent));
         planner.activateStudent(validStudent);

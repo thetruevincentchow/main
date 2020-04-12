@@ -12,9 +12,10 @@ import seedu.planner.model.module.ModuleCode;
 public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
 
     public static final String NAME = "Electronic Commerce";
+
     /**
      * Default constructor for {@code ElectronicCommerceSpecialisation} specifying the {@code ModuleCode} for primaries
-     * and electives
+     * and electives.
      */
     public ElectronicCommerceSpecialisation() {
         primaries = new ArrayList<>();
@@ -33,26 +34,27 @@ public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
     }
 
     /**
-     * Returns the Name of the specialisation
+     * Returns the Name of the specialisation.
      *
-     * @return The Name of the specialisation
+     * @return The Name of the specialisation.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Returns the Name of the specialisation
+     * Returns the Name of the specialisation.
      *
-     * @return The Name of the specialisation
+     * @return The Name of the specialisation.
      */
     public String toString() {
         return getName();
     }
 
     /**
-     * Returns the hash of the current Specialisation
-     * @return Hash of the current Specialisation
+     * Returns the hash of the current Specialisation.
+     *
+     * @return Hash of the current Specialisation.
      */
     @Override
     public int hashCode() {
@@ -60,9 +62,10 @@ public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
     }
 
     /**
-     * Checks if a given object is the same as the current object
-     * @param obj Object to inspected
-     * @return boolean True if same, False if different
+     * Checks if a given object is the same as the current object.
+     *
+     * @param obj Object to inspected.
+     * @return boolean True if same, False if different.
      */
     @Override
     public boolean equals(Object obj) {

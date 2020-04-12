@@ -18,8 +18,9 @@ import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new TimeTableAddCommand object
+ * Parses input arguments and creates a new TimeTableAddCommand object.
  */
 public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
     /**
@@ -32,10 +33,10 @@ public class TimeTableAddCommandParser implements Parser<TimeTableAddCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_STUDENT_SEM,
-            PREFIX_STUDENT_YEAR);
+                PREFIX_STUDENT_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_SEM, PREFIX_STUDENT_YEAR)
-            || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TimeTableAddCommand.MESSAGE_USAGE));
         }
 

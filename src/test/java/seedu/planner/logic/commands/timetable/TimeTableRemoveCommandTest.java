@@ -25,6 +25,7 @@ import seedu.planner.model.time.StudentSemester;
 import seedu.planner.testutil.TypicalStudents;
 
 //@@author thetruevincentchow
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code TimeTableRemoveCommand}.
@@ -58,7 +59,7 @@ public class TimeTableRemoveCommandTest {
         TimeTableRemoveCommand timeTableRemoveCommand = new TimeTableRemoveCommand(studentSemesterToRemove);
 
         String expectedMessage = String.format(TimeTableRemoveCommand.MESSAGE_REMOVE_TIMETABLE_SUCCESS,
-            studentSemesterToRemove);
+                studentSemesterToRemove);
 
         expectedModel.removeSemesterTimeTable(studentSemesterToRemove);
         assertCommandSuccess(timeTableRemoveCommand, model, expectedMessage, expectedModel);
@@ -71,7 +72,7 @@ public class TimeTableRemoveCommandTest {
         TimeTableRemoveCommand timeTableRemoveCommand = new TimeTableRemoveCommand(YEAR_1_SEM_ONE);
 
         assertThrows(CommandException.class, () -> timeTableRemoveCommand.execute(model),
-            Messages.MESSAGE_NO_STUDENT_ACTIVE);
+                Messages.MESSAGE_NO_STUDENT_ACTIVE);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class TimeTableRemoveCommandTest {
 
         TimeTableRemoveCommand timeTableRemoveCommand = new TimeTableRemoveCommand(outOfBoundStudentSemester);
         assertCommandFailure(timeTableRemoveCommand, model, String.format(MESSAGE_INVALID_SEMESTER,
-            outOfBoundStudentSemester));
+                outOfBoundStudentSemester));
     }
 
     @Test

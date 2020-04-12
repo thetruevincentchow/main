@@ -29,16 +29,16 @@ class ExemptCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_UNKNOWN_SUBCOMMAND, ExemptCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ExemptCommand.MESSAGE_USAGE));
+                ExemptCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_subCommandInvalid_failure() {
         assertParseFailure(parser, INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ExemptCommand.MESSAGE_USAGE));
+                ExemptCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ExemptCommand.MESSAGE_USAGE));
+                ExemptCommand.MESSAGE_USAGE));
     }
 }
 //@@author

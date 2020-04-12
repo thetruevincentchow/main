@@ -7,6 +7,7 @@ import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 //@@author thetruevincentchow
+
 /**
  * Enumeration for a letter grade.
  * Note that exercising the S/U option is distinct from a mandatory CS/CU grade,
@@ -30,7 +31,7 @@ public enum LetterGrade {
     EXE("EXE");
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Letter grades must be one of the following: " + getConcatenatedString();
+            "Letter grades must be one of the following: " + getConcatenatedString();
     private static final String INVALID_INPUT_NAME = "Invalid input name for LetterGrade: %1$s";
 
     public final OptionalDouble points;
@@ -51,13 +52,14 @@ public enum LetterGrade {
 
     private static String getConcatenatedString() {
         return Arrays.stream(LetterGrade.values()).map(LetterGrade::toString)
-            .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(", "));
     }
 
     /**
      * Returns a {@link LetterGrade} given a user-friendly {@code letterGrade} string.
      * Examples of {@code letterGrade} are "A+", "A-", "EXE".
      * Usage of this method is preferred for handling user input.
+     *
      * @param letterGrade User-friendly letter grade
      * @return {@link LetterGrade} object
      */

@@ -13,7 +13,7 @@ import seedu.planner.logic.commands.major.MajorStatusCommand;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 /**
- * Helper class to parse input for {@code MajorCommand}
+ * Helper class to parse input for {@code MajorCommand}.
  */
 public class MajorCommandParser implements Parser<MajorCommand> {
     /**

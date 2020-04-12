@@ -9,7 +9,7 @@ import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 
 /**
- * Abstract class to represent the Programme a Student is required to undergo in his/her course of study
+ * Abstract class to represent the Programme a Student is required to undergo in his/her course of study.
  */
 public abstract class Programme {
     protected String name;
@@ -30,7 +30,7 @@ public abstract class Programme {
             GraduationRequirement graduationRequirement = buffer.removeFirst();
             if (graduationRequirement instanceof CompoundGraduationRequirement) {
                 List<GraduationRequirement> childGraduationRequirements = ((CompoundGraduationRequirement)
-                    graduationRequirement).getGraduationRequirementList();
+                        graduationRequirement).getGraduationRequirementList();
                 if (childGraduationRequirements != null) {
                     buffer.addAll(childGraduationRequirements);
                 }

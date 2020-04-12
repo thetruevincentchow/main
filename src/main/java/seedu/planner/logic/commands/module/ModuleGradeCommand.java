@@ -13,6 +13,7 @@ import seedu.planner.model.util.ModuleUtil;
 
 
 //@@author thetruevincentchow
+
 /**
  * Base class for operations on the grade of an enrollment in the selected timetable.
  */
@@ -20,18 +21,18 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "grade";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": If GRADE is specified, sets the grade of the module specified.\n"
-        + "Otherwise, displays grade of module specified.\n"
-        + "Parameters: "
-        + "MODULE_CODE "
-        + "[" + PREFIX_GRADE + "GRADE]\n"
-        + "[" + PREFIX_SU + "GRADE]\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030 grade/A";
+            + ": If GRADE is specified, sets the grade of the module specified.\n"
+            + "Otherwise, displays grade of module specified.\n"
+            + "Parameters: "
+            + "MODULE_CODE "
+            + "[" + PREFIX_GRADE + "GRADE]\n"
+            + "[" + PREFIX_SU + "GRADE]\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030 grade/A";
 
     public static final String MESSAGE_MODULE_INVALID = "Module code does not exist: %1$s";
     public static final String MESSAGE_MODULE_NOT_ENROLLED = "Module not in selected timetable: %1$s";
     public static final String MESSAGE_BOTH_GRADE_AND_SU = String.format("Only at most one of '%1$s' and '%2$s' "
-        + "should be used to specify a grade", PREFIX_GRADE, PREFIX_SU);
+            + "should be used to specify a grade", PREFIX_GRADE, PREFIX_SU);
 
 
     protected final ModuleCode moduleCode;

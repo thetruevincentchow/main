@@ -22,7 +22,7 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
 
     private final ObservableList<ModuleCode> internalList = FXCollections.observableArrayList();
     private final ObservableList<ModuleCode> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -108,8 +108,8 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueModuleCodeList // instanceof handles nulls
-            && internalList.equals(((UniqueModuleCodeList) other).internalList));
+                || (other instanceof UniqueModuleCodeList // instanceof handles nulls
+                && internalList.equals(((UniqueModuleCodeList) other).internalList));
     }
 
     @Override

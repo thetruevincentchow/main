@@ -25,10 +25,10 @@ public class JsonSerializableSemesterData {
      */
     @JsonCreator
     public JsonSerializableSemesterData(
-        @JsonProperty("semester") int semester,
-        @JsonProperty("examDate") String examDate,
-        @JsonProperty("examDuration") int examDuration,
-        @JsonProperty("timetable") List<JsonSerializableLesson> timetable
+            @JsonProperty("semester") int semester,
+            @JsonProperty("examDate") String examDate,
+            @JsonProperty("examDuration") int examDuration,
+            @JsonProperty("timetable") List<JsonSerializableLesson> timetable
     ) {
         this.semester = semester;
         this.examDate = examDate;
@@ -53,10 +53,10 @@ public class JsonSerializableSemesterData {
      */
     public SemesterData toModelType() {
         return new SemesterData(
-            semester,
-            examDate,
-            examDuration,
-            null
+                semester,
+                examDate,
+                examDuration,
+                null
         );
     }
 

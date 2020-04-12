@@ -20,7 +20,7 @@ import seedu.planner.model.time.StudentSemester;
  */
 public interface Model {
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
@@ -45,9 +45,11 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the Planner
+     * Returns the Planner.
      */
     ReadOnlyPlanner getPlanner();
+
+    void setPlanner(Planner planner);
 
     ObservableList<Student> getStudentList();
 
@@ -90,8 +92,6 @@ public interface Model {
     void setModuleGrade(ModuleCode moduleCode, Grade grade);
 
     void resetModuleGrade(ModuleCode moduleCode);
-
-    void setPlanner(Planner planner);
 
     ObservableList<ModuleCode> getExemptedModulesList();
 

@@ -14,7 +14,7 @@ public class StatusCommand extends Command {
     public static final String COMMAND_WORD = "status";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows currently selected student and timetable.\n"
-        + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD;
 
     private static final String MESSAGE_SELECTED_STUDENT = "Selected student: %1$s\n";
     private static final String MESSAGE_LIST_TIMETABLE = "Timetables in selected student:\n%1$s\n";
@@ -22,8 +22,9 @@ public class StatusCommand extends Command {
     private static final String MESSAGE_LIST_MODULES = "Modules in selected timetable:\n%1$s\n";
 
     /**
-     * Appends a user-friendly representation of a list of {@code codes} to the {code buffer}
-     * @param codes cannot be null
+     * Appends a user-friendly representation of a list of {@code codes} to the {code buffer}.
+     *
+     * @param codes  cannot be null
      * @param buffer cannot be null
      */
     private void addModuleListToBuffer(List<ModuleCode> codes, StringBuffer buffer) {
@@ -41,7 +42,7 @@ public class StatusCommand extends Command {
         if (model.hasActiveStudent()) {
             buffer.append(String.format(MESSAGE_SELECTED_STUDENT, model.getActiveStudent()));
             buffer.append(String.format(MESSAGE_LIST_TIMETABLE,
-                StringUtil.wrapCollection(model.getStudentSemesters())));
+                    StringUtil.wrapCollection(model.getStudentSemesters())));
             buffer.append("\n");
         } else {
             buffer.append(String.format(MESSAGE_SELECTED_STUDENT, "[None]"));

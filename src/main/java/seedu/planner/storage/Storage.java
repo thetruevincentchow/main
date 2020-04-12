@@ -10,7 +10,7 @@ import seedu.planner.model.ReadOnlyUserPrefs;
 import seedu.planner.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends UserPrefsStorage, PlannerStorage {
 

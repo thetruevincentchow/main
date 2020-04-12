@@ -29,26 +29,26 @@ class ExemptAddCommandParserTest {
 
         // Multiple module codes are allowed
         assertParseSuccess(parser, "\n\tCS2040  \n\t CS2030\n\t",
-            new ExemptAddCommand(Arrays.asList(new ModuleCode("CS2040"), new ModuleCode("CS2030"))));
+                new ExemptAddCommand(Arrays.asList(new ModuleCode("CS2040"), new ModuleCode("CS2030"))));
 
         // Repeated module codes are allowed
         assertParseSuccess(parser, "A A\tB",
-            new ExemptAddCommand(Arrays.asList(new ModuleCode("A"), new ModuleCode("A"), new ModuleCode("B"))));
+                new ExemptAddCommand(Arrays.asList(new ModuleCode("A"), new ModuleCode("A"), new ModuleCode("B"))));
 
         // The order of module codes should be reflected in the {@link ExemptAddCommand}
         assertParseSuccess(parser, "\n\tCS2030  \n\t CS2040\n\t",
-            new ExemptAddCommand(Arrays.asList(new ModuleCode("CS2030"), new ModuleCode("CS2040"))));
+                new ExemptAddCommand(Arrays.asList(new ModuleCode("CS2030"), new ModuleCode("CS2040"))));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // empty
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ExemptAddCommand.MESSAGE_USAGE));
+                ExemptAddCommand.MESSAGE_USAGE));
 
         // whitespace only
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ExemptAddCommand.MESSAGE_USAGE));
+                ExemptAddCommand.MESSAGE_USAGE));
 
         // invalid module code format
         assertParseFailure(parser, "!CS2103T", ModuleCode.MESSAGE_CONSTRAINTS);

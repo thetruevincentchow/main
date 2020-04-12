@@ -21,7 +21,7 @@ import seedu.planner.model.module.ModuleCode;
 //@@author thetruevincentchow
 
 /**
- * Parses input arguments and creates a new ModuleGradeCommand object
+ * Parses input arguments and creates a new ModuleGradeCommand object.
  */
 public class ModuleGradeCommandParser implements Parser<ModuleGradeCommand> {
     /**

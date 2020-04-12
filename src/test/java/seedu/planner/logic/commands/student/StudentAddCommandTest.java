@@ -20,6 +20,7 @@ import seedu.planner.model.student.Student;
 import seedu.planner.testutil.StudentBuilder;
 
 //@@author thetruevincentchow
+
 /**
  * Contains unit tests for {@code StudentAddCommand}.
  */
@@ -37,7 +38,7 @@ class StudentAddCommandTest {
         CommandResult commandResult = new StudentAddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(StudentAddCommand.MESSAGE_ADD_STUDENT_SUCCESS, validStudent),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
@@ -48,7 +49,7 @@ class StudentAddCommandTest {
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
         assertThrows(CommandException.class, () -> studentAddCommand.execute(modelStub),
-            StudentAddCommand.MESSAGE_DUPLICATE_STUDENT);
+                StudentAddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test

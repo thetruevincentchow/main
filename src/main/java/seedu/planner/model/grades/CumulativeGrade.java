@@ -5,6 +5,7 @@ import java.util.OptionalDouble;
 
 
 //@@author thetruevincentchow
+
 /**
  * Accumulates grade statistics of individual {@link Grade} and {@code credits}.
  * Calculates Cumulative Average Point (CAP) and other statistics from inputs.
@@ -43,6 +44,7 @@ public class CumulativeGrade {
 
     /**
      * Accumulates module credits and the S/U to the counter.
+     *
      * @param credits Number of credits
      */
     private void accumulateSu(int credits) {
@@ -73,8 +75,9 @@ public class CumulativeGrade {
 
     /**
      * Accumulates module credits and a grade.
+     *
      * @param credits Number of credits
-     * @param grade Grade of module
+     * @param grade   Grade of module
      */
     public void accumulate(Grade grade, int credits) {
         if (grade.letterGrade.isSu) {
@@ -90,6 +93,7 @@ public class CumulativeGrade {
      * Returns Cumulative Average Point (CAP) of accumulated grades.
      * This excludes modules which are declared S/U.
      * If there were no graded modules accumulated, then returns a {@code OptionalDouble.empty()}
+     *
      * @return Cumulative Average Point
      */
     public OptionalDouble getAverage() {
@@ -131,10 +135,10 @@ public class CumulativeGrade {
         }
         CumulativeGrade that = (CumulativeGrade) o;
         return numSu == that.numSu
-            && totalCredits == that.totalCredits
-            && Double.compare(that.totalGradePoints, totalGradePoints) == 0
-            && totalGradedCredits == that.totalGradedCredits
-            && totalSuCredits == that.totalSuCredits;
+                && totalCredits == that.totalCredits
+                && Double.compare(that.totalGradePoints, totalGradePoints) == 0
+                && totalGradedCredits == that.totalGradedCredits
+                && totalSuCredits == that.totalSuCredits;
     }
 
     @Override

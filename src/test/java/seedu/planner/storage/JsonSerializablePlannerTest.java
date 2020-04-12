@@ -23,7 +23,7 @@ public class JsonSerializablePlannerTest {
     @Test
     public void toModelType_typicalStudentsFile_success() throws Exception {
         JsonSerializablePlanner dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
-            JsonSerializablePlanner.class).get();
+                JsonSerializablePlanner.class).get();
         Planner plannerFromFile = dataFromFile.toModelType();
         Planner typicalStudentsPlanner = TypicalModules.getTypicalPlanner();
         assertEquals(plannerFromFile, typicalStudentsPlanner);
@@ -32,16 +32,16 @@ public class JsonSerializablePlannerTest {
     @Test
     public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
         JsonSerializablePlanner dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
-            JsonSerializablePlanner.class).get();
+                JsonSerializablePlanner.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
         JsonSerializablePlanner dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
-            JsonSerializablePlanner.class).get();
+                JsonSerializablePlanner.class).get();
         assertThrows(IllegalValueException.class, JsonSerializablePlanner.MESSAGE_DUPLICATE_STUDENT,
-            dataFromFile::toModelType);
+                dataFromFile::toModelType);
     }
 
 }

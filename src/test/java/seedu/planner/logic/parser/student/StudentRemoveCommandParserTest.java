@@ -22,22 +22,22 @@ class StudentRemoveCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "+1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentRemoveCommand.MESSAGE_USAGE));
+                StudentRemoveCommand.MESSAGE_USAGE));
     }
 }
 //@@author

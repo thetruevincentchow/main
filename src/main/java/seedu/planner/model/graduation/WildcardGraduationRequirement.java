@@ -10,34 +10,35 @@ import seedu.planner.model.module.ModuleCode;
 
 /**
  * Class that implements {@code GraduationRequirement}, consisting of only 1 {@code ModuleCode} that needs to be
- * fulfilled based on a regex expression
+ * fulfilled based on a regex expression.
  */
 public class WildcardGraduationRequirement extends GraduationRequirement {
 
     /**
-     * Name of {@code WildcardGraduationRequirement}
+     * Name of {@code WildcardGraduationRequirement}.
      */
     protected String name;
     /**
-     * Minimum number of ModuleCredits
+     * Minimum number of ModuleCredits.
      */
     protected int minMCs;
     /**
-     * Regex expression to be used to match {@code ModuleCode}
+     * Regex expression to be used to match {@code ModuleCode}.
      */
     protected String regex;
     /**
-     * Label of {@code WildcardGraduationRequirement}
+     * Label of {@code WildcardGraduationRequirement}.
      */
 
     protected String label;
 
     /**
-     * Default constructor of {@code WildcardGraduationRequirement}
-     * @param name Name of {@code WildcardGraduationRequirement}
-     * @param minMCs Minimum number of ModuleCredits
-     * @param regex Regex expression to be used to match {@code ModuleCode}
-     * @param label Label of {@code WildcardGraduationRequirement}
+     * Default constructor of {@code WildcardGraduationRequirement}.
+     *
+     * @param name   Name of {@code WildcardGraduationRequirement}.
+     * @param minMCs Minimum number of ModuleCredits.
+     * @param regex  Regex expression to be used to match {@code ModuleCode}.
+     * @param label  Label of {@code WildcardGraduationRequirement}.
      */
     public WildcardGraduationRequirement(String name, int minMCs, String regex, String label) {
         this.name = name;
@@ -48,25 +49,25 @@ public class WildcardGraduationRequirement extends GraduationRequirement {
 
     /**
      * Returns a boolean representing if the {@code WildcardGraduationRequirement} is fulfilled, given a list of
-     * {@code ModuleCode}
+     * {@code ModuleCode}.
      *
-     * @param moduleCodes List of {@code ModuleCode}
+     * @param moduleCodes List of {@code ModuleCode}.
      * @return True if fulfilled. False otherwise.
      */
     public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
         for (ModuleCode moduleCode : moduleCodes) {
             if (Pattern.matches(regex, moduleCode.value)) {
-                return new Pair<> (true, new ArrayList<>(Arrays.asList(moduleCode)));
+                return new Pair<>(true, new ArrayList<>(Arrays.asList(moduleCode)));
             }
         }
         return new Pair<>(false, null);
     }
 
     /**
-     * Returns a String representation of the {@code WildcardGraduationRequirement} object
+     * Returns a String representation of the {@code WildcardGraduationRequirement} object.
      *
-     * @param moduleCodes List of {@code ModuleCode}
-     * @return A String representation of the {@code WildcardGraduationRequirement} object
+     * @param moduleCodes List of {@code ModuleCode}.
+     * @return A String representation of the {@code WildcardGraduationRequirement} object.
      */
     public String getString(List<ModuleCode> moduleCodes) {
         if (!label.equals("")) {
@@ -76,9 +77,9 @@ public class WildcardGraduationRequirement extends GraduationRequirement {
     }
 
     /**
-     * Method to override the default {@code toString} function of {@code WildcardGraduationRequirement}
+     * Method to override the default {@code toString} function of {@code WildcardGraduationRequirement}.
      *
-     * @return String representation of {@code WildcardGraduationRequirement}
+     * @return String representation of {@code WildcardGraduationRequirement}.
      */
     @Override
     public String toString() {

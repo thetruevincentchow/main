@@ -23,8 +23,9 @@ import seedu.planner.model.student.TimeTableMap;
 import seedu.planner.model.util.SampleDataUtil;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new StudentAddCommand object
+ * Parses input arguments and creates a new StudentAddCommand object.
  */
 public class StudentAddCommandParser implements Parser<StudentAddCommand> {
     /**
@@ -41,7 +42,7 @@ public class StudentAddCommandParser implements Parser<StudentAddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_MAJOR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MAJOR)
-            || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 

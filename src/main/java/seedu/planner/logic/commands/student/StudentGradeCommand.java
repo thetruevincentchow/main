@@ -19,6 +19,7 @@ import seedu.planner.model.time.StudentSemester;
 
 
 //@@author thetruevincentchow
+
 /**
  * Lists the grade of the currently selected student.
  */
@@ -26,12 +27,12 @@ public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Display average grade of active student.\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD);
+            + ": Display average grade of active student.\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Grade of active student %1$s: %2$s\n"
-        + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs exercise S/U option.\n"
-        + "Grade for each module:\n%6$s";
+            + "Enrolled in %3$d MCs total, %4$d MCs are graded, %5$d MCs exercise S/U option.\n"
+            + "Grade for each module:\n%6$s";
 
     /**
      * Generates a command execution success message for listing the grades and statistics of the
@@ -70,16 +71,17 @@ public class StudentGradeCommand extends StudentCommand {
         }
 
         return String.format(MESSAGE_SUCCESS,
-            activeStudent,
-            gradeValue.isPresent() ? String.format("%.2f/5.00", gradeValue.getAsDouble()) : "-/5.00",
-            cumulativeGrade.getTotalCredits(),
-            cumulativeGrade.getTotalGradedCredits(),
-            cumulativeGrade.getTotalSuCredits(),
-            buffer.toString());
+                activeStudent,
+                gradeValue.isPresent() ? String.format("%.2f/5.00", gradeValue.getAsDouble()) : "-/5.00",
+                cumulativeGrade.getTotalCredits(),
+                cumulativeGrade.getTotalGradedCredits(),
+                cumulativeGrade.getTotalSuCredits(),
+                buffer.toString());
     }
 
     /**
-     * Executes {@code StudentGradeCommand}
+     * Executes {@code StudentGradeCommand}.
+     *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command
      * @throws CommandException when an exception occurred while executing the command
@@ -102,10 +104,7 @@ public class StudentGradeCommand extends StudentCommand {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return true;
+        return o != null && getClass() == o.getClass();
     }
 
     @Override
