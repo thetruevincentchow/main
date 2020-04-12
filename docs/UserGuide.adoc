@@ -15,6 +15,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:warning-caption: :warning:
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W13-4/main
 
@@ -114,7 +115,8 @@ Before you dive into the commands themselves, do familiarise yourself with how t
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you (e.g. in `student add n/NAME major/MAJOR`, `NAME` is a parameter which can be used as `student add n/John Doe major/CS`).
 * Items in square brackets are optional (e.g `module grade CS2103T [grade/GRADE]` can be used as `module grade CS2103T grade/A+` or as `module grade CS2103T`).
-* Items with `…`​ after them can be used multiple times including zero times (e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc).
+//* Items with `…`​ after them can be used multiple times including zero times (e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc).
+* Items surrounded by `<` and `>` can be used any positive number of times (at least once, e.g. `<MODULE_CODE>` can be used as `CS2040` (1 time), `CS2040 CS2030 CS2103T` (3 times), etc).
 * Parameters can be in any order (e.g. if the command specifies `n/NAME major/MAJOR`, `major/MAJOR n/NAME` is also acceptable).
 ====
 
@@ -433,23 +435,25 @@ All the following commands require a <<timetable-management,timetable>>  to be s
 
 ==== Adding a module: `module add`
 
-You can use this command to add a <<module-management,module>> to your <<timetable-management,timetable>>  for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+You can use this command to add a number of <<module-management,modules>> to your <<timetable-management,timetable>>  for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `module add MODULE_CODE`
+Format: `module add <MODULE_CODE>`
 
 Example:
 
 * `module add CS2040`
+* `module add CS2040 CS2103T CS2101`
 
 ==== Removing a module: `module remove`
 
-You can use this command to remove a <<module-management,module>> to your <<timetable-management,timetable>> for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+You can use this command to remove a number of <<module-management,modules>> from your <<timetable-management,timetable>> for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `module remove MODULE_CODE`
+Format: `module remove <MODULE_CODE>`
 
 Example:
 
 * `module remove CS2040`
+* `module remove CS2040 CS2103T CS2101`
 
 ==== Viewing added modules: `module list`
 
@@ -464,23 +468,25 @@ Example:
 [[exempt-add-command]]
 ==== Adding an exempted module: `exempt add`
 
-You can use this command to add an exempted module for the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+You can use this command to add a number of exempted modules for the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `exempt add MODULE_CODE`
+Format: `exempt add <MODULE_CODE>`
 
 Example:
 
 * `exempt add CS2040`
+* `exempt add CS2040 CS2103T CS2101`
 
 ==== Removing an exempted module: `exempt remove`
 
-You can use this command to remove an exempted module from the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+You can use this command to remove a number of exempted modules from the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
-Format: `exempt remove MODULE_CODE`
+Format: `exempt remove <MODULE_CODE>`
 
 Example:
 
 * `exempt remove CS2040`
+* `exempt remove CS2040 CS2103T CS2101`
 
 ==== Viewing exempted modules: `exempt list`
 
