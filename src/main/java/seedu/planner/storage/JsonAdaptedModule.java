@@ -35,19 +35,19 @@ public class JsonAdaptedModule {
      */
     @JsonCreator
     public JsonAdaptedModule(
-        @JsonProperty("acadYear") String acadYear,
-        @JsonProperty("preclusion") String preclusion,
-        @JsonProperty("description") String description,
-        @JsonProperty("title") String title,
-        @JsonProperty("department") String department,
-        @JsonProperty("faculty") String faculty,
-        // @JsonProperty("workload") String workload,
-        @JsonProperty("prerequisite") String prerequisite,
-        @JsonProperty("moduleCredit") String moduleCredit,
-        @JsonProperty("moduleCode") String moduleCode,
-        @JsonProperty("semesterData") List<JsonAdaptedSemesterData> semesterData,
-        @JsonProperty("prereqTree") String prereqTree,
-        @JsonProperty("fulfillRequirements") String fulfillRequirements
+            @JsonProperty("acadYear") String acadYear,
+            @JsonProperty("preclusion") String preclusion,
+            @JsonProperty("description") String description,
+            @JsonProperty("title") String title,
+            @JsonProperty("department") String department,
+            @JsonProperty("faculty") String faculty,
+            // @JsonProperty("workload") String workload,
+            @JsonProperty("prerequisite") String prerequisite,
+            @JsonProperty("moduleCredit") String moduleCredit,
+            @JsonProperty("moduleCode") String moduleCode,
+            @JsonProperty("semesterData") List<JsonAdaptedSemesterData> semesterData,
+            @JsonProperty("prereqTree") String prereqTree,
+            @JsonProperty("fulfillRequirements") String fulfillRequirements
 
     ) {
         this.acadYear = acadYear;
@@ -79,9 +79,9 @@ public class JsonAdaptedModule {
         // this.workload = module.workload;
         this.prerequisite = module.getPrerequisite();
         this.moduleCredit = module.getModuleTitle();
-        this.moduleCode = module.getAcadYear().toString();
+        this.moduleCode = module.getAcadYear();
         this.semesterData = module.getSemesterData().stream().map(JsonAdaptedSemesterData::new)
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
         this.prereqTree = module.getPrereqTree();
         this.fulfillRequirements = module.getFulfillRequirements();
     }
@@ -93,19 +93,19 @@ public class JsonAdaptedModule {
      */
     public Module toModelType() throws IllegalValueException {
         return new Module(
-            acadYear,
-            preclusion,
-            description,
-            title,
-            department,
-            faculty,
-            null, // workload,
-            prerequisite,
-            moduleCredit,
-            moduleCode,
-            semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()),
-            prereqTree,
-            fulfillRequirements
+                acadYear,
+                preclusion,
+                description,
+                title,
+                department,
+                faculty,
+                null, // workload,
+                prerequisite,
+                moduleCredit,
+                moduleCode,
+                semesterData.stream().map(x -> x.toModelType()).collect(Collectors.toList()),
+                prereqTree,
+                fulfillRequirements
         );
     }
 }

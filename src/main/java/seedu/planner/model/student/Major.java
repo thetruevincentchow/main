@@ -17,8 +17,8 @@ import seedu.planner.model.programmes.InformationSystemsProgramme;
 public class Major {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Majors should only contain alphanumeric characters and spaces, and it should not be blank. "
-            + "Valid majors are [CS, IS].";
+            "Majors should only contain alphanumeric characters and spaces, and it should not be blank. "
+                    + "Valid majors are [CS, IS].";
 
     /*
      * The first character of the planner must not be a whitespace,
@@ -74,8 +74,8 @@ public class Major {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Major // instanceof handles nulls
-            && major.equals(((Major) other).major)); // state check
+                || (other instanceof Major // instanceof handles nulls
+                && major.equals(((Major) other).major)); // state check
     }
 
     @Override

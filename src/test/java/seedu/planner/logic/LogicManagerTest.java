@@ -58,9 +58,9 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonPlannerIoExceptionThrowingStub
         JsonPlannerStorage plannerStorage =
-            new JsonPlannerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPlanner.json"));
+                new JsonPlannerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPlanner.json"));
         JsonUserPrefsStorage userPrefsStorage =
-            new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(plannerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
@@ -81,7 +81,7 @@ public class LogicManagerTest {
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
-     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>.
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
@@ -125,7 +125,7 @@ public class LogicManagerTest {
      * Executes the command and confirms that
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
-     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>.
      *
      * @see #assertCommandSuccess(String, String, Model)
      */

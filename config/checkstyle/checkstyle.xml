@@ -382,9 +382,13 @@
 
     <!-- Checks that every class, enumeration and interface have a header comment. -->
     <module name="JavadocType">
-      <property name="allowMissingParamTags" value="true"/>
+      <property name="allowMissingParamTags" value="false"/>
     </module>
 
+    <module name="JavadocStyle">
+      <message key="javadoc.extraHtml" value="javadoc.extraHtml"/>
+      <message key="javadoc.unclosedHtml" value="javadoc.unclosedHtml"/>
+    </module>
     <!-- Checks that every public method (excluding getters, setters and constructors) has a header comment. -->
     <module name="JavadocMethod">
       <!-- Checks public methods that have more than 1 line of code.

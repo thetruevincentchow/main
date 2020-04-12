@@ -26,8 +26,8 @@ import seedu.planner.model.student.exceptions.TimeTableEmptyException;
 import seedu.planner.model.time.StudentSemester;
 
 /**
- * Wraps all data at the planner level
- * Duplicates are not allowed (by Student#isSameStudent comparison)
+ * Wraps all data at the planner level.
+ * Duplicates are not allowed (by Student#isSameStudent comparison).
  */
 public class Planner implements ReadOnlyPlanner {
 
@@ -37,7 +37,7 @@ public class Planner implements ReadOnlyPlanner {
     protected static UniqueModuleList modules = new UniqueModuleList();
     /**
      * The current student that the user can immediately modify.
-     * `activeStudent` must be an element of `students`, i.e. `students.contains(activeStudent)` is `true`
+     * `activeStudent` must be an element of `students`, i.e. `students.contains(activeStudent)` is `true`.
      */
     protected int activeStudentIndex = -1;
     protected StudentSemester activeSemester;
@@ -55,7 +55,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Creates an Planner using an empty {@code UniqueStudentList}
+     * Creates an Planner using an empty {@code UniqueStudentList}.
      */
     public Planner() {
         students = new UniqueStudentList();
@@ -63,7 +63,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Creates an Planner from an existing {@code ReadOnlyPlanner}
+     * Creates an Planner from an existing {@code ReadOnlyPlanner}.
      */
     public Planner(ReadOnlyPlanner planner) {
         this();
@@ -71,7 +71,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Loads list of {@code Module} using {@code ModuleDataImporter}
+     * Loads list of {@code Module} using {@code ModuleDataImporter}.
      */
     private void loadModules() {
         if (modules.isEmpty()) {
@@ -85,36 +85,36 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns the {@code UniqueModuleList}
+     * Returns the {@code UniqueModuleList}.
      *
-     * @return The {@code UniqueModuleList}
+     * @return The {@code UniqueModuleList}.
      */
     public UniqueModuleList getModules() {
         return modules;
     }
 
     /**
-     * Adds a {@code Student} to the {@code Planner}
+     * Adds a {@code Student} to the {@code Planner}.
      *
-     * @param student {@code Student} to added to the {@code Planner}
+     * @param student {@code Student} to added to the {@code Planner}.
      */
     public void addStudent(Student student) {
         students.add(student);
     }
 
     /**
-     * Sets the list of {@code Student} to be set for the {@code Planner}
+     * Sets the list of {@code Student} to be set for the {@code Planner}.
      *
-     * @param students list of {@code Student} to be set for the {@code Planner}
+     * @param students list of {@code Student} to be set for the {@code Planner}.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
 
     /**
-     * Sets or Resets the current active {@code Student}
+     * Sets or Resets the current active {@code Student}.
      *
-     * @param target Index to be set as the active {@code Student}
+     * @param target Index to be set as the active {@code Student}.
      */
     public void resetActiveStudent(Student target) {
         if (target == null) {
@@ -125,9 +125,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Resets the current data in the {@code Planner} to a given {@code ReadOnlyPlanner}
+     * Resets the current data in the {@code Planner} to a given {@code ReadOnlyPlanner}.
      *
-     * @param planner {@code ReadOnlyPlanner} to have data reset to
+     * @param planner {@code ReadOnlyPlanner} to have data reset to.
      */
     public void resetData(ReadOnlyPlanner planner) {
         setStudents(planner.getStudentList());
@@ -136,41 +136,41 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns if the {@code Planner} contains a given {@code Student}
+     * Returns if the {@code Planner} contains a given {@code Student}.
      *
-     * @param student {@code Student} to be checked if exists in {@code Planner}
+     * @param student {@code Student} to be checked if exists in {@code Planner}.
      * @return boolean | True if {@code Student} exists in {@code Planner}, False if {@code Student} does not exists in
-     * {@code Planner}
+     * {@code Planner}.
      */
     public boolean hasStudent(Student student) {
         return students.contains(student);
     }
 
     /**
-     * Returns if the {@code Planner} contains a given {@code Module}
+     * Returns if the {@code Planner} contains a given {@code Module}.
      *
-     * @param module {@code Module} to be checked if exists in {@code Planner}
+     * @param module {@code Module} to be checked if exists in {@code Planner}.
      * @return boolean | True if {@code Module} exists in {@code Planner}, False if {@code Module} does not exists in
-     * {@code Planner}
+     * {@code Planner}.
      */
     public boolean hasModule(Module module) {
         return modules.contains(module);
     }
 
     /**
-     * Adds a {@code Module} to the {@code Planner}
+     * Adds a {@code Module} to the {@code Planner}.
      *
-     * @param module {@code Module} to added to the {@code Planner}
+     * @param module {@code Module} to added to the {@code Planner}.
      */
     public void addModule(Module module) {
         modules.add(module);
     }
 
     /**
-     * Returns if the active timetable has an enrollment with the given {@code moduleCode}
+     * Returns if the active timetable has an enrollment with the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match
-     * @return {@code true} if the active timetable has an enrollment with the given {@code moduleCode}
+     * @param moduleCode Module code to match.
+     * @return {@code true} if the active timetable has an enrollment with the given {@code moduleCode}.
      */
     public boolean hasEnrollment(ModuleCode moduleCode) {
         TimeTable timeTable = getActiveTimeTable();
@@ -180,8 +180,8 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns the enrollment in the active timetable corresponding to the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match an enrollment
-     * @return {@link Enrollment} corresponding to {@code moduleCode}
+     * @param moduleCode Module code to match an enrollment.
+     * @return {@link Enrollment} corresponding to {@code moduleCode}.
      */
     public Enrollment getEnrollment(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
@@ -190,10 +190,10 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     * Returns the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match
-     * @return {@link Optional&lt;Grade&gt;} of the enrollment corresponding to {@code moduleCode}
+     * @param moduleCode Module code to match.
+     * @return {@link Optional&lt;Grade&gt;} of the enrollment corresponding to {@code moduleCode}.
      */
     public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
         Enrollment enrollment = getEnrollment(moduleCode);
@@ -201,10 +201,10 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Sets the {@code grade} of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     * Sets the {@code grade} of the enrollment in the active timetable corresponding to the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match
-     * @param grade      Grade to set
+     * @param moduleCode Module code to match.
+     * @param grade      Grade to set.
      */
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         Enrollment enrollment = getEnrollment(moduleCode);
@@ -212,9 +212,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Resets the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     * Resets the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match
+     * @param moduleCode Module code to match.
      */
     public void resetModuleGrade(ModuleCode moduleCode) {
         Enrollment enrollment = getEnrollment(moduleCode);
@@ -225,34 +225,34 @@ public class Planner implements ReadOnlyPlanner {
      * Adds the {@code enrollment} to the active timetable.
      * The {@code enrollment} cannot have the same module code as any enrollment in the active timetable.
      *
-     * @param enrollment Module code to match
+     * @param enrollment Module code to match.
      */
     public void addEnrollment(Enrollment enrollment) {
         getActiveTimeTable().addEnrollment(enrollment);
     }
 
     /**
-     * Removes the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     * Removes the enrollment in the active timetable corresponding to the given {@code moduleCode}.
      *
-     * @param moduleCode Module code to match
+     * @param moduleCode Module code to match.
      */
     public void removeEnrollment(ModuleCode moduleCode) {
         getActiveTimeTable().removeModuleCode(moduleCode);
     }
 
     /**
-     * Gets an {@code ObservableList} of {@code Student} in the {@code Planner}
+     * Gets an {@code ObservableList} of {@code Student} in the {@code Planner}.
      *
-     * @return an {@code ObservableList} of {@code Student} in the {@code Planner}
+     * @return an {@code ObservableList} of {@code Student} in the {@code Planner}.
      */
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
     }
 
     /**
-     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner}
+     * Gets an {@code ObservableList} of {@code Module} in the {@code Planner}.
      *
-     * @return an {@code ObservableList} of {@code Module} in the {@code Planner}
+     * @return an {@code ObservableList} of {@code Module} in the {@code Planner}.
      */
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
@@ -260,19 +260,19 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in
+     * enrolled in.
      *
      * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in
+     * enrolled in.
      */
     public ObservableList<ModuleCode> getEnrolledModulesList() {
         return getActiveStudent().getAllEnrolledModules();
     }
 
     /**
-     * Gets the current active {@code StudentSemester}
+     * Gets the current active {@code StudentSemester}.
      *
-     * @return The current active {@code StudentSemester}
+     * @return The current active {@code StudentSemester}.
      */
     @Override
     public StudentSemester getActiveSemester() {
@@ -280,9 +280,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Gets the current active student index
+     * Gets the current active student index.
      *
-     * @return The current active student index
+     * @return The current active student index.
      */
     @Override
     public int getActiveStudentIndex() {
@@ -291,10 +291,10 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} is
-     * exempted from
+     * exempted from.
      *
      * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * exempted from
+     * exempted from.
      */
     @Override
     public ObservableList<ModuleCode> getExemptedModulesList() {
@@ -302,9 +302,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns whether a timetable is selected
+     * Returns whether a timetable is selected.
      *
-     * @return {@code true} if a timetable is selected
+     * @return {@code true} if a timetable is selected.
      */
     @Override
     public boolean hasActiveTimeTable() {
@@ -312,9 +312,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns whether a student is selected
+     * Returns whether a student is selected.
      *
-     * @return {@code true} if a student is selected
+     * @return {@code true} if a student is selected.
      */
     @Override
     public boolean hasActiveStudent() {
@@ -323,10 +323,10 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in for the active {@code TimeTable}
+     * enrolled in for the active {@code TimeTable}.
      *
      * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in for the active {@code TimeTable}
+     * enrolled in for the active {@code TimeTable}.
      */
     public ObservableList<ModuleCode> getActiveModuleCodes() {
         ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
@@ -336,10 +336,10 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Gets an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in
+     * enrolled in.
      *
      * @return an {@code ObservableList} of {@code Module} in the {@code Planner} which the active {@code Student} has
-     * enrolled in
+     * enrolled in.
      */
     public ObservableList<ModuleCode> getAllEnrolledModuleCodes() {
         return getActiveStudent().getAllEnrolledModules();
@@ -361,7 +361,7 @@ public class Planner implements ReadOnlyPlanner {
      * Returns the {@link Student} in the students list which matches the given {@code student}
      * under {@code Student#equals()} equality.
      *
-     * @return {@link Student} equal to {@code student}
+     * @return {@link Student} equal to {@code student}.
      */
     public Student getEqualStudent(Student student) {
         return students.getEqualStudent(student);
@@ -371,7 +371,7 @@ public class Planner implements ReadOnlyPlanner {
      * Returns the index of the {@link Student} in the students list which matches the given {@code student}
      * under {@code Student#equals()} equality.
      *
-     * @return index of {@link Student} if present, -1 otherwise
+     * @return index of {@link Student} if present, -1 otherwise.
      */
     private int getStudentIndex(Student student) {
         return students.indexOf(student);
@@ -380,7 +380,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns whether the given student {@code index} is in the bounds of the student list.
      *
-     * @return {@code true} if {@code index} refers to a valid student
+     * @return {@code true} if {@code index} refers to a valid student.
      */
     private boolean isValidStudentIndex(int index) {
         return 0 <= index && index < students.size();
@@ -389,7 +389,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns whether the index of the active student is valid.
      *
-     * @return {@code true} if the index of the active student is valid
+     * @return {@code true} if the index of the active student is valid.
      */
     private boolean isValidActiveStudentIndex() {
         return isValidStudentIndex(activeStudentIndex);
@@ -398,7 +398,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns the active {@link Student} if present, {@code null} otherwise.
      *
-     * @return Active {@link Student} if present, {@code null} otherwise
+     * @return Active {@link Student} if present, {@code null} otherwise.
      */
     public Student getActiveStudent() {
         if (!isValidActiveStudentIndex()) {
@@ -423,7 +423,7 @@ public class Planner implements ReadOnlyPlanner {
      * If {@code student} is {@code null}, then the active student (if any) will be deactivated.
      * Only one {@link Student} may be active at a time.
      *
-     * @param student Student to activate
+     * @param student Student to activate.
      */
     public void activateStudent(Student student) {
         if (student == null) {
@@ -444,7 +444,7 @@ public class Planner implements ReadOnlyPlanner {
      * ()}.
      * If the {@link Student} to be removed is the active student, deselect the active student and active timetable.
      *
-     * @param toRemove Student to remove
+     * @param toRemove Student to remove.
      */
     public void removeStudent(Student toRemove) {
         Student activeStudent = getActiveStudent();
@@ -470,7 +470,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns the active timetable.
      *
-     * @return Active timetable
+     * @return Active timetable.
      */
     public TimeTable getActiveTimeTable() {
         requireAllNonNull(getActiveStudent());
@@ -482,7 +482,7 @@ public class Planner implements ReadOnlyPlanner {
      * Replace the active timetable of the active student with the given {@code timeTable}.
      * The original active timetable is lost.
      *
-     * @param timeTable Active timetable to use as replacement
+     * @param timeTable Active timetable to use as replacement.
      */
     public void replaceActiveTimeTable(TimeTable timeTable) {
         requireAllNonNull(getActiveStudent());
@@ -506,7 +506,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns if the active student has a timetable corresponding to the given {@code semester}.
      *
-     * @return {@code true} if the active student has a timetable corresponding to the given {@code semester}
+     * @return {@code true} if the active student has a timetable corresponding to the given {@code semester}.
      */
     public boolean hasSemester(StudentSemester semester) {
         requireActiveStudentNonNull();
@@ -516,7 +516,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Activate the timetable of the active student corresponding to the given {@code semester}.
      *
-     * @param semester {@link StudentSemester} to add timetable
+     * @param semester {@link StudentSemester} to add timetable.
      */
     public void activateSemester(StudentSemester semester) {
         requireActiveStudentNonNull();
@@ -529,7 +529,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Adds an empty timetable to the active student in the specified {@code studentSemester}.
      *
-     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to add
+     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to add.
      */
     public void addSemesterTimeTable(StudentSemester studentSemester) {
         requireActiveStudentNonNull();
@@ -541,9 +541,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Remove the timetable of the specified {@code studentSemester} from the active student
+     * Remove the timetable of the specified {@code studentSemester} from the active student.
      *
-     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to remove
+     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to remove.
      */
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
         requireActiveStudentNonNull();
@@ -555,9 +555,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Add an exempted module with the given {@code moduleCode} to the active student
+     * Add an exempted module with the given {@code moduleCode} to the active student.
      *
-     * @param moduleCode Exempted {@link ModuleCode}
+     * @param moduleCode Exempted {@link ModuleCode}.
      */
     public void addExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
@@ -565,9 +565,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Removes an exempted module from the given {@code moduleCode} of the active student
+     * Removes an exempted module from the given {@code moduleCode} of the active student.
      *
-     * @param moduleCode Exempted {@link ModuleCode}
+     * @param moduleCode Exempted {@link ModuleCode}.
      */
     public void removeExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
@@ -594,9 +594,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns if the active student is exempted from {@code moduleCode}
+     * Returns if the active student is exempted from {@code moduleCode}.
      *
-     * @param moduleCode Exempted {@link ModuleCode}
+     * @param moduleCode Exempted {@link ModuleCode}.
      */
     public boolean hasExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
@@ -606,7 +606,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Adds a {@link Lesson} to the active student.
      *
-     * @param lesson {@link Lesson}
+     * @param lesson {@link Lesson}.
      */
     public void addLesson(Lesson lesson) {
         requireActiveStudentNonNull();
@@ -616,7 +616,7 @@ public class Planner implements ReadOnlyPlanner {
     /**
      * Returns the list of {@link Lesson} of the active student.
      *
-     * @return List of {@link Lesson}
+     * @return List of {@link Lesson}.
      */
     public List<Lesson> getLessons() {
         requireActiveStudentNonNull();
@@ -624,9 +624,9 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     /**
-     * Returns if the active student has the given {@code lesson}
+     * Returns if the active student has the given {@code lesson}.
      *
-     * @return {@code true} if the active student has the given {@code lesson}
+     * @return {@code true} if the active student has the given {@code lesson}.
      */
     public boolean hasLesson(Lesson lesson) {
         requireActiveStudentNonNull();

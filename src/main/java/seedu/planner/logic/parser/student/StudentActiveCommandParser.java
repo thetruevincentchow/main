@@ -10,8 +10,9 @@ import seedu.planner.logic.parser.ParserUtil;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new StudentActiveCommand object
+ * Parses input arguments and creates a new StudentActiveCommand object.
  */
 public class StudentActiveCommandParser implements Parser<StudentActiveCommand> {
 
@@ -29,7 +30,7 @@ public class StudentActiveCommandParser implements Parser<StudentActiveCommand> 
             index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentActiveCommand.MESSAGE_USAGE),
-                pe);
+                    pe);
         }
 
         return new StudentActiveCommand(index);

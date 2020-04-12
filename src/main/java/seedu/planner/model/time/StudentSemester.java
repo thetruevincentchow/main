@@ -38,7 +38,7 @@ public class StudentSemester implements Comparable<StudentSemester> {
             return false;
         } else {
             return semYear.equals(((StudentSemester) other).semYear)
-                && degreeYear.equals(((StudentSemester) other).degreeYear);
+                    && degreeYear.equals(((StudentSemester) other).degreeYear);
         }
     }
 
@@ -50,7 +50,7 @@ public class StudentSemester implements Comparable<StudentSemester> {
     @Override
     public int compareTo(StudentSemester other) {
         return Comparator.comparing(StudentSemester::getDegreeYear)
-            .thenComparing(StudentSemester::getSemesterYear)
-            .compare(this, other);
+                .thenComparing(StudentSemester::getSemesterYear)
+                .compare(this, other);
     }
 }

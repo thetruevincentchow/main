@@ -12,8 +12,9 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new ExemptAddCommand object
+ * Parses input arguments and creates a new ExemptAddCommand object.
  */
 public class ExemptAddCommandParser implements Parser<ExemptAddCommand> {
     /**
@@ -28,7 +29,7 @@ public class ExemptAddCommandParser implements Parser<ExemptAddCommand> {
 
         if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ExemptAddCommand.MESSAGE_USAGE));
+                    ExemptAddCommand.MESSAGE_USAGE));
         }
 
         List<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(args);

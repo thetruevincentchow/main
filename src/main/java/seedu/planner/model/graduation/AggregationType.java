@@ -1,7 +1,7 @@
 package seedu.planner.model.graduation;
 
 /**
- * Enum class to specify how a {@code CompoundGraduationRequirement} determines if it has been fulfilled
+ * Enum class to specify how a {@code CompoundGraduationRequirement} determines if it has been fulfilled.
  */
 public enum AggregationType {
     ALL("All"),
@@ -10,7 +10,8 @@ public enum AggregationType {
     private String aggregationType;
 
     /**
-     * Default constructor of an Aggregation type based on a String representation
+     * Default constructor of an Aggregation type based on a String representation.
+     *
      * @param aggregationType String representation of Aggregation Type
      */
     AggregationType(String aggregationType) {
@@ -18,7 +19,8 @@ public enum AggregationType {
     }
 
     /**
-     * Get's the string representation of a given {@code AggregationType}
+     * Get's the string representation of a given {@code AggregationType}.
+     *
      * @param minMCs Minimum number of Module Credits required for fulfilment, applicable only for {@code AT_LEAST_MC}
      * @return String representation of a given {@code AggregationType}
      */

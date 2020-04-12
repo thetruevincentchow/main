@@ -41,14 +41,14 @@ public class JsonSerializableLesson {
      */
     @JsonCreator
     public JsonSerializableLesson(
-        @JsonProperty("classNo") String classNo,
-        @JsonProperty("startTime") String startTime,
-        @JsonProperty("endTime") String endTime,
-        @JsonProperty("weeks") List<String> weeks,
-        @JsonProperty("venue") String venue,
-        @JsonProperty("day") String day,
-        @JsonProperty("lessonType") String lessonType,
-        @JsonProperty("size") int size
+            @JsonProperty("classNo") String classNo,
+            @JsonProperty("startTime") String startTime,
+            @JsonProperty("endTime") String endTime,
+            @JsonProperty("weeks") List<String> weeks,
+            @JsonProperty("venue") String venue,
+            @JsonProperty("day") String day,
+            @JsonProperty("lessonType") String lessonType,
+            @JsonProperty("size") int size
     ) {
         this.classNo = classNo;
         this.startTime = startTime;
@@ -60,6 +60,10 @@ public class JsonSerializableLesson {
         this.size = size;
     }
 
+    public static String getMessageDuplicateModule() {
+        return MESSAGE_DUPLICATE_MODULE;
+    }
+
     /**
      * Converts this Lesson into the model's {@code Lesson} object.
      *
@@ -67,19 +71,15 @@ public class JsonSerializableLesson {
      */
     public Lesson toModelType() {
         return new Lesson(
-            classNo,
-            startTime,
-            endTime,
-            weeks,
-            venue,
-            day,
-            lessonType,
-            size
+                classNo,
+                startTime,
+                endTime,
+                weeks,
+                venue,
+                day,
+                lessonType,
+                size
         );
-    }
-
-    public static String getMessageDuplicateModule() {
-        return MESSAGE_DUPLICATE_MODULE;
     }
 
     public String getClassNo() {

@@ -14,7 +14,7 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.storage.JsonSerializableModule;
 
 /**
- * Helper Class to import Module data from a JSON file retrieved from NUS Mods API
+ * Helper Class to import Module data from a JSON file retrieved from NUS Mods API.
  */
 public class ModuleDataImporterUtil {
 
@@ -27,6 +27,7 @@ public class ModuleDataImporterUtil {
 
     /**
      * Adds a {@code Module} to the global repository of modules.
+     *
      * @param module {@code Module} to be added.
      */
     public static void addModule(Module module) {
@@ -36,7 +37,8 @@ public class ModuleDataImporterUtil {
     }
 
     /**
-     * Performs the conversion of modules stored in a JSON into a list of {@code Module} objects
+     * Performs the conversion of modules stored in a JSON into a list of {@code Module} objects.
+     *
      * @return A list of {@code Module} objects
      */
     public static List<Module> run() {

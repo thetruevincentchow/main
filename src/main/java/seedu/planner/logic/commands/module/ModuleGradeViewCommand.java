@@ -13,6 +13,7 @@ import seedu.planner.model.module.ModuleCode;
 
 
 //@@author thetruevincentchow
+
 /**
  * Displays the grade of a module in the selected timetable.
  */

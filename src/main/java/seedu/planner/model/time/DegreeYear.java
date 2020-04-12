@@ -11,8 +11,8 @@ public class DegreeYear {
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 6;
     public static final String MESSAGE_CONSTRAINTS = String.format(
-        "Year must be a non-negative unsigned integer, from %1$s to %2$s, representing your current year of study.",
-        MIN_VALUE, MAX_VALUE);
+            "Year must be a non-negative unsigned integer, from %1$s to %2$s, representing your current year of study.",
+            MIN_VALUE, MAX_VALUE);
 
     private int year;
 
@@ -35,8 +35,8 @@ public class DegreeYear {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DegreeYear // instanceof handles nulls
-            && year == ((DegreeYear) other).year); // state check
+                || (other instanceof DegreeYear // instanceof handles nulls
+                && year == ((DegreeYear) other).year); // state check
     }
 
     @Override

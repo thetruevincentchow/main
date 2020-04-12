@@ -43,7 +43,8 @@ public class GradWindow extends UiPart<Region> {
     }
 
     /**
-     * Overrides Equal function to compare objects
+     * Overrides Equal function to compare objects.
+     *
      * @param other
      * @return
      */

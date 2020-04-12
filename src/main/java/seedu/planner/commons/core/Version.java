@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Represents a version with major, minor and patch number
+ * Represents a version with major, minor and patch number.
  */
 public class Version implements Comparable<Version> {
 
@@ -44,9 +44,9 @@ public class Version implements Comparable<Version> {
         }
 
         return new Version(Integer.parseInt(versionMatcher.group(1)),
-            Integer.parseInt(versionMatcher.group(2)),
-            Integer.parseInt(versionMatcher.group(3)),
-            versionMatcher.group(4) != null);
+                Integer.parseInt(versionMatcher.group(2)),
+                Integer.parseInt(versionMatcher.group(3)),
+                versionMatcher.group(4) != null);
     }
 
     public int getMajor() {

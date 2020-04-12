@@ -5,6 +5,7 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.
+ * @param <T> Any class that extends {@code Command}
  */
 public interface Parser<T extends Command> {
 

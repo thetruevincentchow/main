@@ -15,7 +15,7 @@ import seedu.planner.model.student.Student;
 public class MajorSetCommand extends MajorCommand {
     public static final String COMMAND_WORD = "set";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "'" + getQualifiedCommand(COMMAND_WORD)
-        + " command not implemented yet";
+            + " command not implemented yet";
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD) + ": Sets the current student's Major";
     public static final String MESSAGE_SUCCESS = "Successfully updated Student's Major to: %1$s";
 

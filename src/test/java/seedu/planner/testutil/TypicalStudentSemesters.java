@@ -5,6 +5,7 @@ import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
+
 /**
  * A utility class containing a list of {@code StudentSemester} objects to be used in tests.
  */

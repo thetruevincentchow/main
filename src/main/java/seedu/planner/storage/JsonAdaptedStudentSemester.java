@@ -42,7 +42,7 @@ public class JsonAdaptedStudentSemester {
 
         if (semYear == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                SemesterYear.class.getSimpleName()));
+                    SemesterYear.class.getSimpleName()));
         }
         /*if (!SemesterYear.isValidSemesterYear(semYear)) {
             throw new IllegalValueException(SemesterYear.MESSAGE_CONSTRAINTS);

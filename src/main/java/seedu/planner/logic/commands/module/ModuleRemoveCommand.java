@@ -16,6 +16,7 @@ import seedu.planner.model.module.ModuleCode;
 
 
 //@@author thetruevincentchow
+
 /**
  * Removes a module from the selected timetable.
  */
@@ -23,14 +24,14 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Removes the module from list of enrolled modules.\n"
-        + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
+            + ": Removes the module from list of enrolled modules.\n"
+            + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_REMOVE_MODULE_SUCCESS = "Removed module from timetable: %1$s";
     public static final String MESSAGE_REMOVE_MODULE_NOT_EXISTS = "Module does not exist in timetable: %1$s";
     public static final String MESSAGE_REMOVE_MODULE_DELETE_ALREADY_EXISTS = "Module appeared more than once in your "
-        + "command: %1$s";
+            + "command: %1$s";
 
     private final List<ModuleCode> moduleCodes;
 

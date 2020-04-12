@@ -12,6 +12,7 @@ import seedu.planner.model.student.Student;
 
 
 //@@author thetruevincentchow
+
 /**
  * Lists all students in the student list.
  */
@@ -19,8 +20,8 @@ public class StudentListCommand extends StudentCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": List students in the student list.\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD);
+            + ": List students in the student list.\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Listed students in student list:\n%1$s";
 
@@ -45,7 +46,8 @@ public class StudentListCommand extends StudentCommand {
     }
 
     /**
-     * Executes {@code StudentListCommand}
+     * Executes {@code StudentListCommand}.
+     *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command
      * @throws CommandException when an exception occurred while executing the command
@@ -64,10 +66,7 @@ public class StudentListCommand extends StudentCommand {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return true;
+        return o != null && getClass() == o.getClass();
     }
 
     @Override

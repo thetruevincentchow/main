@@ -59,7 +59,7 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
@@ -85,7 +85,7 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the execution of {@code command} is successful
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}.
      */
     public static CommandResult assertCommandSuccess(Command command, Model actualModel, Model expectedModel) {
         try {
@@ -101,7 +101,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the planner book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the planner book, filtered person list and selected person in {@code actualModel} remain unchanged.
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));

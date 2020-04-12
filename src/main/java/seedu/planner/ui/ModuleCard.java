@@ -55,7 +55,7 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Constructor for ModuleCard Class
+     * Constructor for ModuleCard Class.
      *
      * @param module
      * @param displayedIndex
@@ -74,7 +74,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Overrides Equal function to compare objects
+     * Overrides Equal function to compare objects.
      *
      * @param other
      * @return
@@ -98,7 +98,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Shows the details of the module selected
+     * Shows the details of the module selected.
      */
     @FXML
     public void showDetails() {
@@ -172,12 +172,13 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Return the lesson details based on the semester provided
+     * Return the lesson details based on the semester provided.
+     *
      * @param sem
      */
     private void setLessonDetails(int sem) {
         LessonDataImporterUtil imp = new LessonDataImporterUtil();
-        lessons = imp.run(module.getModuleCode().toString(), sem);
+        lessons = LessonDataImporterUtil.run(module.getModuleCode().toString(), sem);
     }
 }
 

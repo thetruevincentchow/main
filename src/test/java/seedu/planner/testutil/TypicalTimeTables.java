@@ -10,6 +10,7 @@ import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.student.TimeTableMap;
 
 //@@author thetruevincentchow
+
 /**
  * A utility class containing a list of {@code TimeTable} and {@code TimeTableMap} objects to be used in tests.
  */

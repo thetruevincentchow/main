@@ -55,11 +55,12 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * Reads a {@code Planner} object from {@code Storage}
-     * @param filePath Location of where the planner is stored
-     * @return {@code Optional<ReadOnlyPlanner>} object
-     * @throws DataConversionException when there is an issue converting the serialised form the {@code Planner} object
-     * @throws IOException when there is an issue with reading contents from the file
+     * Reads a {@code Planner} object from {@code Storage}.
+     *
+     * @param filePath Location of where the planner is stored.
+     * @return {@code Optional<ReadOnlyPlanner>} object.
+     * @throws DataConversionException when there is an issue converting the serialised form the {@code Planner} object.
+     * @throws IOException             when there is an issue with reading contents from the file.
      */
     public Optional<ReadOnlyPlanner> readPlanner(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
@@ -71,10 +72,11 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * Saves a given {@code ReadOnlyPlanner} into a {@code Storage}
-     * @param planner Planner to be saved
-     * @param filePath Location of where the planner is to be saved
-     * @throws IOException when there is an issue with writing changes into the file
+     * Saves a given {@code ReadOnlyPlanner} into a {@code Storage}.
+     *
+     * @param planner  Planner to be saved.
+     * @param filePath Location of where the planner is to be saved.
+     * @throws IOException when there is an issue with writing changes into the file.
      */
     public void savePlanner(ReadOnlyPlanner planner, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);

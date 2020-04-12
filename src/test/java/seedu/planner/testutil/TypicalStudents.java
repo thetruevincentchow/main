@@ -41,8 +41,8 @@ public class TypicalStudents {
         Planner planner = new Planner();
         for (Student student : getTypicalStudents()) {
             planner.addStudent(new StudentBuilder(student)
-                .withTimeTableMap(getTypicalTimeTableMap())
-                .build());
+                    .withTimeTableMap(getTypicalTimeTableMap())
+                    .build());
         }
         return planner;
     }

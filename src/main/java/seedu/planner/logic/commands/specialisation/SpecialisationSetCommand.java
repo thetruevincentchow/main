@@ -23,7 +23,7 @@ import seedu.planner.model.programmes.specialisations.is.FinancialTechnologySpec
 import seedu.planner.model.student.Student;
 
 /**
- * Sets the {@code Specialisation} of the current active {@code Student}
+ * Sets the {@code Specialisation} of the current active {@code Student}.
  */
 public class SpecialisationSetCommand extends SpecialisationCommand {
     public static final String COMMAND_WORD = "set";
@@ -59,16 +59,16 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     public static final String INVALID_MAJOR = "Invalid Major";
 
     /**
-     * Stores user input for selecting {@code Specialisation}
+     * Stores user input for selecting {@code Specialisation}.
      */
     private String input = "";
     /**
-     * Stores the {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}
+     * Stores the {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}.
      */
     private GenericSpecialisation specialisation;
 
     /**
-     * Default constructor for {@code SpecialisationSetCommand}
+     * Default constructor for {@code SpecialisationSetCommand}.
      *
      * @param specialisation {@code GenericSpecialisation} to be set
      */
@@ -89,7 +89,7 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     }
 
     /**
-     * Returns {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}
+     * Returns {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}.
      *
      * @return {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}
      */
@@ -98,18 +98,18 @@ public class SpecialisationSetCommand extends SpecialisationCommand {
     }
 
     /**
-     * Sets the {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}
+     * Sets the {@code GenericSpecialisation} to be used for setting the specialisation of the active {@code Student}.
      *
      * @param specialisation {@code GenericSpecialisation} to be used for setting the specialisation of the
      *                       active {@code Student}
      */
-    public void setSpecialisation (GenericSpecialisation specialisation) {
+    public void setSpecialisation(GenericSpecialisation specialisation) {
         this.specialisation = specialisation;
     }
 
 
     /**
-     * Executes {@code SpecialisationSetCommand}
+     * Executes {@code SpecialisationSetCommand}.
      *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command

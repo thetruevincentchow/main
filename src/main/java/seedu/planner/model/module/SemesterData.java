@@ -3,7 +3,7 @@ package seedu.planner.model.module;
 import java.util.List;
 
 /**
- * Class to represent the Semester Data of a {@code Module}
+ * Class to represent the Semester Data of a {@code Module}.
  */
 public class SemesterData {
 

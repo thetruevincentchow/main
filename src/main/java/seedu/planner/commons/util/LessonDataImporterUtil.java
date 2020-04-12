@@ -10,14 +10,15 @@ import seedu.planner.model.module.Lesson;
 import seedu.planner.storage.JsonSerializableLesson;
 
 /**
- * Helper Class to import Lesson data from a JSON file retrieved from NUS Mods API
+ * Helper Class to import Lesson data from a JSON file retrieved from NUS Mods API.
  */
 public class LessonDataImporterUtil {
 
     private static List<Lesson> lessons = new ArrayList<>();
 
     /**
-     * Performs the conversion of lessons stored in a JSON into a list of {@code Lesson} objects
+     * Performs the conversion of lessons stored in a JSON into a list of {@code Lesson} objects.
+     *
      * @return A list of {@code Lesson} objects
      */
     public static List<Lesson> run(String modCode, int sem) {
@@ -37,7 +38,7 @@ public class LessonDataImporterUtil {
                 finalText = text.substring(startIndex, endIndex);
             } else {
                 startIndex = text.indexOf("semester\":2") + 24;
-                String sem2String = text.substring(startIndex, text.length());
+                String sem2String = text.substring(startIndex);
 
                 endIndex = sem2String.indexOf("examDate") - 2;
                 finalText = sem2String.substring(0, endIndex);

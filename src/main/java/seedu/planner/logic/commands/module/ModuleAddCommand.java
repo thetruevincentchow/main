@@ -20,6 +20,7 @@ import seedu.planner.model.util.ModuleUtil;
 
 
 //@@author thetruevincentchow
+
 /**
  * Adds a module to the selected timetable.
  */
@@ -27,14 +28,14 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Adds the module to list of enrolled modules.\n"
-        + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
+            + ": Adds the module to list of enrolled modules.\n"
+            + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INSERT_ALREADY_EXISTS = "Module appeared more than once in your "
-        + "command: %1$s";
+            + "command: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
     private final List<ModuleCode> moduleCodes;

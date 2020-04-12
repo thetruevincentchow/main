@@ -44,12 +44,12 @@ public class JsonAdaptedTimeTablePair {
     public Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable> toModelType() throws IllegalValueException {
         if (sem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                StudentSemester.class.getSimpleName()));
+                    StudentSemester.class.getSimpleName()));
         }
 
         if (timeTable == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                TimeTable.class.getSimpleName()));
+                    TimeTable.class.getSimpleName()));
         }
 
         return new Pair<>(sem, timeTable);

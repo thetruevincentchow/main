@@ -23,11 +23,11 @@ class ModuleGradeCommandParserTest {
         assertParseSuccess(parser, "CS2040", new ModuleGradeViewCommand(new ModuleCode("CS2040")));
 
         assertParseSuccess(parser, "CS2040     grade/A+",
-            new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.A_PLUS, false));
+                new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.A_PLUS, false));
         assertParseSuccess(parser, "CS2040     su/A+",
-            new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.A_PLUS, true));
+                new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.A_PLUS, true));
         assertParseSuccess(parser, "CS2040    grade/EXE",
-            new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.EXE, false));
+                new ModuleGradeSetCommand(new ModuleCode("CS2040"), LetterGrade.EXE, false));
 
         // grade prefix present but argument empty -> resets grade
         assertParseSuccess(parser, "CS2040 grade/", new ModuleGradeResetCommand(new ModuleCode("CS2040")));
@@ -37,11 +37,11 @@ class ModuleGradeCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         // empty
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ModuleGradeCommand.MESSAGE_USAGE));
+                ModuleGradeCommand.MESSAGE_USAGE));
 
         // whitespace only
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ModuleGradeCommand.MESSAGE_USAGE));
+                ModuleGradeCommand.MESSAGE_USAGE));
 
         // invalid module code format
         assertParseFailure(parser, "a  b", ModuleCode.MESSAGE_CONSTRAINTS);
@@ -60,7 +60,7 @@ class ModuleGradeCommandParserTest {
 
         // grade parameter occurs before module code
         assertParseFailure(parser, "grade/A  CS2040", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ModuleGradeCommand.MESSAGE_USAGE));
+                ModuleGradeCommand.MESSAGE_USAGE));
 
         // both su and grade prefixes present
         assertParseFailure(parser, "CS2040 grade/ su/", ModuleGradeSetCommand.MESSAGE_BOTH_GRADE_AND_SU);
