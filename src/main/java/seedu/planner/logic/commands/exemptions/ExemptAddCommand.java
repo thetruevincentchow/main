@@ -3,6 +3,9 @@ package seedu.planner.logic.commands.exemptions;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.planner.commons.core.Messages;
@@ -28,12 +31,17 @@ public class ExemptAddCommand extends ExemptCommand {
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in exemption list: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
-
-    private final ModuleCode moduleCode;
+    private final List<ModuleCode> moduleCodes;
 
     public ExemptAddCommand(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
-        this.moduleCode = moduleCode;
+        this.moduleCodes = Arrays.asList(moduleCode);
+    }
+
+    public ExemptAddCommand(List<ModuleCode> moduleCodes) {
+        requireAllNonNull(moduleCodes);
+        this.moduleCodes = new ArrayList<>();
+        this.moduleCodes.addAll(moduleCodes);
     }
 
     /**
@@ -42,7 +50,6 @@ public class ExemptAddCommand extends ExemptCommand {
     private String generateModuleDoesNotExist(ModuleCode moduleCode) {
         return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
     }
-
 
     /**
      * Generates a command execution error message due to the given {@code moduleCode} already being present
@@ -68,19 +75,24 @@ public class ExemptAddCommand extends ExemptCommand {
         if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
+        List<String> messages = new ArrayList<>();
+        for (ModuleCode moduleCode : moduleCodes) {
+            // Check if module is present in exempted modules list
+            if (model.hasExemptedModule(moduleCode)) {
+                // throw new CommandException(generateDuplicateMessage(moduleCode));
+                messages.add(generateDuplicateMessage(moduleCode));
+            }
 
-        // Check if module is present in exempted modules list
-        if (model.hasExemptedModule(moduleCode)) {
-            throw new CommandException(generateDuplicateMessage(moduleCode));
+            // Check if module exists in module database
+            if (!ModuleUtil.hasModuleWithCode(moduleCode)) {
+                // throw new CommandException(generateModuleDoesNotExist(moduleCode));
+                messages.add(generateModuleDoesNotExist(moduleCode));
+            }
+
+            model.addExemptedModule(moduleCode);
+            messages.add(generateSuccessMessage(moduleCode));
         }
-
-        // Check if module exists in module database
-        if (!ModuleUtil.hasModuleWithCode(moduleCode)) {
-            throw new CommandException(generateModuleDoesNotExist(moduleCode));
-        }
-
-        model.addExemptedModule(moduleCode);
-        return new CommandResult(generateSuccessMessage(moduleCode));
+        return new CommandResult(String.join("\n", messages));
     }
 
     @Override
@@ -92,12 +104,12 @@ public class ExemptAddCommand extends ExemptCommand {
             return false;
         }
         ExemptAddCommand that = (ExemptAddCommand) o;
-        return moduleCode.equals(that.moduleCode);
+        return moduleCodes.equals(that.moduleCodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleCode);
+        return Objects.hash(moduleCodes);
     }
 }
 //@@author

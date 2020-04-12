@@ -16,51 +16,66 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 == Summary of contributions
 
 * *Major feature*: Importing of all modules that NUS has to offering, made available using the NUSMods.
-** What it does: Allows the user to view the list of all the modules offered by NUS, including details such as Faculty, Workload, Description, Module Credits and which semesters it is offered in.
+** What it does: Allows the user to view the list of all the modules offered by NUS, including details such as Faculty, Workload, Description, Module Credits and in which semesters it is offered.
 ** Justification: This feature improves the product significantly because a user can view actual accurate data of the modules currently being offered by NUS, with the latest data available.
 ** Highlights: This feature forms the basis of most of the logic for this application, and is used by various other models such as GraduationRequirements, Programmes, and Timetable. The implementation was a significant amount of effort in order to build the foundations for other models and logic controllers to make use of. Having real life data helps make the application more helpful for the user, as compared to using a dummy system or one that requires users to input module details by themselves.
 ** Credits: NUSMods for providing the data and API.
 
-* *Major feature*: Handled the storage and JSON serialisation mechanism for all models to maintain the state of the application consistent throughout different runs.
-** What it does: allows the user use the application offline, and has it's state saved and restored upon every launch of the app. It can also allow for moving of the data across computers by moving the relevant JSON files along with the executable.
-** Justification: This feature improves the product usability significantly because a user can come back to the app across multiple stretches of time and will still be able to pick up where the user left off - a very practical scenario of a Student who wants to update his records after every semester.
-** Highlights: This enhancement greatly affects the overall usability of the the application and existing commands and changes to models will require modification in order to ensure that the data is stored and loaded correctly. The implementation required an in-depth analysis of how different model come together. The implementation too was challenging as it required content changes from the additions of models.
-** Credits: The original JSON Storage code used in Address Book Level 3
+* *Major feature*: Handled the storage and JSON serialisation mechanism for all models to maintain a consistent state throughout multiple runs of the application.
+** What it does: Allows the user to use the application offline, and have its state saved and restored upon every launch of the app. It can also allow for moving of the data across devices by moving the relevant JSON files along with the executable.
+** Justification: This feature improves the product usability significantly because a user can come back to the app across multiple stretches of time and will still be able to pick up where they left off - a very practical scenario of a Student who wants to update his records after every semester.
+** Highlights: This enhancement greatly affects the overall usability of the application and existing commands and changes to models will require modification in order to ensure that the data is stored and loaded correctly. The implementation required an in-depth analysis of how different models come together. The implementation was challenging as well, as it required content changes from the additions of models.
+** Credits: The original JSON Storage code used in Address Book Level 3.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Major feature*: Co-Developed GraduationRequirements and DegreeProgramme with @DANamic modelled after actual graduation requirements of NUS Computer Science and Information Systems undergraduate students to support complex fulfilment logic.
+** What it does: Allows the users to determine if he/she has fulfilled individual graduation requirements based on his/her enrolled modules.
+** Justification: This feature improves the product usability significantly by allowing users to view the modules that he/she is required to take in order to fulfil certain graduation requirements.
+** Highlights: This feature *is the core feature* of the entire application, and is the very purpose of what the application aims to achieve - to allow students to better plan their modules better across semesters.
+
+* *Major feature*: Co-Developed Specialisations with @DANamic, which is modelled after actual specialisations of NUS Computer Science and Information Systems undergraduate students to support further complex fulfilment logic between Primary and Elective modules.
+** What it does: Allows the users to determine if he/she has fulfilled specialisations based on his/her enrolled modules.
+** Justification: This feature improves the product usability significantly by allowing users to view the modules he/she is required to take in order to fulfil certain specialisations.
+** Highlights: This feature *is another core feature* of the entire application, complementing GraduationRequirements in order to model a Student's constraints as accurately as possible.
+
+* *Major feature*: Co-Developed the foundational code for Planner and associated classes for all other advanced features to be built upon.
+** What it does: Allows other developers to work with a baseline formed around the framework provided by AddressBook-Level3.
+** Justification: This initial refactoring of AddressBook to Planner is important and needs to be done synchronously and before other portions of code can be developed as this forms the basis of which other features rely on.
+** Highlights: This feature blocks the entire application development and needed to be completed fast, as it would have impeded the progress of my team members. As this was a lot to do at once, I have had the help of @DANamic and https://github.com/gruntultra[@gruntultra] in order to push this foundational code out.
+** Credits: The original code from AddressBook-Level3, https://github.com/DANamic[@DANamic], https://github.com/gruntultra[@gruntultra]
+
+* *Minor enhancement*: Created helper classes to facilitate easier testing of models such as TypicalStudent and StudentBuilder.
 
 * *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=capeguy[RepoSense Report here]!
 
 * *Other contributions*:
 
-** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+** Project contributions:
+*** Contributed to releases `v1.0` - `v1.4` (5 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Refactoring of AddressBook-Level3 to accommodate application use case
+*** Wrote additional tests for existing features to increase coverage from 88% to 92% (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/de2f4905ab4fca21123e791c89f3a1492905083d[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/b551d956232e451cd3ba28f622fc476d582d5541[#2])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Generated diagrams to enhance readability of Developer Guide
+*** Contributed to Features and Module Management sections of User Guide
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
-
-_{you can add/remove categories in the list above}_
+*** PRs reviewed: https://github.com/AY1920S2-CS2103T-W13-4/main/pull/81[#81], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/85[#85], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/86[#86], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/87[#87], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/96[#96], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/97[#97], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/101[#101], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/105[#105], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/107[#107], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/108[#108], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/109[#109], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/179[#179], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/185[#185], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/186[#186], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/188[#188], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/189[#189], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/194[#194], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/197[#197], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/198[#198], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/199[#199], https://github.com/AY1920S2-CS2103T-W13-4/main/pull/203[#203]
+*** Reported bugs and suggestions for other teams in the class: https://github.com/Capeguy/ped/issues/1[#1], https://github.com/Capeguy/ped/issues/2[#2], https://github.com/Capeguy/ped/issues/3[#3], https://github.com/Capeguy/ped/issues/4[#4], https://github.com/Capeguy/ped/issues/5[#5], https://github.com/Capeguy/ped/issues/6[#6], https://github.com/Capeguy/ped/issues/7[#7], https://github.com/Capeguy/ped/issues/8[#8], https://github.com/Capeguy/ped/issues/9[#9], https://github.com/Capeguy/ped/issues/10[#10], https://github.com/Capeguy/ped/issues/11[#11], https://github.com/Capeguy/ped/issues/12[#12], https://github.com/Capeguy/ped/issues/13[#13], https://github.com/Capeguy/ped/issues/14[#14], https://github.com/Capeguy/ped/issues/15[#15], https://github.com/Capeguy/ped/issues/16[#16]
+*** Worked with https://github.com/DANamic[@DANamic] and https://github.com/gruntultra[@gruntultra] to perform initial codebase refactoring to allow for the easier building of features into the application https://github.com/AY1920S2-CS2103T-W13-4/main/commit/032244ae8e14d66cc9afd6dcda5a969b967e8207[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/65f455547183c96bf1ec035a642ce29ca9ae9e49[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/e1dcbe5d9f02364ffcde773d54764b846c99ed34[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/fbda3f9a45a4c321830907902e8900bc9c3fbbff[#4]
+*** Implemented the first JSON Serializable and Adapted classes for models to be easily saved and loaded to and from JSON files, which was further used by other team members for their models, alongside ModuleDataImporterUtil to load a list of Modules from NUSMods API (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/2a83ae8b8b3fbced5509e938b6eedebaa0fc8299[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/ef252534564506a15bc216034b25dee0b400d219[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/6a4da6c14bdef454f9474ea6fd2e8adc37e9620f[#3])
+*** Written Test Cases for tests broken by refactoring (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/dda0154e15e9be62854bd8e4150899655c4323f2[#1])
+*** Fixed CheckStyle issues caused by refactoring (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/841f43b55ce97551731a589ece70023da4a63c47[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/f8372ba0c54e316f74e978b00eca922231b4caf6[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/ae9b522414e14f1e487a076c981fa8ae577a927e[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/cdbfdc4a11b233a7cbf4137939da509fd2c59b3a[#4])
+*** Worked with https://github.com/DANamic[@DANamic] to develop Graduation Requirements (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/dc7933eb892c49b2658aa5aaab6eab3449e929fd[#1])
+*** Fixed bugs discovered by PE Dry Run (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/86daa5c1cfdc3a603b23a52e79bb178921d0abc9[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/f66ac1ce40faeb34f4fc2264f38d3e8d3a8634f2[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/f9fee0888d9b1d335a8ccc7a653d0a6277f4d9ce[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/f1c81575443ac2f4ff218b437353306047c40d8e[#4])
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=feature-preamble]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=module-management]
 
 == Contributions to the Developer Guide
 
@@ -68,13 +83,12 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=design-model]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=design-storage]
 
+include::../DeveloperGuide.adoc[tag=backend-json]
 
-== PROJECT: PowerPointLabs
+include::../DeveloperGuide.adoc[tag=proposed-future-enhancements]
 
----
-
-_{Optionally, you may include other projects in your portfolio.}_
+include::../DeveloperGuide.adoc[tag=appendix-product-scope]

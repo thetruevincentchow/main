@@ -1,9 +1,10 @@
-package seedu.planner.model.module;
+package seedu.planner.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
+import seedu.planner.model.module.Lesson;
 
 /**
  * Jackson-friendly version of {@link Lesson}.

@@ -3,6 +3,9 @@ package seedu.planner.logic.commands.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -32,12 +35,17 @@ public class ModuleAddCommand extends ModuleCommand {
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
-
-    private final ModuleCode moduleCode;
+    private final List<ModuleCode> moduleCodes;
 
     public ModuleAddCommand(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
-        this.moduleCode = moduleCode;
+        this.moduleCodes = Arrays.asList(moduleCode);
+    }
+
+    public ModuleAddCommand(List<ModuleCode> moduleCodes) {
+        requireAllNonNull(moduleCodes);
+        this.moduleCodes = new ArrayList<>();
+        this.moduleCodes.addAll(moduleCodes);
     }
 
     /**
@@ -61,7 +69,7 @@ public class ModuleAddCommand extends ModuleCommand {
      * to the selected timetable of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
+        return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode);
     }
 
     @Override
@@ -80,19 +88,27 @@ public class ModuleAddCommand extends ModuleCommand {
         // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
         // NOTE: Multiple enrollments of the same module code in different timetables is intended behaviour,
         //       since you can retake modules under some circumstances.
-        if (model.hasEnrollment(moduleCode)) {
-            throw new CommandException(generateDuplicateMessage(moduleCode));
-        }
+        List<String> messages = new ArrayList<>();
+        for (ModuleCode moduleCode : moduleCodes) {
+            if (model.hasEnrollment(moduleCode)) {
+                // throw new CommandException(generateDuplicateMessage(moduleCode));
+                messages.add(generateDuplicateMessage(moduleCode));
+                continue;
+            }
 
-        // Check if module exists in module database
-        Module module = ModuleUtil.getModuleWithCode(moduleCode);
-        if (module == null) {
-            throw new CommandException(generateModuleDoesNotExists(moduleCode));
-        }
+            // Check if module exists in module database
+            Module module = ModuleUtil.getModuleWithCode(moduleCode);
+            if (module == null) {
+                // throw new CommandException(generateModuleDoesNotExists(moduleCode));
+                messages.add(generateModuleDoesNotExists(moduleCode));
+                continue;
+            }
 
-        Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
-        model.addEnrollment(enrollment);
-        return new CommandResult(generateSuccessMessage(moduleCode));
+            Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
+            model.addEnrollment(enrollment);
+            messages.add(generateSuccessMessage(moduleCode));
+        }
+        return new CommandResult(String.join("\n", messages));
     }
 
     @Override
@@ -104,12 +120,12 @@ public class ModuleAddCommand extends ModuleCommand {
             return false;
         }
         ModuleAddCommand that = (ModuleAddCommand) o;
-        return moduleCode.equals(that.moduleCode);
+        return moduleCodes.equals(that.moduleCodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleCode);
+        return Objects.hash(moduleCodes);
     }
 }
 //@@author

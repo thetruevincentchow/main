@@ -1,108 +1,40 @@
 package seedu.planner.model.programmes.specialisations.is;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-import seedu.planner.model.graduation.SingleGraduationRequirement;
-import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.programmes.specialisations.GenericSpecialisation;
 
 /**
  * Abstract class to represent specialisations for Information Systems Degree Programmes
  */
 public abstract class GenericIsSpecialisation extends GenericSpecialisation {
-
     /**
-     * List of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     * Default constructor to set the required criteria for Specialisation Graduation Requirement Fulfilment
      */
-    protected List<ModuleCode> primaries;
-    /**
-     * List of {@code ModuleCode} which are valid Electives for a given Specialisation
-     */
-    protected List<ModuleCode> electives;
-
-    /**
-     * Returns the list of {@code ModuleCode} which are valid Primaries for a given Specialisation
-     *
-     * @return The list of {@code ModuleCode} which are valid Primaries for a given Specialisation
-     */
-    public List<ModuleCode> getPrimaries() {
-        return primaries;
+    public GenericIsSpecialisation() {
+        minPrimaryModules = 3;
+        minPrimary4kModules = 3;
+        minElectiveModules = 3;
     }
 
     /**
-     * Returns the list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     * Returns the hash of the current Specialisation
      *
-     * @return The list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     * @return Hash of the current Specialisation
      */
-    public List<ModuleCode> getElectives() {
-        return electives;
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName());
     }
 
     /**
-     * Returns a boolean representing if the {@code GenericIsSpecialisation} has its primaries fulfilled,
-     * given a list of {@code ModuleCode}
+     * Checks if a given object is the same as the current object
      *
-     * @param moduleCodes List of {@code ModuleCode}
-     * @return True if fulfilled. False otherwise.
+     * @param obj Object to inspected
+     * @return boolean True if same, False if different
      */
-    public boolean arePrimariesFulfilled(List<ModuleCode> moduleCodes) {
-        int minModules = 3;
-        int minimum4kModules = 3;
-        int modules = 0;
-        int current4kModules = 0;
-
-        ArrayList<SingleGraduationRequirement> primaryRequirements = new ArrayList<>();
-        for (ModuleCode primaries : getPrimaries()) {
-            primaryRequirements.add(new SingleGraduationRequirement(primaries));
-        }
-
-        for (SingleGraduationRequirement primaryRequirement : primaryRequirements) {
-            if (primaryRequirement.isFulfilled(moduleCodes)) {
-                modules++;
-                ArrayList<Character> valid4kCharacters = new ArrayList<>();
-                valid4kCharacters.add('4');
-                valid4kCharacters.add('5');
-                valid4kCharacters.add('6');
-                valid4kCharacters.add('7');
-                if (valid4kCharacters.contains(primaryRequirement.getModuleCode().toString().charAt(2))) {
-                    current4kModules++;
-                }
-            }
-        }
-        return modules >= minModules && current4kModules >= minimum4kModules;
-    }
-
-    /**
-     * Returns a boolean representing if the {@code GenericIsSpecialisation} has its electives fulfilled,
-     * given a list of {@code ModuleCode}
-     *
-     * @param moduleCodes List of {@code ModuleCode}
-     * @return True if fulfilled. False otherwise.
-     */
-    public boolean areElectivesFulfilled(List<ModuleCode> moduleCodes) {
-        int minModules = 3;
-        int modules = 0;
-        ArrayList<SingleGraduationRequirement> electiveRequirements = new ArrayList<>();
-        for (ModuleCode electives : getElectives()) {
-            electiveRequirements.add(new SingleGraduationRequirement(electives));
-        }
-        for (SingleGraduationRequirement electiveRequirement : electiveRequirements) {
-            if (electiveRequirement.isFulfilled(moduleCodes)) {
-                modules++;
-            }
-        }
-        return modules >= minModules;
-    }
-
-    /**
-     * Returns a boolean representing if the {@code GenericIsSpecialisation} has its primaries and electives fulfilled,
-     * given a list of {@code ModuleCode}
-     *
-     * @param moduleCodes List of {@code ModuleCode}
-     * @return True if fulfilled. False otherwise.
-     */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
-        return arePrimariesFulfilled(moduleCodes) && areElectivesFulfilled(moduleCodes);
+    @Override
+    public boolean equals(Object obj) {
+        return obj.getClass() == this.getClass();
     }
 }

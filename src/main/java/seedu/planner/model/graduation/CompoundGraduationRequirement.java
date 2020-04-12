@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.util.Pair;
 import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
@@ -79,43 +80,55 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
+    public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
         if (graduationRequirementList == null) {
-            return false;
+            return new Pair<>(false, null);
         }
+        Pair<Boolean, List<ModuleCode>> pair = new Pair<>(false, null);
+        List<ModuleCode> fulfilledModules = new ArrayList<>();
         switch (aggregationType) {
         case ANY:
             for (GraduationRequirement requirement : graduationRequirementList) {
-                if (requirement.isFulfilled(moduleCodes)) {
-                    return true;
+                pair = requirement.isFulfilled(moduleCodes);
+                if (pair.getKey()) {
+                    return pair;
                 }
             }
-            return false;
+            return pair;
         case ALL:
             for (GraduationRequirement requirement : graduationRequirementList) {
-                if (!requirement.isFulfilled(moduleCodes)) {
-                    return false;
+                pair = requirement.isFulfilled(moduleCodes);
+                if (pair.getKey()) {
+                    fulfilledModules.addAll(pair.getValue());
+                } else {
+                    return new Pair<>(false, fulfilledModules);
                 }
             }
-            return true;
+            return new Pair<>(true, fulfilledModules);
         case AT_LEAST_MC:
             int currentMc = 0;
             for (GraduationRequirement requirement : graduationRequirementList) {
-                if (requirement.isFulfilled(moduleCodes)) {
+                pair = requirement.isFulfilled(moduleCodes);
+                if (pair.getKey()) {
                     try {
-                        Module module = ModuleUtil.getModuleWithCode(((SingleGraduationRequirement) requirement)
-                                .getModuleCode());
-                        if (module != null) {
-                            currentMc += module.getModuleCredit();
+                        fulfilledModules.addAll(pair.getValue());
+                        for (ModuleCode moduleCode : pair.getValue()) {
+                            Module module = ModuleUtil.getModuleWithCode(moduleCode);
+                            if (module != null) {
+                                currentMc += module.getModuleCredit();
+                            }
                         }
                     } catch (Exception e) {
-                        continue;
+                        System.err.println("Error finding modules");
                     }
                 }
             }
-            return currentMc >= minMCs;
+            if (currentMc >= minMCs) {
+                return new Pair<>(true, fulfilledModules);
+            }
+            return new Pair<>(false, fulfilledModules);
         default:
-            return false;
+            return pair;
         }
     }
 
@@ -130,7 +143,7 @@ public class CompoundGraduationRequirement extends GraduationRequirement {
         StringBuilder sb = new StringBuilder();
         String buffer;
         sb.append("[")
-            .append(getStatusIcon(isFulfilled(moduleCodes)))
+            .append(getStatusIcon(isFulfilled(moduleCodes).getKey()))
             .append("] [")
             .append(aggregationType.getAggregationType(minMCs))
             .append("] ")

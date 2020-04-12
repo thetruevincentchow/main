@@ -30,11 +30,13 @@ class ModuleRemoveCommandParserTest {
             ModuleRemoveCommand.MESSAGE_USAGE));
 
         // invalid module code format
+        /* Temporarily omitting due to discussion on allowing multiple module codes to be entered
         assertParseFailure(parser, "a  b", ModuleCode.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, "a\tb", ModuleCode.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, "-4asdf++!", ModuleCode.MESSAGE_CONSTRAINTS);
+         */
     }
 }
 //@@author

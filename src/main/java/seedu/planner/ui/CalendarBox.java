@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.planner.commons.core.LogsCenter;
+import seedu.planner.commons.util.LessonDataImporterUtil;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.module.Lesson;
-import seedu.planner.model.module.LessonDataImporter;
 
 /**
  * An UI component that displays information of a {@code Timetable}.
@@ -19,7 +19,7 @@ public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "calendarBox.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarBox.class);
     private ReadOnlyPlanner planner;
-    private LessonDataImporter lessonDataImporter = new LessonDataImporter();
+    private LessonDataImporterUtil lessonDataImporter = new LessonDataImporterUtil();
 
     @FXML
     private Label semester;

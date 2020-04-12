@@ -2,7 +2,10 @@ package seedu.planner.model.graduation;
 
 import java.util.List;
 
+import javafx.util.Pair;
+import seedu.planner.model.module.Module;
 import seedu.planner.model.module.ModuleCode;
+import seedu.planner.model.util.ModuleUtil;
 
 /**
  * Class that implements {@code GraduationRequirement} to determine if it has fulfilled requirements
@@ -10,12 +13,13 @@ import seedu.planner.model.module.ModuleCode;
 
 public class UnrestrictedElectiveGraduationRequirement extends GraduationRequirement {
 
+    protected int minMc = 0;
     /**
      * Default constructor of {@code UnrestrictedElectiveGraduationRequirement}
      *
      */
-    public UnrestrictedElectiveGraduationRequirement() {
-
+    public UnrestrictedElectiveGraduationRequirement(int minMc) {
+        this.minMc = minMc;
     }
 
     /**
@@ -25,8 +29,19 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
      * @param moduleCodes List of {@code ModuleCode}
      * @return True if fulfilled. False otherwise.
      */
-    public boolean isFulfilled(List<ModuleCode> moduleCodes) {
-        return true;
+    public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
+        int currentMc = 0;
+        for (ModuleCode moduleCode : moduleCodes) {
+            try {
+                Module module = ModuleUtil.getModuleWithCode(moduleCode);
+                if (module != null) {
+                    currentMc += module.getModuleCredit();
+                }
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return new Pair<>(currentMc >= minMc, moduleCodes);
     }
 
     /**
@@ -46,6 +61,15 @@ public class UnrestrictedElectiveGraduationRequirement extends GraduationRequire
      * @return A String representation of the {@code UnrestrictedElectiveGraduationRequirement} object
      */
     public String getString(List<ModuleCode> moduleCodes) {
-        return "[" + getStatusIcon(isFulfilled(moduleCodes)) + "] Unrestricted Electives\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[")
+            .append(getStatusIcon(isFulfilled(moduleCodes).getKey()))
+            .append("] [")
+            .append(minMc)
+            .append(" MCs] Unrestricted Electives\n");
+        for (ModuleCode moduleCode : moduleCodes) {
+            sb.append("    [\u2713] ").append(moduleCode).append("\n");
+        }
+        return sb.toString();
     }
 }

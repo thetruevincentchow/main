@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
 
+    public static final String NAME = "Electronic Commerce";
     /**
      * Default constructor for {@code ElectronicCommerceSpecialisation} specifying the {@code ModuleCode} for primaries
      * and electives
      */
     public ElectronicCommerceSpecialisation() {
-        setName("Electronic Commerce");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -37,8 +37,17 @@ public class ElectronicCommerceSpecialisation extends GenericIsSpecialisation {
      *
      * @return The Name of the specialisation
      */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
     public String toString() {
-        return this.getName();
+        return getName();
     }
 
     /**

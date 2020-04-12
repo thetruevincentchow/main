@@ -1,11 +1,8 @@
 package seedu.planner.model.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.planner.model.Planner;
 import seedu.planner.model.module.Module;
@@ -16,7 +13,6 @@ import seedu.planner.model.student.Name;
 import seedu.planner.model.student.Student;
 import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.student.TimeTableMap;
-import seedu.planner.model.tag.Tag;
 import seedu.planner.model.time.Semester;
 import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
@@ -66,15 +62,6 @@ public class SampleDataUtil {
         TimeTable timeTable = new TimeTable();
         timeTable.addEnrollment(new Enrollment(new ModuleCode("CS2040"), Optional.empty(), 4));
         return timeTable;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-            .map(Tag::new)
-            .collect(Collectors.toSet());
     }
 
 }

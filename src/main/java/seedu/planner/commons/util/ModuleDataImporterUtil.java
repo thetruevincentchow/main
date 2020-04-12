@@ -9,8 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.planner.Main;
 import seedu.planner.commons.exceptions.IllegalValueException;
-import seedu.planner.model.module.JsonSerializableModule;
 import seedu.planner.model.module.Module;
+import seedu.planner.model.module.ModuleCode;
+import seedu.planner.storage.JsonSerializableModule;
 
 /**
  * Helper Class to import Module data from a JSON file retrieved from NUS Mods API
@@ -23,6 +24,12 @@ public class ModuleDataImporterUtil {
         "2018-2019"
     };
     private static List<Module> modules = new ArrayList<>();
+
+    public static void addModule(Module module) {
+        if (!modules.contains(module)) {
+            modules.add(module);
+        }
+    }
 
     public static List<Module> run() {
         Module module;
@@ -39,10 +46,7 @@ public class ModuleDataImporterUtil {
                     JsonSerializableModule[] moduleArray = optionalModules.get();
                     for (JsonSerializableModule m : moduleArray) {
                         try {
-                            module = m.toModelType();
-                            if (!modules.contains(module)) {
-                                modules.add(module);
-                            }
+                            addModule(m.toModelType());
                         } catch (IllegalValueException ex) {
                             System.err.println(ex);
                         }
@@ -53,6 +57,11 @@ public class ModuleDataImporterUtil {
                 System.err.println(e);
             }
         }
+        addModule(new Module(new ModuleCode("POY1901"), "4"));
+        addModule(new Module(new ModuleCode("POY1902"), "4"));
+        addModule(new Module(new ModuleCode("POY1903"), "4"));
+        addModule(new Module(new ModuleCode("POY1908"), "4"));
+        addModule(new Module(new ModuleCode("POY1909"), "4"));
         return modules;
     }
 
