@@ -455,7 +455,7 @@ image::ModuleList.png[width="600", align="center"]
 [NOTE]
 All the following commands require a <<timetable-management,timetable>>  to be selected (using the <<timetable-active-command,`timetable active`>> command).
 
-==== Adding a module: `module add`
+==== Adding modules: `module add`
 
 You can use this command to add a number of <<module-management,modules>> to your <<timetable-management,timetable>>  for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
@@ -466,7 +466,7 @@ Example:
 * `module add CS2040`
 * `module add CS2040 CS2103T CS2101`
 
-==== Removing a module: `module remove`
+==== Removing modules: `module remove`
 
 You can use this command to remove a number of <<module-management,modules>> from your <<timetable-management,timetable>> for the selected <<common-parameter-list,semester>> (see the <<timetable-active-command,`timetable active`>> command) and <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
@@ -488,7 +488,7 @@ Example:
 * `module list`
 
 [[exempt-add-command]]
-==== Adding an exempted module: `exempt add`
+==== Adding exempted modules: `exempt add`
 
 You can use this command to add a number of exempted modules for the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
@@ -499,7 +499,7 @@ Example:
 * `exempt add CS2040`
 * `exempt add CS2040 CS2103T CS2101`
 
-==== Removing an exempted module: `exempt remove`
+==== Removing exempted modules: `exempt remove`
 
 You can use this command to remove a number of exempted modules from the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
 
@@ -803,11 +803,11 @@ _Features in this category are GUI-based._
 
 === Module Management
 
-* *Adding a module* : `module add`
-* *Removing a module* : `module remove`
+* *Adding modules* : `module add`
+* *Removing modules* : `module remove`
 * *Viewing added modules* : `module list`
-* *Adding an exempted module* : `exempt add`
-* *Removing an exempted module* : `exempt remove`
+* *Adding exempted modules* : `exempt add`
+* *Removing exempted modules* : `exempt remove`
 * *Viewing exempted modules* : `exempt list`
 
 === Lesson Management
