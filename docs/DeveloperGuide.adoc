@@ -1512,11 +1512,11 @@ The following Manual Testing guidelines do not take into account _Edge Cases_, w
 . Adding a plan while all plans are listed
 
 .. Prerequisites: List all plans using the `student list` command. All plans will be displayed the list.
-.. Test case: `student add name/Alice major/CS` +
+.. Test case: `student add n/Alice major/CS` +
 Expected: Plan is added to the list. Details of the deleted plan are shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `student add major/CS` +
 Expected: No plan is added. Error details are shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `student add`, `student add name/` +
+.. Other incorrect delete commands to try: `student add`, `student add n/` +
 Expected: Similar to previous.
 
 === Deleting a Plan
@@ -1732,3 +1732,7 @@ This can be done by deleting the last non-whitespace character in the file, whic
 Expected: Shows the GUI with a set of sample plans.
 
 // end::appendix-manual-testing[]
+
+++++
+<style type="text/css">.imageblock > .title { text-align: center; !important; }</style>
+++++
