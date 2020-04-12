@@ -11,6 +11,9 @@ import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.student.Enrollment;
 import seedu.planner.model.student.TimeTable;
 
+/**
+ * Jackson-friendly version of {@link TimeTable}.
+ */
 public class JsonAdaptedTimeTable {
     private final List<JsonAdaptedEnrollment> enrollments = new ArrayList<>();
 
@@ -19,6 +22,9 @@ public class JsonAdaptedTimeTable {
         this.enrollments.addAll(enrollments);
     }
 
+    /**
+     * Converts a given {@code TimeTable} into this class for Jackson use.
+     */
     public JsonAdaptedTimeTable(TimeTable source) {
         enrollments.addAll(source.getEnrollments().stream()
             .map(JsonAdaptedEnrollment::new)
@@ -30,6 +36,11 @@ public class JsonAdaptedTimeTable {
         return enrollments;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted timetable into the model's {@code TimeTable} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted timetable.
+     */
     public TimeTable toModelType() throws IllegalValueException {
         final List<Enrollment> modelEnrollments = new ArrayList<>();
         for (JsonAdaptedEnrollment enrollment : enrollments) {

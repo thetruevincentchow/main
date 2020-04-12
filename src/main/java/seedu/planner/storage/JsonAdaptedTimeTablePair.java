@@ -14,7 +14,6 @@ import seedu.planner.model.time.StudentSemester;
  * This class is used since Pair of JsonAdaptedStudentSemester and JsonAdaptedTimeTable doesn't seem to be read
  * correctly by Jackson.
  */
-
 public class JsonAdaptedTimeTablePair {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "StudentSemester's %s field is missing!";
 
@@ -28,11 +27,20 @@ public class JsonAdaptedTimeTablePair {
         this.timeTable = timeTable;
     }
 
+    /**
+     * Converts a given {@code TimeTableMap.Entry} into this class for Jackson use.
+     */
     public JsonAdaptedTimeTablePair(Map.Entry<StudentSemester, TimeTable> source) {
         this.sem = new JsonAdaptedStudentSemester(source.getKey());
         this.timeTable = new JsonAdaptedTimeTable(source.getValue());
     }
 
+    /**
+     * Converts this Jackson-friendly adapted timetable entry into the model's
+     * {@code Pair&lt;JsonAdaptedStudentSemester, JsonAdaptedTimeTable&gt;} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted timetable entry.
+     */
     public Pair<JsonAdaptedStudentSemester, JsonAdaptedTimeTable> toModelType() throws IllegalValueException {
         if (sem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

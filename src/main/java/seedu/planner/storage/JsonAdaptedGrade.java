@@ -7,7 +7,10 @@ import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.grades.LetterGrade;
 
-// TODO: add other fields (currently only stores ModuleCode)
+/**
+ * Jackson-friendly version of {@link Grade}.
+ * Stores the {@code letterGrade} using its {@code inputName} instead of its {@code toString()} value.
+ */
 public class JsonAdaptedGrade {
     protected final String letterGrade;
     protected final boolean isSu;
@@ -18,11 +21,19 @@ public class JsonAdaptedGrade {
         this.isSu = isSu;
     }
 
+    /**
+     * Converts the given {@code Grade} into this class for Jackson use.
+     */
     public JsonAdaptedGrade(Grade source) {
         this.letterGrade = source.letterGrade.toString();
         this.isSu = source.isSu;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted grade into the model's {@code Grade} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted grade.
+     */
     public Grade toModelType() throws IllegalValueException {
         try {
             return new Grade(LetterGrade.fromInputName(letterGrade), isSu);

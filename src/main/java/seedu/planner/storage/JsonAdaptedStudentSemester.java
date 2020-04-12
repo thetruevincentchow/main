@@ -8,6 +8,9 @@ import seedu.planner.model.time.DegreeYear;
 import seedu.planner.model.time.SemesterYear;
 import seedu.planner.model.time.StudentSemester;
 
+/**
+ * Jackson-friendly version of {@link StudentSemester}.
+ */
 public class JsonAdaptedStudentSemester {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "StudentSemester's %s field is missing!";
@@ -15,9 +18,6 @@ public class JsonAdaptedStudentSemester {
     private final JsonAdaptedSemesterYear semYear;
     private final int degreeYear;
 
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     */
     @JsonCreator
     public JsonAdaptedStudentSemester(@JsonProperty("semYear") JsonAdaptedSemesterYear semYear,
                                       @JsonProperty("degreeYear") int degreeYear) {
@@ -26,7 +26,7 @@ public class JsonAdaptedStudentSemester {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code StudentSemester} into this class for Jackson use.
      */
     public JsonAdaptedStudentSemester(StudentSemester source) {
         semYear = new JsonAdaptedSemesterYear(source.getSemesterYear());
@@ -34,9 +34,9 @@ public class JsonAdaptedStudentSemester {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted StudentSemester object into the model's {@code StudentSemester} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted StudentSemester.
      */
     public StudentSemester toModelType() throws IllegalValueException {
 

@@ -82,6 +82,13 @@ public class JsonUtil {
         return Optional.of(jsonFile);
     }
 
+    /**
+     * Reads a Json object of the specified class from the specified string.
+     *
+     * @param string cannot be null
+     * @param classOfObjectToDeserialize cannot be null
+     * @throws DataConversionException if there was an error reading the object
+     */
     public static <T> Optional<T> readJsonString(
         String string, Class<T> classOfObjectToDeserialize) throws DataConversionException {
 

@@ -9,7 +9,9 @@ import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.grades.Grade;
 import seedu.planner.model.student.Enrollment;
 
-// TODO: add other fields (currently only stores ModuleCode)
+/**
+ * Jackson-friendly version of {@link Enrollment}.
+ */
 public class JsonAdaptedEnrollment {
     private final JsonAdaptedModuleCode code;
 
@@ -29,6 +31,9 @@ public class JsonAdaptedEnrollment {
         this.credit = credit;
     }
 
+    /**
+     * Converts the given {@code Enrollment} into this class for Jackson use.
+     */
     public JsonAdaptedEnrollment(Enrollment source) {
         this.code = new JsonAdaptedModuleCode(source.getModuleCode());
         Optional<Grade> optionalGrade = source.getGrade();
@@ -40,6 +45,11 @@ public class JsonAdaptedEnrollment {
         this.credit = source.getCredit();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted enrollment into the model's {@code Enrollment} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted enrollment.
+     */
     public Enrollment toModelType() throws IllegalValueException {
         return new Enrollment(code.toModelType(), grade == null ? Optional.empty() : Optional.of(grade.toModelType()),
             credit);

@@ -13,6 +13,9 @@ import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.student.TimeTableMap;
 import seedu.planner.model.time.StudentSemester;
 
+/**
+ * Jackson-friendly version of {@link TimeTableMap}.
+ */
 public class JsonAdaptedTimeTableMap {
     public final List<JsonAdaptedTimeTablePair> timeTables;
 
@@ -22,7 +25,7 @@ public class JsonAdaptedTimeTableMap {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code TimeTableMap} into this class for Jackson use.
      */
     public JsonAdaptedTimeTableMap(TimeTableMap source) {
         timeTables = new ArrayList<>();
@@ -36,6 +39,11 @@ public class JsonAdaptedTimeTableMap {
         return timeTables;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted timetable map into the model's {@code TimeTableMap} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted timetable map.
+     */
     public TimeTableMap toModelType() throws IllegalValueException {
         TimeTableMap map = new TimeTableMap();
         for (JsonAdaptedTimeTablePair timeTable : timeTables) {
