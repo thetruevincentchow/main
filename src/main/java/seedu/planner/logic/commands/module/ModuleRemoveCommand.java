@@ -80,7 +80,7 @@ public class ModuleRemoveCommand extends ModuleCommand {
         if (!model.hasActiveTimeTable()) {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
-        List<String> messages = new ArrayList<>();
+
         List<ModuleCode> moduleCodesToRemove = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodes) {
             // Check if module is present in active timetable
@@ -92,6 +92,7 @@ public class ModuleRemoveCommand extends ModuleCommand {
             }
             moduleCodesToRemove.add(moduleCode);
         }
+        List<String> messages = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodesToRemove) {
             model.removeEnrollment(moduleCode);
             messages.add(generateSuccessMessage(moduleCode));
