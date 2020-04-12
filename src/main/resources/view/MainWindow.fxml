@@ -38,7 +38,7 @@
                         <MenuItem fx:id="changeColor" mnemonicParsing="false" onAction="#changeColor" text="Change Color" />
                     </Menu>
                 </MenuBar>
-            <SplitPane dividerPositions="0.5" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.5" maxHeight="-Infinity" minHeight="500" prefHeight="600.0" prefWidth="200.0">
               <items>
                   <StackPane fx:id="gradPlaceholder" prefHeight="150.0" prefWidth="200.0" />
                   <VBox  prefWidth="100.0">
@@ -65,7 +65,7 @@
                   </children></StackPane>
                 </AnchorPane>
 
-                <VBox fx:id="moduleList" minHeight="-Infinity" minWidth="340" prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <VBox fx:id="moduleList" minHeight="300" minWidth="340"  prefHeight="100.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <HBox fx:id="searchBar" minHeight="-Infinity" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                         <TextField fx:id="searchBox"></TextField><Button fx:id="searchButton" text="Search" onMouseClicked="#searchMod"></Button>
                     </HBox>
