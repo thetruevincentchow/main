@@ -24,8 +24,8 @@ public class ModuleRemoveCommand extends ModuleCommand {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-            + ": Removes the module from list of enrolled modules.\n"
-            + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
+            + ": Removes modules from list of enrolled modules.\n"
+            + "Parameters: <MODULE_CODE> (must be valid NUS module codes)\n"
             + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_REMOVE_MODULE_SUCCESS = "Removed module from timetable: %1$s";

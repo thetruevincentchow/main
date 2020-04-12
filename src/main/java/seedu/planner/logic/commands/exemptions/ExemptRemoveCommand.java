@@ -24,8 +24,8 @@ public class ExemptRemoveCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-            + ": Removes the module from list of exempted modules.\n"
-            + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
+            + ": Removes modules from list of exempted modules.\n"
+            + "Parameters: <MODULE_CODE> (must be valid NUS module codes)\n"
             + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
     public static final String MESSAGE_REMOVE_EXEMPTION_SUCCESS = "Removed the module from exemptions list: %1$s";
