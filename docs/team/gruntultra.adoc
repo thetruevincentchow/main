@@ -26,6 +26,7 @@ The NUS Module Planner (NUSModPlnr) is for Computer Science (CS) students at the
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
+include::../UserGuide.adoc[tag=module-management]
 
 include::../UserGuide.adoc[tag=delete]
 

@@ -3,6 +3,8 @@ package seedu.planner.logic.parser.exemptions;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.List;
+
 import seedu.planner.logic.commands.exemptions.ExemptRemoveCommand;
 import seedu.planner.logic.parser.Parser;
 import seedu.planner.logic.parser.ParserUtil;
@@ -29,8 +31,8 @@ public class ExemptRemoveCommandParser implements Parser<ExemptRemoveCommand> {
                 ExemptRemoveCommand.MESSAGE_USAGE));
         }
 
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(args);
-        return new ExemptRemoveCommand(moduleCode);
+        List<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(args);
+        return new ExemptRemoveCommand(moduleCodes);
     }
 }
 //@@author

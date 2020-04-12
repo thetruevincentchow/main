@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.planner.commons.core.Messages;
+import seedu.planner.commons.util.StringUtil;
 import seedu.planner.logic.commands.CommandResult;
 import seedu.planner.logic.commands.exceptions.CommandException;
 import seedu.planner.model.Model;
@@ -43,7 +44,7 @@ public class TimeTableListCommandTest {
 
 
         final String expectedFeedback = String.format(TimeTableListCommand.MESSAGE_SUCCESS,
-            validStudent, validStudent.getStudentSemesters());
+            validStudent, StringUtil.wrapCollection(validStudent.getStudentSemesters()));
 
         Model model = new ModelManager(planner, new UserPrefs());
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
@@ -60,7 +61,7 @@ public class TimeTableListCommandTest {
         planner.setStudents(Arrays.asList(validStudent));
         planner.activateStudent(validStudent);
 
-        final String expectedFeedback = String.format(TimeTableListCommand.MESSAGE_SUCCESS, validStudent, "[]");
+        final String expectedFeedback = String.format(TimeTableListCommand.MESSAGE_SUCCESS, validStudent, "[None]");
 
         Model model = new ModelManager(planner, new UserPrefs());
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());

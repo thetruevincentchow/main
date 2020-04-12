@@ -2,6 +2,8 @@ package seedu.planner.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.planner.commons.core.index.Index;
@@ -68,6 +70,23 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String moduleCodes} into a list of {@code ModuleCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any of the given {@code ModuleCode} is invalid.
+     */
+    public static List<ModuleCode> parseModuleCodes(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedName = moduleCode.trim();
+        String[] moduleCodeStrings = trimmedName.split("\\s+");
+        List<ModuleCode> moduleCodes = new ArrayList<>();
+        for (String moduleCodeString : moduleCodeStrings) {
+            moduleCodes.add(parseModuleCode(moduleCodeString));
+        }
+        return moduleCodes;
     }
 
     /**

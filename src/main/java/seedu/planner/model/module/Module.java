@@ -28,6 +28,11 @@ public class Module {
         this.moduleCode = moduleCode;
     }
 
+    public Module(ModuleCode moduleCode, String moduleCredit) {
+        this.moduleCode = moduleCode;
+        this.moduleCredit = moduleCredit;
+    }
+
     public Module(
             String acadYear,
             String preclusion,

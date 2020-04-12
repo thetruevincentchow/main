@@ -15,61 +15,92 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 My main contributions are the implementation of the Graduation Requirements interpretation and checking, as well as, managing the Issue Tracker and Releases.
 
-== Summary of contributions
+== Summary of Contributions
 
-* *Major enhancement*: added *Graduation Requirement implementations and associated commands*.
-** What it does: This feature allows students to ensure their Graduation Requirements are correct as of the NUS Website.
-** Justification: This is a core feature, as the ability to ensure that modules are added and fulfil the criteria of a student's graduation requirements is monumental to their module planning.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: This feature was implemented with existing library support of the Java 11 bundle.
+* *Major Feature: Co-Developed `Graduation Requirements` implementations with associated commands*.
+** *What it does*: This feature allows students to ensure their `Graduation Requirements` are correct as of the NUS Website, or in this case, for the requirements of NUS Computing's *Computer Science* and *Information Systems* `Majors` for Undergraduate Students.
+** *Justification*: This is a core feature, as the ability to ensure that modules are added and fulfil the criteria of a student's graduation requirements is monumental to their module planning.
+** *Highlights*: This feature *is the core feature* of the entire application, which is to allow students to better plan their modules better across semesters. This feature will also greatly affect existing commands and commands to be added in future.
+** *Credits*: This feature was co-developed with _https://github.com/Capeguy[@Capeguy]_.
 
-* *Minor enhancement*: added and modified a significant amount of the Test Cases and Unit Tests for the NUS Module Planner.
+* *Major Feature: Implemented `Major` and `Major Set` Command, for Users who wish to change their Student's Major retroactively.*
+** *What it does*: This feature allows students to change their `Major`, with _Computer Science (CS)_ and _Information Systems (IS)_ Majors currently supported.
+** *Justification*: This feature allows students to ensure that their `Graduation Requirements` match the `Major` that they are taking for their course.
+** *Highlights*: This feature was interesting to implement because of how the different majors were listed on the NUS Website (particularly for NUS Computing).
 
-* *Code contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=danamic[RepoSense Report here]!
+* *Major Feature: Co-Developed the foundational code for `Planner` and associated classes for all other advanced features to be built upon.*
+** *What it does*: allows the other developers to work around a baseline formed around the framework provided by AddressBook-Level3.
+** *Justification*: This initial refactoring of AddressBook to Planner is important and needs to be done synchronously and before other portions of code can be developed as this forms the basis of which other features rely on.
+** *Highlights*: This feature blocks the entire application development and needed to be completed fast so as not to impede progress of other team members. As this was a lot to do at once, I have had the help of https://github.com/Capeguy[@Capeguy] and @gruntultra in order to push this foundational code out.
+** *Credits*: The original code from AddressBook-Level3, https://github.com/Capeguy[@Capeguy] and https://github.com/gruntultra[@gruntultra].
 
-* *Other contributions*:
+* *Major Enhancement: Worked with https://github.com/Capeguy[@Capeguy] to ensure all `Module` entities loaded from all JSON files contained the right information to be used in the application.*
+** *What it does*: Ensures that the `Module` entities are properly populated with the right data from the JSON files created and retrieved from NUSMods.
+** *Justification*: This aspect was important as aside from allowing the application to work offline, the data needed to be properly parsed in order to be able to populate the `Module` entities in the application.
+** *Highlights*: This was an interesting enhancement to complete because of the complexity in the amount of data that can be retrieved from the NUSMods API via JSON.
+** *Credits*: This feature was co-developed with https://github.com/Capeguy[@Capeguy].
 
-** Project management:
-*** Managed releases `v1.0` - `v1.4` (4 Releases) on GitHub
+* *Minor Enhancement*: Added and modified a significant amount of the Test Cases and Unit Tests for the NUS Module Planner.
 
-//[FOR DRAFT CHANGES]
-//** Enhancements to existing features:
-//*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-//*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-//** Documentation:
-//*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-//** Community:
-//*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-//*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-//*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-//*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-//** Tools:
-//*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-//*** Integrated a new Github plugin (CircleCI) to the team repo
-//
-//_{you can add/remove categories in the list above}_
+* *Minor Enhancement*: Created helper classes to facilitate easier testing of models such as TypicalModule and ModuleBuilder
 
-== Contributions to the User Guide [IN DRAFT]
+* *Code Contributed*: Please see the link:++https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=danamic[RepoSense Report here]!
 
+* *Other Contributions*
+
+** *Project Management*
+*** Managed _Milestones_, _Project Boards_ and _Issue Tracker_ for all `v1.0` - `v1.4` _(5 Versions)_ on GitHub.
+*** Managed releases for `v1.3` and `v1.4` _(2 Releases)_ on GitHub.
+
+** *Enhancements to Existing Features*:
+*** Refactoring of AddressBook-Level3 to accommodate application use case
+*** Wrote additional tests for existing features to increase coverage from 88% to 92% (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/de2f4905ab4fca21123e791c89f3a1492905083d[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/b551d956232e451cd3ba28f622fc476d582d5541[#2])
+
+** *Documentation*:
+*** Generated diagrams to enhance readability of Developer Guide
+*** Contributed to Features and Module Management sections of User Guide
+
+** *Community*:
+*** PRs reviewed: https://github.com/AY1920S2-CS2103T-W13-4/main/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3ADANamic[Approved & Reviewed PRs].
+*** Reported bugs and suggestions for other teams in the class: https://github.com/nus-cs2103-AY1920S2/forum/issues?q=is%3Aissue+is%3Aopen+commenter%3ADANamic[CS2103T Forum] and https://github.com/DANamic/ped/issues[CS2103T PED].
+*** Worked with https://github.com/Capeguy[@Capeguy] and https://github.com/gruntultra[@gruntultra] to perform initial codebase refactoring to allow for the easier building of features into the application (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/84794318b47b811b4e93240887f65cd868f0b0bc[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/b2f17711a82642ba5105aaf712630450a76dcc97[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/1ca9337db8a5e5f707f7d48ff9e06d990d1c611a[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/090e80893484b50829379f05e9229fb9be65f8db[#4]).
+*** Worked with https://github.com/Capeguy[@Capeguy] on `GraduationRequirements` which the core functionality of the application, modelling complex real life graduation requirements and implemented different types of `GraduationRequirements`, each with their own fulfilment logic (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/634eb17ceade1209666d1818f53cb40d950f2ac7[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/350227ff50ce7096cfeed8481af74dd2f197c18c[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/4951405dfd7bdc78056fbc611362c8e56df0e619[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/1742fa442116983afd421e93e29df5a560bd52d8[#4], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/9f550d59a22a39ead66d68e54abd258622050363[#5], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/fce1cfc53e7be1b2fa58162595ce4bf0d5c014da[#6]).
+*** Implemented `MajorCommand`, `MajorStatusCommand` and `MajorSetCommand` to allow a `Student` to have his/her `Major` set, followed by a listing of graduation requirements and their fulfilments (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/2c45d815f807fc288ced21d9d898794fd0ca23d5[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/0900e3cf39724a1ab8edfa1bfa2bc9ad2e128697[#2]).
+*** Implemented both `ComputerScienceProgramme` and `InformationSystemsProgramme` which contains 13 specialisations, each with a different list of primary and elective modules (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/92f7b933664fcc3c742dd7fd81f59fdc2c8e12d6[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/92f7b933664fcc3c742dd7fd81f59fdc2c8e12d6[#2]).
+*** Written JavaDocs and Test Cases for relevant classes (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/9d58114f93f4080496fc570d1e55e3b8b7823554[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/4b1ff8efc1af8316927ee485cc4c118595aa13e1[#2]).
+*** Fixed CheckStyle issues caused by refactoring (https://github.com/AY1920S2-CS2103T-W13-4/main/commit/0900e3cf39724a1ab8edfa1bfa2bc9ad2e128697[#1], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/f8372ba0c54e316f74e978b00eca922231b4caf6[#2], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/ae9b522414e14f1e487a076c981fa8ae577a927e[#3], https://github.com/AY1920S2-CS2103T-W13-4/main/commit/cdbfdc4a11b233a7cbf4137939da509fd2c59b3a[#4]).
+*** Fixed bugs discovered by PE Dry Run (https://github.com/DANamic/ped/issues/1[#1], https://github.com/DANamic/ped/issues/2[#2], https://github.com/DANamic/ped/issues/3[#3], https://github.com/DANamic/ped/issues/4[#4], https://github.com/DANamic/ped/issues/5[#5], https://github.com/DANamic/ped/issues/6[#6], https://github.com/DANamic/ped/issues/7[#7], https://github.com/DANamic/ped/issues/8[#8], https://github.com/DANamic/ped/issues/9[#9]).
+
+** Tools:
+*** Integrated continuous integration to the project (https://github.com/AY1920S2-CS2103T-W13-4/main/pull/1[#1]).
+
+== Contributions to the User Guide
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=how-to]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=quick-start]
 
-== Contributions to the Developer Guide [IN DRAFT]
+include::../UserGuide.adoc[tag=feature-degree-management]
+
+== Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=design-architecture]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=design-logic]
 
+include::../DeveloperGuide.adoc[tag=feature-graduation-requirement]
+
+include::../DeveloperGuide.adoc[tag=logging]
+
+include::../DeveloperGuide.adoc[tag=user-stories]
 
 == PROJECT: Granado-Espada-For-SEA
 

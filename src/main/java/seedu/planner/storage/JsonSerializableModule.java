@@ -1,4 +1,4 @@
-package seedu.planner.model.module;
+package seedu.planner.storage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.ReadOnlyPlanner;
+import seedu.planner.model.module.Module;
 
 /**
  * An Immutable ModuleList that is serializable to JSON format.

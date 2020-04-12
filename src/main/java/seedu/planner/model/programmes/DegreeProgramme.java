@@ -19,7 +19,7 @@ public abstract class DegreeProgramme extends Programme {
 
     public boolean isFulfilled(List<ModuleCode> moduleCodes) {
         for (GraduationRequirement requirement : this.graduationRequirementList) {
-            if (!requirement.isFulfilled(moduleCodes)) {
+            if (!requirement.isFulfilled(moduleCodes).getKey()) {
                 return false;
             }
         }

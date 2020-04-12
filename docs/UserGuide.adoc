@@ -39,6 +39,8 @@ Do you want to keep track of your grades to better decide on which modules to en
 
 If you can type fast, NUSModPlnr can help you plan your modules in a fast, yet intuitive way. NUSModPlnr is optimized for those who prefer to work with a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
+// tag::how-to[]
+
 == How To Use This User Guide
 
 NUSModPlnr is a timetable and enrollment management application, which help you add plans which consist of your degree programme and timetables for different semesters.
@@ -74,6 +76,10 @@ This symbol and corresponding box has information that you may wish to take note
 This symbol and corresponding box has tips from the team, which we think might be useful for you.
 ====
 
+// end::how-to[]
+
+// tag::quick-start[]
+
 == Quick Start
 
 If you are looking to jump right into the application, you can follow the below quick steps to get the application up and running:
@@ -88,6 +94,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [TIP]
 These steps are recommended only if you have experience in setting up the application for first time use, or already have a saved file you would like to continue working with.
+
+// end::quick-start[]
+
+// tag::feature-preamble
 
 == Features
 
@@ -127,31 +137,45 @@ These are parameters that are commonly used in commands available in NUSModPlnr.
 
 Let's begin!
 
+// end::feature-preamble[]
+
 === Main Navigation
 
 The following commands below are part of the application's *Main Navigation*.
 
-==== Viewing help : `help`
+==== Viewing help: `help`
 
 If you get lost or are unsure on what commands to use, while in the application, you can use the `help` command.
 
 Format: `help`
 
-==== Exiting the program : `exit`
+==== Exiting the program: `exit`
 
 When you are done using the application, you can exit the program with the `exit` command.
 
 Format: `exit`
 
+[[status-command]]
+==== Viewing your selections: `status`
+(Vincent wrote the subsection "Viewing your selections" below)
+
+You can use the `status` command to view your currently selected students and timetables. The figure below shows a possible result of the command.
+
+.Possible Result of Status Command
+image::StatusCommand.png[width="600", align="left"]
+
+[TIP]
+Use the commands in <<student-management,*Student Management*>> to create and manage students. +
+[TIP]
+Use the commands in <<timetable-management,*Timetable Management*>> and <<module-management,*Module Management*>> to manage the timetables and modules that are displayed.
+
+Format: `status`
+
 [[student-management]]
 === Student Management
+(Vincent wrote the section "Student Management" below)
 
 The following commands below are part of the application's *Student Management*, which allow you manage the students _which include you_ for the academic planning. You are highly encouraged to use this *Student Management* feature to explore different academic plans.
-
-When managing students, you will be able to see the *Student View Screen* (_Figure 2. below_).
-
-.Student List View
-image::StudentList.png[width="600", align="left"]
 
 ==== Adding a student: `student add`
 
@@ -169,6 +193,10 @@ Example:
 ==== Removing a student: `student remove`
 
 You can use this command to remove the <<student-management,student>> with the number `INDEX` from the student list.
+
+[IMPORTANT]
+This command cannot be undone. Removing a student will permanently delete its data from the save file. +
+Be sure to remove your intended student by checking the list of students with the <<student-list-command,`student list`>> command.
 
 [NOTE]
 When you use this command on the same student as the student you are currently selecting (see the <<student-active-command,`student active`>> command),
@@ -213,6 +241,8 @@ Example:
 
 * `student list`
 
+// tag::feature-degree-management[]
+
 [[degree-management]]
 === Degree Management
 
@@ -251,18 +281,19 @@ Examples:
 
 * `major status`
 
+// end::feature-degree-management[]
+
 [[timetable-management]]
 === Timetable Management
+(Vincent wrote the section "Timetable Management" below)
 
 The following commands below are part of the application's *Timetable Management*, which allow you manage the timetables of your academic plan.
 
-When managing your <<timetable-management,timetable>>, you will be able to see the *Timetable View Screen* (_Figure 3. below_).
-
-.Timetable List View
-image::TimeTableList.png[width="600", align="left"]
-
 [NOTE]
 All the following commands require a <<student-management,student>> to be selected (using the <<student-active-command,`student active`>> command).
+
+[TIP]
+To see a summary of the student and timetable you have selected, use the <<status-command,`status`>> command.
 
 ==== Adding a timetable: `timetable add`
 
@@ -282,6 +313,10 @@ Example:
 ==== Removing a timetable: `timetable remove`
 
 You can use this command to remove a <<timetable-management,timetable>> to the specified <<common-parameter-list,semester>> of the selected <<student-management,student>> (see the <<student-active-command,`student active`>> command).
+
+[IMPORTANT]
+This command cannot be undone. Removing a timetable from the selected student will permanently delete its data from the save file. +
+Be sure to remove your intended timetable by checking the list of timetables with the <<student-list-command,`timetable list`>> command.
 
 [NOTE]
 This command requires the `YEAR` and `SEM` to conform to the parameter syntax in <<common-parameter-list,*Common Parameters*>>. +
@@ -370,6 +405,8 @@ Here is the *Search Screen* (_Figure X. below_).
 .Search View
 image::Search.png[width="600", align="left"]
 
+// tag::module-management[]
+
 [[module-management]]
 === Module Management
 The following commands below are part of the application's *Module Management*, which allow you manage the modules of your academic plan.
@@ -444,6 +481,10 @@ Example:
 
 * `exempt list`
 
+// end::module-management[]
+
+// tag::lesson-management[]
+
 [[lesson-management]]
 === Lesson Management
 
@@ -488,8 +529,11 @@ Example:
 
 * `lessons list`
 
+// end::lesson-management[]
+
 [[grade-management]]
 === Grade Management
+(Vincent wrote the section "Grade Management" below)
 
 The following commands below are part of the application's *Grade Management*, which allow you to manage and view your grades to see modules affected in your academic plan.
 
@@ -500,10 +544,18 @@ You may refer to <<timetable-management,*Timetable Management*>> to see how you 
 
 ==== Managing a module's grade: `module grade`
 
+You can use this command to manage the grades of your modules. The following variants of the command can view and set the grade of the module you specify.
+
+[NOTE]
+This command and its variants require a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
+
+===== Viewing a module's grade
+
 You can use this command to display the <<grade-management,grade>> of the specified module.
 
 [NOTE]
-This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
+This command only shows the grade of the specified module in your currently selected timetable. +
+You can use the <<student-grade-command,`student grade`>> command to view the grades of all modules together.
 
 Format: `module grade MODULE_CODE`
 
@@ -511,10 +563,13 @@ Example:
 
 * `module grade CS2040`
 
-Furthermore, you can also use this follow-up command to set the <<grade-management,grade>> of the specified module.
+===== Setting a module's grade
+
+You can use this command to set the <<grade-management,grade>> of the specified module. +
+The modules which you set the grades of using this command will be counted towards your academic performance (see the <<student-grade-command,`student grade`>> command).
 
 [NOTE]
-This command requires a timetable to be selected (using the <<timetable-active-command,`timetable active`>> command).
+This command only modifies the grade of the module in the selected timetable. Other enrollments with the same module code in different semesters will not be affected.
 
 Format: `module grade MODULE_CODE grade/GRADE`
 
@@ -522,6 +577,21 @@ Example:
 
 * `module grade CS2040 grade/A`
 
+===== Exercising the Satisfactory/Unsatisfactory option for a module
+
+You can declare that you have chosen to exercise the <<su,Satisfactory/Unsatisfactory>> for a module using the following variant of this command. +
+The modules which you set the grades of using this command are not counted towards your academic performance (see the <<student-grade-command,`student grade`>> command). However, grade you specify will still be recorded.
+
+[NOTE]
+This command only modifies the grade of the module in the selected timetable. Other enrollments with the same module code in different semesters will not be affected.
+
+Format: `module grade MODULE_CODE su/GRADE`
+
+Example:
+
+* `module grade IS1103 su/F`
+
+[[student-grade-command]]
 ==== Viewing a student's grade: `student grade`
 
 You can use this command to display the <<cap,Cumulative Average Point>> of the selected student (see the <<student-active-command,`student active`>> command). +
@@ -628,6 +698,7 @@ If you need more in-depth information on a specific command, you can kbd:[CTRL +
 
 * *Viewing help* : `help`
 * *Exiting the program* : `exit`
+* *Viewing your selections*: `status`
 
 === Student Management
 

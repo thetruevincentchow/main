@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class MultimediaInformationRetrievalSpecialisation extends GenericCsSpecialisation {
 
+    public static final String NAME = "Multimedia Information Retrieval";
     /**
      * Default constructor for {@code MultimediaInformationRetrievalSpecialisation} specifying the {@code ModuleCode}
      * for primaries and electives
      */
     public MultimediaInformationRetrievalSpecialisation() {
-        setName("Multimedia Information Retrieval");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -35,8 +35,17 @@ public class MultimediaInformationRetrievalSpecialisation extends GenericCsSpeci
      *
      * @return The Name of the specialisation
      */
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
     public String toString() {
-        return this.getName();
+        return getName();
     }
 
     /**

@@ -62,12 +62,24 @@ public class CumulativeGrade {
     }
 
     /**
+     * Accumulates ungraded module credits. This does not affect the calculated CAP.
+     * The number of S/U modules declared is not affected.
+     *
+     * @param credits Number of credits
+     */
+    public void accumulateUngraded(int credits) {
+        totalCredits += credits;
+    }
+
+    /**
      * Accumulates module credits and a grade.
      * @param credits Number of credits
      * @param grade Grade of module
      */
     public void accumulate(Grade grade, int credits) {
-        if (grade.isSu || grade.letterGrade.isSu) {
+        if (grade.letterGrade.isSu) {
+            accumulateUngraded(credits);
+        } else if (grade.isSu) {
             accumulateSu(credits);
         } else {
             accumulateGraded(grade.getGradePoint().getAsDouble(), credits);

@@ -11,12 +11,12 @@ import seedu.planner.model.module.ModuleCode;
  */
 public class NetworkingAndDistributedSystemsSpecialisation extends GenericCsSpecialisation {
 
+    public static final String NAME = "Networking and Distributed Systems";
     /**
      * Default constructor for {@code NetworkingAndDistributedSystemsSpecialisation} specifying the {@code ModuleCode}
      * for primaries and electives
      */
     public NetworkingAndDistributedSystemsSpecialisation() {
-        setName("Networking and Distributed Systems");
         primaries = new ArrayList<>();
         electives = new ArrayList<>();
 
@@ -40,8 +40,17 @@ public class NetworkingAndDistributedSystemsSpecialisation extends GenericCsSpec
      *
      * @return The Name of the specialisation
      */
+    public String getName() {
+        return NAME;
+    }
+
+    /**
+     * Returns the Name of the specialisation
+     *
+     * @return The Name of the specialisation
+     */
     public String toString() {
-        return this.getName();
+        return getName();
     }
 
     /**

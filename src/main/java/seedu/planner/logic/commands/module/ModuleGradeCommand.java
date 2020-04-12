@@ -3,6 +3,7 @@ package seedu.planner.logic.commands.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.planner.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.planner.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.planner.logic.parser.CliSyntax.PREFIX_SU;
 
 import seedu.planner.commons.core.Messages;
 import seedu.planner.logic.commands.exceptions.CommandException;
@@ -24,10 +25,13 @@ public abstract class ModuleGradeCommand extends ModuleCommand {
         + "Parameters: "
         + "MODULE_CODE "
         + "[" + PREFIX_GRADE + "GRADE]\n"
+        + "[" + PREFIX_SU + "GRADE]\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030 grade/A";
 
     public static final String MESSAGE_MODULE_INVALID = "Module code does not exist: %1$s";
     public static final String MESSAGE_MODULE_NOT_ENROLLED = "Module not in selected timetable: %1$s";
+    public static final String MESSAGE_BOTH_GRADE_AND_SU = String.format("Only at most one of '%1$s' and '%2$s' "
+        + "should be used to specify a grade", PREFIX_GRADE, PREFIX_SU);
 
 
     protected final ModuleCode moduleCode;

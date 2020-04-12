@@ -1,4 +1,4 @@
-package seedu.planner.model.module;
+package seedu.planner.storage;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.planner.commons.exceptions.IllegalValueException;
 import seedu.planner.model.ReadOnlyPlanner;
+import seedu.planner.model.module.SemesterData;
 
 
 /**
