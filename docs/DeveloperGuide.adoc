@@ -806,7 +806,7 @@ Both arguments are mandatory.
 This provides instruction about the specific sub-command for the user.
 * If any argument is missing, the `TimeTable*CommandParser` will throw a `ParseException`. +
 Validation of `"YEAR"` and `"SEM"` also occur. If `"YEAR"` is not a valid degree year (unsigned integer from 1 to 6 inclusive),
-or if `"SEM"` is not one of `"ONE", "TWO", "SPECIAL_ONE", "SPECIAL_TWO"`, then the sub-command parser will also throw a `ParseException`.
+or if `"SEM"` is not one of `"1", "2", "st1", "st2"`, then the sub-command parser will also throw a `ParseException`.
 
 Once the command string is parsed, the `DegreeYear` and `Semester` will be used to create a `StudentSemester`, which is passed to the constructor of `TimeTable*Command`.
 
@@ -1547,17 +1547,17 @@ Expected: Similar to previous.
 . Adding a timetable while a plan is selected and the selected plan's timetables are listed
 
 .. Prerequisites: Select a plan using the `student active` command. A plan will be set as the active plan. Plan should be empty.
-.. Test case: `timetable add year/1 sem/ONE` +
+.. Test case: `timetable add year/1 sem/1` +
 Expected: Timetable is added to the plan. Details of the added timetable are shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `timetable add year/1 sem/THREE` +
+.. Test case: `timetable add year/1 sem/3` +
 Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `timetable add`, `timetable add year/` +
 Expected: Similar to previous.
 
 . Adding a timetable while a plan is selected with an existing timetable of the same semester
 
-.. Prerequisites: Select a plan using the `student active` command. Add a timetable using the `timetable add year/1 sem/ONE` command
-.. Test case: `timetable add year/1 sem/ONE` +
+.. Prerequisites: Select a plan using the `student active` command. Add a timetable using the `timetable add year/1 sem/1` command
+.. Test case: `timetable add year/1 sem/1` +
 Expected: No timetable is added. Error details are shown in the status message. Status bar remains the same.
 
 === Deleting a Timetable
