@@ -30,12 +30,12 @@ class StudentCommandParserTest {
     @Test
     public void parse_validAddCommand_success() {
         Student expectedStudent = new StudentBuilder()
-            .withName(VALID_NAME_ALICE).withMajor(VALID_MAJOR_CS)
-            .withTimeTableMap(SampleDataUtil.getSampleTimeTableMap()).build();
+                .withName(VALID_NAME_ALICE).withMajor(VALID_MAJOR_CS)
+                .withTimeTableMap(SampleDataUtil.getSampleTimeTableMap()).build();
 
         // whitespace in preamble, all fields present
         assertParseSuccess(parser, "add " + PREAMBLE_WHITESPACE + NAME_DESC_ALICE + MAJOR_DESC_CS,
-            new StudentAddCommand(expectedStudent));
+                new StudentAddCommand(expectedStudent));
     }
 
     @Test
@@ -56,7 +56,7 @@ class StudentCommandParserTest {
 
         // any text is allowed after "list "
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + "list" + " fajslkfjalk",
-            new StudentListCommand());
+                new StudentListCommand());
     }
 
     @Test
@@ -65,7 +65,7 @@ class StudentCommandParserTest {
 
         // any text is allowed after "grade "
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + "grade" + " fajslkfjalk",
-            new StudentGradeCommand());
+                new StudentGradeCommand());
     }
 
     @Test
@@ -73,16 +73,16 @@ class StudentCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_UNKNOWN_SUBCOMMAND, StudentCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            StudentCommand.MESSAGE_USAGE));
+                StudentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_subCommandInvalid_failure() {
         assertParseFailure(parser, INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            StudentCommand.MESSAGE_USAGE));
+                StudentCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            StudentCommand.MESSAGE_USAGE));
+                StudentCommand.MESSAGE_USAGE));
     }
 }
 //@@author

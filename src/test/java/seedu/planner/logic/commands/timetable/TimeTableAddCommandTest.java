@@ -23,6 +23,7 @@ import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
+
 /**
  * Contains unit tests for {@code TimeTableAddCommand}.
  */
@@ -41,7 +42,7 @@ class TimeTableAddCommandTest {
         TimeTableAddCommand timeTableAddCommand = new TimeTableAddCommand(validStudentSemester);
 
         assertThrows(CommandException.class, () -> timeTableAddCommand.execute(modelStub),
-            Messages.MESSAGE_NO_STUDENT_ACTIVE);
+                Messages.MESSAGE_NO_STUDENT_ACTIVE);
     }
 
     @Test
@@ -51,7 +52,7 @@ class TimeTableAddCommandTest {
         CommandResult commandResult = new TimeTableAddCommand(validStudentSemester).execute(modelStub);
 
         assertEquals(String.format(TimeTableAddCommand.MESSAGE_ADD_TIMETABLE_SUCCESS, validStudentSemester),
-            commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudentSemester), modelStub.studentSemestersAdded);
     }
 
@@ -61,7 +62,7 @@ class TimeTableAddCommandTest {
         ModelStub modelStub = new ModelStubWithTimeTable(validStudentSemester);
 
         assertThrows(CommandException.class, () -> timeTableAddCommand.execute(modelStub),
-            TimeTableAddCommand.MESSAGE_EXISTING_SEMESTER);
+                TimeTableAddCommand.MESSAGE_EXISTING_SEMESTER);
     }
 
     @Test

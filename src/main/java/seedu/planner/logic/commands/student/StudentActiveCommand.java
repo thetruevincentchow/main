@@ -15,6 +15,7 @@ import seedu.planner.model.student.Student;
 
 
 //@@author thetruevincentchow
+
 /**
  * Sets the currently selected student in the student list.
  */
@@ -22,9 +23,9 @@ public class StudentActiveCommand extends StudentCommand {
     public static final String COMMAND_WORD = "active";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Sets the student from the student list as the active student.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
+            + ": Sets the student from the student list as the active student.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " 1";
 
     public static final String MESSAGE_ACTIVE_STUDENT_SUCCESS = "Set student as active: %1$s";
 
@@ -43,7 +44,8 @@ public class StudentActiveCommand extends StudentCommand {
     }
 
     /**
-     * Executes {@code StudentActiveCommand}
+     * Executes {@code StudentActiveCommand}.
+     *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command
      * @throws CommandException when an exception occurred while executing the command

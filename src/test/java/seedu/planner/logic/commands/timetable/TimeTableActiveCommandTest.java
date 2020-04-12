@@ -25,6 +25,7 @@ import seedu.planner.model.time.StudentSemester;
 import seedu.planner.testutil.TypicalStudents;
 
 //@@author thetruevincentchow
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code TimeTableActiveCommand}.
@@ -58,7 +59,7 @@ public class TimeTableActiveCommandTest {
         TimeTableActiveCommand timeTableActiveCommand = new TimeTableActiveCommand(studentSemesterToActive);
 
         String expectedMessage = String.format(TimeTableActiveCommand.MESSAGE_ACTIVE_TIMETABLE_SUCCESS,
-            studentSemesterToActive);
+                studentSemesterToActive);
 
         expectedModel.activateSemester(studentSemesterToActive);
         assertCommandSuccess(timeTableActiveCommand, model, expectedMessage, expectedModel);
@@ -71,7 +72,7 @@ public class TimeTableActiveCommandTest {
         TimeTableActiveCommand timeTableActiveCommand = new TimeTableActiveCommand(YEAR_1_SEM_ONE);
 
         assertThrows(CommandException.class, () -> timeTableActiveCommand.execute(model),
-            Messages.MESSAGE_NO_STUDENT_ACTIVE);
+                Messages.MESSAGE_NO_STUDENT_ACTIVE);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class TimeTableActiveCommandTest {
 
         TimeTableActiveCommand timeTableActiveCommand = new TimeTableActiveCommand(outOfBoundStudentSemester);
         assertCommandFailure(timeTableActiveCommand, model, String.format(MESSAGE_INVALID_SEMESTER,
-            outOfBoundStudentSemester));
+                outOfBoundStudentSemester));
     }
 
     @Test

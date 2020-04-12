@@ -13,8 +13,9 @@ import seedu.planner.logic.parser.SubCommandSplitter;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
+
 /**
- * Parses sub-commands of the "student" command and creates a new StudentCommand object
+ * Parses sub-commands of the "student" command and creates a new StudentCommand object.
  */
 public class StudentCommandParser implements Parser<StudentCommand> {
     /**

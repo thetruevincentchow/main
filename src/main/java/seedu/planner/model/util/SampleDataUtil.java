@@ -38,7 +38,7 @@ public class SampleDataUtil {
 
     public static Student getSampleStudent() {
         Student sampleStudent = new Student(new Name("Mark"), new Major("CS"),
-            SampleDataUtil.getSampleTimeTableMap(), SampleDataUtil.getSampleExemptedModules());
+                SampleDataUtil.getSampleTimeTableMap(), SampleDataUtil.getSampleExemptedModules());
         return sampleStudent;
     }
 
@@ -50,12 +50,13 @@ public class SampleDataUtil {
     public static TimeTableMap getSampleTimeTableMap() {
         TimeTableMap timeTableMap = new TimeTableMap();
         timeTableMap.put(new StudentSemester(new SemesterYear(Semester.ONE, 2019), 1),
-            new TimeTable());
+                new TimeTable());
         return timeTableMap;
     }
 
     /**
      * Returns a non-empty {@link TimeTable}.
+     *
      * @return Non-empty {@link TimeTable}.
      */
     public static TimeTable getSampleTimeTable() {

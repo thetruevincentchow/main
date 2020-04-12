@@ -5,7 +5,7 @@ import java.util.List;
 import seedu.planner.commons.exceptions.IllegalValueException;
 
 /**
- * Class to represent a Module taken by a {@code Student}
+ * Class to represent a Module taken by a {@code Student}.
  */
 public class Module {
 
@@ -70,14 +70,21 @@ public class Module {
         return moduleCode;
     }
 
+    public void setModuleCode(ModuleCode moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
     public boolean isSameModule(Module module) {
         return this.equals(module);
     }
 
-
     public int getModuleCredit() {
         // TODO: make `moduleCredit` an `int`
         return Integer.parseInt(moduleCredit);
+    }
+
+    public void setModuleCredit(String moduleCredit) {
+        this.moduleCredit = moduleCredit;
     }
 
     public String getModuleTitle() {
@@ -150,14 +157,6 @@ public class Module {
 
     public void setPrerequisite(String prerequisite) {
         this.prerequisite = prerequisite;
-    }
-
-    public void setModuleCredit(String moduleCredit) {
-        this.moduleCredit = moduleCredit;
-    }
-
-    public void setModuleCode(ModuleCode moduleCode) {
-        this.moduleCode = moduleCode;
     }
 
     public List<SemesterData> getSemesterData() {

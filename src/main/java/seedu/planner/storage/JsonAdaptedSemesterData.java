@@ -26,10 +26,10 @@ class JsonAdaptedSemesterData {
      */
     @JsonCreator
     public JsonAdaptedSemesterData(
-        @JsonProperty("semester") int semester,
-        @JsonProperty("examDate") String examDate,
-        @JsonProperty("examDuration") int examDuration,
-        @JsonProperty("timetable") List<JsonAdaptedLesson> timetable
+            @JsonProperty("semester") int semester,
+            @JsonProperty("examDate") String examDate,
+            @JsonProperty("examDuration") int examDuration,
+            @JsonProperty("timetable") List<JsonAdaptedLesson> timetable
     ) {
         this.semester = semester;
         this.examDate = examDate;
@@ -54,10 +54,10 @@ class JsonAdaptedSemesterData {
      */
     public SemesterData toModelType() {
         return new SemesterData(
-            semester,
-            examDate,
-            examDuration,
-            timetable.stream().map(x -> x.toModelType()).collect(Collectors.toList())
+                semester,
+                examDate,
+                examDuration,
+                timetable.stream().map(x -> x.toModelType()).collect(Collectors.toList())
         );
     }
 }

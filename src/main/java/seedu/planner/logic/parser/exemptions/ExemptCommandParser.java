@@ -11,8 +11,9 @@ import seedu.planner.logic.parser.SubCommandSplitter;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
+
 /**
- * Parses sub-commands of the "exempt" command and creates a new ExemptCommand object
+ * Parses sub-commands of the "exempt" command and creates a new ExemptCommand object.
  */
 public class ExemptCommandParser implements Parser<ExemptCommand> {
 

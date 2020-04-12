@@ -14,20 +14,21 @@ import seedu.planner.model.student.Student;
 
 
 //@@author thetruevincentchow
+
 /**
  * Sets a student to the student list.
  */
 public class StudentAddCommand extends StudentCommand {
     public static final String COMMAND_WORD = "add";
     public static final String EXAMPLE_COMMAND =
-        getQualifiedCommand(COMMAND_WORD) + " " + PREFIX_NAME + "Mark " + PREFIX_MAJOR + "CS";
+            getQualifiedCommand(COMMAND_WORD) + " " + PREFIX_NAME + "Mark " + PREFIX_MAJOR + "CS";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": Adds the student to list of student profiles.\n"
-        + "Parameters: "
-        + PREFIX_NAME + "NAME "
-        + PREFIX_MAJOR + "MAJOR\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD) + " n/Alice major/CS";
+            + ": Adds the student to list of student profiles.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_MAJOR + "MAJOR\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD) + " n/Alice major/CS";
 
     public static final String MESSAGE_ADD_STUDENT_SUCCESS = "Added student: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list";
@@ -47,7 +48,8 @@ public class StudentAddCommand extends StudentCommand {
     }
 
     /**
-     * Executes {@code StudentAddCommand}
+     * Executes {@code StudentAddCommand}.
+     *
      * @param model {@code Model} which the command should operate on
      * @return {@code CommandResult} produced from executing the command
      * @throws CommandException when an exception occurred while executing the command

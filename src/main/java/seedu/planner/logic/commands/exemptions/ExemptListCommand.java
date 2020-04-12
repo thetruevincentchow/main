@@ -13,6 +13,7 @@ import seedu.planner.model.module.ModuleCode;
 
 
 //@@author thetruevincentchow
+
 /**
  * Lists modules exempted in the selected student.
  */
@@ -20,8 +21,8 @@ public class ExemptListCommand extends ExemptCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = getQualifiedCommand(COMMAND_WORD)
-        + ": List exempted  modules of the active student.\n"
-        + "Example: " + getQualifiedCommand(COMMAND_WORD);
+            + ": List exempted  modules of the active student.\n"
+            + "Example: " + getQualifiedCommand(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Listed exempted modules of active student:\n%1$s";
 
@@ -59,10 +60,7 @@ public class ExemptListCommand extends ExemptCommand {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        return true;
+        return o != null && getClass() == o.getClass();
     }
 
     @Override

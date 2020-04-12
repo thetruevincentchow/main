@@ -17,7 +17,7 @@ public class SubCommandSplitter {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<subCommand>.*)",
-        Pattern.DOTALL);
+            Pattern.DOTALL);
 
     private final String command;
     private final String subcommand;
@@ -25,6 +25,7 @@ public class SubCommandSplitter {
     /**
      * Splits user command input into a command and subcommand string.
      * The subcommand can be empty or contain newlines and other whitespace.
+     *
      * @param userInput user sub-command input string
      * @throws ParseException if the user input does not conform the expected format
      */

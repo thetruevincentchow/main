@@ -9,12 +9,12 @@ import seedu.planner.model.graduation.SingleGraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 
 /**
- * Abstract class to represent specialisations for Degree Programmes
+ * Abstract class to represent specialisations for Degree Programmes.
  */
 public abstract class GenericSpecialisation {
 
     /**
-     * Name of {@code GenericSpecialisation}
+     * Name of {@code GenericSpecialisation}.
      */
     protected static String name;
 
@@ -24,38 +24,37 @@ public abstract class GenericSpecialisation {
     protected int minElective4kModules = 0;
 
     /**
-     * List of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     * List of {@code ModuleCode} which are valid Primaries for a given Specialisation.
      */
     protected List<ModuleCode> primaries;
     /**
-     * List of {@code ModuleCode} which are valid Electives for a given Specialisation
+     * List of {@code ModuleCode} which are valid Electives for a given Specialisation.
      */
     protected List<ModuleCode> electives;
 
     private List<GraduationRequirement> graduationRequirements = new ArrayList<>();
 
 
-
     /**
-     * Returns the Name of {@code GenericSpecialisation}
+     * Returns the Name of {@code GenericSpecialisation}.
      *
-     * @return the Name of {@code GenericSpecialisation}
+     * @return the Name of {@code GenericSpecialisation}.
      */
     public abstract String getName();
 
     /**
-     * Sets the Name of {@code GenericSpecialisation}
+     * Sets the Name of {@code GenericSpecialisation}.
      *
-     * @param name Name of {@code GenericSpecialisation}
+     * @param name Name of {@code GenericSpecialisation}.
      */
     public void setName(String name) {
-        this.name = name;
+        GenericSpecialisation.name = name;
     }
 
     /**
-     * Returns the list of {@code GraduationRequirement}
+     * Returns the list of {@code GraduationRequirement}.
      *
-     * @return The list of {@code GraduationRequirement}
+     * @return The list of {@code GraduationRequirement}.
      */
     private List<GraduationRequirement> getGraduationRequirements() {
         return graduationRequirements;
@@ -63,27 +62,28 @@ public abstract class GenericSpecialisation {
 
 
     /**
-     * Returns the list of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     * Returns the list of {@code ModuleCode} which are valid Primaries for a given Specialisation.
      *
-     * @return The list of {@code ModuleCode} which are valid Primaries for a given Specialisation
+     * @return The list of {@code ModuleCode} which are valid Primaries for a given Specialisation.
      */
     public List<ModuleCode> getPrimaries() {
         return primaries;
     }
 
     /**
-     * Returns the list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     * Returns the list of {@code ModuleCode} which are valid Electives for a given Specialisation.
      *
-     * @return The list of {@code ModuleCode} which are valid Electives for a given Specialisation
+     * @return The list of {@code ModuleCode} which are valid Electives for a given Specialisation.
      */
     public List<ModuleCode> getElectives() {
         return electives;
     }
 
     /**
-     * Check if a given {@code ModuleCode} is Level 4000 or above
-     * @param moduleCode {@code ModuleCode} to be checked
-     * @return True if a given {@code ModuleCode} is Level 4000 or above, false otherwise
+     * Check if a given {@code ModuleCode} is Level 4000 or above.
+     *
+     * @param moduleCode {@code ModuleCode} to be checked.
+     * @return True if a given {@code ModuleCode} is Level 4000 or above, false otherwise.
      */
     public boolean is4kAndAbove(ModuleCode moduleCode) {
         ArrayList<Character> valid4kCharacters = new ArrayList<>();
@@ -96,9 +96,9 @@ public abstract class GenericSpecialisation {
 
     /**
      * Returns a boolean representing if the {@code GenericCsSpecialisation} has its primaries fulfilled,
-     * given a list of {@code ModuleCode}
+     * given a list of {@code ModuleCode}.
      *
-     * @param moduleCodes List of {@code ModuleCode}
+     * @param moduleCodes List of {@code ModuleCode}.
      * @return True if fulfilled. False otherwise.
      */
     public Pair<Boolean, List<ModuleCode>> arePrimariesFulfilled(List<ModuleCode> moduleCodes) {
@@ -131,9 +131,9 @@ public abstract class GenericSpecialisation {
 
     /**
      * Returns a boolean representing if the {@code GenericCsSpecialisation} has its electives fulfilled,
-     * given a list of {@code ModuleCode}
+     * given a list of {@code ModuleCode}.
      *
-     * @param moduleCodes List of {@code ModuleCode}
+     * @param moduleCodes List of {@code ModuleCode}.
      * @return True if fulfilled. False otherwise.
      */
     public Pair<Boolean, List<ModuleCode>> areElectivesFulfilled(List<ModuleCode> moduleCodes) {
@@ -166,9 +166,9 @@ public abstract class GenericSpecialisation {
 
     /**
      * Returns a boolean representing if the {@code GenericCsSpecialisation} has its primaries and electives fulfilled,
-     * given a list of {@code ModuleCode}
+     * given a list of {@code ModuleCode}.
      *
-     * @param moduleCodes List of {@code ModuleCode}
+     * @param moduleCodes List of {@code ModuleCode}.
      * @return True if fulfilled. False otherwise.
      */
     public Pair<Boolean, List<ModuleCode>> isFulfilled(List<ModuleCode> moduleCodes) {
@@ -184,9 +184,9 @@ public abstract class GenericSpecialisation {
     }
 
     /**
-     * Returns a String Representation of {@code GenericSpecialisation}
+     * Returns a String Representation of {@code GenericSpecialisation}.
      *
-     * @return A String Representation of {@code GenericSpecialisation}
+     * @return A String Representation of {@code GenericSpecialisation}.
      */
     public String toString() {
         return getName();

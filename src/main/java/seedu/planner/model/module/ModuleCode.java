@@ -6,12 +6,12 @@ import static seedu.planner.commons.util.AppUtil.checkArgument;
 import java.util.Objects;
 
 /**
- * Class to represent the Module Code of a {@code Module}
+ * Class to represent the Module Code of a {@code Module}.
  */
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Module codes should only contain alphanumeric characters, and it should not be blank";
+            "Module codes should only contain alphanumeric characters, and it should not be blank";
 
     /*
      * All characters must be alphanumeric, and there must be at least one character.

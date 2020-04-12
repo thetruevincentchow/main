@@ -11,7 +11,7 @@ import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.module.Module;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
@@ -25,7 +25,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of persons.
      */
     ObservableList<Module> getFilteredModuleList();
 

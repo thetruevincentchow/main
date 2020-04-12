@@ -1,7 +1,7 @@
 package seedu.planner.model.module;
 
 /**
- * Class to represent a Lesson that a {@code Student} has to attend for a given {@code Module}
+ * Class to represent a Lesson that a {@code Student} has to attend for a given {@code Module}.
  */
 public class Lesson {
     private String classNo;
@@ -33,6 +33,10 @@ public class Lesson {
 
     public ModuleTime getTime() {
         return null;
+    }
+
+    public void setTime(ModuleTime time) {
+        this.time = time;
     }
 
     public String getClassNo() {
@@ -97,10 +101,6 @@ public class Lesson {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-    public void setTime(ModuleTime time) {
-        this.time = time;
     }
 
     public boolean isSameLesson(Lesson other) {

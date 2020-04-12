@@ -26,6 +26,11 @@ public class ModuleListPanel extends UiPart<Region> {
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
     }
 
+    public void setSearch(ObservableList<Module> moduleList) {
+        moduleListView.setItems(moduleList);
+        moduleListView.setCellFactory(listView -> new ModuleListViewCell());
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
@@ -41,11 +46,6 @@ public class ModuleListPanel extends UiPart<Region> {
                 setGraphic(new ModuleCard(module, getIndex() + 1).getRoot());
             }
         }
-    }
-
-    public void setSearch(ObservableList<Module> moduleList) {
-        moduleListView.setItems(moduleList);
-        moduleListView.setCellFactory(listView -> new ModuleListViewCell());
     }
 
 }

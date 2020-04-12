@@ -151,7 +151,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns if the {@code planner}'s list of modules contains the given {@code module}
+     * Returns if the {@code planner}'s list of modules contains the given {@code module}.
      *
      * @param module Module to check
      * @return {@code true} if the {@code planner}'s list of modules contains the given {@code module}
@@ -188,7 +188,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Adds the given {@code student} to the {@code planner}
+     * Adds the given {@code student} to the {@code planner}.
      *
      * @param student Student to be added to the {@code planner}
      */
@@ -198,7 +198,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Removes the given {@code student} from the {@code planner}
+     * Removes the given {@code student} from the {@code planner}.
      *
      * @param student Student to be removed from the {@code planner}
      */

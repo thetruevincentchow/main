@@ -11,17 +11,18 @@ import seedu.planner.model.UserPrefs;
 import seedu.planner.testutil.TypicalStudents;
 
 //@@author thetruevincentchow
+
 /**
  * Contains integration tests (interaction with the Model) for StudentListCommand.
  */
 public class StudentListCommandTest {
 
     private static final String nonEmptyExpectedFeedback = "Listed students in student list:\n"
-        + "1: n/Alice major/CS\n"
-        + "2: n/Bob major/IS";
+            + "1: n/Alice major/CS\n"
+            + "2: n/Bob major/IS";
 
     private static final String emptyExpectedFeedback = "Listed students in student list:\n"
-        + "[None]";
+            + "[None]";
 
     @Test
     public void execute_showNonEmptyStudentList() {

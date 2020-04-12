@@ -26,6 +26,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
+     *
      * @param toCheck {@code ModuleCode} to check
      * @return True if the list contains an equivalent module as the given argument. False otherwise.
      */
@@ -33,8 +34,10 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(toCheck);
         return internalList.containsKey(toCheck);
     }
+
     /**
      * Returns true if the list contains an equivalent module as the given argument.
+     *
      * @param toCheck {@code Module} to check
      * @return True if the list contains an equivalent module as the given argument. False otherwise.
      */
@@ -74,6 +77,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public ObservableList<Module> asUnmodifiableObservableList() throws java.lang.UnsupportedOperationException {
         return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(internalList.values()));
     }
+
     @Override
     public Iterator<Module> iterator() {
         return internalList.values().iterator();
@@ -82,8 +86,8 @@ public class UniqueModuleList implements Iterable<Module> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueModuleList // instanceof handles nulls
-            && internalList.equals(((UniqueModuleList) other).internalList));
+                || (other instanceof UniqueModuleList // instanceof handles nulls
+                && internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     @Override

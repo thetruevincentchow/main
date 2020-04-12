@@ -27,8 +27,8 @@ public class JsonAdaptedTimeTable {
      */
     public JsonAdaptedTimeTable(TimeTable source) {
         enrollments.addAll(source.getEnrollments().stream()
-            .map(JsonAdaptedEnrollment::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedEnrollment::new)
+                .collect(Collectors.toList()));
     }
 
     @JsonValue

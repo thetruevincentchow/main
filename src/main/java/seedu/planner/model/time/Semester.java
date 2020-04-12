@@ -13,7 +13,7 @@ public enum Semester {
     SPECIAL_TWO("Special Semester 2");
 
     public static final String MESSAGE_CONSTRAINTS = "Semester must be one of the following: "
-        + getConcatenatedString();
+            + getConcatenatedString();
     private final String fullName;
 
     Semester(String fullName) {
@@ -22,7 +22,7 @@ public enum Semester {
 
     private static String getConcatenatedString() {
         return Arrays.stream(Semester.values()).map(Semester::toString)
-            .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(", "));
     }
 
     public String getFullName() {

@@ -48,13 +48,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    public Path getPlannerFilePath() {
+        return plannerFilePath;
+    }
+
     public void setPlannerFilePath(Path plannerFilePath) {
         requireNonNull(plannerFilePath);
         this.plannerFilePath = plannerFilePath;
-    }
-
-    public Path getPlannerFilePath() {
-        return plannerFilePath;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-            && plannerFilePath.equals(o.plannerFilePath);
+                && plannerFilePath.equals(o.plannerFilePath);
     }
 
     @Override

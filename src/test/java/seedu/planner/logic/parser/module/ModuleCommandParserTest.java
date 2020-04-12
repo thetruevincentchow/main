@@ -33,9 +33,9 @@ class ModuleCommandParserTest {
 
         assertParseSuccess(parser, "grade  CS2040", new ModuleGradeViewCommand(new ModuleCode("CS2040")));
         assertParseSuccess(parser, "grade  CS2040  grade/A-", new ModuleGradeSetCommand(new ModuleCode("CS2040"),
-            LetterGrade.A_MINUS, false));
+                LetterGrade.A_MINUS, false));
         assertParseSuccess(parser, "grade  CS2040  su/A-", new ModuleGradeSetCommand(new ModuleCode("CS2040"),
-            LetterGrade.A_MINUS, true));
+                LetterGrade.A_MINUS, true));
     }
 
     @Test
@@ -43,16 +43,16 @@ class ModuleCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_UNKNOWN_SUBCOMMAND, ModuleCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ModuleCommand.MESSAGE_USAGE));
+                ModuleCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_subCommandInvalid_failure() {
         assertParseFailure(parser, INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ModuleCommand.MESSAGE_USAGE));
+                ModuleCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_SUBCOMMAND, String.format(MESSAGE_UNKNOWN_SUBCOMMAND,
-            ModuleCommand.MESSAGE_USAGE));
+                ModuleCommand.MESSAGE_USAGE));
     }
 }
 //@@author

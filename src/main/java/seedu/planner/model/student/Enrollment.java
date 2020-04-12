@@ -9,7 +9,7 @@ import seedu.planner.model.grades.Grade;
 import seedu.planner.model.module.ModuleCode;
 
 /**
- * Class to repesent the Enrollment of a {@code Student} into a {@code Module} by use of the {@code ModuleCode}
+ * Class to repesent the Enrollment of a {@code Student} into a {@code Module} by use of the {@code ModuleCode}.
  */
 public class Enrollment {
     private ModuleCode code;
@@ -67,8 +67,8 @@ public class Enrollment {
         } else {
             Enrollment otherEnrollment = ((Enrollment) other);
             return code.equals(otherEnrollment.code)
-                && grade.equals(otherEnrollment.grade)
-                && credit == otherEnrollment.credit;
+                    && grade.equals(otherEnrollment.grade)
+                    && credit == otherEnrollment.credit;
         }
     }
 }

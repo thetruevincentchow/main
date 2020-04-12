@@ -6,7 +6,7 @@ import seedu.planner.model.graduation.GraduationRequirement;
 import seedu.planner.model.module.ModuleCode;
 
 /**
- * Abstract class to represent the Degree Programme relationships
+ * Abstract class to represent the Degree Programme relationships.
  */
 public abstract class DegreeProgramme extends Programme {
 
@@ -21,7 +21,8 @@ public abstract class DegreeProgramme extends Programme {
     }
 
     /**
-     * Determines if a {@code DegreeProgramme} has been fulfilled based on a given list of {@code ModuleCode}
+     * Determines if a {@code DegreeProgramme} has been fulfilled based on a given list of {@code ModuleCode}.
+     *
      * @param moduleCodes List of {@code ModuleCode} that a {@code Student} has enrolled in
      * @return True if all requirements from a {@code DegreeProgramme} has been fulfilled. False otherwise.
      */

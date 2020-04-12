@@ -56,7 +56,7 @@ class LessonAddCommandParser implements Parser<LessonAddCommand> {
             semNo = 2;
         }
         LessonDataImporterUtil lessonDataImporter = new LessonDataImporterUtil();
-        List<Lesson> lessons = lessonDataImporter.run(moduleCode.toString(), semNo);
+        List<Lesson> lessons = LessonDataImporterUtil.run(moduleCode.toString(), semNo);
         Lesson selectedLesson = new Lesson();
         for (int i = 0; i < lessons.size(); i++) {
             if (lessons.get(i).getClassNo().equals(lessonNumber)) {

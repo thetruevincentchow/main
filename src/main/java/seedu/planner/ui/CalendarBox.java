@@ -303,7 +303,7 @@ public class CalendarBox extends UiPart<Region> {
 
 
     /**
-     * Constructor for CalendarBox class
+     * Constructor for CalendarBox class.
      */
     public CalendarBox(ReadOnlyPlanner planner) {
         super(FXML);
@@ -373,7 +373,7 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     /**
-     * Constructor for CalendarBox class
+     * Constructor for CalendarBox class.
      */
     public CalendarBox() {
         super(FXML);
@@ -441,7 +441,7 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     /**
-     * Fills up the timetable
+     * Fills up the timetable.
      */
     public void setCalendar(List<Lesson> lessons) {
         for (int i = 0; i < lessons.size(); i++) {

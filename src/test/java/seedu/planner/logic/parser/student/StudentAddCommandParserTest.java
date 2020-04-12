@@ -31,24 +31,24 @@ class StudentAddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Student expectedStudent = new StudentBuilder()
-            .withName(VALID_NAME_ALICE).withMajor(VALID_MAJOR_CS)
-            .withTimeTableMap(SampleDataUtil.getSampleTimeTableMap()).build();
+                .withName(VALID_NAME_ALICE).withMajor(VALID_MAJOR_CS)
+                .withTimeTableMap(SampleDataUtil.getSampleTimeTableMap()).build();
 
         // whitespace in preamble, all fields present
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_ALICE + MAJOR_DESC_CS,
-            new StudentAddCommand(expectedStudent));
+                new StudentAddCommand(expectedStudent));
 
         // lowercase major
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_ALICE + MAJOR_DESC_CS_LOWER,
-            new StudentAddCommand(expectedStudent));
+                new StudentAddCommand(expectedStudent));
 
         // multiple name prefixes
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NAME_DESC_ALICE
-            + MAJOR_DESC_CS_LOWER, new StudentAddCommand(expectedStudent));
+                + MAJOR_DESC_CS_LOWER, new StudentAddCommand(expectedStudent));
 
         // multiple major prefixes
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NAME_DESC_ALICE
-            + MAJOR_DESC_IS + MAJOR_DESC_CS_LOWER, new StudentAddCommand(expectedStudent));
+                + MAJOR_DESC_IS + MAJOR_DESC_CS_LOWER, new StudentAddCommand(expectedStudent));
     }
 
     @Test
@@ -57,22 +57,22 @@ class StudentAddCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentAddCommand.MESSAGE_USAGE));
+                StudentAddCommand.MESSAGE_USAGE));
 
         // name not present
         assertParseFailure(parser, MAJOR_DESC_CS_LOWER, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentAddCommand.MESSAGE_USAGE));
+                StudentAddCommand.MESSAGE_USAGE));
 
         // major not present
         assertParseFailure(parser, NAME_DESC_ALICE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            StudentAddCommand.MESSAGE_USAGE));
+                StudentAddCommand.MESSAGE_USAGE));
 
         // name prefix present but empty argument
         assertParseFailure(parser, PREFIX_NAME + " " + MAJOR_DESC_IS, Name.MESSAGE_CONSTRAINTS);
 
         // major prefix present but empty argument
         assertParseFailure(parser, NAME_DESC_ALICE + " " + PREFIX_MAJOR + PREAMBLE_WHITESPACE,
-            Major.MESSAGE_CONSTRAINTS);
+                Major.MESSAGE_CONSTRAINTS);
 
         // name and major prefixes present but both have empty arguments
         assertParseFailure(parser, PREFIX_NAME + " " + PREFIX_MAJOR, Name.MESSAGE_CONSTRAINTS);
@@ -82,7 +82,7 @@ class StudentAddCommandParserTest {
     public void parse_compulsoryFieldInvalid_failure() {
         // major invalid
         assertParseFailure(parser, PREAMBLE_WHITESPACE + NAME_DESC_ALICE + INVALID_MAJOR_DESC,
-            Major.MESSAGE_CONSTRAINTS);
+                Major.MESSAGE_CONSTRAINTS);
     }
 }
 //@@author

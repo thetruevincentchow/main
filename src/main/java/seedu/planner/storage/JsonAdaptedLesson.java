@@ -27,14 +27,14 @@ class JsonAdaptedLesson {
      */
     @JsonCreator
     public JsonAdaptedLesson(
-        @JsonProperty("classNo") String classNo,
-        @JsonProperty("startTime") String startTime,
-        @JsonProperty("endTime") String endTime,
-        @JsonProperty("weeks") String weeks,
-        @JsonProperty("venue") String venue,
-        @JsonProperty("day") String day,
-        @JsonProperty("lessonType") String lessonType,
-        @JsonProperty("size") int size
+            @JsonProperty("classNo") String classNo,
+            @JsonProperty("startTime") String startTime,
+            @JsonProperty("endTime") String endTime,
+            @JsonProperty("weeks") String weeks,
+            @JsonProperty("venue") String venue,
+            @JsonProperty("day") String day,
+            @JsonProperty("lessonType") String lessonType,
+            @JsonProperty("size") int size
     ) {
         this.classNo = classNo;
         this.startTime = startTime;
@@ -67,14 +67,14 @@ class JsonAdaptedLesson {
      */
     public Lesson toModelType() {
         return new Lesson(
-            classNo,
-            startTime,
-            endTime,
-            weeks,
-            venue,
-            day,
-            lessonType,
-            size
+                classNo,
+                startTime,
+                endTime,
+                weeks,
+                venue,
+                day,
+                lessonType,
+                size
         );
     }
 }

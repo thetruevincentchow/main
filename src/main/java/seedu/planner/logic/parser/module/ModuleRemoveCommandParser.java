@@ -12,8 +12,9 @@ import seedu.planner.logic.parser.exceptions.ParseException;
 import seedu.planner.model.module.ModuleCode;
 
 //@@author thetruevincentchow
+
 /**
- * Parses input arguments and creates a new ModuleRemoveCommand object
+ * Parses input arguments and creates a new ModuleRemoveCommand object.
  */
 public class ModuleRemoveCommandParser implements Parser<ModuleRemoveCommand> {
     /**
@@ -28,7 +29,7 @@ public class ModuleRemoveCommandParser implements Parser<ModuleRemoveCommand> {
 
         if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ModuleRemoveCommand.MESSAGE_USAGE));
+                    ModuleRemoveCommand.MESSAGE_USAGE));
         }
 
         List<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(args);
