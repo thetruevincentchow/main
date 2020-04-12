@@ -27,7 +27,7 @@ Thank you for your interest in the *NUS Module Planner* and welcome to the *User
 
 The *NUS Module Planner* (_NUSModPlnr_) is for Computer Science (CS) students at the National University of Singapore (NUS) to manage their enrollments in NUS modules over their school life. **With NUSModPlnr, module planning has never been easier!**
 
-When starting up the application, you will be able to see the *Home Screen* (_Figure 1. below_).
+When starting up the application, you will be able to see the *Home Screen* below.
 
 .Home Screen View
 image::Ui.png[width="600", align="center"]
@@ -507,7 +507,7 @@ Example:
 
 The following commands below are part of the application's *Lesson Management*, which allows you manage the lessons for the academic planning. You are highly encouraged to use this *Lesson Management* feature to explore different academic plans.
 
-When managing lessons, you will be able to see the *Lesson View Screen* (_Figure 3. below_).
+When managing lessons, you will be able to see the *Lesson View Screen* below.
 
 .Lesson List View
 image::LessonList.png[width="600", align="center"]
