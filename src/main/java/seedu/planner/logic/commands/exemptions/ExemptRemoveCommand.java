@@ -27,9 +27,10 @@ public class ExemptRemoveCommand extends ExemptCommand {
         + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
-    public static final String MESSAGE_ADD_MODULE_SUCCESS = "Removed the module from exemptions list: %1$s";
-    public static final String MESSAGE_ADD_MODULE_NOT_EXISTS = "Module does not exist in exemptions list: %1$s";
-
+    public static final String MESSAGE_REMOVE_EXEMPTION_SUCCESS = "Removed the module from exemptions list: %1$s";
+    public static final String MESSAGE_REMOVE_EXEMPTION_NOT_EXISTS = "Module does not exist in exemptions list: %1$s";
+    public static final String MESSAGE_REMOVE_EXEMPTION_DUPLICATE_ALREADY_EXISTS = "Module appeared more than once in "
+            + "your command: %1$s";
     private final List<ModuleCode> moduleCodes;
 
     public ExemptRemoveCommand(ModuleCode moduleCode) {
@@ -48,7 +49,15 @@ public class ExemptRemoveCommand extends ExemptCommand {
      * from the in the list of exempted modules of the selected student.
      */
     private String generateFailureMessage(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_NOT_EXISTS, moduleCode.value);
+        return String.format(MESSAGE_REMOVE_EXEMPTION_NOT_EXISTS, moduleCode.value);
+    }
+
+    /**
+     * Generates a command execution error message due to the given {@code moduleCode} already being present
+     * in the list of exempted modules of the selected student.
+     */
+    private String generateDuplicateModuleAlreadyExist(ModuleCode moduleCode) {
+        return String.format(MESSAGE_REMOVE_EXEMPTION_DUPLICATE_ALREADY_EXISTS, moduleCode.value);
     }
 
     /**
@@ -56,7 +65,7 @@ public class ExemptRemoveCommand extends ExemptCommand {
      * from the list of exempted modules of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
+        return String.format(MESSAGE_REMOVE_EXEMPTION_SUCCESS, moduleCode.value);
     }
 
     @Override
@@ -67,13 +76,20 @@ public class ExemptRemoveCommand extends ExemptCommand {
         if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        List<String> messages = new ArrayList<>();
+        List<ModuleCode> moduleCodesToExempt = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodes) {
             // Check if module is present in exempted modules list
             if (!model.hasExemptedModule(moduleCode)) {
                 throw new CommandException(generateFailureMessage(moduleCode));
             }
-
+            // Check if module already present in list of ModuleCodes to remove
+            if (moduleCodesToExempt.contains(moduleCode)) {
+                throw new CommandException(generateDuplicateModuleAlreadyExist(moduleCode));
+            }
+            moduleCodesToExempt.add(moduleCode);
+        }
+        List<String> messages = new ArrayList<>();
+        for (ModuleCode moduleCode : moduleCodesToExempt) {
             model.removeExemptedModule(moduleCode);
             messages.add(generateSuccessMessage(moduleCode));
         }

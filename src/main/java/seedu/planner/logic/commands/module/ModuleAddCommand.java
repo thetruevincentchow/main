@@ -33,6 +33,8 @@ public class ModuleAddCommand extends ModuleCommand {
 
     public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to timetable: %1$s";
     public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in timetable: %1$s";
+    public static final String MESSAGE_ADD_MODULE_INSERT_ALREADY_EXISTS = "Module appeared more than once in your "
+            + "command: %1$s";
     public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
 
     private final List<ModuleCode> moduleCodes;
@@ -65,6 +67,14 @@ public class ModuleAddCommand extends ModuleCommand {
     }
 
     /**
+     * Generates a command execution error message due to the given {@code moduleCode} already being present
+     * in the list of previously parsed {@code moduleCode}.
+     */
+    private String generateDuplicateInsertMessage(ModuleCode moduleCode) {
+        return String.format(MESSAGE_ADD_MODULE_INSERT_ALREADY_EXISTS, moduleCode.value);
+    }
+
+    /**
      * Generates a command execution success message for adding the given {@code moduleCode}
      * to the selected timetable of the selected student.
      */
@@ -88,25 +98,28 @@ public class ModuleAddCommand extends ModuleCommand {
         // TODO: have an option to check globally (across all timetables) to prevent duplicate enrollments
         // NOTE: Multiple enrollments of the same module code in different timetables is intended behaviour,
         //       since you can retake modules under some circumstances.
-        List<String> messages = new ArrayList<>();
+        List<Enrollment> enrollments = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodes) {
             if (model.hasEnrollment(moduleCode)) {
-                // throw new CommandException(generateDuplicateMessage(moduleCode));
-                messages.add(generateDuplicateMessage(moduleCode));
-                continue;
+                throw new CommandException(generateDuplicateMessage(moduleCode));
             }
 
             // Check if module exists in module database
             Module module = ModuleUtil.getModuleWithCode(moduleCode);
             if (module == null) {
-                // throw new CommandException(generateModuleDoesNotExists(moduleCode));
-                messages.add(generateModuleDoesNotExists(moduleCode));
-                continue;
+                throw new CommandException(generateModuleDoesNotExists(moduleCode));
             }
 
             Enrollment enrollment = new Enrollment(moduleCode, Optional.empty(), module.getModuleCredit());
+            if (enrollments.contains(enrollment)) {
+                throw new CommandException(generateDuplicateInsertMessage(moduleCode));
+            }
+            enrollments.add(enrollment);
+        }
+        List<String> messages = new ArrayList<>();
+        for (Enrollment enrollment : enrollments) {
             model.addEnrollment(enrollment);
-            messages.add(generateSuccessMessage(moduleCode));
+            messages.add(generateSuccessMessage(enrollment.getModuleCode()));
         }
         return new CommandResult(String.join("\n", messages));
     }
