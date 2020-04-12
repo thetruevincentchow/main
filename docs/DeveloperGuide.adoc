@@ -324,22 +324,113 @@ The Calendar populates each of the Label in the grid pane based on the list of `
 
 [[Implementation-Grade]]
 === Grade Management
+(Vincent wrote the section "Grade Management" below)
 
-_This section will be updated soon!_
+The *Grade Management* feature allows users to record and keep track of their grades in their academic plan,
+helping them to make better academic plans.
 
-==== Grade Implementation
+The *Grade Management* feature is made of two parts:
 
-_This section will be updated soon!_
+* *Module Grade Management*: `module grade`
+* *Student Grade Display*:  `student grade`
+
+==== Module Grade Management
+
+The *Module Grade Management* allows users to record their grades.
+
+===== Grade Representation
+
+Each enrollment in each timetable of a student stores a module grade. The module grade can be pending, have the Satisfactory/Unsatisfactory option exercised, or be graded. +
+More specifically:
+
+Each `Student` stores `Enrollment` objects in each value (of type `TimeTable`) of its `timeTableMap : TimeTableMap`.
+Each `Enrollment` is then 1-1 associated to exactly one `credit : Optional<Grade>`.
+
+When `credit` is equal to `Optional.<Grade>empty()`, the enrollment is considered to have a pending module grade.
+When `credit.isPresent()` is true, then the `Grade` stored within can be interpreted as follows:
+
+`Grade` objects are immutable, and its fields therefore can have `public` access modifiers and are `final`. Suppose there is a `grade : Grade` object.
+The `grade.letterGrade : LetterGrade` represents the letter grade received for an enrollment, which can be one of:  +
+`A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C-`, `D+`, `D`, `F`, `CS`, `CU`, `W` or `EXE`.
+
+The `grade.isSu : boolean` represents whether the Satisfactory/Unsatisfactory option was exercised for the grade.
+For example, a student could choose to exercise the Satisfactory/Unsatisfactory option for a grade of "B+". +
+This is distinct from the `grade.letterGrade.isSu : boolean`, which determines if the letter grade itself is ungraded.
+This occurs for module grades such as "CS" and "CU". +
+When at least one of `grade.isSu` or `grade.letterGrade.isSu` is true, the `Grade` object does not count towards academic performance.
+
+The semantics of the `Optional<Grade>` object in an `Enrollment` can be summarised in the activity diagram below.
+
+//TODO: ADD DIAGRAM
+.Activity Diagram of Grade Representation
+image::GradeRepresentationActivityDiagram.png[align="center"]
+
+
+===== Module Grade Commands
+
+The user views and sets grades of enrollments with a single command `"module grade"`. Parsing of the command is handled by `ModuleGradeCommandParser`.
+
+The `ModuleGradeCommandParser` parses the command string (e.g. `"CS2040 grade/A"`) into the preamble which contains the module code, and the arguments which contains the grade. +
+Then it returns a subclass of `ModuleGradeCommand` (itself a subclass of `ModuleCommand`) which is declared abstract. +
+Its concrete subclasses are `ModuleGradeViewCommand`, `ModuleGradeSetCommand` and `ModuleGradeResetCommand`.
+Refer to <<Backend-SubCmd, Sub-Commands>> to see how the `ModuleGradeCommandParser` is invoked by `ModuleCommandParser`.
+
+. To view a grade, the user uses the command format `"module grade MODULE_CODE"`. This will generate a `ModuleGradeViewCommand` object.
+. To set a grade, there are two options. Both generate a `ModuleGradeSetCommand` object.
+.. To set a grade counted towards academic performance, the user uses the command format `"module grade MODULE_CODE grade/GRADE"`.
+.. To exercise the Satisfactory/Unsatisfactory option, the user uses the command format `"module grade MODULE_CODE su/GRADE"`.
+. To reset a grade, the user uses the command format `"module grade MODULE_CODE grade/"`. This will generate a `ModuleGradeResetCommand` object.
+[none]
+
+If both `module/GRADE` and `su/GRADE` parameters are supplied, the `ModuleGradeCommandParser` throws a `ParseException`
+
+The `ModuleGrade*Command#execute(Model)` methods of the command objects generated then use `Model#getModuleGrade(ModuleCode)` and `Model#setModuleGrade(ModuleCode)` to get and set the enrollment's grade, respectively.
+
+The following class diagram summarises the associations of classes involved in the `"module grade"` command.
+
+//TODO: ADD DIAGRAM
+.Class Diagram of `module grade` classes
+image::ModuleGradeCommandClassDiagram.png[align="center"]
+
+==== Student Grade Display
+
+The user may also view the cumulative grades of the selected `Student` using the `"student grade"` command. +
+The `StudentCommandParser` directly creates a `StudentGradeCommand` object (a subclass of `StudentCommand`), and all preamble and arguments are ignored.
+
+`StudentGradeCommand#execute(Model)` then loops through all `StudentSemester` the selected student has using `Model#getStudentSemesters()`,
+which returns the `StudentSemester` in chronological order (as defined in `StudentSemester#compareTo()`).
+This ordering is more convenient to the user compared to the arbitrary ordering of internal to `TimeTableMap`.
+
+Using `Student#getTimeTable(StudentSemester) : TimeTable` and `TimeTable#getEnrollments() : UniqueEnrollmentList`, each enrollment of each timetable is iterated in order.
+Then `Enrollment#getGrade() : Optional<Grade>` is used to get the grade (pending, or S/U option exercised, or graded).
+Since `Grade#toString()` is overloaded, `StudentGradeCommand` only needs to handle the case where the `Optional<Grade>` is empty.
+
+The result text is accumulated to form a listing of modules taken and their grades.
+
+During iteration, a `CumulativeGrade` accumulator object is also used to tally up statistics related to the grades of the enrollments.
+`CumulativeGrade` handles the number of credits taken for graded, S/U-exercised and all `Grade` objects supplied. +
+`StudentGradeCommand` invokes the `CumulativeGrade#accumulate(Grade grade, int credits)` method, which handles all the logic necessary to correctly accumulate grade statistics.
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+===== Aspect: Syntax of `"module grade"` command
+* *Alternative 1: (current choice)* Use a single command with `grade/` and `su/` prefixes which are mutually exclusive
+** Pros: Only a single command is needed to handle both graded and S/U-exercised grades. Resetting an enrollment's grade is also easy by allowing the user to specify an empty `grade/` argument.
+** Cons: The syntax might be confusing to the user, and there is the edge case of both `grade/` and `su/` being supplied, which must be handled.
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* Use separate sub-commands for setting, resetting and exercising the Satisfactory/Unsatisfactory option.
+** Pros: The syntax is simpler for the user because there is only one format for each command.
+** Cons: Further commands have to be implemented, which causes code duplication.
+
+===== Aspect: Representation of enrollment grades
+* *Alternative 1: (current choice)* Use an `Optional<Grade>` which stores a `LetterGrade` and `isSu : boolean`
+** Pros: Clearly distinguishes between a pending grade, a grade with Satisfactory/Unsatisfactory option exercised, and a grade which is counted towards academic performance. +
+Serialisation also directly corresponds to `null` for a pending grade.
+** Cons: Handling the case where the grade is pending is not convenient for iteration.
+
+* *Alternative 2:* Use `Grade` to store whether the the grade is pending
+** Pros: More convenient to use for developers.
+** Cons: Serialisation is more complex, and more complex code is needed to handle pending grades in the implementation of `Grade`.
 
 // tag::feature-graduation-requirement[]
 [[Implementation-GradReq]]
@@ -490,216 +581,264 @@ If any results match the query enetered, they are populated into the *Search Scr
 
 [[Implementation-PlannerModel]]
 === Planner Model
+(Vincent wrote this section "Planner Model" below)
 
-_This section will be updated soon!_
+The link:{repoURL}/src/main/java/seedu/planner/model/Planner.java[`Planner`] class stores information about the App's state.
+
+Many operations of the `Planner` must be inherently stateful because user operations include selecting students and timetables,
+which are then also known as the 'active student' and 'active timetable', respectively.
+These selection operations affect which students and timetables future operations use.
+The App needs access to the list of students, the selected student, and the selected timetable of the selected student need to be stored.
+
+As described in *Student Model* (in <<Design-Model,*Model Component*>>), the `Student` stores information related to the timetables it has, which stores the enrollments for each timetable. The `Planner` only needs to retain indices/keys to the active student and semester.
+
+Therefore, `Planner` stores information including:
+
+* `UniqueStudentList : students`, which is the list of students in the planner. +
+Uniqueness (using `Student#isSameStudent`) of the students is enforced. This prevents two students from having the same name.
+* `int : activeStudentIndex`, an index for the currently selected `Student`. +
+This index refers to a valid student exactly when the index is within the bounds of the `students` list. +
+Therefore, no student is selected if the index is out of bounds of the `students` list.
+* `StudentSemester : activeSemester`, which corresponds to the currently selected `TimeTable` for the currently selected `Student`.
+This is `null` when there is no active timetable selected. +
+The `Planner` must have a valid `Student` selected in order to have a non-null `activeSemester`, which is an invariant enforced by `Planner#getActiveTimeTable()`
+
+All of these fields have the `protected` access modifier to hide and encapsulate the data. To access this data, the following methods are used by the `Model`:
+
+* `Student getActiveStudent()` to get the active `Student`. +
+Note that the active `Student` is not stored directly, but with an index `activeStudentIndex` as previously mentioned.
+* `Student getActiveSemester()` to get the active `StudentSemester` corresponding to the active timetable.
+* `TimeTable getActiveTimeTable()` to get the active `TimeTable`. +
+This throws a `NoActiveStudentException` exception if  a `Student` is not already selected. +
+Note that the active `TimeTable` is not stored directly, but with `activeSemester` as previously mentioned.
+
+The following methods change which student or timetable is selected:
+
+* `void activateStudent(Student student)` selects the `student` in the `Planner` +
+This throws a `StudentNotFoundException` exception if the `student` is not in the `Planner`. +
+Note that the student is considered the same as another student in the list if `Student#isSameStudent()` returns `true`.
+This allows activation of a student after its timetable is changed.
+* `void activateSemester(StudentSemester semester)` selects the timetable corresponding to `semester` as the active timetable. +
+This throws a `NoActiveStudentException` exception if a `Student` is not already selected.
+* `void activateValidStudent()` and `void activateValidSemester()` are similar, but may select any arbitrary valid student and timetable respectively.
+
+The following methods replace values stored by the student list:
+
+* `void setStudents(List<Student> students)` replaces the student list entirely. This does _not_ reset the active student or active timetable, which may become invalidated. +
+Make sure to use `Planner#activateStudent(null)` if you wish to reset this too.
+* `void replaceActiveStudent(Student student)` replaces the currently selected `Student` with the specified `student` in the student list.
+* `void replaceActiveTimeTable(TimeTable timeTable)` replaces the currently selected `TimeTable` with the specified `timeTable` in the selected student's `TimeTableMap`.
+
+Many further methods modify properties of the selected student and timetable. Some examples are:
+
+* `void addExemptedModule(ModuleCode moduleCode)` which adds an exempted module with the given `moduleCode` to the active student.
+* `void addSemesterTimeTable(StudentSemester studentSemester)` which adds a timetable to the selected student using the specified `studentSemester`.
+* `void removeEnrollment(ModuleCode moduleCode)` which removes an enrollment with the given `moduleCode` from the selected timetable.
+
+[WARNING]
+Avoid storing references to, and avoid directly calling methods with mutate `Student` or `Planner` objects retrieved from `Planner` or `Model`, as `Student` is mutable. +
+Consider using the methods of `Model` directly to interact with the Model instead.
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+===== Aspect: Mutability of data stored in `Planner`
+* *Alternative 1: (current choice)* `Planner` stores references to mutable `Student` objects which store mutable `TimeTable` objects. +
+Mutation of `Student` objects is allowed, but only through getter/setter methods.
+** Pros: Mutability of `Student` enables developers to directly modify a `Student` directly with its methods. This is very convenient and decouples the implementation of `Student` from the implementation of `Planner`. +
+This also makes implementation of `Planner` significantly easier, especially due to the nesting of data structures.
+** Cons: There are no guarantees of immutability, and operations which mutate a `Student` can affect the `Planner`. The `Planner` is unable to observe any changes made to the `Student` object stored.
 
-* *Alternative 2:*
-** Pros:
-** Cons:
+* *Alternative 2:* `Planner` stores a list of immutable `Student` objects, which also store immutable `TimeTable` objects.
+** Pros: Immutability of the `Student` objects is enforced. Accidental mutation of a stored `Student` using a reference is not possible without using methods of the `Planner`.
+** Cons: Making modifications to a stored `Student` would require the instantiation of a new modified copy. +
+All involved classes (`Planner`, `Student`, `TimeTableMap`, `TimeTable`, etc.) would have to implement methods to mutate the required fields.
 
 [[Implementation-Student]]
 === Student Features
+(Vincent wrote the section "Student Features" below)
 
-_This section will be updated soon!_
+The *Student Feature* allows users to manage multiple academic plans, add and remove enrollments, and check their degree progression and grades.
+As described in *Student Model* (in <<Design-Model,*Model Component*>>), the `Student` stores information related to the timetables it has, which in turn stores the enrollments for each timetable. This section will focus on the management of `Student` using commands provided to the user.
+
+As users may want to do multiple operations on the same student, the user can select one student as the 'active student'.
+Many commands then operate on the 'active student'. Certain commands (such as `"student active"` and `"student remove"`) can cause the 'active student' to be deselected.  How this is stored is described in more detail in <<Implementation-PlannerModel,*Planner Model*>>.
+
+The following sequence diagram shows how the `StudentAddCommand` works by showing interactions
+within the `Model` component when
+`Logic#execute("student add n/Alice major/CS")` is called.
+
+//TODO: ADD DIAGRAM
+.Sequence Diagram of `StudentAddCommand`
+image::StudentAddCommandSequenceDiagram.png[align="center"]
+NOTE: The lifeline for `StudentAddCommand` should end at the destroy marker (X). However, due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+[NOTE]
+For brevity, the `Student` that the `StudentAddCommand` was constructed with is denoted as `"s"`. +
+The actual parsing (i.e. `PlannerParser` calling `StudentCommandParser` which calls `StudentAddCommandParser`) is omitted for clarity. +
+For brevity, the parameter of `PlannerParser#parseCommand()` (which is just `"student add n/Alice major/CS"`) is also omitted.
+
+[NOTE]
+"Active student" and "selected student" are used interchangably to refer to the student the user has selected with the `"student active"` command.
 
 ==== Student Management
 
-_This section will be updated soon!_
+The user may add, remove, select and list students with the `"student add"`, `"student remove"`, `"student active"` and `"student list"` command strings, respectively.
+These correspond to the `StudentAddCommand`, `StudentRemoveCommand`, `StudentActiveCommand` and `StudentListCommand` classes.
+
+These sub-commands are parsed by the `Student*CommandParser` sub-command parsers, with the exception of `StudentListCommand` which is directly returned by `StudentCommandParser`.
+Refer to <<Backend-SubCmd, Sub-Commands>> to see how `Student*CommandParser` are invoked by `StudentCommandParser`.
+
+The sub-commands `"remove"` and `"active"` for the `"student"` command both require a unsigned positive integer `"INDEX"` in the command string.
+No arguments are allowed because they will be interpreted as being part of the `"INDEX"` string. +
+Similarly, the `"add"` sub-command allows exactly `"n/NAME major/MAJOR"` in its parameters. +
+This can be explained by `ArgumentTokenizer.tokenize()` only splitting arguments using the prefixes provided to it.
+Therefore, the commands correctly reject prefixes not specified in the command usage text, although the error message can be confusing
+since the user might expect that all prefixes are split before validation.
+
+Then, `Student*Command` objects are created and returned by the `Student*CommandParser#parse()`.
+* For the `"student add"` command, `StudentAddCommand` is constructed with a new `Student` object created from the `"NAME"` and `"MAJOR"` arguments provided.
+* For the `"student remove"` and `"student active"` commands, the `Student*Command` is constructed with an `Index` object representing the `"INDEX"` argument provided.
+
+===== Adding a Student
+
+When the user enters the `"student add"` command, `StudentAddCommand#execute(Model model)` is executed. The following steps occur:
+
+. Checks if the `student : Student` is present in the `Model` using `Model#hasStudent(Student)`.
+.. If so, then a `CommandException` is thrown.
+. Otherwise, Add the `student` to the `Model` using `Model#addStudent(Student)`.
+. Generate success message and return a `CommandResult`.
+
+
+===== Listing Students
+
+When the user enters the `"student list"` command, `StudentListCommand#execute(Model model)` is executed. +
+The list of students is obtained with `Model#getStudentList()`. The list of students is then formatted into a newline-separated, numbered list string,
+which is used in the success message.
+
+[NOTE]
+This operation cannot fail in any valid `Planner` state.
+
+===== Removing and Selecting a Student
+
+When the user enters the `"student remove"` or the `"student active"` command, `Student*Command#execute(Model model)` (corresponding to the sub-command) is executed.
+The following steps occur:
+
+. The `Index` supplied to the `Student*Command` constructor is checked if it is in the bounds of the student list by comapring with `Model#getStudentList().size()`.
+.. If not, a `CommandException` is thrown with the `Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX` text.
+. The `Student` corresponding to the `Index` is retrieved using `Model#getStudentList().get(int)`.
+* For a `StudentRemoveCommand`, `Model#removeStudent(Student)` is called to remove the student. +
+By removing the reference to the `Student` in the list of students in `Planner`, all data related to the student is hence removed.
+* For a `StudentRemoveCommand`, `Model#activateStudent(Student)` is called to select the student.
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
-** Cons:
+* *Alternative 1: (current choice)* `Student` is mutable.
+** Pros: Very convenient for developers to change `Student` objects imperatively.
+** Cons: If references of the `Student` object are retained and then mutated unintentionally, the `Student` object in the `Planner` will also be mutated. +
+Hence, developers need to be careful about calling methods which mutate the `Student` object. This increases coupling between `Student` and `Planner`.
 
-* *Alternative 2:*
+* *Alternative 2:* `Student` is immutable.
+** Pros: Immutability is guaranteed. Accidental mutation of the `Planner` cannot occur with any stray references.
+** Cons: Mutating nested data structures in the `Student` object (e.g. a single `Grade` of an `Enrollment` stored in a `TimeTable` of the `Student`) can be very messy.
+To mutate such data, `Student` or the caller needs to know about the implementation details of all involved nested classes (e.g. `TimeTableMap`, `StudentSemester`, `TimeTable`, `Enrollment`, etc.),
+which increase coupling significantly. +
+An alternative is that `Model` and `Planner` implements all the required mutation methods, handling said dependencies. This increases implementation complexity massively.
+
+* *Alternative 3:* `Student` is mutable, but only deep copies of `Student` are returned by `Model`.
 ** Pros:
+*** Immutability of the `Student` objects in the `Planner` is preserved. Accidental mutation of a returned copy does not result in mutation of the original stored in `Planner`. +
+Developers can use the mutation methods of `Student` directly without worrying of mutating `Planner` accidentally. +
+*** The implementation is also less complex than full immutability.
 ** Cons:
+*** The implementation of a deep copy must be handled carefully to prevent the same reference from being used anywhere in a copied class (and thus only providing a shallow copy). +
+*** The usage of copies to mutate a `Student` in the `Planner` is also not as convenient, because the old copy must be swapped with a new one. +
+This can become problematic in future operations where the user is allowed to change identity fields (those affecting `Student#isSameStudent()`), such as changing the name of the student.
+Since the new student will have a different name from the original, a different method of identifying students modified will need to be used.
 
 [[Implementation-Timetable]]
 === Timetable Features
+(Vincent wrote the section "Timetable Features" below)
 
-_This section will be updated soon!_
+The *Timetable Feature* allows users to manage timetables across semesters.
+
+[NOTE]
+"Active timetable" and "selected timetable" are used interchangably to refer to the timetable the user has selected with the `"timetable active"` command.
+
+==== Timetable Implementation
+
+Each `Student` stores a `TimeTableMap` representing the timetables of the student. The `TimeTableMap` stores a key-value pair mapping a `StudentSemester` to a `TimeTable`.
+
+For each `TimeTableMap`, the `StudentSemester` keys must be unique. Therefore, there should not be duplicate semester keys.
+This corresponds to each semester in the `TimeTableMap` only having one timetable. +
+Note that this does not preclude multiple equal (`TimeTable#equals()`) but not identical (`==`) `TimeTable` objects
+from being associated to different `StudentSemester` objects. This happens whenever an empty timetable is added to two different semesters with the `"timetable add"` command.
+
+[NOTE]
+A `StudentSemester` stores a `SemesterYear` instead of a `Semester` directly. +
+While storing the academic year (`acadYear`) is supported by `SemesterYear`, it is currently unused in the App's code.
+Only `SemesterYear.sem` is used for storing the `Semester` represented.
+
 
 ==== Timetable Management
 
-_This section will be updated soon!_
+Using the `"timetable add"`, `"timetable remove"`, `"timetable list"` and `"timetable active"` commands, users can manage the timetables of `Student` objects in the `Planner`.
+
+===== Listing Timetables
+
+The `StudentSemester` objects corresponding to the student's timetables can be listed using the `"timetable list"` command string.
+The `TimeTableCommandParser` directly creates a `TimeTableListCommand` object (a subclass of `TimeTableCommand`), and all preamble and arguments are ignored.
+
+`TimeTableListCommand#execute(Model)` first checks if there is an active student with `Model#hasActiveStudent()`. If not, it throws a `CommandException` with text `Messages.MESSAGE_NO_STUDENT_ACTIVE`. +
+Then it gets all `StudentSemester` keys the selected student has in its `TimeTableMap` using `Model#getStudentSemesters()`,
+which returns the `StudentSemester` in chronological order (as defined in `StudentSemester#compareTo()`).
+This ordering is more convenient to the user compared to the arbitrary ordering of internal to `TimeTableMap`.
+
+This list is then passed to `StringUtil.wrapCollection(Collection)`, which formats the list of `StudentSemester` into a comma-separated string.
+The string is also wrapped for better readability by the user.
+
+===== Specifying Timetables in Add, Remove and Active Commands
+
+The sub-commands `"add"`, `"remove"` and `"active"` for the `"timetable"` command all require the arguments `"year/YEAR sem/SEM"`,
+which are the `DegreeYear` and `Semester` corresponding to the `StudentSemester` respectively.
+
+Both arguments are mandatory.
+
+* If both arguments are missing, a `ParseException` will be thrown with the `MESSAGE_USAGE` string of the corresponding `TimeTable*Command`. +
+This provides instruction about the specific sub-command for the user.
+* If any argument is missing, the `TimeTable*CommandParser` will throw a `ParseException`. +
+Validation of `"YEAR"` and `"SEM"` also occur. If `"YEAR"` is not a valid degree year (unsigned integer from 1 to 6 inclusive),
+or if `"SEM"` is not one of `"ONE", "TWO", "SPECIAL_ONE", "SPECIAL_TWO"`, then the sub-command parser will also throw a `ParseException`.
+
+Once the command string is parsed, the `DegreeYear` and `Semester` will be used to create a `StudentSemester`, which is passed to the constructor of `TimeTable*Command`.
+
+===== Adding, Removing and Selecting a Timetable
+
+The `TimeTable*Command` classes then receive a `StudentSemester` in its constructor parameter.
+
+. All `TimeTable*Command#execute(Model)` methods first check that `Model#hasActiveStudent() : boolean` is `true`. This is needed because all these commands require an active student. +
+Similar to `TimeTableListCommand` (documented above in *Listing Timetables*), if there is no active student, a `CommandException` will be thrown.
+. Further checks may occur for different timetable sub-commands:
+
+* `TimeTableAddCommand` checks if there is no matching semester (with `Model#hasSemester()`), then adds the timetable with `Model#addSemesterTimeTable()`
+* `TimeTableRemoveCommand` checks if there is a matching semester (with `Model#hasSemester()`), then removes the timetable with `Model#removeSemesterTimeTable()` +
+By removing the reference to the `TimeTable` in the `TimeTableMap` of the selected `Student`, all data related to the timetable is hence removed.
+* `TimeTableActiveCommand` checks if there is a matching semester (with `Model#hasSemester()`), then sets the timetable as active with `Model#activateSemester()`
 
 ==== Design Considerations
 
-* *Alternative 1:*
-** Pros:
+===== Aspect: Storage of different timetables across semesters
+
+* *Alternative 1: (current choice)* `TimeTableMap` is a `Map<StudentSemester, TimeTable>`
+** Pros: Enforces uniqueness of a `TimeTable` value in the `TimeTableMap`, as explained <<Implementation-Timetable,earlier>>.
 ** Cons:
+*** Serialisation of the `TimeTableMap` is more complex, requiring conversion to `JsonAdaptedTimeTableMap`, which is a list of `JsonAdaptedTimeTablePair`.
+Deserialisation of `Map<K,V>` cannot happen automatically for custom classes `K` due to some limitations of Jackson. +
+*** Ordering of timetables in `TimeTableMap.entrySet()` is arbitrary, which may be inconvenient for users.
 
-* *Alternative 2:*
+* *Alternative 2:* `TimeTableMap` is a `List` of `Pair<StudentSemester, TimeTable>`
 ** Pros:
-** Cons:
-
-////
-[PLEASE REMOVE ALL OF THIS UNCOMMENTED INFORMATION ONCE YOU ARE FINISHED REFERENCING AND NO LONGER NEED IT.]
-
-=== Student Implementation
-==== Add Student
-
-The `student add` command creates a `Student` entity (with name and/or major) with the fields provided by the user.
-
-It is appended with the tags `n/NAME` and `major/MAJOR`.
-
-* `Student(Name name,)` -- Creates a `Student` entity with only the student's name.
-* `Student(Name name, Major major)` -- Creates a `Student` entity with both the student's name and intended major.
-* `Student(Name name, Major major, TimeTableMap timeTableMap)` -- Creates a `Student` entity with the student's TimeTable, alongside student's name and intended major.
-* `Student(Name name, Degrees degrees, Major major)` -- Creates a `Student` entity with the student's Degrees, alongside the student's name and intended major.
-
-===== Current Implementation
-
-`StudentAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentAddCommand` is parsed using `StudentAddCommandParser` to split the user input into relevant fields.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::StudentAddSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `add` mechanism behaves at each step:
-
-. User launches the application.
-.. If it is the first time, a `Student` object will be created using `StudentAddCommand`.
-. User enters the command. `StudentAddCommandParser` will create a `Student` object, which can contain `name`, `major`, `timetable` and/or `degrees`.
-
-==== Remove Student
-
-The `student remove` command destroys a `Student` entity (with all associated values) when instructed by the user.
-
-It is appended with the tag `INDEX`.
-
-===== Current Implementation
-
-`StudentRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentRemoveCommand` is parsed using `StudentRemoveCommandParser` to parse the action.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::StudentRemoveSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
-
-. User enters the command. `StudentRemoveCommandParser` will destroy the specified `Student` object (if it exists), along with its associated values.
-
-==== Active Student
-
-The `student active` command selects the specified `Student` entity with its associated values, by the index input provided by the user.
-
-It is appended with the tag `INDEX`.
-
-===== Current Implementation
-
-`StudentActiveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentActiveCommand` is parsed using `StudentActiveCommandParser` to split the user input into relevant fields.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::StudentActiveSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `active` mechanism behaves at each step:
-
-. User enters the command. `StudentActiveCommandParser` will select the specified `Student` object (if it exists), by the specified index.
-
-==== List Students
-
-The `student list` command lists all `Student` entities.
-
-===== Current Implementation
-
-`StudentListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `StudentListCommand` is parsed using `StudentCommandParser` to get the command input.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::StudentListSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `list` mechanism behaves at each step:
-
-. User enters the command. `StudentCommandParser` will list all `Student` objects (if any exists).
-
-=== Timetable Implementation
-==== Add Timetable
-
-The `timetable add` command creates a `TimeTable` entity (possibly with enrollments, year and semester) provided by the user.
-
-It is appended with the tags `year/YEAR` and `sem/SEM`.
-
-* `TimeTable()` -- Creates a `TimeTable` entity with no associated values.
-* `TimeTable(List<Enrollment> enrollments)` -- Creates a `TimeTable` entity with an associated `Enrollment` list.
-
-===== Current Implementation
-
-`TimeTableAddCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableAddCommand` is parsed using `TimeTableAddCommandParser` to split the user input into relevant fields.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::TimeTableAddSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `add` mechanism behaves at each step:
-
-. User launches the application.
-.. If it is the first time, a `TimeTable` object will be created using `TimeTableAddCommand`.
-. User enters the command. `TimeTableAddCommandParser` will create a `TimeTable` object, which can contain `enrollments`.
-
-==== Remove TimeTable
-
-The `timetable remove` command destroys a `TimeTable` entity (with all associated values) when instructed by the user.
-
-It is appended with the tags `year/YEAR` and `sem/SEM`.
-
-===== Current Implementation
-
-`TimeTableRemoveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableRemoveCommand` is parsed using `TimeTableRemoveCommandParser` to parse the action.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::TimeTableRemoveSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `remove` mechanism behaves at each step:
-
-. User enters the command. `TimeTableRemoveCommandParser` will destroy the specified `TimeTable` object (if it exists), along with its associated values.
-
-==== Active TimeTable
-
-The `TimeTable active` command selects the specified `TimeTable` entity with its associated values, by the index input provided by the user.
-
-It is appended with the tags `year/YEAR` and `sem/SEM`.
-
-===== Current Implementation
-
-`TimeTableActiveCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableActiveCommand` is parsed using `TimeTableActiveCommandParser` to split the user input into relevant fields.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::TimeTableActiveSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `active` mechanism behaves at each step:
-
-. User enters the command. `TimeTableActiveCommandParser` will select the specified `TimeTable` object (if it exists), by the specified index.
-
-==== List Timetables
-
-The `timetable list` command lists all `TimeTable` entities.
-
-===== Current Implementation
-
-`TimeTableListCommand` extends from the `Command` class and uses the inheritance to facilitate the implementation. `TimeTableListCommand` is parsed using `TimeTableCommandParser` to get the command input.
-
-The following high-level sequence diagram illustrates the interactions between the `Ui`, `Logic` & `Model` components when a module is being added.
-
-image::TimeTableListSequenceDiagram.png[]
-
-Given below is an example usage scenario and how the `list` mechanism behaves at each step:
-
-. User enters the command. `TimeTableCommandParser` will list all `TimeTable` objects (if any exists).
-
-[PLEASE REMOVE ALL OF THIS UNCOMMENTED INFORMATION ONCE YOU ARE FINISHED REFERENCING AND NO LONGER NEED IT.]
-////
+*** Serialisation of `TimeTableMap` is straightforward. +
+*** Ordering of `StudentSemester` can easily be enforced by sorting the `TimeTableMap` by `StudentSemester` after every operation.
+** Cons: Uniqueness constraint will have to be enforced by ensuring that insertions and deletions with a given `StudentSemester` key do not cause duplicate `StudentSemester` objects.
 
 == Backend & Debugging
 
@@ -784,8 +923,79 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 [[Backend-SubCmd]]
 === Sub-Commands
+(Vincent wrote the section "Sub-Commands" below)
 
-_This section will be updated soon!_
+Central to the command syntax of the App is the organisation of commands into sub-commands.
+Commands such as `"student"` show the relevant instructions for how to use its sub-commands, such as `"student add"`.
+This organisation of commands into a hierarchy improves usability by the user, and the organisation of the command implementations into packages.
+
+Many commands of the App are organized into 'parent commands', such as `"student"`.
+Its sub-commands are known as 'child commands' (e.g. `"student add"`). +
+'Parent commands' must have a corresponding `Parser` and a `Command`. +
+For example,
+the corresponding `Parser` subclasses for the `"student"` command and its sub-commands are in the
+link:{repoURL}/src/main/java/seedu/planner/logic/parser/student[`parser.student`] package,
+while the `Command` subclasses are in the
+link:{repoURL}/src/main/java/seedu/planner/logic/commands/student[`commands.student`] package.
+
+Note that for a sub-command (e.g. `"student add"`), the 'parent command' parser only parses the command word for the 'parent command' (e.g. `"student"`), while the 'child command' only parses the command word for its sub-command (e.g. `"add"`).
+
+The following sequence diagram shows the interaction between the `*Command` and `*CommandParser` classes of 'parent commands' and 'child commands' when a command string is parsed. +
+The 'parent command' is denoted as `"X"`, while the 'child command' is denoted as `"Y"`. The corresponding `Command` and `Parser` classes have been named accordingly.
+
+//TODO: ADD DIAGRAM
+.Sequence Diagram of Parent and Child Commands
+image::SubCommandSequenceDiagram.png[align="center"]
+
+NOTE: The lifeline for `XCommandParser` and `XYCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+==== Parent and child command classes
+
+The 'parent command' class (e.g. `StudentCommand`) should be declared `abstract`, and directly extend the `Command` class.
+All sub-command classes should then extend the 'parent command' class (e.g. `StudentAddCommand` extends `StudentCommand`).
+
+Similar to non-hierarchical commands, 'parent command' classes may contain the fields `COMMAND_WORD` and `MESSAGE_USAGE`
+for use in the corresponding 'parent command' parsers. This decouples the message details of the command from the parsing of the commands.
+
+
+==== Parent command parser class
+'Parent command' parsers are required to dispatch parsing to a sub-command. This is somewhat similar to the main `PlannerParser`.
+However, the splitting of the sub-command string into the sub-command name and its arguments
+is handled by link:{repoURL}/src/main/java/seedu/planner/logic/parser/SubCommandSplitter.java[`SubCommandSplitter.java`].
+This utility class handles some edge cases related to whitespace, and is preferred when implementing a 'parent command'. +
+
+The `Parser` for the 'parent command' (e.g. `StudentCommandParser`) should implement the `Parser<T>` interface,
+where `T` is the class of the 'parent command' (e.g. `StudentCommand`). +
+
+NOTE: This is different from child `Command` classes, which should extend their parent `Command` class
+
+To split the sub-command string into the sub-command and arguments, use:
+
+* `SubCommandSplitter(String userInput, String failureMessage)` to construct the `SubCommandSplitter` object
+* `SubCommandSplitter#getCommand()` to get the command string
+* `SubCommandSplitter#getSubCommand()` to get the arguments. +
+[none]
+Note that it is possible to create a more deeply nested hierarchy of commands subclassing the `Command` subclass appropriately.
+
+Parsing of a hierarchical command string (e.g.`"student add n/Alice major/CS"`) happens in the following manner:
+
+. link:{repoURL}/src/main/java/seedu/planner/logic/parser/PlannerParser.java[`PlannerParser`]
+removes `student` from the command string. A leading space followed by `"add n/Alice major/CS"` is passed to `StudentCommandParser`.
+. `StudentCommandParser` invokes methods in `SubCommandSplitter` which parses the remaining command string
+into the `"add"` command word and `"n/Alice major/CS"` as the arguments.
+. `StuentCommandParser` matches the `"add"` string and creates a new `StudentAddCommandParser` with the input string `"n/Alice major/CS"`.
+. `StudentAddCommandParser` can now parse the given preamble and arguments using
+link:{repoURL}/src/main/java/seedu/planner/logic/parser/ArgumentTokenizer.java[`ArgumentTokenizer`]
+
+==== Child command parser class
+'Child command' parsers should implement `Parser<T>`, where `T` is the 'child command' class. +
+'Child command' parsers are responsible for parsing the preamble and arguments of the input.
+
+It is not always necessary to create a parser for a 'child command'.
+If the 'child command' may ignore any given preamble or arguments provided by the user,
+the 'parent command' parser may simply return an instance of the 'child command' directly. +
+
+For example, `StudentCommandParser` directly returns a `StudentListCommand` given the `"list"` command word.
 
 == Documentation
 

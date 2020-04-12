@@ -40,6 +40,7 @@ Responsibilities: UI/UX & Documentation
 === Vincent Chow
 image::thetruevincentchow.png[width="150", align="left"]
 {empty}[http://github.com/thetruevincentchow[github]]
+{empty}[<<thetruevincentchow#, portfolio>>]
 
 Role: Backend Developer +
 Responsibilities: Backend Architecture
