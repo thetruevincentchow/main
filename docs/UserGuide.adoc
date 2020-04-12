@@ -30,7 +30,7 @@ The *NUS Module Planner* (_NUSModPlnr_) is for Computer Science (CS) students at
 When starting up the application, you will be able to see the *Home Screen* (_Figure 1. below_).
 
 .Home Screen View
-image::Ui.png[width="600", align="left"]
+image::Ui.png[width="600", align="center"]
 
 Do you want to keep track of the modules you will be taking over multiple semesters? Do you want to easily create multiple plans of these multiple semesters?
 
@@ -167,7 +167,7 @@ Format: `exit`
 You can use the `status` command to view your currently selected students and timetables. The figure below shows a possible result of the command.
 
 .Possible Result of Status Command
-image::StatusCommand.png[width="600", align="left"]
+image::StatusCommand.png[width="600", align="center"]
 
 [TIP]
 Use the commands in <<student-management,*Student Management*>> to create and manage students. +
@@ -371,7 +371,7 @@ The application has a calendar feature to see the timetable schedule. Once a les
 You can see the *Launch Calendar Button* (_Figure X. below_).
 
 .Launch Calendar Button
-image::CalendarButton.png[width="600", align="left"]
+image::CalendarButton.png[width="600", align="center"]
 
 
 ==== Viewing the "Calendar Schedule"
@@ -381,7 +381,7 @@ There are two ways to view the Calendar. You can click on the launch calendar to
 You can see the *Calendar Schedule* (_Figure X. below_).
 
 .Calendar Schedule
-image::CalSchedule.png[width="600", align="left"]
+image::CalSchedule.png[width="600", align="center"]
 
 // end::calendar-interface[]
 
@@ -396,7 +396,7 @@ to find the desirable module to take for the semester.
 You can see the *Module Panel Screen* (_Figure X. below_).
 
 .Module Panel View
-image::ModulePanel.png[width="600", align="left"]
+image::ModulePanel.png[width="600", align="center"]
 
 ==== Viewing information on a specific module
 
@@ -405,7 +405,7 @@ You can click on any of the modules to see the module description. It will launc
 Here is the *Module Description Screen* (_Figure X. below_).
 
 .Module Description View
-image::ModuleDescription.png[width="600", align="left"]
+image::ModuleDescription.png[width="600", align="center"]
 
 ==== Searching for a specific module
 
@@ -414,7 +414,7 @@ You can use the search bar to search for any module based on their module code o
 Here is the *Search Screen* (_Figure X. below_).
 
 .Search View
-image::Search.png[width="600", align="left"]
+image::Search.png[width="600", align="center"]
 
 // end::module-interface-and-search[]
 
@@ -428,7 +428,7 @@ Do note that you can click on the modules to see the module description.
 When managing your <<module-management,modules>>, you will be able to see the *Module View Screen* (_Figure 2. below_).
 
 .Home Screen View
-image::ModuleList.png[width="600", align="left"]
+image::ModuleList.png[width="600", align="center"]
 
 [NOTE]
 All the following commands require a <<timetable-management,timetable>>  to be selected (using the <<timetable-active-command,`timetable active`>> command).
@@ -510,7 +510,7 @@ The following commands below are part of the application's *Lesson Management*, 
 When managing lessons, you will be able to see the *Lesson View Screen* (_Figure 3. below_).
 
 .Lesson List View
-image::LessonList.png[width="600", align="left"]
+image::LessonList.png[width="600", align="center"]
 
 ==== Adding a lesson: `lessons add`
 
