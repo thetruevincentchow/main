@@ -258,7 +258,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Searches Module.
+     * Searches Module based on the textbox.
      */
     @FXML
     private void searchMod() {

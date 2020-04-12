@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyPlanner <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class Planner
+Class ReadOnlyPlanner
+Class Model
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Package Student {
+Class Student
+Class Degree
+Class Enrollment
+Class GraduationYear
+Class Major
+Class Timetable
+Class Name
+Class MatriculationId
+Class UniqueStudentList
+}
+
+Package Module {
+Class Module
+Class ModuleCode
+Class UniqueModuleList
+}
+
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+Planner .up.|> ReadOnlyPlanner
+
+ModelManager .up.|> Model
+Model .right.> ObservableList
+ModelManager o--> "1" Planner
+ModelManager o-left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+Planner *--> "1" UniqueStudentList
+Enrollment *--> "1" UniqueModuleList
+UniqueStudentList o--> "*" Student
+Student *--> Name
+Student *--> Degree
+Student *--> Enrollment
+Student *--> GraduationYear
+Student *--> Major
+Student *--> MatriculationId
+Student *--> "*" Timetable
+
+UniqueModuleList o--> "*" Module
+Module *--> ModuleCode
+
+
+
+ModelManager -->"1" Student : filtered list
+ModelManager -->"1" Module : filtered list
+@enduml

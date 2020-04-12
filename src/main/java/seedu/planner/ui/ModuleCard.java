@@ -97,6 +97,9 @@ public class ModuleCard extends UiPart<Region> {
                 && module.equals(card.module);
     }
 
+    /**
+     * Shows the details of the module selected
+     */
     @FXML
     public void showDetails() {
         VBox order = new VBox();
@@ -168,6 +171,10 @@ public class ModuleCard extends UiPart<Region> {
         newWindow.show();
     }
 
+    /**
+     * Return the lesson details based on the semester provided
+     * @param sem
+     */
     private void setLessonDetails(int sem) {
         LessonDataImporterUtil imp = new LessonDataImporterUtil();
         lessons = imp.run(module.getModuleCode().toString(), sem);

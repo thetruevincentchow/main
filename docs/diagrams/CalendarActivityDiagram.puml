@@ -1,0 +1,9 @@
+@startuml
+start
+:Student execute LaunchCalendar ;
+ :Retrieve Planner from Storage;
+ :Invoke setCalendar;
+ :Retrieve Lessons from Planner;
+ :Populate Labels in Gridview;
+ stop
+ @enduml

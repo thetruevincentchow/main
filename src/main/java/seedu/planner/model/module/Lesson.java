@@ -99,4 +99,8 @@ public class Lesson {
     public void setTime(ModuleTime time) {
         this.time = time;
     }
+
+    public boolean isSameLesson(Lesson other) {
+        return this.classNo.equals(other.classNo);
+    }
 }

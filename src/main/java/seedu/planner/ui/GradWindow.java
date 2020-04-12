@@ -8,6 +8,10 @@ import seedu.planner.commons.GraduationRequirementUtil;
 import seedu.planner.model.ReadOnlyPlanner;
 import seedu.planner.model.student.Student;
 
+
+/**
+ * The UI component that is responsible for updating graduation requirements.
+ */
 public class GradWindow extends UiPart<Region> {
 
     private static final String FXML = "GradView.fxml";
