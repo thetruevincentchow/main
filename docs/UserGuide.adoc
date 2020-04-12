@@ -105,7 +105,7 @@ These steps are recommended only if you have experience in setting up the applic
 
 // end::quick-start[]
 
-// tag::feature-preamble
+// tag::feature-preamble[]
 
 == Features
 

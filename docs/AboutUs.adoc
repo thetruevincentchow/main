@@ -13,6 +13,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 === Benjamin Lau
 image::capeguy.png[width="150", align="left"]
 {empty} [https://github.com/capeguy[github]]
+{empty}[<<capeguy#, portfolio>>]
 
 Role: Technical Developer Lead +
 Responsibilities: Core Functionality
@@ -22,6 +23,7 @@ Responsibilities: Core Functionality
 === Muhammad Danish
 image::danamic.png[width="150", align="left"]
 {empty}[http://github.com/danamic[github]]
+{empty}[<<danamic#, portfolio>>]
 
 Role: Team Project Lead +
 Responsibilities: Data Handling & QA Testing
@@ -31,6 +33,7 @@ Responsibilities: Data Handling & QA Testing
 === Soh Hak Wee
 image::gruntultra.png[width="150", align="left"]
 {empty}[http://github.com/gruntultra[github]]
+{empty}[<<gruntultra#, portfolio>>]
 
 Role: Frontend Developer +
 Responsibilities: UI/UX & Documentation

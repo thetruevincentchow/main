@@ -974,7 +974,6 @@ To split the sub-command string into the sub-command and arguments, use:
 * `SubCommandSplitter(String userInput, String failureMessage)` to construct the `SubCommandSplitter` object
 * `SubCommandSplitter#getCommand()` to get the command string
 * `SubCommandSplitter#getSubCommand()` to get the arguments. +
-[none]
 Note that it is possible to create a more deeply nested hierarchy of commands subclassing the `Command` subclass appropriately.
 
 Parsing of a hierarchical command string (e.g.`"student add n/Alice major/CS"`) happens in the following manner:
