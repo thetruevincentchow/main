@@ -29,6 +29,8 @@ public class ModuleRemoveCommand extends ModuleCommand {
 
     public static final String MESSAGE_REMOVE_MODULE_SUCCESS = "Removed module from timetable: %1$s";
     public static final String MESSAGE_REMOVE_MODULE_NOT_EXISTS = "Module does not exist in timetable: %1$s";
+    public static final String MESSAGE_REMOVE_MODULE_DELETE_ALREADY_EXISTS = "Module appeared more than once in your "
+        + "command: %1$s";
 
     private final List<ModuleCode> moduleCodes;
 
@@ -52,6 +54,14 @@ public class ModuleRemoveCommand extends ModuleCommand {
     }
 
     /**
+     * Generates a command execution error message due to the given {@code moduleCode} already being present
+     * in the list of previously parsed {@code moduleCode}.
+     */
+    private String generateDuplicateDeleteMessage(ModuleCode moduleCode) {
+        return String.format(MESSAGE_REMOVE_MODULE_DELETE_ALREADY_EXISTS, moduleCode.value);
+    }
+
+    /**
      * Generates a command execution success message for removing the given {@code moduleCode}
      * from the selected timetable of the selected student.
      */
@@ -71,12 +81,18 @@ public class ModuleRemoveCommand extends ModuleCommand {
             throw new CommandException(Messages.MESSAGE_NO_TIMETABLE_ACTIVE);
         }
         List<String> messages = new ArrayList<>();
+        List<ModuleCode> moduleCodesToRemove = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodes) {
             // Check if module is present in active timetable
             if (!model.hasEnrollment(moduleCode)) {
-                // throw new CommandException(generateFailureMessage(moduleCode));
-                messages.add(generateFailureMessage(moduleCode));
+                throw new CommandException(generateFailureMessage(moduleCode));
             }
+            if (moduleCodesToRemove.contains(moduleCode)) {
+                throw new CommandException(generateDuplicateDeleteMessage(moduleCode));
+            }
+            moduleCodesToRemove.add(moduleCode);
+        }
+        for (ModuleCode moduleCode : moduleCodesToRemove) {
             model.removeEnrollment(moduleCode);
             messages.add(generateSuccessMessage(moduleCode));
         }

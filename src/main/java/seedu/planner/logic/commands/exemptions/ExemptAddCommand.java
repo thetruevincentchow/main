@@ -16,6 +16,7 @@ import seedu.planner.model.module.ModuleCode;
 import seedu.planner.model.util.ModuleUtil;
 
 //@@author thetruevincentchow
+
 /**
  * Adds a module to the list of exempted modules of the selected student.
  */
@@ -27,9 +28,11 @@ public class ExemptAddCommand extends ExemptCommand {
         + "Parameters: MODULE_CODE (must be a valid NUS module code)\n"
         + "Example: " + getQualifiedCommand(COMMAND_WORD) + " CS2030";
 
-    public static final String MESSAGE_ADD_MODULE_SUCCESS = "Added module to exemption list: %1$s";
-    public static final String MESSAGE_ADD_MODULE_ALREADY_EXISTS = "Module is already in exemption list: %1$s";
-    public static final String MESSAGE_ADD_MODULE_INVALID = "Module code does not exist: %1$s";
+    public static final String MESSAGE_ADD_EXEMPTION_SUCCESS = "Added module to exemption list: %1$s";
+    public static final String MESSAGE_ADD_EXEMPTION_ALREADY_EXISTS = "Module is already in exemption list: %1$s";
+    public static final String MESSAGE_ADD_EXEMPTION_DUPLICATE_ALREADY_EXISTS = "Module appeared more than once in "
+        + "your command: %1$s";
+    public static final String MESSAGE_ADD_EXEMPTION_INVALID = "Module code does not exist: %1$s";
 
     private final List<ModuleCode> moduleCodes;
 
@@ -48,7 +51,7 @@ public class ExemptAddCommand extends ExemptCommand {
      * Generates a command execution error message due to the given {@code moduleCode} being invalid.
      */
     private String generateModuleDoesNotExist(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_INVALID, moduleCode.value);
+        return String.format(MESSAGE_ADD_EXEMPTION_INVALID, moduleCode.value);
     }
 
     /**
@@ -56,7 +59,15 @@ public class ExemptAddCommand extends ExemptCommand {
      * in the list of exempted modules of the selected student.
      */
     private String generateDuplicateMessage(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_ALREADY_EXISTS, moduleCode.value);
+        return String.format(MESSAGE_ADD_EXEMPTION_ALREADY_EXISTS, moduleCode.value);
+    }
+
+    /**
+     * Generates a command execution error message due to the given {@code moduleCode} already being present
+     * in the list of exempted modules of the selected student.
+     */
+    private String generateDuplicateModuleAlreadyExist(ModuleCode moduleCode) {
+        return String.format(MESSAGE_ADD_EXEMPTION_DUPLICATE_ALREADY_EXISTS, moduleCode.value);
     }
 
     /**
@@ -64,7 +75,7 @@ public class ExemptAddCommand extends ExemptCommand {
      * to the list of exempted modules of the selected student.
      */
     private String generateSuccessMessage(ModuleCode moduleCode) {
-        return String.format(MESSAGE_ADD_MODULE_SUCCESS, moduleCode.value);
+        return String.format(MESSAGE_ADD_EXEMPTION_SUCCESS, moduleCode.value);
     }
 
     @Override
@@ -75,20 +86,24 @@ public class ExemptAddCommand extends ExemptCommand {
         if (!model.hasActiveStudent()) {
             throw new CommandException(Messages.MESSAGE_NO_STUDENT_ACTIVE);
         }
-        List<String> messages = new ArrayList<>();
+        List<ModuleCode> moduleCodesToExempt = new ArrayList<>();
         for (ModuleCode moduleCode : moduleCodes) {
             // Check if module is present in exempted modules list
             if (model.hasExemptedModule(moduleCode)) {
-                // throw new CommandException(generateDuplicateMessage(moduleCode));
-                messages.add(generateDuplicateMessage(moduleCode));
+                throw new CommandException(generateDuplicateMessage(moduleCode));
             }
-
             // Check if module exists in module database
             if (!ModuleUtil.hasModuleWithCode(moduleCode)) {
-                // throw new CommandException(generateModuleDoesNotExist(moduleCode));
-                messages.add(generateModuleDoesNotExist(moduleCode));
+                throw new CommandException(generateModuleDoesNotExist(moduleCode));
             }
-
+            // Check if module already present in list of ModuleCodes to add
+            if (moduleCodesToExempt.contains(moduleCode)) {
+                throw new CommandException(generateDuplicateModuleAlreadyExist(moduleCode));
+            }
+            moduleCodesToExempt.add(moduleCode);
+        }
+        List<String> messages = new ArrayList<>();
+        for (ModuleCode moduleCode : moduleCodesToExempt) {
             model.addExemptedModule(moduleCode);
             messages.add(generateSuccessMessage(moduleCode));
         }
