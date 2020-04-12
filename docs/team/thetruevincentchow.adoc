@@ -72,7 +72,7 @@ Great care had to be taken to ensure storage and serialisation worked consistent
 You can use the `status` command to view your currently selected students and timetables. The figure below shows a possible result of the command.
 
 .Possible Result of Status Command
-image::StatusCommand.png[width="600", align="left"]
+image::StatusCommand.png[width="600", align="center"]
 
 [TIP]
 Use the commands in <<student-management,*Student Management*>> to create and manage students. +
