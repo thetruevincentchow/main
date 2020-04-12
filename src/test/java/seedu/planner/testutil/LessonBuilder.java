@@ -47,11 +47,17 @@ public class LessonBuilder {
         this.size = lesson.getSize();
     }
 
+    /**
+     * Sets the {@code classNo} of the {@code Lesson} that we are building.
+     */
     public LessonBuilder withClassNo(String classNo) {
         this.classNo = classNo;
         return this;
     }
 
+    /**
+     * Sets the {@code weeks} of the {@code Lesson} that we are building.
+     */
     public LessonBuilder withWeek(Object weeks) {
         this.weeks = weeks;
         return this;

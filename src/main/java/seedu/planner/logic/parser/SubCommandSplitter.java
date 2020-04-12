@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 import seedu.planner.logic.parser.exceptions.ParseException;
 
 //@@author thetruevincentchow
+
+/**
+ * Splits a command string into a command word and the remaining sub-command string, separated by whitespace.
+ */
 public class SubCommandSplitter {
     /**
      * Used for initial separation of command word and args.

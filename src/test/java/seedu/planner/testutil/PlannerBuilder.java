@@ -21,11 +21,17 @@ public class PlannerBuilder {
         this.planner = planner;
     }
 
+    /**
+     * Adds a {@code Student} to the {@code Planner} that we are building.
+     */
     public PlannerBuilder withStudent(Student student) {
         this.planner.addStudent(student);
         return this;
     }
 
+    /**
+     * Adds a {@code Module} to the {@code Planner} that we are building.
+     */
     public PlannerBuilder withModule(Module module) {
         this.planner.addModule(module);
         return this;

@@ -2,6 +2,10 @@ package seedu.planner.model.time;
 
 import java.util.Objects;
 
+/**
+ * Represents an academic semester with a year and a semester.
+ * The {@code academicYear} field is currently unused.
+ */
 public class SemesterYear implements Comparable<SemesterYear> {
     public static final String MESSAGE_CONSTRAINTS = "Semester year should be valid.";
 

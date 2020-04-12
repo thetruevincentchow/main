@@ -3,6 +3,9 @@ package seedu.planner.model.time;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a semester at NUS.
+ */
 public enum Semester {
     ONE("Semester 1"),
     TWO("Semester 2"),
