@@ -135,7 +135,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return planner.equals(other.planner)
-            && userPrefs.equals(other.userPrefs);
+                && userPrefs.equals(other.userPrefs);
     }
 
     public ObservableList<Student> getStudentList() {
@@ -150,6 +150,12 @@ public class ModelManager implements Model {
         return planner.getModuleList();
     }
 
+    /**
+     * Returns if the {@code planner}'s list of modules contains the given {@code module}
+     *
+     * @param module Module to check
+     * @return {@code true} if the {@code planner}'s list of modules contains the given {@code module}
+     */
     public boolean hasModule(Module module) {
         if (module == null) {
             throw new NullPointerException();
@@ -173,15 +179,29 @@ public class ModelManager implements Model {
         planner.activateStudent(student);
     }
 
+    /**
+     * Firstly, deselects the active timetable if the {@code planner}, if any.
+     * Then if the student list is non-empty, select any valid student.
+     */
     public void activateValidStudent() {
         planner.activateValidStudent();
     }
 
+    /**
+     * Adds the given {@code student} to the {@code planner}
+     *
+     * @param student Student to be added to the {@code planner}
+     */
     public void addStudent(Student student) {
         requireAllNonNull(student);
         planner.addStudent(student);
     }
 
+    /**
+     * Removes the given {@code student} from the {@code planner}
+     *
+     * @param student Student to be removed from the {@code planner}
+     */
     public void removeStudent(Student student) {
         requireAllNonNull(student);
         planner.removeStudent(student);
@@ -195,7 +215,6 @@ public class ModelManager implements Model {
         return planner.getActiveModuleCodes();
     }
 
-    // TODO: replace with `TimeTable` and `Enrollment`
     public boolean hasEnrollment(ModuleCode moduleCode) {
         return planner.hasEnrollment(moduleCode);
     }

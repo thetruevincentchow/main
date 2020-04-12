@@ -166,37 +166,76 @@ public class Planner implements ReadOnlyPlanner {
         modules.add(module);
     }
 
-    // TODO: Replace `ModuleCode` with`Enrollment` Currently we can query with `ModuleCode` and add `Enrollment`.
+    /**
+     * Returns if the active timetable has an enrollment with the given {@code moduleCode}
+     *
+     * @param moduleCode Module code to match
+     * @return {@code true} if the active timetable has an enrollment with the given {@code moduleCode}
+     */
     public boolean hasEnrollment(ModuleCode moduleCode) {
         TimeTable timeTable = getActiveTimeTable();
         return timeTable.hasModuleCode(moduleCode);
     }
 
+    /**
+     * Returns the enrollment in the active timetable corresponding to the given {@code moduleCode}.
+     *
+     * @param moduleCode Module code to match an enrollment
+     * @return {@link Enrollment} corresponding to {@code moduleCode}
+     */
     public Enrollment getEnrollment(ModuleCode moduleCode) {
         requireAllNonNull(moduleCode);
         TimeTable timeTable = getActiveTimeTable();
         return timeTable.getEnrollment(moduleCode);
     }
 
+    /**
+     * Returns the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     *
+     * @param moduleCode Module code to match
+     * @return {@link Optional&lt;Grade&gt;} of the enrollment corresponding to {@code moduleCode}
+     */
     public Optional<Grade> getModuleGrade(ModuleCode moduleCode) {
         Enrollment enrollment = getEnrollment(moduleCode);
         return enrollment.getGrade();
     }
 
+    /**
+     * Sets the {@code grade} of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     *
+     * @param moduleCode Module code to match
+     * @param grade      Grade to set
+     */
     public void setModuleGrade(ModuleCode moduleCode, Grade grade) {
         Enrollment enrollment = getEnrollment(moduleCode);
         enrollment.setGrade(Optional.of(grade));
     }
 
+    /**
+     * Resets the grade of the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     *
+     * @param moduleCode Module code to match
+     */
     public void resetModuleGrade(ModuleCode moduleCode) {
         Enrollment enrollment = getEnrollment(moduleCode);
         enrollment.setGrade(Optional.empty());
     }
 
+    /**
+     * Adds the {@code enrollment} to the active timetable.
+     * The {@code enrollment} cannot have the same module code as any enrollment in the active timetable.
+     *
+     * @param enrollment Module code to match
+     */
     public void addEnrollment(Enrollment enrollment) {
         getActiveTimeTable().addEnrollment(enrollment);
     }
 
+    /**
+     * Removes the enrollment in the active timetable corresponding to the given {@code moduleCode}
+     *
+     * @param moduleCode Module code to match
+     */
     public void removeEnrollment(ModuleCode moduleCode) {
         getActiveTimeTable().removeModuleCode(moduleCode);
     }
@@ -262,11 +301,21 @@ public class Planner implements ReadOnlyPlanner {
         return getActiveStudent().getExemptedModules();
     }
 
+    /**
+     * Returns whether a timetable is selected
+     *
+     * @return {@code true} if a timetable is selected
+     */
     @Override
     public boolean hasActiveTimeTable() {
         return isValidActiveStudentIndex() && getActiveTimeTable() != null;
     }
 
+    /**
+     * Returns whether a student is selected
+     *
+     * @return {@code true} if a student is selected
+     */
     @Override
     public boolean hasActiveStudent() {
         return isValidActiveStudentIndex();
@@ -296,6 +345,10 @@ public class Planner implements ReadOnlyPlanner {
         return getActiveStudent().getAllEnrolledModules();
     }
 
+    /**
+     * Firstly, deselects the active timetable, if any.
+     * Then if the student list is non-empty, select any valid student.
+     */
     public void activateValidStudent() {
         activeStudentIndex = -1;
         activeSemester = null;
@@ -304,22 +357,49 @@ public class Planner implements ReadOnlyPlanner {
         }
     }
 
+    /**
+     * Returns the {@link Student} in the students list which matches the given {@code student}
+     * under {@code Student#equals()} equality.
+     *
+     * @return {@link Student} equal to {@code student}
+     */
     public Student getEqualStudent(Student student) {
         return students.getEqualStudent(student);
     }
 
+    /**
+     * Returns the index of the {@link Student} in the students list which matches the given {@code student}
+     * under {@code Student#equals()} equality.
+     *
+     * @return index of {@link Student} if present, -1 otherwise
+     */
     private int getStudentIndex(Student student) {
         return students.indexOf(student);
     }
 
+    /**
+     * Returns whether the given student {@code index} is in the bounds of the student list.
+     *
+     * @return {@code true} if {@code index} refers to a valid student
+     */
     private boolean isValidStudentIndex(int index) {
         return 0 <= index && index < students.size();
     }
 
+    /**
+     * Returns whether the index of the active student is valid.
+     *
+     * @return {@code true} if the index of the active student is valid
+     */
     private boolean isValidActiveStudentIndex() {
         return isValidStudentIndex(activeStudentIndex);
     }
 
+    /**
+     * Returns the active {@link Student} if present, {@code null} otherwise.
+     *
+     * @return Active {@link Student} if present, {@code null} otherwise
+     */
     public Student getActiveStudent() {
         if (!isValidActiveStudentIndex()) {
             return null;
@@ -359,6 +439,13 @@ public class Planner implements ReadOnlyPlanner {
         activeSemester = null;
     }
 
+    /**
+     * Remove {@code toRemove} from the student list. The student to be removed is matched with {@code Student#equals
+     * ()}.
+     * If the {@link Student} to be removed is the active student, deselect the active student and active timetable.
+     *
+     * @param toRemove Student to remove
+     */
     public void removeStudent(Student toRemove) {
         Student activeStudent = getActiveStudent();
         if (toRemove.equals(activeStudent)) {
@@ -371,23 +458,41 @@ public class Planner implements ReadOnlyPlanner {
         }
     }
 
+    /**
+     * Asserts that the a student in the student list is selected.
+     */
     public void requireActiveStudentNonNull() {
         if (getActiveStudent() == null) {
             throw new NoActiveStudentException();
         }
     }
 
+    /**
+     * Returns the active timetable.
+     *
+     * @return Active timetable
+     */
     public TimeTable getActiveTimeTable() {
         requireAllNonNull(getActiveStudent());
 
         return getActiveStudent().getTimeTable(activeSemester);
     }
 
+    /**
+     * Replace the active timetable of the active student with the given {@code timeTable}.
+     * The original active timetable is lost.
+     *
+     * @param timeTable Active timetable to use as replacement
+     */
     public void replaceActiveTimeTable(TimeTable timeTable) {
         requireAllNonNull(getActiveStudent());
         getActiveStudent().replaceTimeTable(activeSemester, timeTable);
     }
 
+    /**
+     * Activate any valid timetable of the active student.
+     * There is no guarantee of the timetable that is selected.
+     */
     private void activateValidSemester() {
         requireActiveStudentNonNull();
         requireAllNonNull(getActiveStudent());
@@ -398,11 +503,21 @@ public class Planner implements ReadOnlyPlanner {
         activeSemester = getActiveStudent().getTimeTableMap().keySet().iterator().next();
     }
 
+    /**
+     * Returns if the active student has a timetable corresponding to the given {@code semester}.
+     *
+     * @return {@code true} if the active student has a timetable corresponding to the given {@code semester}
+     */
     public boolean hasSemester(StudentSemester semester) {
         requireActiveStudentNonNull();
         return getActiveStudent().getTimeTableMap().containsKey(semester);
     }
 
+    /**
+     * Activate the timetable of the active student corresponding to the given {@code semester}.
+     *
+     * @param semester {@link StudentSemester} to add timetable
+     */
     public void activateSemester(StudentSemester semester) {
         requireActiveStudentNonNull();
         if (!getActiveStudent().getTimeTableMap().containsKey(semester)) {
@@ -411,6 +526,11 @@ public class Planner implements ReadOnlyPlanner {
         activeSemester = semester;
     }
 
+    /**
+     * Adds an empty timetable to the active student in the specified {@code studentSemester}.
+     *
+     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to add
+     */
     public void addSemesterTimeTable(StudentSemester studentSemester) {
         requireActiveStudentNonNull();
         if (hasSemester(studentSemester)) {
@@ -420,6 +540,11 @@ public class Planner implements ReadOnlyPlanner {
         getActiveStudent().replaceTimeTable(studentSemester, new TimeTable());
     }
 
+    /**
+     * Remove the timetable of the specified {@code studentSemester} from the active student
+     *
+     * @param studentSemester {@link StudentSemester} of {@code TimeTable} to remove
+     */
     public void removeSemesterTimeTable(StudentSemester studentSemester) {
         requireActiveStudentNonNull();
         if (!hasSemester(studentSemester)) {
@@ -429,11 +554,21 @@ public class Planner implements ReadOnlyPlanner {
         getActiveStudent().removeTimeTable(studentSemester);
     }
 
+    /**
+     * Add an exempted module with the given {@code moduleCode} to the active student
+     *
+     * @param moduleCode Exempted {@link ModuleCode}
+     */
     public void addExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
         getActiveStudent().addExemptedModule(moduleCode);
     }
 
+    /**
+     * Removes an exempted module from the given {@code moduleCode} of the active student
+     *
+     * @param moduleCode Exempted {@link ModuleCode}
+     */
     public void removeExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
         getActiveStudent().removeExemptedModule(moduleCode);
@@ -458,21 +593,41 @@ public class Planner implements ReadOnlyPlanner {
         return Objects.hash(activeStudentIndex, activeSemester, students);
     }
 
+    /**
+     * Returns if the active student is exempted from {@code moduleCode}
+     *
+     * @param moduleCode Exempted {@link ModuleCode}
+     */
     public boolean hasExemptedModule(ModuleCode moduleCode) {
         requireActiveStudentNonNull();
         return getExemptedModulesList().contains(moduleCode);
     }
 
+    /**
+     * Adds a {@link Lesson} to the active student.
+     *
+     * @param lesson {@link Lesson}
+     */
     public void addLesson(Lesson lesson) {
         requireActiveStudentNonNull();
         getActiveStudent().addLessons(lesson);
     }
 
+    /**
+     * Returns the list of {@link Lesson} of the active student.
+     *
+     * @return List of {@link Lesson}
+     */
     public List<Lesson> getLessons() {
         requireActiveStudentNonNull();
         return getActiveStudent().getLesson();
     }
 
+    /**
+     * Returns if the active student has the given {@code lesson}
+     *
+     * @return {@code true} if the active student has the given {@code lesson}
+     */
     public boolean hasLesson(Lesson lesson) {
         requireActiveStudentNonNull();
         return getActiveStudent().getLesson().contains(lesson);
