@@ -3,6 +3,9 @@ package seedu.planner.model.time;
 import java.util.Comparator;
 import java.util.Objects;
 
+/**
+ * Represents a student's year of study and semester (e.g. Year 1 Semester 1).
+ */
 public class StudentSemester implements Comparable<StudentSemester> {
     protected final SemesterYear semYear;
     protected final DegreeYear degreeYear;

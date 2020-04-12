@@ -21,6 +21,11 @@ public class StatusCommand extends Command {
     private static final String MESSAGE_SELECTED_TIMETABLE = "Selected timetable: %1$s\n";
     private static final String MESSAGE_LIST_MODULES = "Modules in selected timetable:\n%1$s\n";
 
+    /**
+     * Appends a user-friendly representation of a list of {@code codes} to the {code buffer}
+     * @param codes cannot be null
+     * @param buffer cannot be null
+     */
     private void addModuleListToBuffer(List<ModuleCode> codes, StringBuffer buffer) {
         if (codes.isEmpty()) {
             buffer.append(String.format(MESSAGE_LIST_MODULES, "[None]"));

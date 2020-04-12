@@ -14,6 +14,10 @@ import seedu.planner.model.student.TimeTable;
 import seedu.planner.model.time.StudentSemester;
 
 //@@author thetruevincentchow
+
+/**
+ * A default model stub that has fails for all of its methods.
+ */
 public class ModelStub implements Model {
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {

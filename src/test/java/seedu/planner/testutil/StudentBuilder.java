@@ -27,12 +27,18 @@ public class StudentBuilder {
         timeTableMap = new TimeTableMap();
     }
 
+    /**
+     * Copies the name, major and timetable map of the {@code student} provided.
+     */
     public StudentBuilder(Student student) {
         this.name = student.getName();
         this.major = student.getMajor();
         this.timeTableMap = student.getTimeTableMap();
     }
 
+    /**
+     * Sets the {@code Name} of the {@code Student} that we are building.
+     */
     public StudentBuilder withName(Name name) {
         this.name = name;
         return this;
@@ -42,6 +48,9 @@ public class StudentBuilder {
         return withName(new Name(name));
     }
 
+    /**
+     * Sets the {@code Major} of the {@code Student} that we are building.
+     */
     public StudentBuilder withMajor(Major major) {
         this.major = major;
         return this;
@@ -51,6 +60,9 @@ public class StudentBuilder {
         return withMajor(new Major(major));
     }
 
+    /**
+     * Sets the {@code TimeTableMap} of the {@code Student} that we are building.
+     */
     public StudentBuilder withTimeTableMap(TimeTableMap timeTableMap) {
         this.timeTableMap = timeTableMap;
         return this;
