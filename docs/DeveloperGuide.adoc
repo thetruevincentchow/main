@@ -1728,3 +1728,7 @@ This can be done by deleting the last non-whitespace character in the file, whic
 Expected: Shows the GUI with a set of sample plans.
 
 // end::appendix-manual-testing[]
+
+++++
+<style type="text/css">.imageblock > .title { text-align: center; !important; }</style>
+++++
