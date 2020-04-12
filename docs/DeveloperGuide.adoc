@@ -1117,7 +1117,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `Planner` and the *Actor* is the `user`, unless specified otherwise)
+For all use cases below, the *System* is the `Planner` and the *Actor* is the `user`, unless specified otherwise.
+
+[NOTE]
+The following Use Case guidelines do not take into account _Edge Cases_, which we acknowledge are not handled. Instead, please keep a look out for the pre-definied scopes as stated in each *Unit Test Case* below.
 
 === Use Case: Add Plan (UCA01)
 
@@ -1485,8 +1488,10 @@ Cons:
 
 Given below are instructions to test the app manually.
 
-[NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
+
+[NOTE]
+The following Manual Testing guidelines do not take into account _Edge Cases_, which we acknowledge are not handled. Instead, please keep a look out for the pre-definied scopes as stated in each *Test Case* below.
 
 === Launch and Shutdown
 
